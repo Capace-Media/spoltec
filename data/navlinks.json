@@ -1,0 +1,64 @@
+[
+  {
+    "label": "Tjänster",
+    "href": "/tjanster",
+    "links": [
+      {
+        "label": "Relining",
+        "href": "/relining"
+      },
+      {
+        "label": "Rörinspektion",
+        "href": "/rorinspektion"
+      },
+      {
+        "label": "Avloppsspolning",
+        "href": "/avloppsspolning"
+      },
+      {
+        "label": "Oljeavskiljare",
+        "href": "/oljeavskiljare"
+      },
+      {
+        "label": "Provtagning av vatten",
+        "href": "/provtagning-av-vatten"
+      },
+      {
+        "label": "Entreprenad",
+        "href": "/entreprenad"
+      }
+    ]
+  },
+  { "label": "Serviceavtal", "href": "/serviceavtal" },
+  {
+    "label": "Information",
+    "href": "/information",
+    "links": [
+      {
+        "label": "Serviceavtal",
+        "href": "/serviceavtal"
+      },
+      {
+        "label": "Garanti",
+        "href": "/garanti"
+      },
+      {
+        "label": "ROT-avdrag",
+        "href": "/rot-avdrag"
+      },
+      {
+        "label": "Varför blir det stopp?",
+        "href": "/varfor-blir-det-stopp"
+      },
+      {
+        "label": "Om Spoltec",
+        "href": "/om-spoltec"
+      },
+      {
+        "label": "Vår historia",
+        "href": "/var-historia"
+      }
+    ]
+  },
+  { "label": "Karriär", "href": "/karriar" }
+]

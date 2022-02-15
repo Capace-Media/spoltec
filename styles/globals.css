@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Chivo';
+  src: url('../public/assets/fonts/Chivo/Chivo-Regular.ttf');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Chivo';
+  src: url('../public/assets/fonts/Chivo/Chivo-Bold.ttf');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Chivo';
+  src: url('../public/assets/fonts/Chivo/Chivo-Black.ttf');
+  font-weight: 900;
+  font-display: swap;
+}
+
+@layer base {
+  body {
+    font-family: 'Chivo', sans-serif;
+  }
+  div,
+  figure {
+    @apply relative;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-semibold text-brand-blue;
+  }
+  h1 {
+    @apply text-3xl md:text-4xl;
+  }
+  h2 {
+    @apply mb-3 text-2xl md:text-3xl;
+  }
+  h3 {
+    @apply mb-3 text-xl md:text-2xl;
+  }
+}
+
+@layer components {
+  .contain {
+    @apply px-5 mx-auto md:px-10 max-w-[80rem];
+  }
+  .contain-outer {
+    @apply px-5 mx-auto md:px-10 max-w-[90rem];
+  }
+  .section {
+    @apply py-10 md:py-20;
+  }
+  .section-sm {
+    @apply py-5 md:py-10;
+  }
+  .row {
+    @apply pb-10 last:pb-0;
+  }
+  .row-sm {
+    @apply pb-5 last:pb-0;
+  }
+  .btn {
+    @apply inline-block px-5 py-3 font-bold text-white rounded bg-brand-blue opacity-90 hover:opacity-100;
+  }
+  .bg-section {
+    @apply section bg-brand-lightblue rounded-xl;
+  }
+  .parsed p {
+    @apply mb-4 last:mb-0;
+  }
+  .text-image div[data-image='2'],
+  .text-image div[data-image='1'] {
+    @apply row-span-2;
+  }
+}

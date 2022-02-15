@@ -1,0 +1,33 @@
+{
+  "name": "nw-starter-next",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "prebuild": "node ./scripts/prebuild.mjs",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.4.3",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "dotenv": "^16.0.0",
+    "framer-motion": "^6.2.4",
+    "html-react-parser": "^1.4.8",
+    "next": "^12.0.8",
+    "next-seo": "^5.1.0",
+    "node-fetch": "^3.2.0",
+    "preact": "^10.6.4",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.18",
+    "@types/react": "^17.0.38",
+    "autoprefixer": "^10.4.2",
+    "eslint": "8.7.0",
+    "eslint-config-next": "12.0.8",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.15"
+  }
+}
