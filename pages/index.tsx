@@ -1,6 +1,4 @@
 import Blocks from '@common/components/Blocks';
-import Image from 'next/image';
-import Link from 'next/link';
 import MainHero from '@common/sections/MainHero';
 import PageTransition from '@modules/transitions/components/PageTransition';
 import getPage from '@modules/pages/lib/getPage';
@@ -10,7 +8,6 @@ export const getStaticProps = async (context) => {
 };
 
 export default function Home({ page }) {
-  console.log('Page', page);
   return (
     <PageTransition>
       <>

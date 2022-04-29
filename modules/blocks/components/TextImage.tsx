@@ -6,10 +6,9 @@ interface TextImageProps {
 }
 
 const TextImage = ({ data }: TextImageProps) => {
-  console.log('TextImage =>', data);
   return (
     <div className='contain-outer'>
-      <div className='bg-section text-image'>
+      <div className={`text-image ${data?.installningar?.bakgrund ? 'bg-section' : 'section'}`}>
         <div className='section-sm contain'>
           <div className='grid gap-20 md:grid-cols-2'>
             <div className='flex items-center'>
@@ -18,9 +17,12 @@ const TextImage = ({ data }: TextImageProps) => {
                 <div className='parsed'>
                   {data.textBody.text && parse(data.textBody.text)}
                 </div>
-                <Link href={data.textBody.knapp.url}>
-                  <a className='mt-10 btn'>{data.textBody.knapp.text}</a>
-                </Link>
+                {data.textBody.knapp.url && (
+
+                  <Link href={data.textBody.knapp.url}>
+                    <a className='mt-10 btn'>{data.textBody.knapp.text}</a>
+                  </Link>
+                )}
               </div>
             </div>
             <div className='grid grid-cols-2 grid-rows-3 gap-3 h-[500px]'>

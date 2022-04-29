@@ -6,7 +6,7 @@ import { useState } from 'react';
 interface HeaderProps {}
 
 const buttons = [
-  { label: 'Kontakta oss', href: '/kontakt', pop: false },
+  { label: 'Kontakta oss', href: '/kontakta-oss', pop: false },
   { label: 'Akut hjälp', href: '/akut-hjalp', pop: true },
 ];
 

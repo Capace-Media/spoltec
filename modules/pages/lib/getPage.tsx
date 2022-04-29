@@ -21,10 +21,7 @@ const getPage = async (uri: string) => {
             blocks {
               ... on Page_Gqlblocks_Blocks_Blurbs {
                 fieldGroupName
-                blurbText:text {
-                  body
-                  rubrik
-                }
+                blurbText:text
                 installningar {
                   bakgrund
                 }
@@ -38,8 +35,33 @@ const getPage = async (uri: string) => {
                   }
                 }
               }
+              ... on Page_Gqlblocks_Blocks_Personal {
+                fieldGroupName
+                anstalld {
+                  bild {
+                    altText
+                    id
+                    mediaItemUrl
+                  }
+                  namn
+                  titel
+                  telefon
+                  email
+                }
+              }
+              ... on Page_Gqlblocks_Blocks_Lista {
+                fieldGroupName
+                text
+                punkter {
+                  text
+                }
+                avslut
+              }
               ... on Page_Gqlblocks_Blocks_TextBild {
                 fieldGroupName
+                installningar {
+                  bakgrund
+                }
                 textBody:text {
                   rubrik
                   text
@@ -79,7 +101,6 @@ const getPage = async (uri: string) => {
     if (!data) {
       throw 'Could not fetch data';
     }
-    console.log('DATA getPage ==>', data);
     return data;
   } catch (error) {
     console.error('ERROR getPage ==>', error);

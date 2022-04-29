@@ -14,10 +14,7 @@ const getService = async (slug: string) => {
               blocks {
                 ... on GqlService_Gqlblocks_Blocks_Blurbs {
                   fieldGroupName
-                  blurbText:text {
-                    body
-                    rubrik
-                  }
+                  blurbText:text
                   installningar {
                     bakgrund
                   }
@@ -45,6 +42,14 @@ const getService = async (slug: string) => {
                     mediaItemUrl
                   }
                 }
+                ... on GqlService_Gqlblocks_Blocks_Lista {
+                  fieldGroupName
+                  text
+                  punkter {
+                    text
+                  }
+                  avslut
+                }
                 ... on GqlService_Gqlblocks_Blocks_Tjanster {
                   fieldGroupName
                   rubrik
@@ -70,7 +75,6 @@ const getService = async (slug: string) => {
       { slug: slug }
     );
     const data = response.data.gqlService;
-    console.log('DATA getService ==>', data);
     return data;
   } catch (error) {
     console.error('ERROR getService ==>', error);

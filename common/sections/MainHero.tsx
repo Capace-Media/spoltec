@@ -15,7 +15,7 @@ const MainHero = ({}: MainHeroProps) => {
                 At lab ipsae esed quibusa consenda dem de prestiore eatus eum
                 quatio. Aquas aut quatur atist fugitam atio.{' '}
               </p>
-              <Link href='/kontakt'>
+              <Link href='/kontakta-oss'>
                 <a className='mt-10 btn'>Kontakta oss</a>
               </Link>
             </div>

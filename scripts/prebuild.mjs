@@ -34,6 +34,7 @@ const prebuild = async () => {
               slug
               gqlHeroFields {
                 underrubrik
+                introduktionstext
                 bild {
                   mediaItemUrl
                 }

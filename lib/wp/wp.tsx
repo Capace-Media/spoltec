@@ -1,7 +1,6 @@
 import { token } from './token';
 
 const WP = async (query: string, variables?: any) => {
-  console.log('TOKEN', token);
   try {
     const response = await fetch(process.env.GRAPHQL_ENDPOINT, {
       method: 'POST',
@@ -18,7 +17,6 @@ const WP = async (query: string, variables?: any) => {
       throw response.statusText;
     }
     const data = await response.json();
-    console.log('DATA WP ==>', data);
     return data;
   } catch (error) {
     console.error('ERROR WP ==>', error);

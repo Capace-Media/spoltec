@@ -5,7 +5,7 @@ interface BlocksProps {
 }
 
 const Blocks = ({ blocks }: BlocksProps) => {
-  console.log(blocks);
+
   return (
     <>
       {blocks?.map((block, i) => (

@@ -6,7 +6,6 @@ interface AvailablePositionsProps {
 }
 
 const AvailablePositions = ({ data }: AvailablePositionsProps) => {
-  console.log('Available pos =>', data);
 
   return (
     <>
@@ -17,9 +16,8 @@ const AvailablePositions = ({ data }: AvailablePositionsProps) => {
         </div>
         <div className='flex flex-wrap justify-center mt-10'>
           {positions.map((position) => {
-            console.log(position);
             return (
-              <Link href={`/${position?.slug}`}>
+              <Link key={position?.slug} href={`/${position?.slug}`}>
                 <a
                   key={position.title}
                   className='mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-[100%] md:w-[48%]  lg:w-[32%] xl:w-[24%] text-white p-7 bg-brand-blue text-left rounded-xl'

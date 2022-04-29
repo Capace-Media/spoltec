@@ -75,6 +75,18 @@
   .parsed p {
     @apply mb-4 last:mb-0;
   }
+  .parsed ul {
+    @apply pl-5 mb-4 list-disc list-outside;
+  }
+
+  .parsed ul li {
+    @apply mb-2;
+  }
+
+  .parsed a {
+    @apply text-brand-blue hover:underline;
+  }
+
   .text-image div[data-image='2'],
   .text-image div[data-image='1'] {
     @apply row-span-2;
