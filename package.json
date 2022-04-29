@@ -6,7 +6,8 @@
     "prebuild": "node ./scripts/prebuild.mjs",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "svg": "svgr -d components/icons components/icons/svgs"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.3",
@@ -19,9 +20,11 @@
     "node-fetch": "^3.2.0",
     "preact": "^10.6.4",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "sharp": "^0.30.4"
   },
   "devDependencies": {
+    "@svgr/cli": "^6.2.1",
     "@types/node": "^17.0.18",
     "@types/react": "^17.0.38",
     "autoprefixer": "^10.4.2",

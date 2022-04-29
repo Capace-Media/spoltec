@@ -6,21 +6,20 @@ interface ServicesProps {
 }
 
 const Services = ({ data }: ServicesProps) => {
-  console.log('Services =>', data);
+  
   return (
     <div className='text-center section contain'>
       <div className='max-w-[700px] mx-auto'>
         <h2>{data.rubrik}</h2>
         <p>{data.servicesText}</p>
       </div>
-      <div className='flex flex-wrap justify-center mt-10'>
+      <div className='grid justify-center grid-cols-1 gap-5 mt-10 lg:grid-cols-3 md:grid-cols-2'>
         {services.map((service) => {
-          console.log(service);
           return (
-            <Link href={`/${service.slug}`}>
+            <Link key={service.slug} href={`/${service.slug}`}>
               <a
                 key={service.title}
-                className='mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-[100%] md:w-[48%]  lg:w-[32%] xl:w-[24%] text-white p-7 bg-brand-blue text-left rounded-xl'
+                className='mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-[100%] text-white p-7 bg-brand-blue text-left rounded-xl'
               >
                 <Image
                   src={service.gqlHeroFields.bild.mediaItemUrl}
@@ -29,9 +28,9 @@ const Services = ({ data }: ServicesProps) => {
                   className='transition-all opacity-0 group-hover:opacity-20'
                 />
                 <div>
-                  <h3 className='text-xl text-white'>{service.title}</h3>
+                  <h3 className='text-xl text-white md:text-2xl'>{service.title}</h3>
                   <p className='mt-3 text-sm'>
-                    {service?.gqlHeroFields?.underrubrik || ''}
+                    {service?.gqlHeroFields?.introduktionstext || service?.gqlHeroFields?.underrubrik || ''}
                   </p>
                 </div>
                 <div className='flex items-center justify-end space-x-3'>

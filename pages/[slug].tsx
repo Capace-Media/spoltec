@@ -3,6 +3,8 @@ import Hero from '@common/sections/Hero';
 import getPage from '@modules/pages/lib/getPage';
 import getService from '@modules/services/lib/getService';
 import servicesIndex from '@data/static-services.json';
+import { useRouter } from 'next/router';
+import Contact from '@modules/blocks/components/Contact';
 export const getStaticPaths = async () => {
   const servicePaths = servicesIndex.map((service) => {
     return {
@@ -39,7 +41,8 @@ interface PageProps {
 }
 
 const Page = ({ page }: PageProps) => {
-  console.log('page', page);
+  const router = useRouter()
+  
   return (
     <>
       <Hero
@@ -49,6 +52,9 @@ const Page = ({ page }: PageProps) => {
         image={page?.gqlHeroFields?.bild?.mediaItemUrl}
       />
       <div id='content'>
+        {router?.asPath === '/kontakta-oss' && (
+          <Contact />
+        )}
         <Blocks blocks={page?.gqlBlocks?.blocks} />
       </div>
       <></>

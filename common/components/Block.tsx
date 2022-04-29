@@ -1,5 +1,7 @@
 import AvailablePositions from '@modules/blocks/components/AvailablePositions';
 import Blurbs from '@modules/blocks/components/Blurbs';
+import Employee from '@modules/blocks/components/Employee';
+import List from '@modules/blocks/components/List';
 import Services from '@modules/blocks/components/Services';
 import Text from '@modules/blocks/components/Text';
 import TextImage from '@modules/blocks/components/TextImage';
@@ -24,6 +26,12 @@ const Block = ({ block }: BlockProps) => {
       return <Blurbs data={block} />;
     case 'Page_Gqlblocks_Blocks_Blurbs':
       return <Blurbs data={block} />;
+    case 'Page_Gqlblocks_Blocks_Lista':
+      return <List data={block} />;
+    case 'Page_Gqlblocks_Blocks_Personal':
+      return <Employee data={block} />;
+    case 'GqlService_Gqlblocks_Blocks_Lista':
+      return <List data={block} />;
     default:
       return <p>{block.fieldGroupName}</p>;
       break;
