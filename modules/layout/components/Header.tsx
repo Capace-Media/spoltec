@@ -132,7 +132,7 @@ const Header = ({}: HeaderProps) => {
             
           </div>
           <ul className='hidden space-x-3 nv:block'>
-            {buttons.reverse().map((button) => (
+            {buttons.map((button) => (
               <Link key={button.label} href={button.href}>
                 <a
                   className={`${buttonStyles} ${
