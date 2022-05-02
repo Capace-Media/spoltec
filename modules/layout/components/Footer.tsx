@@ -2,9 +2,12 @@ import CallToAction from '@modules/blocks/components/Cta';
 import Image from 'next/image';
 import Link from 'next/link';
 import services from '@data/static-services.json';
+import footerLinks from '@data/footerlinks.json'
 interface FooterProps {}
 
 const Footer = ({}: FooterProps) => {
+
+  
   return (
     <>
       <CallToAction />
@@ -35,32 +38,38 @@ const Footer = ({}: FooterProps) => {
               </div>
               <div>
                 <strong className='block mb-3'>Privat</strong>
-                <ul>
-                  <li>Rörinspektion</li>
-                  <li>Relining</li>
-                  <li>Villaspolning</li>
-                  <li>Villastopp</li>
-                  <li>Tätning av betong</li>
+                <ul className='space-y-[6px]'>
+                  {footerLinks?.privat?.map((link: any, index) => {
+                    return (
+                      <li className='hover:text-brand-blue' key={index + link?.href + link?.label}>
+                        <Link href={link?.href}><a>{link?.label}</a></Link>
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
               <div>
                 <strong className='block mb-3'>Företag</strong>
-                <ul>
-                  <li>Rörinspektion</li>
-                  <li>Relining</li>
-                  <li>Villaspolning</li>
-                  <li>Villastopp</li>
-                  <li>Tätning av betong</li>
+                <ul className='space-y-[6px]'>
+                {footerLinks?.foretag?.map((link: any, index) => {
+                    return (
+                      <li className='hover:text-brand-blue' key={link?.href + index + link?.label}>
+                        <Link href={link?.href}><a>{link?.label}</a></Link>
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
               <div>
                 <strong className='block mb-3'>Information</strong>
-                <ul>
-                  <li>Serviceavtal</li>
-                  <li>Garanti</li>
-                  <li>RDT-avdrag</li>
-                  <li>Varför blir det stopp?</li>
-                  <li>Om Spoltec</li>
+                <ul className='space-y-[6px]'>
+                {footerLinks?.information?.map((link: any, index) => {
+                    return (
+                      <li className='hover:text-brand-blue' key={link?.href + link?.label + index}>
+                        <Link href={link?.href}><a>{link?.label}</a></Link>
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
             </div>

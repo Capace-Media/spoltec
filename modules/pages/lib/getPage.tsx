@@ -85,6 +85,20 @@ const getPage = async (uri: string) => {
                 fieldGroupName
                 rubrik
                 text
+                installning
+                knapp {
+                  text
+                  url {
+                    ... on Page {
+                      id
+                      uri
+                    }
+                    ... on GqlService {
+                      id
+                      slug
+                    }
+                  }
+                }
               }
               ... on Page_Gqlblocks_Blocks_LedigaTjanster {
                 fieldGroupName

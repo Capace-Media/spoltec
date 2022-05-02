@@ -1,0 +1,68 @@
+{
+    "privat": [
+        {
+            "label": "Rörinspektion",
+            "href": "/rorinspektion"
+        },
+        {
+            "label": "Relining",
+            "href": "/relining"
+        },
+        {
+            "label": "Villaspolning",
+            "href": "/avloppsspolning"
+        },
+        {
+            "label": "Villastopp",
+            "href": "/villastopp"
+        }
+    ],
+    "foretag": [
+        {
+            "label": "Relining",
+            "href": "/relining"
+        },
+        {
+            "label": "Underhållsspolning",
+            "href": "/underhallsspolning"
+        },
+        {
+            "label": "Akuta spolningsuppdrag",
+            "href": "/akut-hjalp"
+        },
+        {
+            "label": "Oljeavskiljare",
+            "href": "/oljeavskiljare"
+        },
+        {
+            "label": "Provtagning av vatten",
+            "href": "/provtagning-av-vatten"
+        },
+        {
+            "label": "Rörinspektion",
+            "href": "/rorinspektion"
+        }
+    ],
+    "information": [
+        {
+            "label": "Serviceavtal",
+            "href": "/serviceavtal"
+        },
+        {
+            "label": "Garanti",
+            "href": "/garanti"
+        },
+        {
+            "label": "ROT-avdrag",
+            "href": "/rot-avdrag"
+        },
+        {
+            "label": "Varför blir det stopp?",
+            "href": "/varfor-blir-det-stopp"
+        },
+        {
+            "label": "Om Spoltec",
+            "href": "/om-spoltec"
+        }
+    ]
+}

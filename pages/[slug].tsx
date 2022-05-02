@@ -5,16 +5,49 @@ import getService from '@modules/services/lib/getService';
 import servicesIndex from '@data/static-services.json';
 import { useRouter } from 'next/router';
 import Contact from '@modules/blocks/components/Contact';
+import WP from '@lib/wp/wp';
+
+export const isCustomPageSlug = (slug: string) => {
+  const pagesToExclude = [
+      'hem',
+      'akut-hjalp'
+  ]
+  return pagesToExclude.includes(slug)
+}
+
+export const GET_PAGES = `
+query GET_PAGES {
+  pages {
+    nodes {
+      slug
+    }
+  }
+}
+
+`
+
 export const getStaticPaths = async () => {
+
+  const {data} = await WP(GET_PAGES)
+  
+  const pagePaths = []
+  
+  data?.pages?.nodes && data?.pages?.nodes?.map((page: any) => {
+    if(! isCustomPageSlug(page?.slug) ){
+      pagePaths.push( { params: {slug: page?.slug } } )
+    }
+  })
+
   const servicePaths = servicesIndex.map((service) => {
+
     return {
       params: {
         slug: service.slug,
       },
     };
   });
-
-  const paths = servicePaths;
+  const paths = [...servicePaths, ...pagePaths];
+  
   return { paths, fallback: 'blocking' };
 };
 
