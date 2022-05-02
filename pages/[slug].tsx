@@ -67,7 +67,12 @@ export const getStaticProps = async (context) => {
       notFound: true,
     };
   }
-  return { props: { page } };
+  return { 
+    props: { 
+      page 
+    },
+    revalidate: 100, 
+  };
 };
 
 interface PageProps {

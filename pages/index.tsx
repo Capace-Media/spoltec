@@ -4,7 +4,12 @@ import PageTransition from '@modules/transitions/components/PageTransition';
 import getPage from '@modules/pages/lib/getPage';
 export const getStaticProps = async (context) => {
   const page = await getPage('/');
-  return { props: { page } };
+  return { 
+    props: { 
+      page 
+    },
+    revalidate: 100, 
+  };
 };
 
 export default function Home({ page }) {

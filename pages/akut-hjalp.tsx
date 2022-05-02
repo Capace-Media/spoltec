@@ -40,7 +40,12 @@ const Page = ({page}: PageProps) => {
 
 export const getStaticProps = async (context) => {
   const page = await getPage('/akut-hjalp');
-  return { props: { page } };
+  return { 
+    props: { 
+      page 
+    },
+    revalidate: 100, 
+  };
 };
 
 export default Page;
