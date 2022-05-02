@@ -11,6 +11,7 @@ const getService = async (slug: string) => {
     query getService($slug: ID!) {
         gqlService(id: $slug, idType: SLUG) {
             title
+            slug
             ${SeoFragment}
             gqlBlocks {
               blocks {
