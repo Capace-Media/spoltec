@@ -26,8 +26,9 @@ const TextImage = ({ data }: TextImageProps) => {
               </div>
             </div>
             <div className='grid grid-cols-2 grid-rows-3 gap-3 h-[500px]'>
-              {data.bilder.map((image, index) => (
+              {data.bilder.map((image: any, index: any) => (
                 <div
+                  key={image?.mediaItemUrl}
                   data-image={index}
                   className='relative overflow-hidden rounded-xl'
                 >
@@ -35,6 +36,7 @@ const TextImage = ({ data }: TextImageProps) => {
                     src={image.mediaItemUrl}
                     layout='fill'
                     objectFit='cover'
+                    alt={image?.altText}
                   />
                 </div>
               ))}

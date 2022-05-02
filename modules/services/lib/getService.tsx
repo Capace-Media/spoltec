@@ -1,4 +1,5 @@
 import WP from '@lib/wp/wp';
+import { SeoFragment } from '@modules/seo/lib/get-seo';
 
 const getService = async (slug: string) => {
   try {
@@ -10,6 +11,7 @@ const getService = async (slug: string) => {
     query getService($slug: ID!) {
         gqlService(id: $slug, idType: SLUG) {
             title
+            ${SeoFragment}
             gqlBlocks {
               blocks {
                 ... on GqlService_Gqlblocks_Blocks_Blurbs {

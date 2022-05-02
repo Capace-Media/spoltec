@@ -61,7 +61,6 @@ const Footer = ({}: FooterProps) => {
                   <li>RDT-avdrag</li>
                   <li>Varför blir det stopp?</li>
                   <li>Om Spoltec</li>
-                  <li>Vår historia</li>
                 </ul>
               </div>
             </div>
