@@ -14,7 +14,7 @@ const Footer = ({}: FooterProps) => {
       <div className='grid gap-10 md:grid-cols-2 contain section'>
         <div className='text-center md:text-left'>
           <h2>
-            Har ni avloppsproblem eller vill ni motverka eventuella problem?
+          Har ni ett pågående avloppsproblem eller vill ni börja arbeta förebyggande?
           </h2>
           <p>Kontakta spoltec idag</p>
         </div>
@@ -30,10 +30,7 @@ const Footer = ({}: FooterProps) => {
               <div>
                 <strong className='block mb-3'>Spoltec Södra AB</strong>
                 <p>
-                  At lab ipsae esed quibusa consenda dem de prestiore eatus eum
-                  quatio. Aquas aut quatur atist fugitam atio. At lab ipsae esed
-                  quibusa consenda dem e prestiore eatus eum quatio. Aquas aut
-                  quatur atist
+                Vårt företag startades 1991 och verksamheten drivs idag vidare av en ägargrupp som har fokus på utveckling och nytänkande. Styrkan ligger i vår kompetenta personal, miljötänkande, garantier och säkerhet för våra kunder. Vi erbjuder ett brett utbud av tjänster.
                 </p>
               </div>
               <div>

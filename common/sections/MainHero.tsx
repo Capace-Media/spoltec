@@ -12,8 +12,7 @@ const MainHero = ({}: MainHeroProps) => {
             <div className='relative'>
               <h1 className='mb-5'>Vi funktionssäkrar ert avloppssystem</h1>
               <p>
-                At lab ipsae esed quibusa consenda dem de prestiore eatus eum
-                quatio. Aquas aut quatur atist fugitam atio.{' '}
+              Spoltec har lång erfarenhet och stor kunskap om underhåll och renovering av alla förekommande avloppssystem. Vi arbetar dessutom med miljövänliga metoder - utan bisfenol och epoxi.{' '}
               </p>
               <Link href='/kontakta-oss'>
                 <a className='mt-10 btn'>Kontakta oss</a>

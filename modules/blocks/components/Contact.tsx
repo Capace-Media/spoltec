@@ -7,8 +7,9 @@ const Contact = () => {
                 className={`section`}
             >
                 <div className='contain'>
-                    <div className="flex flex-col items-center justify-center mb-10">
+                    <div className="flex flex-col items-center justify-center mb-10 text-center">
                         <h2>Kontakta oss</h2>
+                        <p>Vill du veta mer om Spoltecmetoden, önskar rådgivning eller vill komma i kontakt med oss kring ett<br /> pågående projekt är du varmt välkommen att höra av dig till oss via följande kontaktuppgifter. Du<br /> kan också kontakta oss eller din kommun vid frågor kring oljeavskiljare och provtagning av vatten.<br /> Nya kunder når oss enklast via mejl där vi också mottar beställningar samt kan erbjuda ytterligare<br /> information om våra tjänster.</p>
 
                     </div>
 
