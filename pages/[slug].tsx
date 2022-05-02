@@ -6,6 +6,7 @@ import servicesIndex from '@data/static-services.json';
 import { useRouter } from 'next/router';
 import Contact from '@modules/blocks/components/Contact';
 import WP from '@lib/wp/wp';
+import PageTransition from '@modules/transitions/components/PageTransition';
 
 export const isCustomPageSlug = (slug: string) => {
   const pagesToExclude = [
@@ -77,21 +78,24 @@ const Page = ({ page }: PageProps) => {
   const router = useRouter()
   
   return (
-    <>
-      <Hero
-        title={page?.title}
-        subtitle={page?.gqlHeroFields?.underrubrik}
-        text={page?.gqlHeroFields?.introduktionstext}
-        image={page?.gqlHeroFields?.bild?.mediaItemUrl}
-      />
-      <div id='content'>
-        {router?.asPath === '/kontakta-oss' && (
-          <Contact />
-        )}
-        <Blocks blocks={page?.gqlBlocks?.blocks} />
-      </div>
-      <></>
-    </>
+    <PageTransition>
+
+      <>
+        <Hero
+          title={page?.title}
+          subtitle={page?.gqlHeroFields?.underrubrik}
+          text={page?.gqlHeroFields?.introduktionstext}
+          image={page?.gqlHeroFields?.bild?.mediaItemUrl}
+        />
+        <div id='content'>
+          {router?.asPath === '/kontakta-oss' && (
+            <Contact />
+          )}
+          <Blocks blocks={page?.gqlBlocks?.blocks} />
+        </div>
+        <></>
+      </>
+    </PageTransition>
   );
 };
 
