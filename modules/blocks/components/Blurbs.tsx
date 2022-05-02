@@ -14,21 +14,20 @@ const Blurbs = ({ data }: BlurbsProps) => {
         <div className='contain'>
           <div>
             <div className='max-w-[85%] mx-auto text-center'>
-              {/* <h2>{data.blurbText.rubrik}</h2>
-              <p>{data.blurbText.body}</p> */}
               {handleParse(data.blurbText)}
             </div>
             <div
               className={`grid  gap-5 mt-20 md:gap-10 ${
-                data.blurbs.length <= 4 ? 'md:grid-cols-4' : 'md:grid-cols-3'
+                data.blurbs.length >= 4 ? 'md:grid-cols-4' : data?.blurbs?.length == 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'
               }`}
             >
               {data.blurbs.map((blurb: any) => (
-                <div key={data.rubrik || data.underrubrik || data.text}>
+                <div key={blurb?.rubrik || blurb?.underrubrik || blurb?.text} className={`${data?.blurbs?.length == 2 ? 'flex flex-col justify-center items-center' : ''}`}>
                   {blurb.bild && (
                     <figure className='block w-10 h-10 mb-5 md:w-14 md:h-14'>
                       <Image
                         src={blurb.bild.mediaItemUrl}
+                        alt={data?.rubrik}
                         layout='fill'
                         objectFit='contain'
                       />
@@ -46,7 +45,6 @@ const Blurbs = ({ data }: BlurbsProps) => {
                   {blurb.underrubrik && (
                     <h4 className='mb-3'>{blurb.underrubrik}</h4>
                   )}
-                  {/* <p className='text-sm'>{blurb.text}</p> */}
                   {handleParse(blurb.text)}
                 </div>
               ))}

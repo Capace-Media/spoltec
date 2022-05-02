@@ -32,7 +32,7 @@ const Header = ({}: HeaderProps) => {
             {links.map((link) => {
               if (link.links) {
                 return (
-                  <Popover className='relative'>
+                  <Popover key={link?.label} className='relative'>
                     <Popover.Button className='flex items-center font-bold outline-none'>
                       <>{link.label}</>
                       <svg
@@ -87,7 +87,7 @@ const Header = ({}: HeaderProps) => {
                 {links.map((link) => {
                   if (link.links) {
                     return (
-                      <>
+                      
                         <Popover
                           as='li'
                           className='p-2 rounded-lg'
@@ -114,7 +114,6 @@ const Header = ({}: HeaderProps) => {
                             ))}
                           </Popover.Panel>
                         </Popover>
-                      </>
                     );
                   } else {
                     return (
