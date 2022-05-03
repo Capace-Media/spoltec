@@ -92,3 +92,7 @@
     @apply row-span-2;
   }
 }
+
+.nav-style{
+  transition: ease-in-out .4s;
+}
