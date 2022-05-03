@@ -21,7 +21,7 @@ const Blurbs = ({ data }: BlurbsProps) => {
             )}
             <div
               className={`grid  gap-5 md:gap-10 ${data?.blurbText ? 'mt-20' : ''} ${
-                data.blurbs.length >= 4 ? 'md:grid-cols-4' : data?.blurbs?.length == 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'
+                data.blurbs.length == 4 ? 'md:grid-cols-4' : data?.blurbs?.length == 2 ? 'md:grid-cols-2' : data?.blurbs?.length == 6 ? 'md:grid-cols-3' : 'md:grid-cols-3'
               }`}
             >
               {data.blurbs.map((blurb: any) => (
