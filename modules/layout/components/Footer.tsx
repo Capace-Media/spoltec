@@ -3,24 +3,34 @@ import Image from 'next/image';
 import Link from 'next/link';
 import services from '@data/static-services.json';
 import footerLinks from '@data/footerlinks.json'
+import { useRouter } from 'next/router';
 interface FooterProps {}
 
 const Footer = ({}: FooterProps) => {
-
+  const router = useRouter()
+  console.log('router ===>', router.asPath);
+  
   
   return (
     <>
-      <CallToAction />
+      {router.asPath === "/serviceavtal" ? null : (
+        <CallToAction />
+
+      )}
       <div className='grid gap-10 md:grid-cols-2 contain section'>
         <div className='text-center md:text-left'>
           <h2>
           Har ni ett pågående avloppsproblem eller vill ni börja arbeta förebyggande?
           </h2>
-          <p>Kontakta spoltec idag</p>
+          <p>Kontakta Spoltec idag</p>
         </div>
         <div className='text-center md:text-right'>
-          <h3 className='text-4xl'>040-47 40 12</h3>
-          <p>info@spoltec.se</p>
+          <a href="tel:040474012">
+            <h3 className='text-4xl'>040-47 40 12</h3>
+          </a>
+          <a href="mailto:info@spoltec.se">
+            <p>info@spoltec.se</p>
+          </a>
         </div>
       </div>
       <footer className='mb-5 overflow-hidden contain-outer rounded-xl'>

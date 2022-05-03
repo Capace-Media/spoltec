@@ -3,15 +3,14 @@ import Hero from '@common/sections/Hero';
 import getPage from '@modules/pages/lib/getPage';
 import getService from '@modules/services/lib/getService';
 import servicesIndex from '@data/static-services.json';
-import { useRouter } from 'next/router';
-import Contact from '@modules/blocks/components/Contact';
 import WP from '@lib/wp/wp';
 import PageTransition from '@modules/transitions/components/PageTransition';
 
 export const isCustomPageSlug = (slug: string) => {
   const pagesToExclude = [
       'hem',
-      'akut-hjalp'
+      'akut-hjalp',
+      'kontakta-oss'
   ]
   return pagesToExclude.includes(slug)
 }
@@ -80,7 +79,7 @@ interface PageProps {
 }
 
 const Page = ({ page }: PageProps) => {
-  const router = useRouter()
+
   
   return (
     <PageTransition>
@@ -93,9 +92,6 @@ const Page = ({ page }: PageProps) => {
           image={page?.gqlHeroFields?.bild?.mediaItemUrl}
         />
         <div id='content'>
-          {router?.asPath === '/kontakta-oss' && (
-            <Contact />
-          )}
           <Blocks blocks={page?.gqlBlocks?.blocks} />
         </div>
         <></>

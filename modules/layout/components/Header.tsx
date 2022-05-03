@@ -15,15 +15,30 @@ const Header = ({}: HeaderProps) => {
   const buttonStyles = `px-4 py-2 rounded-sm opacity-90 hover:opacity-100 font-bold`;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState(-1)
+  const [isMenuScroll, setMenuScroll] = useState(false)
   const router = useRouter()
+  useEffect(() => {
+    const handleScroll = () => {
+        if(window.pageYOffset > 20){
+            setMenuScroll(true)
+        }else{
+            setMenuScroll(false)
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+})
+
+
  useEffect(() => {
   setOpenIndex(-1)
   setMobileMenuOpen(false)
  },[router.asPath]) 
   return (
     <>
-      <header className='absolute top-0 left-0 z-40 w-full md:px-5 md:px-0'>
-        <nav className='relative flex items-center justify-between pt-1 pb-5 md:py-10 contain'>
+      <header className={`z-40 transition ease-in-out duration-700 w-full md:px-0 ${isMenuScroll ? 'fixed bg-white top-0 left-0 h-24' : 'absolute top-0 left-0'}`}>
+        <nav className={`relative transition ease-in-out duration-700 flex items-center justify-between pt-1 pb-5 contain ${isMenuScroll ? '' : 'md:py-10'}`}>
           <Link href={'/'}>
             <a className='relative h-[80px] w-[150px] md:h-[100px] md:w-[200px]'>
               <Image
