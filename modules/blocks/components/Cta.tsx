@@ -19,11 +19,9 @@ const CallToAction = ({}: CallToActionProps) => {
           <div className='text-center flex flex-col justify-center h-[500px] text-white h96 contain max-w-[700px]'>
             <div>
               <h2 className='text-white'>Undvik obehagliga överraskningar</h2>
-              <h3 className='mb-4 text-white'>Tecka ett serviceavtal idag</h3>
+              <h3 className='mb-4 text-white'>Teckna ett serviceavtal idag</h3>
               <p>
-                At lab ipsae esed quibusa consenda dem de prestiore eatus eum
-                quatio. Aquas aut quatur atist fugitam atio. At lab ipsae esed
-                quibusa consenda dem e prestiore eatus eum quatio.
+              Ett serviceavtal är till för dig som vill kunna planera dina avloppskostnader. Avtalet är helt anpassat efter förutsättningarna i ditt avloppssystem och baseras på en fast månadskostnad under avtalstiden.
               </p>
               <Link href='/serviceavtal'>
                 <a className='px-10 mt-10 bg-transparent border-2 border-white hover:text-brand-blue hover:bg-white btn'>
