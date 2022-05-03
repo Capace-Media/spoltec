@@ -73,7 +73,7 @@ const Footer = ({}: FooterProps) => {
             <div className='flex flex-col items-center justify-between space-y-3 text-sm md:flex-row mt-14'>
               <div>Copyright © Spoltec Södra AB {new Date().getFullYear()}</div>
               <a
-                href='/'
+                href='https://www.facebook.com/spoltec'
                 target='_blank'
                 rel='noreferrer'
                 className='relative block w-8 h-8'
