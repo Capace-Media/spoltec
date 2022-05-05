@@ -6,7 +6,8 @@ interface TextProps {
 }
 
 const Text = ({ data }: TextProps) => {
-
+  console.log('data',data);
+  
   return (
     <section className='contain section'>
       <div className='max-w-2xl'>
