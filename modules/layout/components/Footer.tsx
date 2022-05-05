@@ -12,7 +12,7 @@ const Footer = ({}: FooterProps) => {
   
   
   return (
-    <div>
+    <>
       {router.asPath === "/serviceavtal" || router.asPath === "/karriar" || router.asPath === "/kontakta-oss" ? null : (
         <CallToAction />
 
@@ -102,7 +102,7 @@ const Footer = ({}: FooterProps) => {
           </div>
         </div>
       </footer>
-    </div>
+    </>
   );
 };
 
