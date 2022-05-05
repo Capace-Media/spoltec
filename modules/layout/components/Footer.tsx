@@ -8,8 +8,6 @@ interface FooterProps {}
 
 const Footer = ({}: FooterProps) => {
   const router = useRouter()
-  console.log('router ===>', router.asPath);
-  
   
   return (
     <>
