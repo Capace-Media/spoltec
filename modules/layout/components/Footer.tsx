@@ -22,7 +22,7 @@ const Footer = ({}: FooterProps) => {
           <h2>
           Har ni ett pågående avloppsproblem eller vill ni börja arbeta förebyggande?
           </h2>
-          <p>Kontakta Spoltec idag</p>
+          <p>Vi hjälper er! Kontakta Spoltec idag.</p>
         </div>
         <div className='text-center md:text-right'>
           <a href="tel:040474012">
