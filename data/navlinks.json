@@ -31,10 +31,6 @@
     "href": "/information",
     "links": [
       {
-        "label": "Serviceavtal",
-        "href": "/serviceavtal"
-      },
-      {
         "label": "Garanti",
         "href": "/garanti"
       },

@@ -33,7 +33,7 @@ const Services = ({ data }: ServicesProps) => {
                   src={service.gqlHeroFields.bild.mediaItemUrl}
                   layout='fill'
                   objectFit='cover'
-                  className='transition-all opacity-0 group-hover:opacity-20'
+                  className='transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-20'
                 />
                 <div>
                   <h3 className='text-xl text-white md:text-2xl'>{service.title}</h3>
