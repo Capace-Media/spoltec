@@ -84,7 +84,7 @@ const Footer = ({}: FooterProps) => {
                 href='https://www.facebook.com/spoltec'
                 target='_blank'
                 rel='noreferrer'
-                className='relative block w-8 h-8'
+                className='relative block w-8 h-8 transition duration-300 ease-in-out hover:scale-105'
               >
                 <Image
                   src={`/images/facebook-spoltec.png`}

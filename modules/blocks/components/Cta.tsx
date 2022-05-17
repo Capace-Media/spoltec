@@ -24,7 +24,7 @@ const CallToAction = ({}: CallToActionProps) => {
               Ett serviceavtal är till för dig som vill kunna planera dina avloppskostnader. Avtalet är helt anpassat efter förutsättningarna i ditt avloppssystem och baseras på en fast månadskostnad under avtalstiden.
               </p>
               <Link href='/serviceavtal'>
-                <a className='px-10 mt-10 bg-transparent border-2 border-white hover:text-brand-blue hover:bg-white btn'>
+                <a className='px-10 mt-10 transition ease-in bg-transparent border-2 border-white duration-400 hover:text-brand-blue hover:bg-white btn'>
                   Läs mer
                 </a>
               </Link>
