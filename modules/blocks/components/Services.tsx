@@ -6,6 +6,14 @@ interface ServicesProps {
 }
 
 const Services = ({ data }: ServicesProps) => {
+
+  const limit = (string = '', limit = 0) => {
+    if(string.length > limit){
+      return string.substring(0, limit) + "..."
+    }else {
+      return string
+    }
+  }
   
   return (
     <div className='text-center section contain'>
@@ -30,7 +38,7 @@ const Services = ({ data }: ServicesProps) => {
                 <div>
                   <h3 className='text-xl text-white md:text-2xl'>{service.title}</h3>
                   <p className='mt-3 text-sm'>
-                    {service?.gqlHeroFields?.introduktionstext || service?.gqlHeroFields?.underrubrik || ''}
+                    {limit(service?.gqlHeroFields?.introduktionstext || service?.gqlHeroFields?.underrubrik || '', 140)}
                   </p>
                 </div>
                 <div className='flex items-center justify-end space-x-3'>
