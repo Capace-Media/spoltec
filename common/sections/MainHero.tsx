@@ -24,6 +24,7 @@ const MainHero = ({}: MainHeroProps) => {
               src={`/images/spoltec-water-01.png`}
               layout='fill'
               objectFit='contain'
+              priority
             />
           </figure>
         </div>
