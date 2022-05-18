@@ -178,8 +178,8 @@ export const getStaticProps = async ({params}: any) => {
             seo: {
               ...originData.gqlService.seo,
               title: `Oljeavskiljare i ${ort?.ort}`,
-              opengraphTitle: `Oljeavskiljare i ${ort?.ort}`,
-              opengraphDescription: `Hello world ${ort?.ort}`
+              opengraphTitle: `Oljeavskiljare ${ort?.ort} | Oljeavskiljare av högsta kvalite | Spoltec`,
+              opengraphDescription: `Oljeavskiljare används där det förekommer vätskor med annan densitet än vatten, som olja och bensin. Har du några frågor? Kontakta Spoltec idag.`
                 
             },
 

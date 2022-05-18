@@ -74,8 +74,6 @@ export const getStaticPaths = async () => {
 
     orter && orter.map((ort: any) => {
         if(! excludePageSlug( ort?.slug ) ){
-            console.log('avloppsspolning: ==> ', ort.slug);
-            
             ortPaths.push( { params: { slug: ort.slug } } )
         }
         
@@ -179,8 +177,8 @@ export const getStaticProps = async ({params}: any) => {
             seo: {
               ...originData.gqlService.seo,
               title: `Avloppsspolning i ${ort?.ort}`,
-              opengraphTitle: `Avloppsspolning i ${ort?.ort}`,
-              opengraphDescription: `Hello world ${ort?.ort}`
+              opengraphTitle: `Avloppsspolning ${ort?.ort} | Precision och kvalité | Spoltec`,
+              opengraphDescription: `Avloppsspolning i ${ort?.ort}. Vi på Spoltec kan hjälpa er vare sig det är akuta stop eller underhållsspolning. Vi hjälper er! Kontakta Spoltec idag. `
                 
             },
 

@@ -34,8 +34,6 @@ export const getStaticPaths = async () => {
     orter && orter.map((ort: any) => {
 
         if(! excludePageSlug( ort?.slug ) ){
-          console.log('relining ===> ', ort.slug);
-          
           ortPaths.push( { params: { slug: ort.slug } } )
         }
     })
@@ -138,8 +136,8 @@ export const getStaticProps = async ({params}: any) => {
             seo: {
               ...originData.gqlService.seo,
               title: `Relining i ${ort?.ort}`,
-              opengraphTitle: `Relining i ${ort?.ort}`,
-              opengraphDescription: `Behöver du hjälp med relining i ${ort?.ort}? Vi på Spoltec erbjuder professionell & pålitlig relining med över 15 års erfarenhet får du säker relining i ${ort?.ort}.`
+              opengraphTitle: `Relining ${ort?.ort} | Alternativet till stambyte | Spoltec`,
+              opengraphDescription: `Behöver du hjälp med relining i ${ort?.ort}? Relining är ett kostnadseffektivt och snabbt alternativ till stambyte. Kontakta Spoltec för relining i ${ort?.ort}.`
                 
             },
 
