@@ -2,7 +2,6 @@ import { NextSeo } from 'next-seo';
 import PropTypes from 'prop-types';
 
 const Seo = ({ seo, uri, img, desc }) => {
-  
     const {
         title,
         metaDesc,
@@ -24,7 +23,7 @@ const Seo = ({ seo, uri, img, desc }) => {
     return (
         <NextSeo 
         title={title}
-        description={opengraphDescription || metaDesc}
+        description={opengraphDescription || metaDesc || desc}
         canonical={opengraphUrl}
         noindex={metaRobotsNoindex}
         nofollow={metaRobotsNofollow}
