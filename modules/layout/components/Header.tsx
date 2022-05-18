@@ -55,8 +55,8 @@ const Header = ({}: HeaderProps) => {
             {links.map((link) => {
               if (link.links) {
                 return (
-                  <Menu as="div" className='relative'>
-                    <Menu.Button key={link?.label} className='flex items-center font-bold outline-none'>
+                  <Menu as="div" key={link?.label} className='relative'>
+                    <Menu.Button className='flex items-center font-bold outline-none'>
                       <>{link.label}</>
                       <svg
                         xmlns='http://www.w3.org/2000/svg'

@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo';
 import PropTypes from 'prop-types';
 
-const Seo = ({ seo, uri, img }) => {
+const Seo = ({ seo, uri, img, desc }) => {
   
     const {
         title,
@@ -33,7 +33,7 @@ const Seo = ({ seo, uri, img }) => {
           locale: 'sv_SE',
           url: opengraphUrl,
           title: opengraphTitle,
-          description: opengraphDescription,
+          description: opengraphDescription ? opengraphDescription : desc,
           images: [
             {
               url: opengraphImage?.sourceUrl ? opengraphImage?.sourceUrl : img,
