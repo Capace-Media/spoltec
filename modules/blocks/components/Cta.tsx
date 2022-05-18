@@ -14,6 +14,7 @@ const CallToAction = ({}: CallToActionProps) => {
           objectFit='cover'
           objectPosition='top'
           className='opacity-40'
+          alt={`A man pulling a hose`}
         />
         <div className='contain'>
           <div className='text-center flex flex-col justify-center h-[500px] text-white h96 contain max-w-[700px]'>

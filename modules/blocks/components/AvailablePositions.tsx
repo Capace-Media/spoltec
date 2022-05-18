@@ -30,6 +30,7 @@ const AvailablePositions = ({ data }: AvailablePositionsProps) => {
                     layout='fill'
                     objectFit='cover'
                     className='transition-all opacity-0 group-hover:opacity-20'
+                    alt={position.title}
                   />
                   <div>
                     <h3 className='text-xl text-white'>{position.title}</h3>

@@ -23,6 +23,7 @@ const Hero = ({ image, title, subtitle, text }: HeroProps) => {
               layout='fill'
               objectFit='cover'
               className='opacity-40'
+              alt={title}
               priority
             />
           )}

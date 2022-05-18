@@ -34,6 +34,7 @@ const Services = ({ data }: ServicesProps) => {
                   layout='fill'
                   objectFit='cover'
                   className='transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-20'
+                  alt={service.title}
                 />
                 <div>
                   <h3 className='text-xl text-white md:text-2xl'>{service.title}</h3>

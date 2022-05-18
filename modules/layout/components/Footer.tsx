@@ -90,6 +90,7 @@ const Footer = ({}: FooterProps) => {
                   src={`/images/facebook-spoltec.png`}
                   layout='fill'
                   objectFit='contain'
+                  alt={`facebook logo`}
                 />
               </a>
               <div>

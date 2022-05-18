@@ -25,6 +25,7 @@ const MainHero = ({}: MainHeroProps) => {
               layout='fill'
               objectFit='contain'
               priority
+              alt={`image of splashing water`}
             />
           </figure>
         </div>
