@@ -13,6 +13,22 @@ const Seo = ({ seo, uri, img, desc }) => {
         opengraphSiteName,
     } = seo;
 
+    const noIndex = (index: any) => {
+      if(index === 'index'){
+        return false
+      } else {
+        return true
+      }
+    }
+
+    const noFollow = (follow: any) => {
+      if(follow === 'follow'){
+        return false
+      } else {
+        return true
+      }
+    }
+
     const currentLocation = process.browser ? window.location.origin : null;
 
     const opengraphUrl =
@@ -25,8 +41,8 @@ const Seo = ({ seo, uri, img, desc }) => {
         title={title}
         description={opengraphDescription || metaDesc || desc}
         canonical={opengraphUrl}
-        noindex={metaRobotsNoindex}
-        nofollow={metaRobotsNofollow}
+        noindex={noIndex(metaRobotsNoindex)}
+        nofollow={noFollow(metaRobotsNofollow)}
         openGraph={{
           type: 'website',
           locale: 'sv_SE',
