@@ -30,6 +30,7 @@ const Layout = ({ children, seoPage, description }: LayoutProps) => {
           />
         )}
         <link rel='icon' href='/favicon.ico' sizes='32x32' />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
         <main className='relative'>{children}</main>
       <Footer />
