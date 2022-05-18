@@ -174,7 +174,7 @@ module.exports = {
       },
       {
         source: '/avloppsspolning-helsingborg',
-        destination: '/avloppsspolning/helsinborg',
+        destination: '/avloppsspolning/helsingborg',
         permanent: true,
       },
       {
