@@ -98,11 +98,6 @@ module.exports = {
         permanent: true,
       },
       {
-        source: '/serviceavtal',
-        destination: '/serviceavtal',
-        permanent: true,
-      },
-      {
         source: '/tjanster-foretag/akutspolning',
         destination: '/akut-hjalp',
         permanent: true,
