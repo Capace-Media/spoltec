@@ -35,12 +35,14 @@ export const getStaticPaths = async () => {
     orter && orter.map((ort: any) => {
 
         if(! excludePageSlug( ort?.slug ) ){
+          console.log('relining ===> ', ort.slug);
+          
           ortPaths.push( { params: { slug: ort.slug } } )
         }
     })
     return {
         paths: ortPaths,
-        fallback: 'blocking'
+        fallback: false
     };
 }
 

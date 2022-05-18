@@ -82,7 +82,7 @@ export const getStaticPaths = async () => {
     })
     return {
         paths: ortPaths,
-        fallback: 'blocking'
+        fallback: false
     };
 }
 

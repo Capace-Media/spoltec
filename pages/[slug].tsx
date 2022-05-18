@@ -48,7 +48,7 @@ export const getStaticPaths = async () => {
   });
   const paths = [...servicePaths, ...pagePaths];
   
-  return { paths, fallback: 'blocking' };
+  return { paths, fallback: false };
 };
 
 export const getStaticProps = async (context) => {
