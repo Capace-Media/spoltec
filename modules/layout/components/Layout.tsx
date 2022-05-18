@@ -7,15 +7,16 @@ import { handleSanitize } from '@lib/utils/miscellaneous';
 
 interface LayoutProps {
   children: ReactChild;
-  seoPage: any
+  seoPage: any;
 }
 
 const Layout = ({ children, seoPage }: LayoutProps) => {
+
   
   return (
     <>
       <Header />
-      <Seo seo={seoPage?.seo} uri={seoPage?.uri ? `${seoPage?.uri}` : `/${seoPage?.slug}/`} />
+      <Seo img={seoPage?.gqlHeroFields?.bild?.mediaItemUrl} seo={seoPage?.seo} uri={seoPage?.uri ? `${seoPage?.uri}` : `/${seoPage?.slug}`} />
       <Head>
         {seoPage?.seo?.schema?.raw && (
           <script 

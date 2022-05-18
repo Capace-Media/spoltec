@@ -1,7 +1,8 @@
 import { NextSeo } from 'next-seo';
 import PropTypes from 'prop-types';
 
-const Seo = ({ seo, uri }) => {
+const Seo = ({ seo, uri, img }) => {
+  
     const {
         title,
         metaDesc,
@@ -35,7 +36,7 @@ const Seo = ({ seo, uri }) => {
           description: opengraphDescription,
           images: [
             {
-              url: opengraphImage?.sourceUrl,
+              url: opengraphImage?.sourceUrl ? opengraphImage?.sourceUrl : img,
               width: 1280,
               height: 720,
             },
@@ -67,7 +68,7 @@ Seo.defaultProps = {
         opengraphDescription: '',
         opengraphTitle: '',
         opengraphImage: {
-        sourceUrl: '',
+          sourceUrl: '',
         },
         opengraphUrl: '',
         opengraphSiteName: '',
