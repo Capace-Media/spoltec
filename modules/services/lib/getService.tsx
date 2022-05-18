@@ -28,6 +28,7 @@ const getService = async (slug: string) => {
                     
                     bild {
                       mediaItemUrl
+                      altText
                     }
                   }
                 }
@@ -43,6 +44,7 @@ const getService = async (slug: string) => {
                   }
                   bilder {
                     mediaItemUrl
+                    altText
                   }
                 }
                 ... on GqlService_Gqlblocks_Blocks_Lista {
@@ -70,6 +72,7 @@ const getService = async (slug: string) => {
                 introduktionstext
                 bild {
                     mediaItemUrl
+                    altText
                 }
             }
         }

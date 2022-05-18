@@ -17,6 +17,7 @@ const getPage = async (uri: string) => {
             introduktionstext
             bild {
               mediaItemUrl
+              altText
             }
           }
           gqlBlocks {
@@ -34,6 +35,7 @@ const getPage = async (uri: string) => {
                   
                   bild {
                     mediaItemUrl
+                    altText
                   }
                 }
               }
@@ -44,6 +46,7 @@ const getPage = async (uri: string) => {
                     altText
                     id
                     mediaItemUrl
+                    altText
                   }
                   namn
                   titel
@@ -74,6 +77,7 @@ const getPage = async (uri: string) => {
                 }
                 bilder {
                   mediaItemUrl
+                  altText
                 }
               }
               ... on Page_Gqlblocks_Blocks_Tjanster {

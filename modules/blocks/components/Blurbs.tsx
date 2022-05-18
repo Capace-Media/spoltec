@@ -29,8 +29,8 @@ const Blurbs = ({ data }: BlurbsProps) => {
                   {blurb.bild && (
                     <figure className='block w-10 h-10 mb-5 md:w-14 md:h-14'>
                       <Image
-                        src={blurb.bild.mediaItemUrl}
-                        alt={data?.rubrik}
+                        src={blurb?.bild?.mediaItemUrl}
+                        alt={blurb?.bild?.altText ? blurb?.bild?.altText : data?.rubrik ? data?.rubrik : blurb?.text}
                         layout='fill'
                         objectFit='contain'
                       />
