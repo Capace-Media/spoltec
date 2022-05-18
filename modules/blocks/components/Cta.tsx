@@ -26,7 +26,7 @@ const CallToAction = ({}: CallToActionProps) => {
               </p>
               <Link href='/serviceavtal'>
                 <a className='px-10 mt-10 transition ease-in bg-transparent border-2 border-white duration-400 hover:text-brand-blue hover:bg-white btn'>
-                  Läs mer
+                  Läs mer om serviceavtal
                 </a>
               </Link>
             </div>

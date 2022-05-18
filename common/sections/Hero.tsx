@@ -37,7 +37,7 @@ const Hero = ({ image, title, subtitle, text }: HeroProps) => {
                 onClick={() => handleReadMore()}
                 className='block mt-10 btn bg-brand-orange'
               >
-                Läs mer
+                Läs mer om <span className='lowercase'>{title}</span>
               </button>
             </div>
           </div>
