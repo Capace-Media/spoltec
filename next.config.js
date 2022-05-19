@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ['spoltec.h.capacedev.se'],
+    domains: ['media.spoltec.se'],
   },
   swcMinify: true,
   reactStrictMode: true,
