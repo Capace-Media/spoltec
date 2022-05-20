@@ -18,7 +18,8 @@ const AvloppsspolningOrter = ({data, orter, ort}:AvloppsspolningOrterProps) => {
                 text={data?.gqlService?.gqlHeroFields?.introduktionstext}
                 image={data?.gqlService?.gqlHeroFields?.bild?.mediaItemUrl}
             />
-            <div id='content'>
+            <div id='content' className='w-full h-10 md:h-0'></div>
+            <div id=''>
             <section className="pb-0 contain section">
                   <div className="max-w-2xl">
                   <h2>Avloppsspolning {ort?.ort}</h2>

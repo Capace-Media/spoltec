@@ -28,8 +28,9 @@ const Page = ({page}: PageProps) => {
             </div>
           </div>
         </div>
+        <div id='content' className='w-full h-10 md:h-0'></div>
 
-        <div id='content'>
+        <div>
           <Blocks blocks={page?.gqlBlocks?.blocks} />
 
         </div>

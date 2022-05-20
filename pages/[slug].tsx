@@ -91,7 +91,8 @@ const Page = ({ page }: PageProps) => {
           text={page?.gqlHeroFields?.introduktionstext}
           image={page?.gqlHeroFields?.bild?.mediaItemUrl}
         />
-        <div id='content'>
+        <div id='content' className='w-full h-10 md:h-0'></div>
+        <div>
           <Blocks blocks={page?.gqlBlocks?.blocks} />
         </div>
       </div>
