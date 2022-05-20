@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import frontImg  from '../../public/images/font-page-meta.png'
+//import frontImg  from '/images/font-page-meta.png'
 
 const Seo = ({ seo, uri, img, desc }) => {
   //console.log('front page img ===>', frontImg);
@@ -58,7 +58,7 @@ const Seo = ({ seo, uri, img, desc }) => {
           description: opengraphDescription ? opengraphDescription : desc,
           images: [
             {
-              url: opengraphImage?.sourceUrl ? opengraphImage?.sourceUrl : router.asPath === "/" ? frontImg.src : img,
+              url: opengraphImage?.sourceUrl ? opengraphImage?.sourceUrl : router.asPath === "/" ? "/images/font-page-meta.png" : img,
               width: 1280,
               height: 720,
             },
