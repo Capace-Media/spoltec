@@ -11,7 +11,7 @@ interface AvloppsspolningOrterProps {
 
 const AvloppsspolningOrter = ({data, orter, ort}:AvloppsspolningOrterProps) => {
     return (
-        <>
+        <div key={data?.gqlService?.title}>
             <Hero
                 title={`${data?.gqlService?.title}`}
                 subtitle={data?.gqlService?.gqlHeroFields?.underrubrik}
@@ -31,7 +31,7 @@ const AvloppsspolningOrter = ({data, orter, ort}:AvloppsspolningOrterProps) => {
                 </section>
                 <Blocks blocks={data?.gqlService?.gqlBlocks?.blocks} />
             </div>
-        </>
+        </div>
     )
 };
 

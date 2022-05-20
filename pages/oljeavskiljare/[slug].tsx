@@ -11,7 +11,7 @@ interface OljeavskiljareOrterProps {
 
 const OljeavskiljareOrter = ({data, orter, ort}:OljeavskiljareOrterProps) => {
     return (
-        <>
+        <div key={data?.gqlService?.title}>
             <Hero
                 title={`${data?.gqlService?.title}`}
                 subtitle={data?.gqlService?.gqlHeroFields?.underrubrik}
@@ -32,7 +32,7 @@ const OljeavskiljareOrter = ({data, orter, ort}:OljeavskiljareOrterProps) => {
                 </section>
                 <Blocks blocks={data?.gqlService?.gqlBlocks?.blocks} />
             </div>
-        </>
+        </div>
     )
 };
 

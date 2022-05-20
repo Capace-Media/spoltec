@@ -162,7 +162,7 @@ interface ReliningOrterProps {
 const ReliningOrter = ({data, orter, ort}:ReliningOrterProps) => {
     
     return (
-        <>
+        <div key={ort}>
             <Hero
                 title={`${data?.gqlService?.title}`}
                 subtitle={data?.gqlService?.gqlHeroFields?.underrubrik}
@@ -181,7 +181,7 @@ const ReliningOrter = ({data, orter, ort}:ReliningOrterProps) => {
                 </section>
                 <Blocks blocks={data?.gqlService?.gqlBlocks?.blocks} />
             </div>
-        </>
+        </div>
     )
 };
 

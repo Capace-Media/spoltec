@@ -84,7 +84,7 @@ const Page = ({ page }: PageProps) => {
   return (
     <PageTransition>
 
-      <>
+      <div key={page.title}>
         <Hero
           title={page?.title}
           subtitle={page?.gqlHeroFields?.underrubrik}
@@ -94,8 +94,7 @@ const Page = ({ page }: PageProps) => {
         <div id='content'>
           <Blocks blocks={page?.gqlBlocks?.blocks} />
         </div>
-        <></>
-      </>
+      </div>
     </PageTransition>
   );
 };

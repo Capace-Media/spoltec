@@ -10,7 +10,7 @@ const Page = ({page}: PageProps) => {
   return (
     <PageTransition>
 
-      <>
+      <div key={`akut-hjalp`}>
         <div className='contain-outer'>
           <div className='bg-section'>
             <div className='mt-24 text-center contain'>
@@ -33,7 +33,7 @@ const Page = ({page}: PageProps) => {
           <Blocks blocks={page?.gqlBlocks?.blocks} />
 
         </div>
-      </>
+      </div>
     </PageTransition>
   );
 };
