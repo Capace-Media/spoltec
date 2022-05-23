@@ -11,7 +11,7 @@ const List = ({ data }: ListProps) => {
   return (
     <section className='contain-outer'>
       <div
-        className='flex flex-col items-center justify-center px-20 bg-section'
+        className='flex flex-col items-center justify-center px-3 md:px-20 bg-section'
       >
        <div className='mb-10'>
          {handleParse(data?.text)}
