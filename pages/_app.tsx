@@ -103,6 +103,7 @@ function MyApp({ Component, pageProps }) {
         enableDeclineButton
         onAccept={handleAcceptCookie}
         onDecline={handleDeclineCookie}
+        expires={7}
       >
         This website uses cookies to enhance the user experience.
       </CookieConsent>
