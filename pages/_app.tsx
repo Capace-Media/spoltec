@@ -8,6 +8,16 @@ import { useEffect } from 'react';
 import * as gtag from '../lib/gtag'
 import * as ReactGA from "react-ga";
 
+export const initGA = (id: string) => {
+  console.log('this initGA');
+  
+  if (process.env.NODE_ENV === "production") {
+    console.log('hello there');
+    
+    ReactGA.initialize(id);
+  }
+};
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
@@ -113,14 +123,6 @@ function MyApp({ Component, pageProps }) {
 
 
 
-export const initGA = (id: string) => {
-  console.log('this initGA');
-  
-  if (process.env.NODE_ENV === "production") {
-    console.log('hello there');
-    
-    ReactGA.initialize(id);
-  }
-};
+
 
 export default MyApp;
