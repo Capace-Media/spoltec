@@ -19,7 +19,7 @@ export default function Home({ page }) {
       
       <>
         <Head>
-          <meta name="google-site-verification" content={process.env.VERIFICATION_ID} />
+          <meta name="google-site-verification" content="jomTNzo9DicBaELndHU7Wb5SFyRTbVlBcpI65E77bio" />
         </Head>
         <MainHero />
         <Blocks blocks={page?.gqlBlocks?.blocks} />
