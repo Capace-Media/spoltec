@@ -22,13 +22,13 @@ function MyApp({ Component, pageProps }) {
     }
   }, [router.events])
 
-  useEffect(() => {
-    const handleRouteChange = (url: string) => GTMPageView(url)
-    router.events.on('routeChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    }
-  }, [])
+  // useEffect(() => {
+  //   const handleRouteChange = (url: string) => GTMPageView(url)
+  //   router.events.on('routeChangeComplete', handleRouteChange)
+  //   return () => {
+  //     router.events.off('routeChangeComplete', handleRouteChange);
+  //   }
+  // }, [])
   return (
     <Layout description={pageProps?.page?.gqlHeroFields?.introduktionstext || pageProps?.data?.gqlService?.gqlHeroFields?.introduktionstext} seoPage={pageProps?.page || pageProps?.data?.gqlService}>
       <Component {...pageProps} />
