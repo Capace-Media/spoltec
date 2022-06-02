@@ -33,16 +33,23 @@ function MyApp({ Component, pageProps }) {
   }, [router.events])
 
   const handleAcceptCookie = () => {
+    console.log('hello handleAcceptCookie');
+    
     if(process.env.REACT_APP_GA_ID){
+      console.log('hello if handleAcceptCookie');
+
       initGA(process.env.REACT_APP_GA_ID);
+      
     }
   }
 
   const handleDeclineCookie = () => {
     //remove google analytics cookies
+    console.log('hello ?????', process.env.REACT_APP_GA_ID);
     Cookies.remove("_ga");
     Cookies.remove("_gat");
     Cookies.remove("_gid");
+    
   };
 
   useEffect(() => {
@@ -73,19 +80,22 @@ function MyApp({ Component, pageProps }) {
       />
 
       {/* Google Tag Manager - Global base code */}
-      <Script
-        id="gtag-base"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer', '${GTM_ID}');
-          `,
-        }}
-      />
+      {process.env.REACT_APP_GA_ID && (
+
+        <Script
+          id="gtag-base"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer', '${GTM_ID}');
+            `,
+          }}
+        />
+      )}
       <Layout description={pageProps?.page?.gqlHeroFields?.introduktionstext || pageProps?.data?.gqlService?.gqlHeroFields?.introduktionstext} seoPage={pageProps?.page || pageProps?.data?.gqlService}>
         <Component {...pageProps} />
       </Layout>
@@ -103,7 +113,11 @@ function MyApp({ Component, pageProps }) {
 
 
 export const initGA = (id: string) => {
+  console.log('this initGA');
+  
   if (process.env.NODE_ENV === "production") {
+    console.log('hello there');
+    
     ReactGA.initialize(id);
   }
 };
