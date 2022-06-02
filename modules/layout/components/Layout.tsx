@@ -18,7 +18,7 @@ const Layout = ({ children, seoPage, description }: LayoutProps) => {
   return (
     <>
       <Header />
-      {process.env.NEXT_PUBLIC_GTM && (
+      {/* {process.env.NEXT_PUBLIC_GTM && (
         <Script>
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -27,7 +27,7 @@ const Layout = ({ children, seoPage, description }: LayoutProps) => {
           })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM}');`}
         </Script>
 
-      )}
+      )} */}
       <Seo desc={description} img={seoPage?.gqlHeroFields?.bild?.mediaItemUrl} seo={seoPage?.seo} uri={seoPage?.uri ? `${seoPage?.uri}` : `/${seoPage?.slug}`} />
       <Head>
         {seoPage?.seo?.schema?.raw && (
