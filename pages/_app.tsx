@@ -35,17 +35,17 @@ function MyApp({ Component, pageProps }) {
   const handleAcceptCookie = () => {
     console.log('hello handleAcceptCookie');
     
-    if(process.env.REACT_APP_GA_ID){
+    if(process.env.NEXT_PUBLIC_GA_ID){
       console.log('hello if handleAcceptCookie');
 
-      initGA(process.env.REACT_APP_GA_ID);
+      initGA(process.env.NEXT_PUBLIC_GA_ID);
       
     }
   }
 
   const handleDeclineCookie = () => {
     //remove google analytics cookies
-    console.log('hello ?????', process.env.REACT_APP_GA_ID);
+    console.log('hello ?????', process.env.NEXT_PUBLIC_GA_ID);
     Cookies.remove("_ga");
     Cookies.remove("_gat");
     Cookies.remove("_gid");
@@ -80,7 +80,7 @@ function MyApp({ Component, pageProps }) {
       />
 
       {/* Google Tag Manager - Global base code */}
-      {process.env.REACT_APP_GA_ID && (
+      {process.env.NEXT_PUBLIC_GA_ID && (
 
         <Script
           id="gtag-base"
