@@ -5,24 +5,24 @@ import Layout from '@modules/layout/components/Layout';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
 import { useEffect } from 'react';
-import * as gtag from '../lib/gtag'
+//import * as gtag from '../lib/gtag'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
-  useEffect(() => {
-    const handleRouteChange = (url:any) => {
-      gtag.pageview(url)
-    }
+  // useEffect(() => {
+  //   const handleRouteChange = (url:any) => {
+  //     gtag.pageview(url)
+  //   }
 
-    router.events.on('routeChangeComplete', handleRouteChange)
-    router.events.on('hashChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-      router.events.off('hashChangeComplete', handleRouteChange)
-    }
+  //   router.events.on('routeChangeComplete', handleRouteChange)
+  //   router.events.on('hashChangeComplete', handleRouteChange)
+  //   return () => {
+  //     router.events.off('routeChangeComplete', handleRouteChange)
+  //     router.events.off('hashChangeComplete', handleRouteChange)
+  //   }
 
-  }, [router.events])
+  // }, [router.events])
 
   useEffect(() => {
     router.events.on('routeChangeComplete', pageview)
@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
-      <Script 
+      {/* <Script 
         src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
       />
       <Script 
@@ -50,7 +50,7 @@ function MyApp({ Component, pageProps }) {
             });
           `,
         }}
-      />
+      /> */}
 
       {/* Google Tag Manager - Global base code */}
       <Script
