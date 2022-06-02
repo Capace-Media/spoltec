@@ -4,6 +4,7 @@ import { ReactChild } from 'react';
 import Head from 'next/head';
 import Seo from '@modules/seo';
 import { handleSanitize } from '@lib/utils/miscellaneous';
+import Script from 'next/script';
 
 interface LayoutProps {
   children: ReactChild;
@@ -27,8 +28,11 @@ const Layout = ({ children, seoPage, description }: LayoutProps) => {
             dangerouslySetInnerHTML={{
               __html: handleSanitize(seoPage?.seo?.schema?.raw),
             }}
-          />
+          /> 
         )}
+       
+        
+
         <link rel='icon' href='/favicon.ico' sizes='32x32' />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
