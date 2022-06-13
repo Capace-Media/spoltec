@@ -7,7 +7,7 @@ import Script from 'next/script';
 import { useEffect } from 'react';
 import * as gtag from '../lib/gtag'
 import * as ReactGA from "react-ga";
-import Head from 'next/head';
+
 
 export const initGA = (id: string) => {
   console.log('this initGA');
@@ -71,7 +71,6 @@ function MyApp({ Component, pageProps }) {
   }, []);
   return (
     <>
-    <Head>
 
       {/* Global Site Tag (gtag.js) - Google Analytics */}
       <Script 
@@ -109,7 +108,7 @@ function MyApp({ Component, pageProps }) {
           }}
         />
       )}
-    </Head>
+
       <Layout description={pageProps?.page?.gqlHeroFields?.introduktionstext || pageProps?.data?.gqlService?.gqlHeroFields?.introduktionstext} seoPage={pageProps?.page || pageProps?.data?.gqlService}>
         <Component {...pageProps} />
       </Layout>
