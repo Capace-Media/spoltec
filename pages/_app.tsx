@@ -4,35 +4,45 @@ import CookieConsent, { getCookieConsentValue, Cookies } from "react-cookie-cons
 import Layout from '@modules/layout/components/Layout';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import * as gtag from '../lib/gtag'
 import * as ReactGA from "react-ga";
 
 
-export const initGA = (id: string) => {
-  console.log('this initGA');
+// export const initGA = (id: string) => {
+//   console.log('this initGA');
   
-  if (process.env.NODE_ENV === "production") {
-    console.log('hello there');
+//   if (process.env.NODE_ENV === "production") {
+//     console.log('hello there');
     
-    ReactGA.initialize(id);
-  }
-};
+//     ReactGA.initialize(id);
+//   }
+// };
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
-   useEffect(() => {
-     const handleRouteChange = (url:any) => {
-       gtag.pageview(url)
-     }
+  const [consent, setConsent] = useState(false || true)
+  console.log('consent ===>', consent);
+  
 
-     router.events.on('routeChangeComplete', handleRouteChange)
-     router.events.on('hashChangeComplete', handleRouteChange)
-     return () => {
-       router.events.off('routeChangeComplete', handleRouteChange)
-       router.events.off('hashChangeComplete', handleRouteChange)
-     }
+   useEffect(() => {
+    if(consent){
+      const handleRouteChange = (url:any) => {
+        gtag.pageview(url)
+      }
+ 
+      router.events.on('routeChangeComplete', handleRouteChange)
+      router.events.on('hashChangeComplete', handleRouteChange)
+      return () => {
+        router.events.off('routeChangeComplete', handleRouteChange)
+        router.events.off('hashChangeComplete', handleRouteChange)
+      }
+
+    } else {
+      console.log('no tracking');
+      
+    }
 
    }, [router.events])
 
@@ -47,9 +57,10 @@ function MyApp({ Component, pageProps }) {
     console.log('hello handleAcceptCookie');
     
     if(process.env.NEXT_PUBLIC_GA_ID){
-      console.log('hello if handleAcceptCookie');
+      // console.log('hello if handleAcceptCookie');
 
-      initGA(process.env.NEXT_PUBLIC_GA_ID);
+      // initGA(process.env.NEXT_PUBLIC_GA_ID);
+      setConsent(true)
       
     }
   }
@@ -60,6 +71,7 @@ function MyApp({ Component, pageProps }) {
     Cookies.remove("_ga");
     Cookies.remove("_gat");
     Cookies.remove("_gid");
+    setConsent(false)
     
   };
 
@@ -73,23 +85,30 @@ function MyApp({ Component, pageProps }) {
     <>
 
       {/* Global Site Tag (gtag.js) - Google Analytics */}
-      <Script 
-        src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-      />
-      <Script 
-        id="gtag-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${gtag.GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
-      />
+      {consent && (
+        <>
+        
+          <Script 
+            src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+          />
+          <Script 
+            id="gtag-init"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gtag.GA_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+            }}
+          />
+        
+        </>
+
+      )}
 
       {/* Google Tag Manager - Global base code */}
       {process.env.NEXT_PUBLIC_GA_ID && (
@@ -115,7 +134,7 @@ function MyApp({ Component, pageProps }) {
       <CookieConsent 
         enableDeclineButton
         onAccept={handleAcceptCookie}
-        onDecline={handleDeclineCookie}
+        onDecline={() => handleDeclineCookie}
         expires={7}
       >
         This website uses cookies to enhance the user experience.
