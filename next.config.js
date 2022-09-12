@@ -202,11 +202,6 @@ module.exports = {
         destination: '/',
         permanent: true,
       },
-      {
-        source: '/kvicksilversanering',
-        destination: '/',
-        permanent: true,
-      },
     ]
   },
 };

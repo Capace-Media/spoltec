@@ -174,7 +174,7 @@ export const getStaticProps = async ({params}: any) => {
         gqlService: {
             ...originData.gqlService,
             title: `Avloppsspolning ${ort?.ort}`,
-            uri: `/avloppsspolning/${ort?.ort}`,
+            uri: `/avloppsspolning/${ort?.slug}`,
             seo: {
               ...originData.gqlService.seo,
               title: `Avloppsspolning i ${ort?.ort}`,
