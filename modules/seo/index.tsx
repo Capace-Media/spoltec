@@ -38,11 +38,13 @@ const Seo = ({ seo, uri, img, desc }) => {
 
     const currentLocation = process.browser ? window.location.origin : null;
 
-    const opengraphUrl =
+    let opengraphUrl =
     (process.env.NEXT_PUBLIC_MY_WEBSITE
       ? process.env.NEXT_PUBLIC_MY_WEBSITE
       : currentLocation) + uri;
 
+    opengraphUrl = opengraphUrl.replace(/\/$/, "");
+  
     return (
         <NextSeo 
         title={title}
