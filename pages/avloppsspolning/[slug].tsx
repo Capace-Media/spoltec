@@ -177,7 +177,7 @@ export const getStaticProps = async ({params}: any) => {
             uri: `/avloppsspolning/${ort?.slug}`,
             seo: {
               ...originData.gqlService.seo,
-              title: `Avloppsspolning i ${ort?.ort} | Precision och kvalité | Spoltec`,
+              title: `Avloppsspolning i ${ort?.ort}`,
               opengraphTitle: `Avloppsspolning ${ort?.ort} | Precision och kvalité | Spoltec`,
               opengraphDescription: `Avloppsspolning i ${ort?.ort}. Vi på Spoltec kan hjälpa er vare sig det är akuta stop eller underhållsspolning. Vi hjälper er! Kontakta Spoltec idag. `
                 
