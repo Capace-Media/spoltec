@@ -135,7 +135,7 @@ export const getStaticProps = async ({params}: any) => {
             uri: `/relining/${ort?.slug}`,
             seo: {
               ...originData.gqlService.seo,
-              title: `Relining i ${ort?.ort}`,
+              title: `Relining i ${ort?.ort} | Nya alternativet till stambyte | Spoltec`,
               opengraphTitle: `Relining ${ort?.ort} | Nya alternativet till stambyte | Spoltec`,
               opengraphDescription: `Behöver du hjälp med relining i ${ort?.ort}? Relining är ett kostnadseffektivt och snabbt alternativ till stambyte. Kontakta Spoltec för relining i ${ort?.ort}.`
                 
