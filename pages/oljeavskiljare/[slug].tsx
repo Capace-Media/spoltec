@@ -54,16 +54,7 @@ export const GET_ORTER = `
 
 export const excludePageSlug = (slug: any) => {
     const pagesToExclude = [
-        'boras',
-        'halmstad',
-        'varberg',
-        'vaxjo',
-        'jonkoping',
-        'karlskrona',
-        'kalmar',
-        'helsingborg',
-        'kristianstad',
-        'goteborg'
+        'stockholm',
     ]
     return pagesToExclude.includes(slug)
 }
