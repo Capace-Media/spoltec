@@ -10,7 +10,13 @@ export const isCustomPageSlug = (slug: string) => {
   const pagesToExclude = [
       'hem',
       'akut-hjalp',
-      'kontakta-oss'
+      'kontakta-oss',
+      'avloppsspolning',
+      'kvicksilversanering',
+      'oljeavskiljare',
+      'provtagning-av-vatten',
+      'relining',
+      'rorinspektion'
   ]
   return pagesToExclude.includes(slug)
 }
@@ -37,24 +43,18 @@ export const getStaticPaths = async () => {
     }
   })
 
-  const servicePaths = servicesIndex.map((service) => {
-
-    return {
-      params: {
-        slug: service.slug,
-      },
-    };
-  });
-  const paths = [...servicePaths, ...pagePaths];
+  const paths = [...pagePaths];
   
   return { paths, fallback: false };
 };
 
 export const getStaticProps = async (context) => {
+  console.log("getStaticProps context ==>", context)
   const isService = servicesIndex.some(
     (service) => service.slug === context.params.slug
   );
   let page;
+  // console.log("servicesIndex ==>", servicesIndex.map((service) => service.slug))
   if (isService) {
     page = await getService(context.params.slug);
   } else {
