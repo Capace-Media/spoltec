@@ -7,3 +7,4 @@ Host: https://www.spoltec.se
 
 # Sitemaps
 Sitemap: https://www.spoltec.se/sitemap.xml
+Sitemap: https://www.spoltec.se/sitemap-0.xml
