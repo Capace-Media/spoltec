@@ -8,7 +8,7 @@ interface TextProps {
 const Text = ({ data }: TextProps) => {
   
   return (
-    <section className='contain section'>
+    <section className='contain section nth-child'>
       <div className='max-w-2xl'>
         <h2>{data.rubrik}</h2>
         {/* <div className='parsed'>{data?.text && parse(data.text)}</div> */}

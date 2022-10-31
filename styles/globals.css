@@ -96,3 +96,7 @@
 .nav-style{
   transition: ease-in-out .4s;
 }
+
+.nth-child:nth-child(1) {
+  padding-bottom: 0
+}

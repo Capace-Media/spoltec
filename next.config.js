@@ -1,9 +1,14 @@
 module.exports = {
   images: {
-    domains: ['media.spoltec.se'],
+    domains: ['spoltec-staging.h.capacedev.se'],
   },
   swcMinify: true,
   reactStrictMode: true,
+  env: {
+    GRAPHQL_USER: process.env.GRAPHQL_USER,
+    GRAPHQL_PASS: process.env.GRAPHQL_PASS,
+    GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
+  },
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
       Object.assign(config.resolve.alias, {

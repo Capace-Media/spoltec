@@ -27,7 +27,7 @@ const WP = async (query) => {
 const prebuild = async () => {
   const serviceRes = await WP(`
   query getServices {
-      gqlAllService {
+      gqlAllService(first: 50) {
           edges {
             node {
               title

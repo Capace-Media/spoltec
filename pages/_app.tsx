@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
   const [consent, setConsent] = useState(false || true)
-  console.log('consent ===>', consent);
+  // console.log('consent ===>', consent);
   
 
    useEffect(() => {
@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }) {
   }, [router.events])
 
   const handleAcceptCookie = () => {
-    console.log('hello handleAcceptCookie');
+    // console.log('hello handleAcceptCookie');
     
     if(process.env.NEXT_PUBLIC_GA_ID){
       // console.log('hello if handleAcceptCookie');
@@ -67,7 +67,7 @@ function MyApp({ Component, pageProps }) {
 
   const handleDeclineCookie = () => {
     //remove google analytics cookies
-    console.log('hello ?????', process.env.NEXT_PUBLIC_GA_ID);
+    // console.log('hello ?????', process.env.NEXT_PUBLIC_GA_ID);
     Cookies.remove("_ga");
     Cookies.remove("_gat");
     Cookies.remove("_gid");

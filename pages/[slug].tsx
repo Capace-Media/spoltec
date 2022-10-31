@@ -17,13 +17,12 @@ export const isCustomPageSlug = (slug: string) => {
 
 export const GET_PAGES = `
 query GET_PAGES {
-  pages {
+  pages(first: 20) {
     nodes {
       slug
     }
   }
 }
-
 `
 
 export const getStaticPaths = async () => {
