@@ -26,6 +26,7 @@ const MainHero = ({}: MainHeroProps) => {
               objectFit='contain'
               priority
               alt={`image of splashing water`}
+              sizes='(max-width: 1920px) 100vw'
             />
           </figure>
         </div>
