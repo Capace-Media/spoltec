@@ -16,7 +16,19 @@ export const isCustomPageSlug = (slug: string) => {
       'oljeavskiljare',
       'provtagning-av-vatten',
       'relining',
-      'rorinspektion'
+      'rorinspektion',
+      'boras',
+      'goteborg',
+      'halmstad',
+      'helsingborg',
+      'jonkoping',
+      'kalmar',
+      'karlskrona',
+      'kristianstad',
+      'malmo',
+      'undefined',
+      'varberg',
+      'vaxjo'
   ]
   return pagesToExclude.includes(slug)
 }
