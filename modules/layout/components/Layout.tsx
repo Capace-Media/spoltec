@@ -13,7 +13,7 @@ interface LayoutProps {
 }
 
 const Layout = ({ children, seoPage, description }: LayoutProps) => {
-
+  // console.log("seoPage ==>", seoPage)
   
   return (
     <>

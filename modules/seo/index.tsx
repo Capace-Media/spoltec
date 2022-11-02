@@ -7,7 +7,7 @@ const Seo = ({ seo, uri, img, desc }) => {
   //console.log('front page img ===>', frontImg);
   const router = useRouter()
   //console.log('router ===>, ', router);
-  
+  // console.log("seo ==>", seo)
   
     const {
         title,
@@ -21,7 +21,7 @@ const Seo = ({ seo, uri, img, desc }) => {
     } = seo;
 
     const noIndex = (index: any) => {
-      if(index === 'index'){
+      if(index === 'index' || index === ''){
         return false
       } else {
         return true
@@ -29,7 +29,7 @@ const Seo = ({ seo, uri, img, desc }) => {
     }
 
     const noFollow = (follow: any) => {
-      if(follow === 'follow'){
+      if(follow === 'follow' || follow === ''){
         return false
       } else {
         return true

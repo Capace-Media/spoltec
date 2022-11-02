@@ -24,6 +24,7 @@ function MyApp({ Component, pageProps }) {
 
   const [consent, setConsent] = useState(false || true)
   // console.log('consent ===>', consent);
+  // console.log("pageProps ==>", pageProps)
   
 
    useEffect(() => {
