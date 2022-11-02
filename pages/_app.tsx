@@ -26,7 +26,6 @@ function MyApp({ Component, pageProps }) {
   // console.log('consent ===>', consent);
   // console.log("pageProps ==>", pageProps)
   
-
    useEffect(() => {
     if(consent){
       const handleRouteChange = (url:any) => {

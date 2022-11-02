@@ -8,7 +8,10 @@ const Seo = ({ seo, uri, img, desc }) => {
   const router = useRouter()
   //console.log('router ===>, ', router);
   // console.log("seo ==>", seo)
-  
+  // console.log("uri ==>", uri)
+  // console.log("desc ==>", desc)
+  // console.log("router ==>", router.asPath)
+
     const {
         title,
         metaDesc,
@@ -37,25 +40,34 @@ const Seo = ({ seo, uri, img, desc }) => {
     }
 
     const currentLocation = process.browser ? window.location.origin : null;
+    // console.log("currentLocation ==>", currentLocation)
 
     let opengraphUrl =
     (process.env.NEXT_PUBLIC_MY_WEBSITE
       ? process.env.NEXT_PUBLIC_MY_WEBSITE
       : currentLocation) + uri;
 
+    // console.log("opengraphUrl before .replace ==>", opengraphUrl)
+
     opengraphUrl = opengraphUrl.replace(/\/$/, "");
+
+    // console.log("opengraphUrl after .replace ==>", opengraphUrl)
+
+    const newOpengraphUrl = process.env.NEXT_PUBLIC_MY_WEBSITE + router.asPath
+        
+    // console.log("newOpengraphUrl ==>", newOpengraphUrl)
   
     return (
         <NextSeo 
         title={title}
         description={opengraphDescription || metaDesc || desc}
-        canonical={opengraphUrl}
+        canonical={newOpengraphUrl}
         noindex={noIndex(metaRobotsNoindex)}
         nofollow={noFollow(metaRobotsNofollow)}
         openGraph={{
           type: 'website',
           locale: 'sv_SE',
-          url: opengraphUrl,
+          url: newOpengraphUrl,
           title: opengraphTitle,
           description: opengraphDescription ? opengraphDescription : desc,
           images: [

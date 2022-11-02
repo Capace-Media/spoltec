@@ -1,5 +1,6 @@
 export const SeoFragment = `
 seo {
+  canonical
   breadcrumbs {
     text
     url
