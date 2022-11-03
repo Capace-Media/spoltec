@@ -25,28 +25,7 @@ export const getStaticProps = async (context) => {
         `
     ) 
 
-    return {
-        props: {
-            page
-        }
-    }
-}
-
-const Rörinspektion = () => {
-    const [Data, setData] = useState({
-        gqlAllService: {
-            edges: [
-
-            ]
-        },
-    })
-
-    
-    useEffect(() => {
-        const getData = async () => {
-
-            try {
-                const getService = await WP(`
+    const getService = await WP(`
                 query getService {
                     gqlAllService(first: 50, where: {title: "Rörinspektion"}) {
                         edges {
@@ -117,31 +96,29 @@ const Rörinspektion = () => {
                 }
                   
                 `)
-        
-                setData(getService.data)
 
-            } catch (error) {
-
-                console.log("ERROR ==>", error)
-            }
+    return {
+        props: {
+            page,
+            data: getService.data
         }
+    }
+}
 
-        getData()
-
-    }, [])
+const Rörinspektion = ({ data }) => {
 
     return (
-        <div key={Data?.gqlAllService?.edges[0]?.node?.title}>
+        <div key={data?.gqlAllService?.edges[0]?.node?.title}>
             <Hero
-                title={`${Data?.gqlAllService?.edges[0]?.node?.title}`}
-                subtitle={Data?.gqlAllService?.edges[0]?.node?.gqlHeroFields.underrubrik}
-                text={Data?.gqlAllService?.edges[0]?.node?.gqlHeroFields.introduktionstext}
-                image={Data?.gqlAllService?.edges[0]?.node?.gqlHeroFields.bild?.mediaItemUrl}
+                title={`${data?.gqlAllService?.edges[0]?.node?.title}`}
+                subtitle={data?.gqlAllService?.edges[0]?.node?.gqlHeroFields.underrubrik}
+                text={data?.gqlAllService?.edges[0]?.node?.gqlHeroFields.introduktionstext}
+                image={data?.gqlAllService?.edges[0]?.node?.gqlHeroFields.bild?.mediaItemUrl}
             />
             <div id='content' className='w-full h-10 md:h-0'></div>
             <div id=''>
 
-                <Blocks blocks={Data?.gqlAllService?.edges[0]?.node?.gqlBlocks?.blocks} />
+                <Blocks blocks={data?.gqlAllService?.edges[0]?.node?.gqlBlocks?.blocks} />
             </div>
         </div>
     )

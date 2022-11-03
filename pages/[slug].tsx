@@ -61,7 +61,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  console.log("getStaticProps context ==>", context)
+  // console.log("getStaticProps context ==>", context)
   const isService = servicesIndex.some(
     (service) => service.slug === context.params.slug
   );

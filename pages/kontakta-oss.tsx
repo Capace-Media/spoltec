@@ -32,6 +32,8 @@ const Page = ({page}: PageProps) => {
 
 export const getStaticProps = async (context) => {
   const page = await getPage('/kontakta-oss');
+
+  console.log("page in getStaticProps ==>", page)
   return { 
     props: { 
       page 
