@@ -7,7 +7,7 @@ import Script from 'next/script';
 import { useEffect, useState } from 'react';
 import * as gtag from '../lib/gtag'
 import * as ReactGA from "react-ga";
-
+import WP from '@lib/wp/wp';
 
 // export const initGA = (id: string) => {
 //   console.log('this initGA');
@@ -19,13 +19,21 @@ import * as ReactGA from "react-ga";
 //   }
 // };
 
+
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
+
+  // console.log("pageProps ==>", pageProps)
 
   const [consent, setConsent] = useState(false || true)
   // console.log('consent ===>', consent);
   // console.log("pageProps ==>", pageProps)
-  
+  // console.log("Component ==>", Component)
+  // console.log("data ==>", data)
+
+  const completeRoute = router.asPath
+
    useEffect(() => {
     if(consent){
       const handleRouteChange = (url:any) => {
@@ -52,6 +60,8 @@ function MyApp({ Component, pageProps }) {
       router.events.off('routeChangeComplete', pageview)
     }
   }, [router.events])
+
+  // console.log("pageview ==>", pageview)
 
   const handleAcceptCookie = () => {
     // console.log('hello handleAcceptCookie');
@@ -128,7 +138,7 @@ function MyApp({ Component, pageProps }) {
         />
       )}
 
-      <Layout description={pageProps?.page?.gqlHeroFields?.introduktionstext || pageProps?.data?.gqlService?.gqlHeroFields?.introduktionstext} seoPage={pageProps?.page || pageProps?.data?.gqlService}>
+      <Layout description={pageProps?.page?.gqlHeroFields?.introduktionstext || pageProps?.data?.gqlService?.gqlHeroFields?.introduktionstext} seoPage={pageProps?.page || pageProps?.data?.gqlService} completeRoute={completeRoute} >
         <Component {...pageProps} />
       </Layout>
       <CookieConsent 

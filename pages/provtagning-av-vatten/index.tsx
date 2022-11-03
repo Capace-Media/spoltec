@@ -4,6 +4,34 @@ import WP from "@lib/wp/wp";
 import { SeoFragment } from "@modules/seo/lib/get-seo";
 import {useEffect, useState} from 'react'
 
+export const getStaticProps = async (context) => {
+    console.log("context ==>", context)
+
+    const page = await WP(
+        `
+            query getServiceTitleAndDesc {
+                gqlAllService(first: 50) {
+                    nodes {
+                        slug
+                        title
+                        uri
+                        seo {
+                            opengraphTitle
+                            metaDesc
+                        }
+                    }
+                }
+            }
+        `
+    ) 
+
+    return {
+        props: {
+            page
+        }
+    }
+}
+
 const ProvtagningAvVatten = () => {
     const [Data, setData] = useState({
         gqlAllService: {

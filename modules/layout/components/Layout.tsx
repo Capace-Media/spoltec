@@ -10,15 +10,28 @@ interface LayoutProps {
   children: ReactChild;
   seoPage: any;
   description: any;
+  completeRoute: any;
 }
 
-const Layout = ({ children, seoPage, description }: LayoutProps) => {
+const Layout = ({ children, seoPage, description, completeRoute }: LayoutProps) => {
+
   // console.log("seoPage ==>", seoPage)
+  // console.log("description ==>", description)
+  // console.log("children ==>", children)
+
+  // const completeRoute = router.asPath
+
+  // console.log("completeRoute ==>", completeRoute)
+
+  const serviceSeo = seoPage?.data?.gqlAllService?.nodes?.find((node) => node.uri === `/services${completeRoute}/`)
+
+  // console.log("serviceSeo ==>", serviceSeo)
+  
   
   return (
     <>
       <Header />
-      <Seo desc={description} img={seoPage?.gqlHeroFields?.bild?.mediaItemUrl} seo={seoPage?.seo} uri={seoPage?.uri ? `${seoPage?.uri}` : `/${seoPage?.slug}`} />
+      <Seo desc={description} img={seoPage?.gqlHeroFields?.bild?.mediaItemUrl} seo={seoPage?.seo} uri={seoPage?.uri ? `${seoPage?.uri}` : `/${seoPage?.slug}`} serviceSeo={serviceSeo} />
       <Head>
         {seoPage?.seo?.schema?.raw && (
           <script 

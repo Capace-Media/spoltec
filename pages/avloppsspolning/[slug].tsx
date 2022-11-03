@@ -156,6 +156,24 @@ export const getStaticProps = async ({params}: any) => {
         { slug: '/avloppsspolning' }
     )
 
+    const page = await WP(
+        `
+            query getServiceTitleAndDesc {
+                gqlAllService(first: 50) {
+                    nodes {
+                        slug
+                        title
+                        uri
+                        seo {
+                            opengraphTitle
+                            metaDesc
+                        }
+                    }
+                }
+            }
+        `
+    )
+
     const city = newData?.gqlService?.children?.nodes.find((city: any) => city.slug === params.slug)
 
     const orter = await WP(GET_ORTER)
@@ -169,6 +187,7 @@ export const getStaticProps = async ({params}: any) => {
     return {
         props: {
             city,
+            page
         }, 
         revalidate: 100,
     }
