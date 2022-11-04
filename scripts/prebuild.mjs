@@ -32,6 +32,7 @@ const prebuild = async () => {
             node {
               title
               slug
+              uri
               gqlHeroFields {
                 underrubrik
                 introduktionstext

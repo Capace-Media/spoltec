@@ -23,8 +23,9 @@ const Services = ({ data }: ServicesProps) => {
       </div>
       <div className='grid justify-center grid-cols-1 gap-5 mt-10 lg:grid-cols-3 md:grid-cols-2'>
         {services.map((service) => {
+          const serviceUri = service.uri.replace('/services/', '')
           return (
-            <Link key={service.slug} href={`/${service.slug}`}>
+            <Link key={service.slug} href={`/${serviceUri}`}>
               <a
                 key={service.title}
                 className='mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-[100%] text-white p-7 bg-brand-blue text-left rounded-xl'
