@@ -3,8 +3,21 @@ import MainHero from '@common/sections/MainHero';
 import PageTransition from '@modules/transitions/components/PageTransition';
 import getPage from '@modules/pages/lib/getPage';
 import Head from 'next/head';
+
+export const getStaticpaths = async () => {
+  const page = await getPage('/')
+
+  const path = { params: {slug: page?.slug } }
+
+  console.log("path ==>", path)
+
+  return { path, fallback: false }
+}
+
 export const getStaticProps = async (context) => {
+  console.log("context ==>", context)
   const page = await getPage('/');
+  console.log("page ==>", page)
   return { 
     props: { 
       page 

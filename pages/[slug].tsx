@@ -55,7 +55,11 @@ export const getStaticPaths = async () => {
     }
   })
 
+  console.log("pagePaths ==>", pagePaths)
+
   const paths = [...pagePaths];
+
+  console.log("paths ==>", paths)
   
   return { paths, fallback: false };
 };
