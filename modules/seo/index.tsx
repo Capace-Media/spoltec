@@ -45,7 +45,11 @@ const Seo = ({ seo, uri, img, desc, serviceSeo }) => {
       ? process.env.NEXT_PUBLIC_MY_WEBSITE
       : currentLocation) + uri;
 
+    console.log("opengraphUrl before .replace ==>", opengraphUrl)
+
     opengraphUrl = opengraphUrl.replace(/\/$/, "");
+
+    console.log("opengraphUrl after .replace ==>", opengraphUrl)
 
     let newOpengraphUrl = process.env.NEXT_PUBLIC_MY_WEBSITE + completeRoute
 
@@ -102,7 +106,7 @@ Seo.defaultProps = {
         opengraphImage: {
           sourceUrl: '',
         },
-        opengraphUrl: '',
+        newOpengraphUrl: '',
         opengraphSiteName: '',
     },
 };
