@@ -48,6 +48,8 @@ const Seo = ({ seo, uri, img, desc, serviceSeo }) => {
     opengraphUrl = opengraphUrl.replace(/\/$/, "");
 
     const newOpengraphUrl = process.env.NEXT_PUBLIC_MY_WEBSITE + completeRoute
+
+    console.log("newOpengraphUrl ==>", newOpengraphUrl)
   
     return (
       <NextSeo 

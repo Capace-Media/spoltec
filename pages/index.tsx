@@ -15,9 +15,9 @@ export const getStaticpaths = async () => {
 }
 
 export const getStaticProps = async (context) => {
-  console.log("context ==>", context)
+  // console.log("context ==>", context)
   const page = await getPage('/');
-  console.log("page ==>", page)
+  // console.log("page ==>", page)
   return { 
     props: { 
       page 

@@ -4,7 +4,7 @@ import WP from "@lib/wp/wp";
 import { SeoFragment } from "@modules/seo/lib/get-seo";
 
 export const getStaticProps = async (context) => {
-    console.log("context ==>", context)
+    // console.log("context ==>", context)
 
     const page = await WP(
         `

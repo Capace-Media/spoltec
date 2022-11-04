@@ -5,7 +5,7 @@ import { SeoFragment } from "@modules/seo/lib/get-seo";
 import {useEffect, useState} from 'react'
 
 export const getStaticProps = async (context) => {
-    console.log("context ==>", context)
+    // console.log("context ==>", context)
 
     const page = await WP(
         `
