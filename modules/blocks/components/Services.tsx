@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import services from '@data/static-services.json';
+import { useRouter } from 'next/router';
 interface ServicesProps {
   data: any;
 }
 
 const Services = ({ data }: ServicesProps) => {
+  const router = useRouter();
 
   const limit = (string = '', limit = 0) => {
     if(string.length > limit){
@@ -14,6 +16,40 @@ const Services = ({ data }: ServicesProps) => {
       return string
     }
   }
+
+  const cityArray = [
+    'Borås',
+    'Göteborg',
+    'Halmstad',
+    'Helsingborg',
+    'Jönköping',
+    'Kalmar',
+    'Karlskrona',
+    'Kristianstad',
+    'Malmö',
+    'Varberg',
+    'Växjö'
+  ]
+
+  const matchArray = []
+
+  services.forEach(service => {
+    cityArray.filter(el => {
+      if (service.title.includes(el)) {
+        matchArray.push(service)
+      } 
+    })
+  })  
+
+  let res 
+
+  if (router.asPath === '/') {
+    res = services.filter(service => !matchArray.includes(service))
+  }
+
+  console.log("router.asPath ==>", router.asPath)
+
+  // console.log("jag är här")
   
   return (
     <div className='text-center section contain'>
@@ -22,7 +58,7 @@ const Services = ({ data }: ServicesProps) => {
         <p>{data.servicesText}</p>
       </div>
       <div className='grid justify-center grid-cols-1 gap-5 mt-10 lg:grid-cols-3 md:grid-cols-2'>
-        {services.map((service) => {
+        {res.map((service) => {
           const serviceUri = service.uri.replace('/services/', '')
           return (
             <Link key={service.slug} href={`/${serviceUri}`}>
