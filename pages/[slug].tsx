@@ -35,7 +35,7 @@ export const isCustomPageSlug = (slug: string) => {
 
 export const GET_PAGES = `
 query GET_PAGES {
-  pages(first: 20) {
+  pages(first: 100) {
     nodes {
       slug
     }
@@ -46,6 +46,7 @@ query GET_PAGES {
 export const getStaticPaths = async () => {
 
   const {data} = await WP(GET_PAGES)
+  console.log("data ==>", data)
   
   const pagePaths = []
   
@@ -94,6 +95,7 @@ interface PageProps {
 }
 
 const Page = ({ page }: PageProps) => {
+  console.log("page ==>", page)
 
   
   return (
