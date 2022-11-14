@@ -45,17 +45,17 @@ const Seo = ({ seo, uri, img, desc, serviceSeo }) => {
       ? process.env.NEXT_PUBLIC_MY_WEBSITE
       : currentLocation) + uri;
 
-    console.log("opengraphUrl before .replace ==>", opengraphUrl)
+    // console.log("opengraphUrl before .replace ==>", opengraphUrl)
 
     opengraphUrl = opengraphUrl.replace(/\/$/, "");
 
-    console.log("opengraphUrl after .replace ==>", opengraphUrl)
+    // console.log("opengraphUrl after .replace ==>", opengraphUrl)
 
     let newOpengraphUrl = process.env.NEXT_PUBLIC_MY_WEBSITE + completeRoute
 
-    if (completeRoute === '/index') newOpengraphUrl = process.env.NEXT_PUBLIC_MY_WEBSITE
+    // if (completeRoute === '/index') newOpengraphUrl = process.env.NEXT_PUBLIC_MY_WEBSITE
 
-    console.log("newOpengraphUrl ==>", newOpengraphUrl)
+    // console.log("newOpengraphUrl ==>", newOpengraphUrl)
   
     return (
       <NextSeo 

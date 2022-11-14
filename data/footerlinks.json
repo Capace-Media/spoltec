@@ -17,6 +17,52 @@
             "href": "/villastopp"
         }
     ],
+    "stader": [
+        {
+            "label": "Borås",
+            "href": "/tjanster-boras"
+        },
+        {
+            "label": "Göteborg",
+            "href": "/tjanster-goteborg"
+        },
+        {
+            "label": "Halmstad",
+            "href": "/tjanster-halmstad"
+        },
+        {
+            "label": "Helsingborg",
+            "href": "/tjanster-helsingborg"
+        },
+        {
+            "label": "Jönköping",
+            "href": "/tjanster-jonkoping"
+        },
+        {
+            "label": "Kalmar",
+            "href": "/tjanster-kalmar"
+        },
+        {
+            "label": "Karlskrona",
+            "href": "/tjanster-karlskrona"
+        },
+        {
+            "label": "Kristianstad",
+            "href": "/tjanster-kristianstad"
+        },
+        {
+            "label": "Malmö",
+            "href": "/tjanster-malmo"
+        },
+        {
+            "label": "Varberg",
+            "href": "/tjanster-varberg"
+        },
+        {
+            "label": "Växjö",
+            "href": "/tjanster-vaxjo"
+        }
+    ],
     "foretag": [
         {
             "label": "Relining",

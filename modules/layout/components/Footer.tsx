@@ -8,6 +8,10 @@ interface FooterProps {}
 
 const Footer = ({}: FooterProps) => {
   const router = useRouter()
+
+  // console.log("footerLinks ==>", footerLinks)
+
+  // console.log("footer router ==>", router)
   
   return (
     <>
@@ -34,7 +38,7 @@ const Footer = ({}: FooterProps) => {
       <footer className='mb-5 overflow-hidden contain-outer rounded-xl'>
         <div className='pb-10 bg-section'>
           <div className='contain'>
-            <div className='grid md:grid-cols-[2fr,1fr,1fr,1fr] gap-10'>
+            <div className='grid md:grid-cols-[2fr,1fr,1fr,1fr,1fr] gap-10'>
               <div>
                 <strong className='block mb-3'>Spoltec Södra AB</strong>
                 <p className='mb-6'>
@@ -48,6 +52,18 @@ const Footer = ({}: FooterProps) => {
                 <strong className='block mb-3'>Privat</strong>
                 <ul className='space-y-[6px]'>
                   {footerLinks?.privat?.map((link: any, index) => {
+                    return (
+                      <li className='hover:text-brand-blue' key={index + link?.href + link?.label}>
+                        <Link href={link?.href}><a>{link?.label}</a></Link>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+              <div>
+                <strong className='block mb-3'>Städer</strong>
+                <ul className='space-y-[6px]'>
+                  {footerLinks?.stader?.map((link: any, index) => {
                     return (
                       <li className='hover:text-brand-blue' key={index + link?.href + link?.label}>
                         <Link href={link?.href}><a>{link?.label}</a></Link>

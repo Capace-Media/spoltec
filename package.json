@@ -8,10 +8,12 @@
     "start": "next start",
     "lint": "next lint",
     "svg": "svgr -d components/icons components/icons/svgs",
-    "postbuild": "next-sitemap --config next-sitemap.config.js"
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.3",
+    "@next/bundle-analyzer": "^13.0.1",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "dompurify": "^2.3.6",
     "dotenv": "^16.0.0",

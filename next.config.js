@@ -1,4 +1,8 @@
-module.exports = {
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+module.exports = withBundleAnalyzer({
   images: {
     domains: ['spoltec-staging.h.capacedev.se', 'www.uc.se'],
     // formats: ['image/jpeg', 'image/png', 'image/svg']
@@ -210,4 +214,4 @@ module.exports = {
       },
     ]
   },
-};
+});

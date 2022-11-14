@@ -51,6 +51,9 @@
   .contain {
     @apply px-5 mx-auto md:px-10 max-w-[80rem];
   }
+  .contain-textbutton {
+    @apply mr-[3rem] ml-auto max-w-[40rem] bottom-48 lg:bottom-40;
+  }
   .contain-outer {
     @apply px-5 mx-auto md:px-10 max-w-[90rem];
   }
@@ -91,6 +94,20 @@
   .text-image div[data-image='1'] {
     @apply row-span-2;
   }
+
+  .article-ul {
+    @apply list-disc !list-outside;
+    /* lg:!list-inside */
+  }
+
+  .small-breadcrumb-text {
+    font-size: 0.43rem;
+  }
+
+  .breadcrumb-text {
+    font-size: 0.5rem;
+    line-height: 1rem;
+  }
 }
 
 .nav-style{
@@ -99,4 +116,81 @@
 
 .nth-child:nth-child(1) {
   padding-bottom: 0
+}
+
+@responsive {
+  .max-w-1-25 {
+    max-width: 5rem;
+  }
+
+  .max-w-1-5 {
+    max-width: 6rem;
+  }
+
+  .max-w-2 {
+    max-width: 8rem;
+  }
+
+  .max-w-2-25 {
+    max-width: 9rem;
+  }
+
+  .max-w-2-5 {
+    max-width: 10rem;
+  }
+
+  .max-w-4-5 {
+    max-width: 18rem;
+  }
+
+  .right-23 {
+    right: 5.75rem;
+  }
+
+  .right-110 {
+    right: 27.5rem;
+  }
+
+  /* .right-3/10 {
+
+  } */
+}
+
+.right-104 {
+  right: 26rem;
+}
+
+.right-108 {
+  right: 27rem;
+}
+
+
+
+.right-112 {
+  right: 28rem;
+}
+
+.right-120 {
+  right: 30rem;
+}
+
+.text-1-5xs {
+  font-size: 0.7rem;
+}
+
+.text-2xs {
+  font-size: 0.5rem;
+  line-height: 0.25rem;
+}
+
+.line-height {
+  line-height: 0.7rem;
+}
+
+.ul-a {
+  text-decoration: underline;
+}
+
+.ul-a:hover {
+ color: blue;
 }
