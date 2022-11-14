@@ -47,7 +47,7 @@ const KunskapsbankArtikel = ({page, articleInfo}: KunskapsbankArtikelProps) => {
             </div>
             <div id='content' className='w-full h-10 md:h-0'></div>
             <div id=''>
-            <div className="hidden md:flex items-center absolute max-w-md md:max-w-[15rem] lg:max-w-xs md:right-10 md:top-16 lg:right-20 xl:right-20 xl:top-16 2xl:right-96 2xl:top-16 3xl:!right-[30%] z-38">
+            <div className="hidden md:flex items-center absolute max-w-md md:max-w-[15rem] lg:max-w-xs md:right-10 md:top-16 lg:right-20 xl:right-20 xl:top-16 2xl:right-96 2xl:top-16 3xl:!right-[30%] z-40">
                 {/* left-5 md:left-10 2xl:left-[20%] 3xl:!left-1/4 */}
                 {/* max-w-md md:max-w-[15rem] lg:max-w-xs */}
                 {/* md:right-10 md:top-10 lg:right-2 xl:right-20 xl:top-8 2xl:right-96 2xl:top-10 3xl:!right-[30%] */}
@@ -71,7 +71,7 @@ const KunskapsbankArtikel = ({page, articleInfo}: KunskapsbankArtikelProps) => {
                         })}
                     </ul>
                 </div>
-                <div className="pb-0 md:mr-64 lg:mr-80 xl:mr-0 -z-50 !text-base">
+                <div className="pb-0 md:mr-64 lg:mr-80 xl:mr-0 z-38 !text-base">
                 {/* md:pb-0 */}
                     <Blocks blocks={page?.gqlBlocks.blocks} />
                 </div>
@@ -172,16 +172,40 @@ export const getStaticPaths = async () => {
     // console.log("articleNodes ==>", articleNodes)
     // console.log("articleNodes2 ==>", articleNodes2)
 
-    articleNodes && articleNodes.map((node: any) => {
-        if (node.gqlArtikel.artiklar[0]) {
+    if (!data) {
+        return {
+            notFound: true
+        }
+    }
+
+    if (!articleNodes) {
+        return {
+            notFound: true
+        }
+    }
+
+    console.log("articleNodes ==>", articleNodes)
+    articleNodes && articleNodes?.map((node: any) => {
+        console.log("node?.gqlArtikel?.artiklar[0].article ==>", node?.gqlArtikel?.artiklar[0].article)
+        if (node?.gqlArtikel?.artiklar[0]) {
             // console.log("node.gqlArtikel.artiklar ==>", node.gqlArtikel.artiklar)
-            node.gqlArtikel.artiklar && node.gqlArtikel.artiklar.map(article => {
+            node?.gqlArtikel?.artiklar && node?.gqlArtikel?.artiklar?.map(article => {
                 // console.log("article ==>", article)
                 articleInfo.push(article)
                 paths.push( { params: { slug: article?.slug, article: article?.article } } )
             })
+        } else {
+            return {
+                notFound: true
+            }
         }
     })
+
+    if (!paths) {
+        return {
+            notFound: true
+        }
+    }
 
     // console.log("paths ==>", paths)
     // console.log("articleInfo ==>", articleInfo)
@@ -195,7 +219,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({params}) => {
     // console.log("params ==>", params)
 
-    const data = await getPage(`/kunskapsbank/${params.slug}/${params.article}`)
+    const data = await getPage(`/kunskapsbank/${params?.slug}/${params?.article}`)
     // console.log("data ==>", data)
 
     const data2 = await WP(GET_ARTICLES)
@@ -224,6 +248,19 @@ export const getStaticProps = async ({params}) => {
             notFound: true
         }
     }
+
+    if (!data2) {
+        return {
+            notFound: true
+        }
+    }
+
+    if (!articleInfo) {
+        return {
+            notFound: true
+        }
+    }
+
     return {
         props: {
             page: data,
