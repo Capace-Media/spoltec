@@ -13,6 +13,8 @@ interface KunskapsbankArtikelProps {
 const KunskapsbankArtikel = ({page, articleInfo}: KunskapsbankArtikelProps) => {
     // console.log("page ==>", page)
 
+    console.log("articleInfo ==>", articleInfo)
+
     const fixedSchema = page.seo.schema.raw.replace(/@/g, "")
     const raw = JSON.parse(fixedSchema)
     const rawWebPage = raw.graph.filter(r => r.type === "WebPage")
@@ -38,7 +40,7 @@ const KunskapsbankArtikel = ({page, articleInfo}: KunskapsbankArtikelProps) => {
                     const url = breadcrumb.url.replace("https://spoltec-staging.h.capacedev.se", "")
                     // console.log("url ==>", url)
                     return (
-                        <p className="hidden xs:block xs:small-breadcrumb-text xs:breadcrumb-text sm:text-base md:text-lg " key={breadcrumb.url}>{breadcrumb.text === breadcrumbs[0].text ? "" : "> " } 
+                        <p className="hidden lg:block xs:small-breadcrumb-text xs:breadcrumb-text sm:text-base md:text-lg " key={breadcrumb.url}>{breadcrumb.text === breadcrumbs[0].text ? "" : "> " } 
                             <a href={`${url}`}>{breadcrumb.text}</a> {breadcrumb.text === breadcrumbs[breadcrumbs.length - 1].text ? "" : "-"} 
                         </p>
                         // lg:text-base
@@ -77,7 +79,11 @@ const KunskapsbankArtikel = ({page, articleInfo}: KunskapsbankArtikelProps) => {
                 </div>
                 <div className="flex flex-col absolute right-5 bottom-52 md:bottom-20 md:right-10 2xl:right-[20%] 3xl:!right-1/4 max-w-2-5 lg:max-w-xs">
                 {/* 2xl:right-110 */}
-                    <p className="text-lg md:text-xl text-center pb-3">{articleInfo[0].knappText}</p>
+                    { articleInfo[0].knappText ? 
+                        <p className="text-lg md:text-xl text-center pb-3">{articleInfo[0].knappText}</p>
+                    : 
+                        ""
+                    }
                     <Link href="/kontakta-oss">
                         <a
                             className="px-2 py-2 lg:px-4 lg:py-2 rounded-sm opacity-90 text-base lg:text-base hover:opacity-100 font-bold border-2 border-brand-blue text-brand-blue items-center text-center"
@@ -86,7 +92,7 @@ const KunskapsbankArtikel = ({page, articleInfo}: KunskapsbankArtikelProps) => {
                         </a>
                     </Link>
                 </div>
-                <div className="flex md:hidden items-center contain w-full mx-auto bottom-0 mb-5 z-38">
+                <div className="flex md:hidden items-center contain w-full mx-auto bottom-0 mb-5 z-38 mt-12">
                 {/* left-5 md:left-10 2xl:left-[20%] 3xl:!left-1/4 */}
                 {/* max-w-md md:max-w-[15rem] lg:max-w-xs */}
                 {/* md:right-10 md:top-10 lg:right-2 xl:right-20 xl:top-8 2xl:right-96 2xl:top-10 3xl:!right-[30%] */}
