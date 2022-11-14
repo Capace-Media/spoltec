@@ -12,6 +12,14 @@ interface KunskapsbankSlugProps {
 const KunskapsbankSlug = ({service, page}: KunskapsbankSlugProps) => {
     console.log("page ==>", page)
 
+    const fixedSchema = page.seo.schema.raw.replace(/@/g, "")
+    const raw = JSON.parse(fixedSchema)
+    const rawWebPage = raw.graph.filter(r => r.type === "WebPage")
+    const datePublished = rawWebPage[0].datePublished.slice(0, 10)
+    const breadcrumbs = page.seo.breadcrumbs
+
+    console.log("breadcrumbs ==>", breadcrumbs)
+
     return (
         <div key={service?.title}>
             <Hero
@@ -20,6 +28,18 @@ const KunskapsbankSlug = ({service, page}: KunskapsbankSlugProps) => {
                 text={service?.gqlHeroFields?.introduktionstext}
                 image={service?.gqlHeroFields?.bild?.mediaItemUrl}
             />
+            <div className="contain-outer flex">
+                {breadcrumbs.map(breadcrumb => {
+                    const url = breadcrumb.url.replace("https://spoltec-staging.h.capacedev.se", "")
+                    // console.log("url ==>", url)
+                    return (
+                        <p className="hidden lg:block xs:small-breadcrumb-text xs:breadcrumb-text sm:text-base md:text-lg " key={breadcrumb.url}>{breadcrumb.text === breadcrumbs[0].text ? "" : "> " } 
+                            <a href={`${url}`}>{breadcrumb.text}</a> {breadcrumb.text === breadcrumbs[breadcrumbs.length - 1].text ? "" : "-"} 
+                        </p>
+                        // lg:text-base
+                    )
+                })}
+            </div>
             <div id='content' className='w-full h-10 md:h-0'></div>
             <div id=''>
                 <Blocks blocks={page?.gqlBlocks.blocks} />

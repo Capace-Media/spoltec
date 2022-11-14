@@ -37,7 +37,7 @@ const Header = ({}: HeaderProps) => {
  },[router.asPath]) 
   return (
     <>
-      <header className={`z-40 nav-style w-full md:px-0 ${isMenuScroll ? 'fixed bg-white top-0 left-0' : 'absolute top-0 left-0'}`}>
+      <header className={`z-50 nav-style w-full md:px-0 ${isMenuScroll ? 'fixed bg-white top-0 left-0' : 'absolute top-0 left-0'}`}>
         <nav className={`relative nav-style flex items-center justify-between pt-1 pb-5 contain ${isMenuScroll ? 'md:py-2 !py-2' : 'md:py-10'}`}>
           <Link href={'/'}>
             <a className={`relative nav-style  ${isMenuScroll ? 'md:h-[60px] md:w-[120px] h-[50px] w-[110px]' : 'md:h-[100px] md:w-[200px] h-[80px] w-[150px]'}`}>

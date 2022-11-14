@@ -77,7 +77,7 @@ const KunskapsbankArtikel = ({page, articleInfo}: KunskapsbankArtikelProps) => {
                 {/* md:pb-0 */}
                     <Blocks blocks={page?.gqlBlocks.blocks} />
                 </div>
-                <div className="flex flex-col absolute right-5 bottom-52 md:bottom-20 md:right-10 2xl:right-[20%] 3xl:!right-1/4 max-w-2-5 lg:max-w-xs">
+                <div className="flex flex-col absolute right-5 bottom-28 md:bottom-20 md:right-10 2xl:right-[20%] 3xl:!right-1/4 max-w-2-5 lg:max-w-xs">
                 {/* 2xl:right-110 */}
                     { articleInfo[0].knappText ? 
                         <p className="text-lg md:text-xl text-center pb-3">{articleInfo[0].knappText}</p>
