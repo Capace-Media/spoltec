@@ -90,6 +90,10 @@
     @apply text-brand-blue hover:underline;
   }
 
+  .parsed img {
+    @apply py-3 w-full max-h-[31.25rem] object-cover
+  }
+
   .text-image div[data-image='2'],
   .text-image div[data-image='1'] {
     @apply row-span-2;
