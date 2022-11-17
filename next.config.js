@@ -4,7 +4,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer({
   images: {
-    domains: ['spoltec-staging.h.capacedev.se', 'www.uc.se'],
+    domains: ['spoltec-staging.h.capacedev.se', 'www.uc.se', 'via.placeholder.com'],
     // formats: ['image/jpeg', 'image/png', 'image/svg']
   },
   swcMinify: true,

@@ -94,7 +94,7 @@ const Services = ({ data }: ServicesProps) => {
                 className='mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-[100%] text-white p-7 bg-brand-blue text-left rounded-xl'
               >
                 <Image
-                  src={service.gqlHeroFields?.bild?.mediaItemUrl ? service.gqlHeroFields.bild.mediaItemUrl : service.bild.mediaItemUrl}
+                  src={service?.gqlHeroFields?.bild?.mediaItemUrl ? service?.gqlHeroFields?.bild?.mediaItemUrl : (service?.bild?.mediaItemUrl ? service?.bild?.mediaItemUrl : "https://via.placeholder.com/2560x1707/2C4696/2C4696")}
                   layout='fill'
                   objectFit='cover'
                   className='transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-20'
