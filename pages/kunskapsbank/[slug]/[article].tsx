@@ -38,7 +38,7 @@ const KunskapsbankArtikel = ({page, articleInfo}: KunskapsbankArtikelProps) => {
             <div className="contain-outer flex">
                 {breadcrumbs.map(breadcrumb => {
                     const url = breadcrumb.url.replace("https://spoltec-staging.h.capacedev.se", "")
-                    // console.log("url ==>", url)
+                    console.log("breadcrumb ==>", breadcrumb)
                     return (
                         <p className="hidden lg:block xs:small-breadcrumb-text xs:breadcrumb-text sm:text-base md:text-lg " key={breadcrumb.url}>{breadcrumb.text === breadcrumbs[0].text ? "" : "> " } 
                             <a href={`${url}`}>{breadcrumb.text}</a> {breadcrumb.text === breadcrumbs[breadcrumbs.length - 1].text ? "" : "-"} 
@@ -61,6 +61,7 @@ const KunskapsbankArtikel = ({page, articleInfo}: KunskapsbankArtikelProps) => {
                     <ul className="pl-5 list-disc block text-1-5xs article-ul">
                         {categories.map(cat => {
                             const url = cat.uri.replace('kunskapsbank', '')
+                            console.log("cat ==>", cat)
                             return (
                                 <li  key={cat.slug}>
                                     <Link href={`${url}`}>
@@ -104,8 +105,9 @@ const KunskapsbankArtikel = ({page, articleInfo}: KunskapsbankArtikelProps) => {
                     <ul className="pl-5 list-disc block text-1-5xs article-ul">
                         {categories.map(cat => {
                             const url = cat.uri.replace('kunskapsbank', '')
+                            // console.log("cat south ==>", cat)
                             return (
-                                <li  key={cat.slug}>
+                                <li  key={`${cat.slug}2`}>
                                     <Link href={`${url}`}>
                                         <a className="ul-a text-lg">{cat.title}</a>
                                     </Link>

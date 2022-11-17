@@ -91,7 +91,7 @@
   }
 
   .parsed img {
-    @apply py-3 w-full max-h-[31.25rem] object-cover
+    @apply my-3 w-full max-h-[26.875rem] object-cover
   }
 
   .text-image div[data-image='2'],
