@@ -46,7 +46,7 @@ const Header = ({}: HeaderProps) => {
                 layout='fill'
                 objectFit='contain'
                 alt='Spoltec Logotyp'
-                sizes='(max-width: 200px) 100vw'
+                sizes='(min-width: 200px) 7vw'
                 priority
               />
             </a>
@@ -85,11 +85,11 @@ const Header = ({}: HeaderProps) => {
                 );
               } else {
                 return (
-                  <li className="list-none" key={link.href}>
+                  // <li className="list-none" key={link.href}>
                     <Link href={link.href}>
                       <a className={``}>{link.label}</a>
                     </Link>
-                  </li>
+                  // </li>
                 );
               }
             })}
@@ -147,19 +147,21 @@ const Header = ({}: HeaderProps) => {
           </ul>)}
             
           </div>
-          <ul className='hidden space-x-3 nv:block'>
+          <ul className='hidden space-x-3 nv:flex'>
             {buttons.map((button) => (
-              <Link key={button.label} href={button.href}>
-                <a
-                  className={`${buttonStyles} ${
-                    button.pop
-                      ? 'border-2 border-brand-orange bg-brand-orange text-white'
-                      : 'border-2 border-brand-blue text-brand-blue'
-                  }`}
-                >
-                  {button.label}
-                </a>
-              </Link>
+              <li key={button.label}>
+                <Link href={button.href}>
+                  <a
+                    className={`${buttonStyles} ${
+                      button.pop
+                        ? 'border-2 border-brand-orange bg-brand-orange text-white'
+                        : 'border-2 border-brand-blue text-brand-blue'
+                    }`}
+                  >
+                    {button.label}
+                  </a>
+                </Link>
+              </li>
             ))}
           </ul>
         </nav>
