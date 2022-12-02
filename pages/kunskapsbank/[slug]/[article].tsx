@@ -18,7 +18,7 @@ const KunskapsbankArtikel = ({page, articleInfo}: KunskapsbankArtikelProps) => {
     const fixedSchema = page.seo.schema.raw.replace(/@/g, "")
     const raw = JSON.parse(fixedSchema)
     const rawWebPage = raw.graph.filter(r => r.type === "WebPage")
-    const datePublished = rawWebPage[0].datePublished.slice(0, 10)
+    // const datePublished = rawWebPage[0].datePublished.slice(0, 10)
     const breadcrumbs = page.seo.breadcrumbs
 
     // console.log("breadcrumbs ==>", breadcrumbs)
