@@ -46,7 +46,7 @@ const Header = ({}: HeaderProps) => {
                 layout='fill'
                 objectFit='contain'
                 alt='Spoltec Logotyp'
-                sizes='(min-width: 200px) 7vw'
+                sizes='(min-width: 200px) 30vw'
                 priority
               />
             </a>
@@ -96,7 +96,7 @@ const Header = ({}: HeaderProps) => {
           </div>
           
           <div className='flex justify-end w-full nv:hidden'>
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className='outline-none' alt='hamburger-menu'>
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className='outline-none' aria-label="hamburger-menu">
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 24 24'
