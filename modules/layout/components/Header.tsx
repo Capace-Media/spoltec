@@ -46,7 +46,7 @@ const Header = ({}: HeaderProps) => {
                 layout='fill'
                 objectFit='contain'
                 alt='Spoltec Logotyp'
-                sizes='(min-width: 200px) 30vw'
+                sizes='(min-width: 200px) 150vw'
                 priority
               />
             </a>
