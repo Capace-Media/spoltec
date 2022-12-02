@@ -94,8 +94,9 @@ const Header = ({}: HeaderProps) => {
               }
             })}
           </div>
+          
           <div className='flex justify-end w-full nv:hidden'>
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className='outline-none'>
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className='outline-none' alt='hamburger-menu'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 24 24'

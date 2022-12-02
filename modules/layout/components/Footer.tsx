@@ -45,7 +45,7 @@ const Footer = ({}: FooterProps) => {
                 Vårt företag startades 1991 och verksamheten drivs idag vidare av en ägargrupp som har fokus på utveckling och nytänkande. Styrkan ligger i vår kompetenta personal, miljötänkande, garantier och säkerhet för våra kunder. Vi erbjuder ett brett utbud av tjänster.
                 </p>
                 <a href="https://www.uc.se/risksigill2/?showorg=556712-5363&language=swe&special=" title="Sigillet är utfärdat av UC AB. Klicka på bilden för information om UC:s Riskklasser." target="_blank">
-                  <img src="https://www.uc.se/ucsigill2/sigill?org=556712-5363&language=swe&product=lsa&special=&fontcolor=b&type=svg" alt="" height="70" width="310" />
+                  <Image src="https://www.uc.se/ucsigill2/sigill?org=556712-5363&language=swe&product=lsa&special=&fontcolor=b&type=svg" alt="" height="70" width="310" />
                 </a>
               </div>
               <div>
