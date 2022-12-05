@@ -129,7 +129,7 @@ function MyApp({ Component, pageProps }) {
               __html: `
                 function deferGoogleJS() {
                   var d = document.createElement("script");
-                  d.src = "https://www-googletaskmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}",
+                  d.src = "https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}",
                     document.body.appendChild(d)
                 }
                 window.addEventListener ? window.addEventListener("load", deferGoogleJS, !1) : window.attachEvent ? window.attachEvent("onload", deferGoogleJS) : window.onload = deferGoogleJS; 
