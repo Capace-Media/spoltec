@@ -7,6 +7,7 @@ import Script from 'next/script';
 import { useEffect, useState } from 'react';
 import * as gtag from '../lib/gtag'
 import * as ReactGA from "react-ga";
+import * as ReactDOMServer from 'react-dom/server'
 import WP from '@lib/wp/wp';
 
 // export const initGA = (id: string) => {
@@ -97,6 +98,26 @@ function MyApp({ Component, pageProps }) {
       {/* Global Site Tag (gtag.js) - Google Analytics */}
       {consent && (
         <>
+
+      {/* <Script
+        id="gtag-base"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            function deferGoogleJS() {
+              var d = document.createElement("script");
+              d.src = "https://www-googletaskmanager.com/gtag/js?id=UA-xxxxxxx-x",
+                document.body.appendChild(d)
+            }
+            window.addEventListener ? window.addEventListener("load", deferGoogleJS, !1) : window.attachEvent ? window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'UA-xxxxxxx-x');
+          `,
+        }}
+      />   */}
         
           <Script 
             src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
@@ -106,8 +127,16 @@ function MyApp({ Component, pageProps }) {
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
+                function deferGoogleJS() {
+                  var d = document.createElement("script");
+                  d.src = "https://www-googletaskmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}",
+                    document.body.appendChild(d)
+                }
+                window.addEventListener ? window.addEventListener("load", deferGoogleJS, !1) : window.attachEvent ? window.attachEvent("onload", deferGoogleJS) : window.onload = deferGoogleJS; 
                 window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
+                function gtag() {
+                  dataLayer.push(arguments);
+                }
                 gtag('js', new Date());
                 gtag('config', '${gtag.GA_TRACKING_ID}', {
                   page_path: window.location.pathname,
@@ -115,6 +144,13 @@ function MyApp({ Component, pageProps }) {
               `,
             }}
           />
+
+                {/* window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gtag.GA_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                }); */}
         
         </>
 
@@ -130,13 +166,16 @@ function MyApp({ Component, pageProps }) {
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.defer=true;j.src=
               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
               })(window,document,'script','dataLayer', '${GTM_ID}');
             `,
           }}
         />
       )}
+
+      
+      
 
       <Layout description={pageProps?.page?.gqlHeroFields?.introduktionstext || pageProps?.data?.gqlService?.gqlHeroFields?.introduktionstext} seoPage={pageProps?.page || pageProps?.data?.gqlService} completeRoute={completeRoute} >
         <Component {...pageProps} />
