@@ -10,7 +10,6 @@ interface KunskapsbankSlugProps {
 }
 
 const KunskapsbankSlug = ({service, page}: KunskapsbankSlugProps) => {
-    console.log("page ==>", page)
 
     const fixedSchema = page.seo.schema.raw.replace(/@/g, "")
     const raw = JSON.parse(fixedSchema)
@@ -30,8 +29,8 @@ const KunskapsbankSlug = ({service, page}: KunskapsbankSlugProps) => {
             />
             <div className="contain-outer flex">
                 {breadcrumbs.map(breadcrumb => {
-                    const url = breadcrumb.url.replace("https://spoltec-staging.h.capacedev.se", "")
-                    // console.log("url ==>", url)
+                    const url = breadcrumb.url.replace("https://spoltec-staging.h.capacedev.se", "").slice(0, -1)
+                    console.log("url ==>", url)
                     return (
                         <p className="hidden lg:block xs:small-breadcrumb-text xs:breadcrumb-text sm:text-base md:text-lg " key={breadcrumb.url}>{breadcrumb.text === breadcrumbs[0].text ? "" : "> " } 
                             <a href={`${url}`}>{breadcrumb.text}</a> {breadcrumb.text === breadcrumbs[breadcrumbs.length - 1].text ? "" : "-"} 
