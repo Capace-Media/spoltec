@@ -164,7 +164,7 @@ function MyApp({ Component, pageProps }) {
       {process.env.NEXT_PUBLIC_GA_ID && (
 
         <>
-          {/* <Script
+          <Script
             id="gtag-base"
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
@@ -176,6 +176,10 @@ function MyApp({ Component, pageProps }) {
                 })(window,document,'script','dataLayer', '${GTM_ID}');
               `,
             }}
+          />
+
+          {/* <Script 
+            src={`https://www.googletagmanager.com/gtm/js?id=${GTM_ID}`}
           /> */}
 
           <link href={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`} rel="preload" as="script"></link>
