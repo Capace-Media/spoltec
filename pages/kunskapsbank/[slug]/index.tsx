@@ -11,14 +11,6 @@ interface KunskapsbankSlugProps {
 
 const KunskapsbankSlug = ({service, page}: KunskapsbankSlugProps) => {
 
-    const fixedSchema = page.seo.schema.raw.replace(/@/g, "")
-    const raw = JSON.parse(fixedSchema)
-    const rawWebPage = raw.graph.filter(r => r.type === "WebPage")
-    const datePublished = rawWebPage[0].datePublished.slice(0, 10)
-    const breadcrumbs = page.seo.breadcrumbs
-
-    console.log("breadcrumbs ==>", breadcrumbs)
-
     return (
         <div key={service?.title}>
             <Hero
@@ -28,14 +20,12 @@ const KunskapsbankSlug = ({service, page}: KunskapsbankSlugProps) => {
                 image={service?.gqlHeroFields?.bild?.mediaItemUrl}
             />
             <div className="contain-outer flex">
-                {breadcrumbs.map(breadcrumb => {
+                {page.seo.breadcrumbs.map(breadcrumb => {
                     const url = breadcrumb.url.replace("https://spoltec-staging.h.capacedev.se", "").slice(0, -1)
-                    console.log("url ==>", url)
                     return (
-                        <p className="hidden lg:block xs:small-breadcrumb-text xs:breadcrumb-text sm:text-base md:text-lg " key={breadcrumb.url}>{breadcrumb.text === breadcrumbs[0].text ? "" : "> " } 
-                            <a href={`${url}`}>{breadcrumb.text}</a> {breadcrumb.text === breadcrumbs[breadcrumbs.length - 1].text ? "" : "-"} 
+                        <p className="hidden lg:block xs:small-breadcrumb-text xs:breadcrumb-text sm:text-base md:text-lg " key={breadcrumb.url}>{breadcrumb.text === page.seo.breadcrumbs[0].text ? "" : "> " } 
+                            <a href={`${url}`}>{breadcrumb.text}</a> {breadcrumb.text === page.seo.breadcrumbs[page.seo.breadcrumbs.length - 1].text ? "" : "-"} 
                         </p>
-                        // lg:text-base
                     )
                 })}
             </div>
@@ -74,17 +64,11 @@ export const GET_CATEGORIES = `
 
 export const getStaticPaths = async () => {
     const { data } = await WP(GET_CATEGORIES)
-    console.log("data ==>", data)
-
     const categoryPaths = []
-    const categories = data?.page?.gqlKategori?.kategorier
-    console.log("categories ==>", categories)
 
-    categories && categories.map((cat: any) => {
+    data?.page?.gqlKategori?.kategorier && data?.page?.gqlKategori?.kategorier.map((cat: any) => {
         categoryPaths.push( { params: { slug: cat.slug } } )
     })
-
-    console.log("categoryPaths ==>", categoryPaths)
 
     return {
         paths: categoryPaths,
@@ -93,8 +77,6 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({params}: any) => {
-    console.log("params ==>", params)
-
     const {data} = await WP(
         `
             query GET_CATEGORIES {
@@ -176,8 +158,6 @@ export const getStaticProps = async ({params}: any) => {
     )
 
     const service = data?.page?.children?.nodes.find((service: any) => service.slug === params.slug)
-    console.log("service ==>", service)
-
     const page = await getPage(`kunskapsbank/${params.slug}`)
 
     return {

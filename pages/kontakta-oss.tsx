@@ -10,7 +10,6 @@ interface PageProps {
 const Page = ({page}: PageProps) => {
   return (
     <PageTransition>
-
       <div key={`kontakta-oss`}>
         <div className='contain-outer'>
           <div className='bg-section'>
@@ -33,7 +32,6 @@ const Page = ({page}: PageProps) => {
 export const getStaticProps = async (context) => {
   const page = await getPage('/kontakta-oss');
 
-  console.log("page in getStaticProps ==>", page)
   return { 
     props: { 
       page 

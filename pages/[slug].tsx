@@ -44,10 +44,8 @@ query GET_PAGES {
 `
 
 export const getStaticPaths = async () => {
-
   const {data} = await WP(GET_PAGES)
-  console.log("data ==>", data)
-  
+
   const pagePaths = []
   
   data?.pages?.nodes && data?.pages?.nodes?.map((page: any) => {
@@ -56,22 +54,17 @@ export const getStaticPaths = async () => {
     }
   })
 
-  // console.log("pagePaths ==>", pagePaths)
-
   const paths = [...pagePaths];
-
-  // console.log("paths ==>", paths)
   
   return { paths, fallback: false };
 };
 
 export const getStaticProps = async (context) => {
-  // console.log("getStaticProps context ==>", context)
   const isService = servicesIndex.some(
     (service) => service.slug === context.params.slug
   );
   let page;
-  // console.log("servicesIndex ==>", servicesIndex.map((service) => service.slug))
+
   if (isService) {
     page = await getService(context.params.slug);
   } else {
@@ -95,12 +88,8 @@ interface PageProps {
 }
 
 const Page = ({ page }: PageProps) => {
-  console.log("page ==>", page)
-
-  
   return (
     <PageTransition>
-
       <div key={page.title}>
         <Hero
           title={page?.title}

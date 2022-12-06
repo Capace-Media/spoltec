@@ -9,15 +9,12 @@ export const getStaticpaths = async () => {
 
   const path = { params: {slug: page?.slug } }
 
-  console.log("path ==>", path)
-
   return { path, fallback: false }
 }
 
 export const getStaticProps = async (context) => {
-  // console.log("context ==>", context)
   const page = await getPage('/');
-  // console.log("page ==>", page)
+
   return { 
     props: { 
       page 
@@ -29,7 +26,6 @@ export const getStaticProps = async (context) => {
 export default function Home({ page }) {
   return (
     <PageTransition>
-      
       <>
         <Head>
           <meta name="google-site-verification" content="jomTNzo9DicBaELndHU7Wb5SFyRTbVlBcpI65E77bio" />
