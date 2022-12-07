@@ -56,7 +56,7 @@ const Seo = ({ seo, uri, img, desc, serviceSeo }) => {
     // if (completeRoute === '/index') newOpengraphUrl = process.env.NEXT_PUBLIC_MY_WEBSITE
 
     // console.log("newOpengraphUrl ==>", newOpengraphUrl)
-  
+
     return (
       <NextSeo 
       title={title || serviceTitle}

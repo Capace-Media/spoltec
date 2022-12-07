@@ -24,7 +24,7 @@ const KunskapsbankSlug = ({service, page}: KunskapsbankSlugProps) => {
                     const url = breadcrumb.url.replace("https://spoltec-staging.h.capacedev.se", "").slice(0, -1)
                     return (
                         <p className="hidden lg:block xs:small-breadcrumb-text xs:breadcrumb-text sm:text-base md:text-lg " key={breadcrumb.url}>{breadcrumb.text === page.seo.breadcrumbs[0].text ? "" : "> " } 
-                            <a href={`${url}`}>{breadcrumb.text}</a> {breadcrumb.text === page.seo.breadcrumbs[page.seo.breadcrumbs.length - 1].text ? "" : "-"} 
+                            <a href={`${url ? url : '/'}`}>{breadcrumb.text}</a> {breadcrumb.text === page.seo.breadcrumbs[page.seo.breadcrumbs.length - 1].text ? "" : "-"} 
                         </p>
                     )
                 })}

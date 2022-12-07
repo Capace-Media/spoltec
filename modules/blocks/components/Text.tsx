@@ -15,14 +15,14 @@ interface TextProps {
 }
 
 const Text = ({ data }: TextProps) => {
-  // console.log("data ==>", data)
+  // console.log("handled data ==>", handleParse(data.text))
   // console.log("process ==>", process)
   
   return (
     <section className='contain section nth-child'>
       <div className='max-w-2xl'>
         <h2>{data.rubrik}</h2>
-        <div className='parsed'>{data?.text && parse(data.text)}</div>
+        <div className='parsed'>{data?.text && handleParse(data.text)}</div>
         {/* {
           process.browser ?
           handleParse(data?.text) :
