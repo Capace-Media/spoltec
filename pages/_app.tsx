@@ -87,6 +87,9 @@ function MyApp({ Component, pageProps }) {
   };
 
   useEffect(() => {
+    // used for removing potential wbraid query parameters
+    router.replace('/', undefined, { shallow: true });
+
     const isConsent = getCookieConsentValue();
     if (isConsent === "true") {
       handleAcceptCookie();

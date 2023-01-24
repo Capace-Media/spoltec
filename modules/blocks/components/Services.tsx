@@ -60,7 +60,7 @@ const Services = ({ data }: ServicesProps) => {
 
   let res = []
 
-  if (router.asPath === '/') {
+  if (router.asPath === '/' || router.asPath.includes('?wbraid=')) {
     res = services.filter(service => !matchArray.includes(service))
   } else if (router.asPath.includes('/tjanster')) {
     res = matchArray.filter(match => {
