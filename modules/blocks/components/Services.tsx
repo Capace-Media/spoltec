@@ -60,13 +60,16 @@ const Services = ({ data }: ServicesProps) => {
 
   let res = []
 
-  if (router.asPath === '/' || router.asPath.includes('?wbraid=')) {
+  // || router.asPath.includes('?wbraid=')
+  // console.log("router ==>", router.query.slug)
+
+  if (router.query.slug === undefined) {
     res = services.filter(service => !matchArray.includes(service))
-  } else if (router.asPath.includes('/tjanster')) {
+  } else if (router.query.slug.includes('tjanster')) {
     res = matchArray.filter(match => {
-      if (router.asPath.includes(match.slug)) return true
+      if (router.query.slug.includes(match.slug)) return true
     })
-  } else if (router.asPath === '/kunskapsbank') {
+  } else if (router.query.slug === 'kunskapsbank') {
     res = categories
   } else if (filterArticles[0].slug === router.query.slug) {
     res = relevantArticles
