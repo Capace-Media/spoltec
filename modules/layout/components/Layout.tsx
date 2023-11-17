@@ -8,9 +8,9 @@ import Header from "./Header";
 
 interface LayoutProps {
   children: ReactChild;
-  seoPage: any;
-  description: any;
-  completeRoute: any;
+  seoPage?: any;
+  description?: any;
+  completeRoute?: any;
 }
 
 const Layout = ({

@@ -1,4 +1,3 @@
-import WP from "@lib/wp/wp";
 import Layout from "@modules/layout/components/Layout";
 import { useRouter } from "next/router";
 import Script from "next/script";
@@ -7,8 +6,7 @@ import CookieConsent, {
   Cookies,
   getCookieConsentValue,
 } from "react-cookie-consent";
-import * as ReactDOMServer from "react-dom/server";
-import * as ReactGA from "react-ga";
+
 import * as gtag from "../lib/gtag";
 import { GTM_ID, pageview } from "../lib/gtm";
 import "../styles/globals.css";
@@ -58,9 +56,6 @@ function MyApp({ Component, pageProps }) {
   };
 
   useEffect(() => {
-    // used for removing potential wbraid query parameters
-    // if (router.asPath.includes('wbraid')) router.replace('/', undefined, { shallow: true });
-
     const isConsent = getCookieConsentValue();
     if (isConsent === "true") {
       handleAcceptCookie();
@@ -71,12 +66,6 @@ function MyApp({ Component, pageProps }) {
       {/* Global Site Tag (gtag.js) - Google Analytics */}
       {consent && (
         <>
-          <link
-            href={`https://www.googletagmanager.com/gtm.js?id=${gtag.GA_TRACKING_ID}`}
-            rel="preload"
-            as="script"
-          ></link>
-
           <Script
             id="gtag-init"
             strategy="afterInteractive"
@@ -112,7 +101,6 @@ function MyApp({ Component, pageProps }) {
               `,
             }}
           />
-
           <link
             href={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
             rel="preload"
