@@ -2,13 +2,11 @@ import Blocks from "@common/components/Blocks";
 import Hero from "@common/sections/Hero";
 import WP from "@lib/wp/wp";
 import { SeoFragment } from "@modules/seo/lib/get-seo";
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from "react";
 
 export const getStaticProps = async (context) => {
-    // console.log("context ==>", context)
-
-    const page = await WP(
-        `
+  const page = await WP(
+    `
             query getServiceTitleAndDesc {
                 gqlAllService(first: 50) {
                     nodes {
@@ -23,10 +21,10 @@ export const getStaticProps = async (context) => {
                 }
             }
         `
-    ) 
+  );
 
-    const data = await WP(
-        `
+  const data = await WP(
+    `
             query getService($slug: ID!) {
                 gqlService(id: $slug, idType: URI) {
                     title
@@ -95,34 +93,32 @@ export const getStaticProps = async (context) => {
                 }
             }
         `,
-        { slug: '/avloppsspolning' }
-    )
+    { slug: "/avloppsspolning" }
+  );
 
-    return {
-        props: {
-            page,
-            data: data.data
-        }
-    }
-}
+  return {
+    props: {
+      page,
+      data: data.data,
+    },
+  };
+};
 
 const Avloppsspolning = ({ data }) => {
-
-    return (
-        <div key={data?.gqlService?.title}>
-            <Hero
-                title={`${data?.gqlService?.title}`}
-                subtitle={data?.gqlService?.gqlHeroFields?.underrubrik}
-                text={data?.gqlService?.gqlHeroFields?.introduktionstext}
-                image={data?.gqlService?.gqlHeroFields?.bild?.mediaItemUrl}
-            />
-            <div id='content' className='w-full h-10 md:h-0'></div>
-            <div id=''>
-
-                <Blocks blocks={data?.gqlService?.gqlBlocks?.blocks} />
-            </div>
-        </div>
-    )
+  return (
+    <div key={data?.gqlService?.title}>
+      <Hero
+        title={`${data?.gqlService?.title}`}
+        subtitle={data?.gqlService?.gqlHeroFields?.underrubrik}
+        text={data?.gqlService?.gqlHeroFields?.introduktionstext}
+        image={data?.gqlService?.gqlHeroFields?.bild?.mediaItemUrl}
+      />
+      <div id="content" className="w-full h-10 md:h-0"></div>
+      <div id="">
+        <Blocks blocks={data?.gqlService?.gqlBlocks?.blocks} />
+      </div>
+    </div>
+  );
 };
 
 export default Avloppsspolning;

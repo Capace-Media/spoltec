@@ -1,10 +1,10 @@
-import Footer from './Footer';
-import Header from './Header';
-import { ReactChild } from 'react';
-import Head from 'next/head';
-import Seo from '@modules/seo';
-import { handleSanitize } from '@lib/utils/miscellaneous';
-import Script from 'next/script';
+import { handleSanitize } from "@lib/utils/miscellaneous";
+import Seo from "@modules/seo";
+import Head from "next/head";
+import Script from "next/script";
+import { ReactChild } from "react";
+import Footer from "./Footer";
+import Header from "./Header";
 
 interface LayoutProps {
   children: ReactChild;
@@ -13,43 +13,42 @@ interface LayoutProps {
   completeRoute: any;
 }
 
-const Layout = ({ children, seoPage, description, completeRoute }: LayoutProps) => {
+const Layout = ({
+  children,
+  seoPage,
+  description,
+  completeRoute,
+}: LayoutProps) => {
+  const serviceSeo = seoPage?.data?.gqlAllService?.nodes?.find(
+    (node) => node.uri === `/services${completeRoute}/`
+  );
 
-  // console.log("seoPage ==>", seoPage)
-  // console.log("description ==>", description)
-  // console.log("children ==>", children)
-
-  // const completeRoute = router.asPath
-
-  // console.log("completeRoute ==>", completeRoute)
-
-  const serviceSeo = seoPage?.data?.gqlAllService?.nodes?.find((node) => node.uri === `/services${completeRoute}/`)
-
-  // console.log("serviceSeo ==>", serviceSeo)
-  
-  
   return (
     <>
       <Header />
-      <Seo desc={description} img={seoPage?.gqlHeroFields?.bild?.mediaItemUrl} seo={seoPage?.seo} uri={seoPage?.uri ? `${seoPage?.uri}` : `/${seoPage?.slug}`} serviceSeo={serviceSeo} />
+      <Seo
+        desc={description}
+        img={seoPage?.gqlHeroFields?.bild?.mediaItemUrl}
+        seo={seoPage?.seo}
+        uri={seoPage?.uri ? `${seoPage?.uri}` : `/${seoPage?.slug}`}
+        serviceSeo={serviceSeo}
+      />
       <Head>
         {seoPage?.seo?.schema?.raw && (
-          <script 
-            type='application/ld+json'
-            className='yoast-schema-graph'
-            key='yoastSchema'
+          <script
+            type="application/ld+json"
+            className="yoast-schema-graph"
+            key="yoastSchema"
             dangerouslySetInnerHTML={{
               __html: handleSanitize(seoPage?.seo?.schema?.raw),
             }}
-          /> 
+          />
         )}
-       
-        
 
-        <link rel='icon' href='/favicon.ico' sizes='32x32' />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-        <main className='relative'>{children}</main>
+      <main className="relative">{children}</main>
       <Footer />
     </>
   );

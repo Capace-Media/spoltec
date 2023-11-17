@@ -1,95 +1,66 @@
-import '../styles/globals.css';
-import { GTM_ID, pageview } from '../lib/gtm'
-import CookieConsent, { getCookieConsentValue, Cookies } from "react-cookie-consent"
-import Layout from '@modules/layout/components/Layout';
-import { useRouter } from 'next/router';
-import Script from 'next/script';
-import { useEffect, useState } from 'react';
-import * as gtag from '../lib/gtag'
+import WP from "@lib/wp/wp";
+import Layout from "@modules/layout/components/Layout";
+import { useRouter } from "next/router";
+import Script from "next/script";
+import { useEffect, useState } from "react";
+import CookieConsent, {
+  Cookies,
+  getCookieConsentValue,
+} from "react-cookie-consent";
+import * as ReactDOMServer from "react-dom/server";
 import * as ReactGA from "react-ga";
-import * as ReactDOMServer from 'react-dom/server'
-import WP from '@lib/wp/wp';
-
-// export const initGA = (id: string) => {
-//   console.log('this initGA');
-  
-//   if (process.env.NODE_ENV === "production") {
-//     console.log('hello there');
-    
-//     ReactGA.initialize(id);
-//   }
-// };
-
-
+import * as gtag from "../lib/gtag";
+import { GTM_ID, pageview } from "../lib/gtm";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter()
+  const router = useRouter();
 
-  // console.log("pageProps ==>", pageProps)
+  const [consent, setConsent] = useState(false || true);
 
-  const [consent, setConsent] = useState(false || true)
-  // console.log('consent ===>', consent);
-  // console.log("pageProps ==>", pageProps)
-  // console.log("Component ==>", Component)
-  // console.log("data ==>", data)
-
-  const completeRoute = router.asPath
-
-   useEffect(() => {
-    if(consent){
-      const handleRouteChange = (url:any) => {
-        gtag.pageview(url)
-      }
- 
-      router.events.on('routeChangeComplete', handleRouteChange)
-      router.events.on('hashChangeComplete', handleRouteChange)
-      return () => {
-        router.events.off('routeChangeComplete', handleRouteChange)
-        router.events.off('hashChangeComplete', handleRouteChange)
-      }
-
-    } else {
-      console.log('no tracking');
-      
-    }
-
-   }, [router.events])
+  const completeRoute = router.asPath;
 
   useEffect(() => {
-    router.events.on('routeChangeComplete', pageview)
-    return () => {
-      router.events.off('routeChangeComplete', pageview)
-    }
-  }, [router.events])
+    if (consent) {
+      const handleRouteChange = (url: any) => {
+        gtag.pageview(url);
+      };
 
-  // console.log("pageview ==>", pageview)
+      router.events.on("routeChangeComplete", handleRouteChange);
+      router.events.on("hashChangeComplete", handleRouteChange);
+      return () => {
+        router.events.off("routeChangeComplete", handleRouteChange);
+        router.events.off("hashChangeComplete", handleRouteChange);
+      };
+    } else {
+      console.log("no tracking");
+    }
+  }, [router.events]);
+
+  useEffect(() => {
+    router.events.on("routeChangeComplete", pageview);
+    return () => {
+      router.events.off("routeChangeComplete", pageview);
+    };
+  }, [router.events]);
 
   const handleAcceptCookie = () => {
-    // console.log('hello handleAcceptCookie');
-    
-    if(process.env.NEXT_PUBLIC_GA_ID){
-      // console.log('hello if handleAcceptCookie');
-
-      // initGA(process.env.NEXT_PUBLIC_GA_ID);
-      setConsent(true)
-      
+    if (process.env.NEXT_PUBLIC_GA_ID) {
+      setConsent(true);
     }
-  }
+  };
 
   const handleDeclineCookie = () => {
-    //remove google analytics cookies
-    // console.log('hello ?????', process.env.NEXT_PUBLIC_GA_ID);
     Cookies.remove("_ga");
     Cookies.remove("_gat");
     Cookies.remove("_gid");
-    setConsent(false)
-    
+    setConsent(false);
   };
 
   useEffect(() => {
     // used for removing potential wbraid query parameters
     // if (router.asPath.includes('wbraid')) router.replace('/', undefined, { shallow: true });
-  
+
     const isConsent = getCookieConsentValue();
     if (isConsent === "true") {
       handleAcceptCookie();
@@ -97,12 +68,10 @@ function MyApp({ Component, pageProps }) {
   }, []);
   return (
     <>
-
       {/* Global Site Tag (gtag.js) - Google Analytics */}
       {consent && (
         <>
-
-      {/* <Script
+          {/* <Script
         id="gtag-base"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
@@ -121,14 +90,18 @@ function MyApp({ Component, pageProps }) {
           `,
         }}
       />   */}
-        
+
           {/* <Script 
             src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
           /> */}
 
-          <link href={`https://www.googletagmanager.com/gtm.js?id=${gtag.GA_TRACKING_ID}`} rel="preload" as="script"></link>
+          <link
+            href={`https://www.googletagmanager.com/gtm.js?id=${gtag.GA_TRACKING_ID}`}
+            rel="preload"
+            as="script"
+          ></link>
 
-          <Script 
+          <Script
             id="gtag-init"
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
@@ -145,27 +118,24 @@ function MyApp({ Component, pageProps }) {
             }}
           />
 
-                {/* function deferGoogleJS() {
+          {/* function deferGoogleJS() {
                   var d = document.createElement("script");
                   d.src = "https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}",
                     document.body.appendChild(d)
                 }
                 window.addEventListener ? window.addEventListener("load", deferGoogleJS, !1) : window.attachEvent ? window.attachEvent("onload", deferGoogleJS) : window.onload = deferGoogleJS; */}
 
-                {/* window.dataLayer = window.dataLayer || [];
+          {/* window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', '${gtag.GA_TRACKING_ID}', {
                   page_path: window.location.pathname,
                 }); */}
-        
         </>
-
       )}
 
       {/* Google Tag Manager - Global base code */}
       {process.env.NEXT_PUBLIC_GA_ID && (
-
         <>
           <Script
             id="gtag-base"
@@ -185,17 +155,25 @@ function MyApp({ Component, pageProps }) {
             src={`https://www.googletagmanager.com/gtm/js?id=${GTM_ID}`}
           /> */}
 
-          <link href={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`} rel="preload" as="script"></link>
+          <link
+            href={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
+            rel="preload"
+            as="script"
+          ></link>
         </>
       )}
 
-      
-      
-
-      <Layout description={pageProps?.page?.gqlHeroFields?.introduktionstext || pageProps?.data?.gqlService?.gqlHeroFields?.introduktionstext} seoPage={pageProps?.page || pageProps?.data?.gqlService} completeRoute={completeRoute} >
+      <Layout
+        description={
+          pageProps?.page?.gqlHeroFields?.introduktionstext ||
+          pageProps?.data?.gqlService?.gqlHeroFields?.introduktionstext
+        }
+        seoPage={pageProps?.page || pageProps?.data?.gqlService}
+        completeRoute={completeRoute}
+      >
         <Component {...pageProps} />
       </Layout>
-      <CookieConsent 
+      <CookieConsent
         enableDeclineButton
         onAccept={handleAcceptCookie}
         onDecline={() => handleDeclineCookie}
@@ -206,9 +184,5 @@ function MyApp({ Component, pageProps }) {
     </>
   );
 }
-
-
-
-
 
 export default MyApp;
