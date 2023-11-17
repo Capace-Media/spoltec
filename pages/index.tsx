@@ -1,25 +1,24 @@
-import Blocks from '@common/components/Blocks';
-import MainHero from '@common/sections/MainHero';
-import PageTransition from '@modules/transitions/components/PageTransition';
-import getPage from '@modules/pages/lib/getPage';
-import Head from 'next/head';
+import Blocks from "@common/components/Blocks";
+import MainHero from "@common/sections/MainHero";
+import getPage from "@modules/pages/lib/getPage";
+import PageTransition from "@modules/transitions/components/PageTransition";
+import Head from "next/head";
 
 export const getStaticpaths = async () => {
-  const page = await getPage('/')
+  const page = await getPage("/");
 
-  const path = { params: {slug: page?.slug } }
+  const path = { params: { slug: page?.slug } };
 
-  return { path, fallback: false }
-}
+  return { path, fallback: false };
+};
 
 export const getStaticProps = async (context) => {
-  const page = await getPage('/');
+  const page = await getPage("/");
 
-  return { 
-    props: { 
-      page 
+  return {
+    props: {
+      page,
     },
-    revalidate: 100, 
   };
 };
 
@@ -28,7 +27,10 @@ export default function Home({ page }) {
     <PageTransition>
       <>
         <Head>
-          <meta name="google-site-verification" content="jomTNzo9DicBaELndHU7Wb5SFyRTbVlBcpI65E77bio" />
+          <meta
+            name="google-site-verification"
+            content="jomTNzo9DicBaELndHU7Wb5SFyRTbVlBcpI65E77bio"
+          />
         </Head>
         <MainHero />
         <Blocks blocks={page?.gqlBlocks?.blocks} />

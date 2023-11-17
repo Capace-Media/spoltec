@@ -69,9 +69,7 @@ const Footer = ({}: FooterProps) => {
                         className="hover:text-brand-blue"
                         key={index + link?.href + link?.label}
                       >
-                        <Link href={link?.href}>
-                          <a>{link?.label}</a>
-                        </Link>
+                        <Link href={link?.href}>{link?.label}</Link>
                       </li>
                     );
                   })}
@@ -86,9 +84,7 @@ const Footer = ({}: FooterProps) => {
                         className="hover:text-brand-blue"
                         key={index + link?.href + link?.label}
                       >
-                        <Link href={link?.href}>
-                          <a>{link?.label}</a>
-                        </Link>
+                        <Link href={link?.href}>{link?.label}</Link>
                       </li>
                     );
                   })}
@@ -103,9 +99,7 @@ const Footer = ({}: FooterProps) => {
                         className="hover:text-brand-blue"
                         key={link?.href + index + link?.label}
                       >
-                        <Link href={link?.href}>
-                          <a>{link?.label}</a>
-                        </Link>
+                        <Link href={link?.href}>{link?.label}</Link>
                       </li>
                     );
                   })}
@@ -120,9 +114,7 @@ const Footer = ({}: FooterProps) => {
                         className="hover:text-brand-blue"
                         key={link?.href + link?.label + index}
                       >
-                        <Link href={link?.href}>
-                          <a>{link?.label}</a>
-                        </Link>
+                        <Link href={link?.href}>{link?.label}</Link>
                       </li>
                     );
                   })}
@@ -139,8 +131,10 @@ const Footer = ({}: FooterProps) => {
               >
                 <Image
                   src={`/images/facebook-spoltec.png`}
-                  layout="fill"
-                  objectFit="contain"
+                  fill
+                  style={{
+                    objectFit: "contain",
+                  }}
                   alt={`facebook logo`}
                 />
               </a>

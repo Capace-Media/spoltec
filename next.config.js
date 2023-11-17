@@ -4,12 +4,33 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 module.exports = withBundleAnalyzer({
   images: {
-    domains: [
-      "spoltec-staging.h.capacedev.se",
-      "media.spoltec.se",
-      "www.uc.se",
-      "via.placeholder.com",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "spoltec-staging.h.capacedev.se",
+        port: "",
+        pathname: "/wp-content/**",
+      },
+      {
+        protocol: "https",
+        hostname: "media.spoltec.se",
+        port: "",
+        pathname: "/wp-content/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.uc.se",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "via.placeholder.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
+
     // formats: ['image/jpeg', 'image/svg+xml']
     dangerouslyAllowSVG: true,
   },

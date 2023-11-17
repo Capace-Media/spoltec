@@ -72,51 +72,52 @@ const Services = ({ data }: ServicesProps) => {
         {res.map((service) => {
           const serviceUri = service?.uri?.replace("/services/", "");
           return (
-            <Link key={service.slug} href={`/${serviceUri}`}>
-              <a
-                key={service.title}
-                className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-[100%] text-white p-7 bg-brand-blue text-left rounded-xl"
-              >
-                <Image
-                  src={
-                    service?.gqlHeroFields?.bild?.mediaItemUrl
-                      ? service?.gqlHeroFields?.bild?.mediaItemUrl
-                      : service?.bild?.mediaItemUrl
-                      ? service?.bild?.mediaItemUrl
-                      : "https://via.placeholder.com/2560x1707/2C4696/2C4696"
-                  }
-                  layout="fill"
-                  objectFit="cover"
-                  className="transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-20"
-                  alt={service.title}
-                />
-                <div>
-                  <h3 className="text-xl text-white md:text-2xl">
-                    {service.title}
-                  </h3>
-                  <p className="mt-3 text-sm">
-                    {limit(
-                      service?.introduktionstext ||
-                        service?.gqlHeroFields?.introduktionstext ||
-                        service?.underrubrik ||
-                        service?.gqlHeroFields?.underrubrik ||
-                        "",
-                      140
-                    )}
-                  </p>
-                </div>
-                <div className="flex items-center justify-end space-x-3">
-                  <p>Läs mer</p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    className="w-5 h-5 fill-current"
-                  >
-                    <rect fill="none" height="24" width="24" />
-                    <path d="M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z" />
-                  </svg>
-                </div>
-              </a>
+            <Link
+              className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-[100%] text-white p-7 bg-brand-blue text-left rounded-xl"
+              key={service.slug}
+              href={`/${serviceUri}`}
+            >
+              <Image
+                src={
+                  service?.gqlHeroFields?.bild?.mediaItemUrl
+                    ? service?.gqlHeroFields?.bild?.mediaItemUrl
+                    : service?.bild?.mediaItemUrl
+                    ? service?.bild?.mediaItemUrl
+                    : "https://via.placeholder.com/2560x1707/2C4696/2C4696"
+                }
+                fill
+                style={{
+                  objectFit: "cover",
+                }}
+                className="transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-20"
+                alt={service.title}
+              />
+              <div>
+                <h3 className="text-xl text-white md:text-2xl">
+                  {service.title}
+                </h3>
+                <p className="mt-3 text-sm">
+                  {limit(
+                    service?.introduktionstext ||
+                      service?.gqlHeroFields?.introduktionstext ||
+                      service?.underrubrik ||
+                      service?.gqlHeroFields?.underrubrik ||
+                      "",
+                    140
+                  )}
+                </p>
+              </div>
+              <div className="flex items-center justify-end space-x-3">
+                <p>Läs mer</p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  className="w-5 h-5 fill-current"
+                >
+                  <rect fill="none" height="24" width="24" />
+                  <path d="M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z" />
+                </svg>
+              </div>
             </Link>
           );
         })}

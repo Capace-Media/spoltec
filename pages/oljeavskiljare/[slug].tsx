@@ -4,25 +4,24 @@ import WP from "@lib/wp/wp";
 import { SeoFragment } from "@modules/seo/lib/get-seo";
 
 interface OljeavskiljareOrterProps {
-    city: any;
-};
+  city: any;
+}
 
-const OljeavskiljareOrter = ({city}:OljeavskiljareOrterProps) => {
-
-    return (
-        <div key={city?.title}>
-            <Hero
-                title={`${city?.title}`}
-                subtitle={city?.gqlHeroFields?.underrubrik}
-                text={city?.gqlHeroFields?.introduktionstext}
-                image={city?.gqlHeroFields?.bild?.mediaItemUrl}
-            />
-            <div id='content' className='w-full h-10 md:h-0'></div>
-            <div id=''>
-                <Blocks blocks={city.gqlBlocks.blocks} />
-            </div>
-        </div>
-    )
+const OljeavskiljareOrter = ({ city }: OljeavskiljareOrterProps) => {
+  return (
+    <div key={city?.title}>
+      <Hero
+        title={`${city?.title}`}
+        subtitle={city?.gqlHeroFields?.underrubrik}
+        text={city?.gqlHeroFields?.introduktionstext}
+        image={city?.gqlHeroFields?.bild?.mediaItemUrl}
+      />
+      <div id="content" className="w-full h-10 md:h-0"></div>
+      <div id="">
+        <Blocks blocks={city.gqlBlocks.blocks} />
+      </div>
+    </div>
+  );
 };
 
 export default OljeavskiljareOrter;
@@ -39,35 +38,34 @@ export const GET_ORTER = `
             }
         }
     }
-`
+`;
 
 export const excludePageSlug = (slug: any) => {
-    const pagesToExclude = [
-        'stockholm',
-    ]
-    return pagesToExclude.includes(slug)
-}
+  const pagesToExclude = ["stockholm"];
+  return pagesToExclude.includes(slug);
+};
 
 export const getStaticPaths = async () => {
-    const { data } = await WP(GET_ORTER)
+  const { data } = await WP(GET_ORTER);
 
-    const ortPaths = []
-    const orter = data?.gqlService?.children?.nodes
+  const ortPaths = [];
+  const orter = data?.gqlService?.children?.nodes;
 
-    orter && orter.map((ort: any) => {
-        if(! excludePageSlug( ort?.slug ) ){
-            ortPaths.push( { params: { slug: ort.slug } } )
-        }
-    })
-    return {
-        paths: ortPaths,
-        fallback: false
-    };
-}
+  orter &&
+    orter.map((ort: any) => {
+      if (!excludePageSlug(ort?.slug)) {
+        ortPaths.push({ params: { slug: ort.slug } });
+      }
+    });
+  return {
+    paths: ortPaths,
+    fallback: false,
+  };
+};
 
-export const getStaticProps = async ({params}: any) => {
-    const {data: newData} = await WP(
-        `
+export const getStaticProps = async ({ params }: any) => {
+  const { data: newData } = await WP(
+    `
         query getService($slug: ID!) {
         gqlService(id: $slug, idType: URI) {
             title
@@ -153,11 +151,11 @@ export const getStaticProps = async ({params}: any) => {
           }
         }
         `,
-        { slug: '/oljeavskiljare' }
-    )
+    { slug: "/oljeavskiljare" }
+  );
 
-    const page = await WP(
-        `
+  const page = await WP(
+    `
             query getServiceTitleAndDesc {
                 gqlAllService(first: 50) {
                     nodes {
@@ -172,23 +170,28 @@ export const getStaticProps = async ({params}: any) => {
                 }
             }
         `
+  );
+
+  const city = newData?.gqlService?.children?.nodes.find(
+    (city: any) => city.slug === params.slug
+  );
+
+  const orter = await WP(GET_ORTER);
+
+  if (
+    !orter?.data?.gqlService?.children?.nodes.find(
+      (ort: any) => ort.slug === params.slug
     )
-
-    const city = newData?.gqlService?.children?.nodes.find((city: any) => city.slug === params.slug)
-
-    const orter = await WP(GET_ORTER)
-
-    if(!orter?.data?.gqlService?.children?.nodes.find((ort: any) => ort.slug === params.slug)) {
-        return {
-            notFound: true
-        }
-    }
-
+  ) {
     return {
-        props: {
-            city,
-            page
-        }, 
-        revalidate: 100,
-    }
-}
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      city,
+      page,
+    },
+  };
+};

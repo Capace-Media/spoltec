@@ -23,15 +23,14 @@ const Text = ({ data }: TextProps) => {
 
         {data?.installning === true && data?.knapp?.url !== null ? (
           <Link
+            className="inline-block mt-10 btn bg-brand-orange"
             href={
               data?.knapp?.url?.uri
                 ? data?.knapp?.url?.uri
                 : `/${data?.knapp?.url?.slug}`
             }
           >
-            <a className="inline-block mt-10 btn bg-brand-orange">
-              {data?.knapp?.text}
-            </a>
+            {data?.knapp?.text}
           </Link>
         ) : null}
       </div>
