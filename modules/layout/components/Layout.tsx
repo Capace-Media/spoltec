@@ -34,6 +34,10 @@ const Layout = ({
         serviceSeo={serviceSeo}
       />
       <Head>
+        <meta
+          name="google-site-verification"
+          content="jomTNzo9DicBaELndHU7Wb5SFyRTbVlBcpI65E77bio"
+        />
         {seoPage?.seo?.schema?.raw && (
           <script
             type="application/ld+json"

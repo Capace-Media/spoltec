@@ -2,7 +2,6 @@ import Blocks from "@common/components/Blocks";
 import Hero from "@common/sections/Hero";
 import WP from "@lib/wp/wp";
 import { SeoFragment } from "@modules/seo/lib/get-seo";
-import { useEffect, useState } from "react";
 
 export const getStaticProps = async (context) => {
   const page = await WP(

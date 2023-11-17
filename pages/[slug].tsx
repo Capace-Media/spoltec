@@ -4,7 +4,6 @@ import servicesIndex from "@data/static-services.json";
 import WP from "@lib/wp/wp";
 import getPage from "@modules/pages/lib/getPage";
 import getService from "@modules/services/lib/getService";
-import PageTransition from "@modules/transitions/components/PageTransition";
 
 export const isCustomPageSlug = (slug: string) => {
   const pagesToExclude = [
@@ -89,20 +88,18 @@ interface PageProps {
 
 const Page = ({ page }: PageProps) => {
   return (
-    <PageTransition>
-      <div key={page.title}>
-        <Hero
-          title={page?.title}
-          subtitle={page?.gqlHeroFields?.underrubrik}
-          text={page?.gqlHeroFields?.introduktionstext}
-          image={page?.gqlHeroFields?.bild?.mediaItemUrl}
-        />
-        <div id="content" className="w-full h-10 md:h-0"></div>
-        <div>
-          <Blocks blocks={page?.gqlBlocks?.blocks} />
-        </div>
+    <div key={page.title}>
+      <Hero
+        title={page?.title}
+        subtitle={page?.gqlHeroFields?.underrubrik}
+        text={page?.gqlHeroFields?.introduktionstext}
+        image={page?.gqlHeroFields?.bild?.mediaItemUrl}
+      />
+      <div id="content" className="w-full h-10 md:h-0"></div>
+      <div>
+        <Blocks blocks={page?.gqlBlocks?.blocks} />
       </div>
-    </PageTransition>
+    </div>
   );
 };
 

@@ -71,30 +71,6 @@ function MyApp({ Component, pageProps }) {
       {/* Global Site Tag (gtag.js) - Google Analytics */}
       {consent && (
         <>
-          {/* <Script
-        id="gtag-base"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            function deferGoogleJS() {
-              var d = document.createElement("script");
-              d.src = "https://www-googletaskmanager.com/gtag/js?id=UA-xxxxxxx-x",
-                document.body.appendChild(d)
-            }
-            window.addEventListener ? window.addEventListener("load", deferGoogleJS, !1) : window.attachEvent ? window.dataLayer = window.dataLayer || [];
-            function gtag() {
-              dataLayer.push(arguments);
-            }
-            gtag('js', new Date());
-            gtag('config', 'UA-xxxxxxx-x');
-          `,
-        }}
-      />   */}
-
-          {/* <Script 
-            src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-          /> */}
-
           <link
             href={`https://www.googletagmanager.com/gtm.js?id=${gtag.GA_TRACKING_ID}`}
             rel="preload"
@@ -117,20 +93,6 @@ function MyApp({ Component, pageProps }) {
               `,
             }}
           />
-
-          {/* function deferGoogleJS() {
-                  var d = document.createElement("script");
-                  d.src = "https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}",
-                    document.body.appendChild(d)
-                }
-                window.addEventListener ? window.addEventListener("load", deferGoogleJS, !1) : window.attachEvent ? window.attachEvent("onload", deferGoogleJS) : window.onload = deferGoogleJS; */}
-
-          {/* window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gtag.GA_TRACKING_ID}', {
-                  page_path: window.location.pathname,
-                }); */}
         </>
       )}
 
@@ -150,10 +112,6 @@ function MyApp({ Component, pageProps }) {
               `,
             }}
           />
-
-          {/* <Script 
-            src={`https://www.googletagmanager.com/gtm/js?id=${GTM_ID}`}
-          /> */}
 
           <link
             href={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}

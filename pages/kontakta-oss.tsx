@@ -1,7 +1,7 @@
-import Blocks from "@common/components/Blocks";
 import Contact from "@modules/blocks/components/Contact";
 import getPage from "@modules/pages/lib/getPage";
-import PageTransition from "@modules/transitions/components/PageTransition";
+import dynamic from "next/dynamic";
+const Blocks = dynamic(() => import("@common/components/Blocks"));
 
 interface PageProps {
   page: any;
@@ -9,22 +9,20 @@ interface PageProps {
 
 const Page = ({ page }: PageProps) => {
   return (
-    <PageTransition>
-      <div key={`kontakta-oss`}>
-        <div className="contain-outer">
-          <div className="bg-section">
-            <div className="mt-24 text-center contain">
-              <h1>Kontakta oss</h1>
-            </div>
+    <div key={`kontakta-oss`}>
+      <div className="contain-outer">
+        <div className="bg-section">
+          <div className="mt-24 text-center contain">
+            <h1>Kontakta oss</h1>
           </div>
         </div>
-        <div id="content" className="w-full h-10 md:h-0"></div>
-        <div id="">
-          <Contact />
-          <Blocks blocks={page?.gqlBlocks?.blocks} />
-        </div>
       </div>
-    </PageTransition>
+      <div id="content" className="w-full h-10 md:h-0"></div>
+      <div id="">
+        <Contact />
+        <Blocks blocks={page?.gqlBlocks?.blocks} />
+      </div>
+    </div>
   );
 };
 

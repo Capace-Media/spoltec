@@ -1,9 +1,10 @@
-import Blocks from "@common/components/Blocks";
 import Hero from "@common/sections/Hero";
 import WP from "@lib/wp/wp";
 import getPage from "@modules/pages/lib/getPage";
 import categories from "data/static-categories.json";
+import dynamic from "next/dynamic";
 import Link from "next/link";
+const Blocks = dynamic(() => import("@common/components/Blocks"));
 
 interface KunskapsbankArtikelProps {
   page: any;
