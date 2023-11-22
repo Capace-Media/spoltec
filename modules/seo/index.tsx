@@ -3,7 +3,6 @@ import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-//import frontImg  from '/images/font-page-meta.png'
 
 const Seo = ({ seo, uri, img, desc, serviceSeo }) => {
   const router = useRouter();

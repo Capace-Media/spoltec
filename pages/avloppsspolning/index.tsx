@@ -5,24 +5,6 @@ import { SeoFragment } from "@modules/seo/lib/get-seo";
 import { useEffect, useState } from "react";
 
 export const getStaticProps = async (context) => {
-  const page = await WP(
-    `
-            query getServiceTitleAndDesc {
-                gqlAllService(first: 50) {
-                    nodes {
-                        slug
-                        title
-                        uri
-                        seo {
-                            opengraphTitle
-                            metaDesc
-                        }
-                    }
-                }
-            }
-        `
-  );
-
   const data = await WP(
     `
             query getService($slug: ID!) {
@@ -98,7 +80,6 @@ export const getStaticProps = async (context) => {
 
   return {
     props: {
-      page,
       data: data.data,
     },
   };

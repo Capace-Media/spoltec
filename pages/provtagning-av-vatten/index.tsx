@@ -4,24 +4,6 @@ import WP from "@lib/wp/wp";
 import { SeoFragment } from "@modules/seo/lib/get-seo";
 
 export const getStaticProps = async (context) => {
-  const page = await WP(
-    `
-            query getServiceTitleAndDesc {
-                gqlAllService(first: 50) {
-                    nodes {
-                        slug
-                        title
-                        uri
-                        seo {
-                            opengraphTitle
-                            metaDesc
-                        }
-                    }
-                }
-            }
-        `
-  );
-
   const getService = await WP(`
                 query getService {
                     gqlAllService(first: 50, where: {title: "Provtagning av vatten"}) {
@@ -96,7 +78,6 @@ export const getStaticProps = async (context) => {
 
   return {
     props: {
-      page,
       data: getService.data,
     },
   };
