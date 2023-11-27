@@ -28,6 +28,7 @@ export const isCustomPageSlug = (slug: string) => {
     "undefined",
     "varberg",
     "vaxjo",
+    "kunskapsbank",
   ];
   return pagesToExclude.includes(slug);
 };

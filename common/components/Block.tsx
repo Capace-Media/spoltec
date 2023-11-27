@@ -50,6 +50,14 @@ const Block = ({ block }: BlockProps) => {
       return <Text data={block} />;
     case "Page_Gqlblocks_Blocks_LedigaTjanster":
       return <AvailablePositions data={block} />;
+    case "Post_Gqlblocks_Blocks_TextBild":
+      return <TextImage data={block} />;
+    case "Post_Gqlblocks_Blocks_Tjanster":
+      return <Services data={block} />;
+    case "Post_Gqlblocks_Blocks_Text":
+      return <Text data={block} />;
+    case "Post_Gqlblocks_Blocks_LedigaTjanster":
+      return <AvailablePositions data={block} />;
     case "GqlService_Gqlblocks_Blocks_Text":
       return <Text data={block} />;
     case "GqlService_Gqlblocks_Blocks_Blurbs":
@@ -59,6 +67,12 @@ const Block = ({ block }: BlockProps) => {
     case "Page_Gqlblocks_Blocks_Lista":
       return <List data={block} />;
     case "Page_Gqlblocks_Blocks_Personal":
+      return <Employee data={block} />;
+    case "Post_Gqlblocks_Blocks_Blurbs":
+      return <Blurbs data={block} />;
+    case "Post_Gqlblocks_Blocks_Lista":
+      return <List data={block} />;
+    case "Post_Gqlblocks_Blocks_Personal":
       return <Employee data={block} />;
     case "GqlService_Gqlblocks_Blocks_Lista":
       return <List data={block} />;
