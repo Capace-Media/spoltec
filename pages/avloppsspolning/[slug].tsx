@@ -2,14 +2,18 @@ import Blocks from "@common/components/Blocks";
 import Hero from "@common/sections/Hero";
 import WP from "@lib/wp/wp";
 import { SeoFragment } from "@modules/seo/lib/get-seo";
+import { NextSeo } from "next-seo";
 
 interface AvloppsspolningOrterProps {
   city: any;
 }
 
 const AvloppsspolningOrter = ({ city }: AvloppsspolningOrterProps) => {
+  let newOpengraphUrl = `${process.env.NEXT_PUBLIC_MY_WEBSITE}/avloppsspolning`;
   return (
     <div key={city?.title}>
+      <NextSeo canonical={newOpengraphUrl} />
+
       <Hero
         title={`${city?.title}`}
         subtitle={city?.gqlHeroFields?.underrubrik}

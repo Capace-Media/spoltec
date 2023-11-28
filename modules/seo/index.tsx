@@ -19,8 +19,10 @@ const Seo = ({ seo, uri, img, desc, serviceSeo }) => {
     opengraphTitle,
     opengraphImage,
     opengraphSiteName,
+    canonical,
   } = seo;
 
+  console.log("canonical =====>", canonical);
   const noIndex = (index: any) => {
     if (index === "index" || index === "") {
       return false;

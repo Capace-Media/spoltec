@@ -1,6 +1,7 @@
 import Hero from "@common/sections/Hero";
 import WP from "@lib/wp/wp";
 import { SeoFragment } from "@modules/seo/lib/get-seo";
+import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 const Blocks = dynamic(() => import("@common/components/Blocks"));
 
@@ -9,8 +10,11 @@ interface ReliningOrterProps {
 }
 
 const ReliningOrter = ({ city }: ReliningOrterProps) => {
+  let newOpengraphUrl = `${process.env.NEXT_PUBLIC_MY_WEBSITE}/relining`;
   return (
     <div key={city?.title}>
+      <NextSeo canonical={newOpengraphUrl} />
+
       <Hero
         title={`${city?.title}`}
         subtitle={city?.gqlHeroFields?.underrubrik}
@@ -19,7 +23,7 @@ const ReliningOrter = ({ city }: ReliningOrterProps) => {
       />
       <div id="content" className="w-full h-10 md:h-0"></div>
       <div id="">
-        <Blocks blocks={city.gqlBlocks.blocks} />
+        <Blocks blocks={city?.gqlBlocks?.blocks} />
       </div>
     </div>
   );
