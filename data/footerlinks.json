@@ -1,114 +1,114 @@
 {
-    "privat": [
-        {
-            "label": "Rörinspektion",
-            "href": "/rorinspektion"
-        },
-        {
-            "label": "Relining",
-            "href": "/relining"
-        },
-        {
-            "label": "Villaspolning",
-            "href": "/avloppsspolning"
-        },
-        {
-            "label": "Villastopp",
-            "href": "/villastopp"
-        }
-    ],
-    "stader": [
-        {
-            "label": "Borås",
-            "href": "/tjanster-boras"
-        },
-        {
-            "label": "Göteborg",
-            "href": "/tjanster-goteborg"
-        },
-        {
-            "label": "Halmstad",
-            "href": "/tjanster-halmstad"
-        },
-        {
-            "label": "Helsingborg",
-            "href": "/tjanster-helsingborg"
-        },
-        {
-            "label": "Jönköping",
-            "href": "/tjanster-jonkoping"
-        },
-        {
-            "label": "Kalmar",
-            "href": "/tjanster-kalmar"
-        },
-        {
-            "label": "Karlskrona",
-            "href": "/tjanster-karlskrona"
-        },
-        {
-            "label": "Kristianstad",
-            "href": "/tjanster-kristianstad"
-        },
-        {
-            "label": "Malmö",
-            "href": "/tjanster-malmo"
-        },
-        {
-            "label": "Varberg",
-            "href": "/tjanster-varberg"
-        },
-        {
-            "label": "Växjö",
-            "href": "/tjanster-vaxjo"
-        }
-    ],
-    "foretag": [
-        {
-            "label": "Relining",
-            "href": "/relining"
-        },
-        {
-            "label": "Underhållsspolning",
-            "href": "/underhallsspolning"
-        },
-        {
-            "label": "Akuta spolningsuppdrag",
-            "href": "/akut-hjalp"
-        },
-        {
-            "label": "Oljeavskiljare",
-            "href": "/oljeavskiljare"
-        },
-        {
-            "label": "Provtagning av vatten",
-            "href": "/provtagning-av-vatten"
-        },
-        {
-            "label": "Rörinspektion",
-            "href": "/rorinspektion"
-        }
-    ],
-    "information": [
-        {
-            "label": "Serviceavtal",
-            "href": "/serviceavtal"
-        },
-        {
-            "label": "Garanti",
-            "href": "/garanti"
-        },
-        {
-            "label": "ROT-avdrag",
-            "href": "/rot-avdrag"
-        },
-        {
-            "label": "Varför blir det stopp?",
-            "href": "/varfor-blir-det-stopp"
-        },
-        {
-            "label": "Om Spoltec",
-            "href": "/om-spoltec"
-        }
-    ]
+  "privat": [
+    {
+      "label": "Rörinspektion",
+      "href": "/rorinspektion"
+    },
+    {
+      "label": "Relining",
+      "href": "/relining"
+    },
+    {
+      "label": "Villaspolning",
+      "href": "/avloppsspolning"
+    },
+    {
+      "label": "Villastopp",
+      "href": "/villastopp"
+    }
+  ],
+  "stader": [
+    {
+      "label": "Borås",
+      "href": "/tjanster-boras"
+    },
+    {
+      "label": "Göteborg",
+      "href": "/tjanster-goteborg"
+    },
+    {
+      "label": "Halmstad",
+      "href": "/tjanster-halmstad"
+    },
+    {
+      "label": "Helsingborg",
+      "href": "/tjanster-helsingborg"
+    },
+    {
+      "label": "Jönköping",
+      "href": "/tjanster-jonkoping"
+    },
+    {
+      "label": "Kalmar",
+      "href": "/tjanster-kalmar"
+    },
+    {
+      "label": "Karlskrona",
+      "href": "/tjanster-karlskrona"
+    },
+    {
+      "label": "Kristianstad",
+      "href": "/tjanster-kristianstad"
+    },
+    {
+      "label": "Malmö",
+      "href": "/tjanster-malmo"
+    },
+    {
+      "label": "Varberg",
+      "href": "/tjanster-varberg"
+    },
+    {
+      "label": "Växjö",
+      "href": "/tjanster-vaxjo"
+    }
+  ],
+  "foretag": [
+    {
+      "label": "Relining",
+      "href": "/tjanster/relining"
+    },
+    {
+      "label": "Underhållsspolning",
+      "href": "/tjanster/underhallsspolning"
+    },
+    {
+      "label": "Akuta spolningsuppdrag",
+      "href": "/tjanster/akut-hjalp"
+    },
+    {
+      "label": "Oljeavskiljare",
+      "href": "/tjanster/oljeavskiljare"
+    },
+    {
+      "label": "Provtagning av vatten",
+      "href": "/tjanster/provtagning-av-vatten"
+    },
+    {
+      "label": "Rörinspektion",
+      "href": "/tjanster/rorinspektion"
+    }
+  ],
+  "information": [
+    {
+      "label": "Serviceavtal",
+      "href": "/serviceavtal"
+    },
+    {
+      "label": "Garanti",
+      "href": "/garanti"
+    },
+    {
+      "label": "ROT-avdrag",
+      "href": "/rot-avdrag"
+    },
+    {
+      "label": "Varför blir det stopp?",
+      "href": "/varfor-blir-det-stopp"
+    },
+    {
+      "label": "Om Spoltec",
+      "href": "/om-spoltec"
+    }
+  ]
 }

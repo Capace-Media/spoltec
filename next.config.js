@@ -56,7 +56,7 @@ module.exports = withBundleAnalyzer({
     return [
       {
         source: "/nyheter",
-        destination: "/",
+        destination: "/kunskapsbank",
         permanent: true,
       },
       {
@@ -237,6 +237,216 @@ module.exports = withBundleAnalyzer({
       {
         source: "/kund",
         destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/relining",
+        destination: "/tjanster/relining",
+        permanent: true,
+      },
+      {
+        source: "/rorinspektion",
+        destination: "/tjanster/rorinspektion",
+        permanent: true,
+      },
+      {
+        source: "/avloppsspolning",
+        destination: "/tjanster/avloppsspolning",
+        permanent: true,
+      },
+      {
+        source: "/oljeavskiljare",
+        destination: "/tjanster/oljeavskiljare",
+        permanent: true,
+      },
+      {
+        source: "/provtagning-av-vatten",
+        destination: "/tjanster/provtagning-av-vatten",
+        permanent: true,
+      },
+      {
+        source: "/avloppsspolning/boras",
+        destination: "/avloppsspolning-boras",
+        permanent: true,
+      },
+      {
+        source: "/avloppsspolning/goteborg",
+        destination: "/avloppsspolning-goteborg",
+        permanent: true,
+      },
+
+      {
+        source: "/avloppsspolning/halmstad",
+        destination: "/avloppsspolning-halmstad",
+        permanent: true,
+      },
+      {
+        source: "/avloppsspolning/helsingborg",
+        destination: "/avloppsspolning-helsingborg",
+        permanent: true,
+      },
+
+      {
+        source: "/avloppsspolning/jonkoping",
+        destination: "/avloppsspolning-jonkoping",
+        permanent: true,
+      },
+      {
+        source: "/avloppsspolning/kalmar",
+        destination: "/avloppsspolning-kalmar",
+        permanent: true,
+      },
+
+      {
+        source: "/avloppsspolning/karlskrona",
+        destination: "/avloppsspolning-karlskrona",
+        permanent: true,
+      },
+      {
+        source: "/avloppsspolning/kristianstad",
+        destination: "/avloppsspolning-kristianstad",
+        permanent: true,
+      },
+
+      {
+        source: "/avloppsspolning/malmo",
+        destination: "/avloppsspolning-malmo",
+        permanent: true,
+      },
+      {
+        source: "/avloppsspolning/varberg",
+        destination: "/avloppsspolning-varberg",
+        permanent: true,
+      },
+
+      {
+        source: "/avloppsspolning/vaxjo",
+        destination: "/avloppsspolning-vaxjo",
+        permanent: true,
+      },
+      {
+        source: "/oljeavskiljare/boras",
+        destination: "/oljeavskiljare-boras",
+        permanent: true,
+      },
+      {
+        source: "/oljeavskiljare/goteborg",
+        destination: "/oljeavskiljare-goteborg",
+        permanent: true,
+      },
+
+      {
+        source: "/oljeavskiljare/halmstad",
+        destination: "/oljeavskiljare-halmstad",
+        permanent: true,
+      },
+      {
+        source: "/oljeavskiljare/helsingborg",
+        destination: "/oljeavskiljare-helsingborg",
+        permanent: true,
+      },
+
+      {
+        source: "/oljeavskiljare/jonkoping",
+        destination: "/oljeavskiljare-jonkoping",
+        permanent: true,
+      },
+      {
+        source: "/oljeavskiljare/kalmar",
+        destination: "/oljeavskiljare-kalmar",
+        permanent: true,
+      },
+
+      {
+        source: "/oljeavskiljare/karlskrona",
+        destination: "/oljeavskiljare-karlskrona",
+        permanent: true,
+      },
+      {
+        source: "/oljeavskiljare/kristianstad",
+        destination: "/oljeavskiljare-kristianstad",
+        permanent: true,
+      },
+
+      {
+        source: "/oljeavskiljare/malmo",
+        destination: "/oljeavskiljare-malmo",
+        permanent: true,
+      },
+      {
+        source: "/oljeavskiljare/varberg",
+        destination: "/oljeavskiljare-varberg",
+        permanent: true,
+      },
+
+      {
+        source: "/oljeavskiljare/vaxjo",
+        destination: "/oljeavskiljare-vaxjo",
+        permanent: true,
+      },
+      {
+        source: "/relining/boras",
+        destination: "/relining-boras",
+        permanent: true,
+      },
+      {
+        source: "/relining/goteborg",
+        destination: "/relining-goteborg",
+        permanent: true,
+      },
+
+      {
+        source: "/relining/halmstad",
+        destination: "/relining-halmstad",
+        permanent: true,
+      },
+      {
+        source: "//relining/helsingborg",
+        destination: "/relining-helsingborg",
+        permanent: true,
+      },
+
+      {
+        source: "/relining/jonkoping",
+        destination: "/relining-jonkoping",
+        permanent: true,
+      },
+      {
+        source: "/relining/kalmar",
+        destination: "/relining-kalmar",
+        permanent: true,
+      },
+
+      {
+        source: "/relining/karlskrona",
+        destination: "/relining-karlskrona",
+        permanent: true,
+      },
+      {
+        source: "/relining/kristianstad",
+        destination: "/relining-kristianstad",
+        permanent: true,
+      },
+
+      {
+        source: "/relining/malmo",
+        destination: "/relining-malmo",
+        permanent: true,
+      },
+      {
+        source: "/relining/varberg",
+        destination: "/relining-varberg",
+        permanent: true,
+      },
+
+      {
+        source: "/relining/vaxjo",
+        destination: "/relining-vaxjo",
+        permanent: true,
+      },
+      {
+        source: "/provtagning-av-vatten",
+        destination: "/tjanster/provtagning-av-vatten",
         permanent: true,
       },
     ];

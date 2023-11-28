@@ -1,15 +1,16 @@
-import WP from '@lib/wp/wp';
-import { SeoFragment } from '@modules/seo/lib/get-seo';
+import WP from "@lib/wp/wp";
+import { SeoFragment } from "@modules/seo/lib/get-seo";
 
 const getService = async (slug: string) => {
   try {
     if (!slug) {
-      throw 'No slug was provided';
+      throw "No slug was provided";
     }
+
     const response = await WP(
       `
     query getService($slug: ID!) {
-        gqlService(id: $slug, idType: SLUG) {
+        gqlService(id: $slug, idType: URI) {
             title
             slug
             ${SeoFragment}
@@ -80,10 +81,11 @@ const getService = async (slug: string) => {
 `,
       { slug: slug }
     );
+
     const data = response.data.gqlService;
     return data;
   } catch (error) {
-    console.error('ERROR getService ==>', error);
+    console.error("ERROR getService ==>", error);
     return false;
   }
 };

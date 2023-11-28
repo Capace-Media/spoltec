@@ -22,7 +22,6 @@ const Seo = ({ seo, uri, img, desc, serviceSeo }) => {
     canonical,
   } = seo;
 
-  console.log("canonical =====>", canonical);
   const noIndex = (index: any) => {
     if (index === "index" || index === "") {
       return false;
@@ -54,7 +53,7 @@ const Seo = ({ seo, uri, img, desc, serviceSeo }) => {
     <NextSeo
       title={title || serviceTitle}
       description={opengraphDescription || metaDesc || desc || serviceDesc}
-      canonical={newOpengraphUrl}
+      canonical={canonical ? canonical : newOpengraphUrl}
       noindex={noIndex(metaRobotsNoindex)}
       nofollow={noFollow(metaRobotsNofollow)}
       openGraph={{

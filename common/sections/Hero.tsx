@@ -1,5 +1,6 @@
 import parse from "html-react-parser";
 import Image from "next/image";
+import Link from "next/link";
 import Blocks from "../components/Blocks";
 interface HeroProps {
   image?: string;
@@ -9,10 +10,6 @@ interface HeroProps {
 }
 
 const Hero = ({ image, title, subtitle, text }: HeroProps) => {
-  const handleReadMore = () => {
-    const el = document.querySelector("#content");
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
   return (
     <>
       <section className="relative pt-40 contain-outer">
@@ -34,12 +31,14 @@ const Hero = ({ image, title, subtitle, text }: HeroProps) => {
               <h1 className="text-white">{title}</h1>
               <strong className="block mb-3">{subtitle}</strong>
               {text && parse(text)}
-              <button
-                onClick={() => handleReadMore()}
-                className="block mt-10 btn bg-brand-orange"
-              >
-                Läs mer om <span className="lowercase">{title}</span>
-              </button>
+              <div>
+                <Link
+                  className="inline-block mt-10 btn bg-brand-orange "
+                  href="/kontakta-oss"
+                >
+                  Kontakta oss
+                </Link>
+              </div>
             </div>
           </div>
         </div>

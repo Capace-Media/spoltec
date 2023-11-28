@@ -1,44 +1,24 @@
 import Blocks from "@common/components/Blocks";
 import Hero from "@common/sections/Hero";
-import servicesIndex from "@data/static-services.json";
+
 import WP from "@lib/wp/wp";
-import getPage from "@modules/pages/lib/getPage";
 import getService from "@modules/services/lib/getService";
 
 export const isCustomPageSlug = (slug: string) => {
-  const pagesToExclude = [
-    "hem",
-    "akut-hjalp",
-    "kontakta-oss",
-    "avloppsspolning",
-    "kvicksilversanering",
-    "oljeavskiljare",
-    "provtagning-av-vatten",
-    "relining",
-    "rorinspektion",
-    "boras",
-    "goteborg",
-    "halmstad",
-    "helsingborg",
-    "jonkoping",
-    "kalmar",
-    "karlskrona",
-    "kristianstad",
-    "malmo",
-    "undefined",
-    "varberg",
-    "vaxjo",
-    "kunskapsbank",
-    "tjanster",
-  ];
+  const pagesToExclude = [];
   return pagesToExclude.includes(slug);
 };
 
 export const GET_PAGES = `
 query GET_PAGES {
-  pages(first: 100) {
+    gqlAllService(first: 100, where: {parent: "0"}) {
     nodes {
       slug
+      children {
+        nodes {
+          slug
+        }
+      }
     }
   }
 }
@@ -49,20 +29,22 @@ export const getStaticPaths = async () => {
 
   const pagePaths = [];
 
-  data?.pages?.nodes &&
-    data?.pages?.nodes?.map((page: any) => {
-      if (!isCustomPageSlug(page?.slug)) {
-        pagePaths.push({ params: { slug: page?.slug } });
-      }
+  data?.gqlAllService?.nodes &&
+    data?.gqlAllService?.nodes?.map((page: any) => {
+      page?.children?.nodes &&
+        page?.children?.nodes.map((child: any) => {
+          pagePaths.push({ params: { slug: page.slug, id: child.slug } });
+        });
     });
 
   const paths = [...pagePaths];
 
-  return { paths, fallback: "blocking" };
+  return { paths, fallback: true };
 };
 
 export const getStaticProps = async (context) => {
-  const page = await getPage(context.params.slug);
+  const uri = `/services/${context.params.slug}/${context.params.id}`;
+  const page = await getService(uri);
 
   if (!page) {
     return {
@@ -82,14 +64,13 @@ interface PageProps {
 
 const Page = ({ page }: PageProps) => {
   return (
-    <div key={page.title}>
+    <div>
       <Hero
         title={page?.title}
         subtitle={page?.gqlHeroFields?.underrubrik}
         text={page?.gqlHeroFields?.introduktionstext}
         image={page?.gqlHeroFields?.bild?.mediaItemUrl}
       />
-      <div id="content" className="w-full h-10 md:h-0"></div>
       <div>
         <Blocks blocks={page?.gqlBlocks?.blocks} />
       </div>

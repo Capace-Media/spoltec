@@ -16,9 +16,9 @@ const Blog = ({ page }: BlogProps) => {
         text={page?.gqlHeroFields?.introduktionstext}
         image={page?.gqlHeroFields?.bild?.mediaItemUrl}
       />
-      {/* <div>
+      <div>
         <Blocks blocks={page?.gqlBlocks?.blocks} />
-      </div> */}
+      </div>
       <PostsPagination />
     </div>
   );

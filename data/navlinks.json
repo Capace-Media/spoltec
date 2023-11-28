@@ -4,28 +4,32 @@
     "href": "/tjanster",
     "links": [
       {
+        "label": "Alla tjänster",
+        "href": "/tjanster"
+      },
+      {
         "label": "Relining",
-        "href": "/relining"
+        "href": "/tjanster/relining"
       },
       {
         "label": "Rörinspektion",
-        "href": "/rorinspektion"
+        "href": "/tjanster/rorinspektion"
       },
       {
         "label": "Avloppsspolning",
-        "href": "/avloppsspolning"
+        "href": "/tjanster/avloppsspolning"
       },
       {
         "label": "Oljeavskiljare",
-        "href": "/oljeavskiljare"
+        "href": "/tjanster/oljeavskiljare"
       },
       {
         "label": "Provtagning av vatten",
-        "href": "/provtagning-av-vatten"
+        "href": "/tjanster/provtagning-av-vatten"
       },
       {
         "label": "Kvicksilversanering",
-        "href": "/kvicksilversanering"
+        "href": "/tjanster/kvicksilversanering"
       }
     ]
   },

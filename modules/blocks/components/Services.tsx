@@ -75,7 +75,7 @@ const Services = ({ data }: ServicesProps) => {
             <Link
               className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-[100%] text-white p-7 bg-brand-blue text-left rounded-xl"
               key={service.slug}
-              href={`/${serviceUri}`}
+              href={`/tjanster/${serviceUri}`}
             >
               <Image
                 src={
