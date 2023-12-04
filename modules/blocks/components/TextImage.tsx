@@ -6,6 +6,7 @@ interface TextImageProps {
 }
 
 const TextImage = ({ data }: TextImageProps) => {
+  console.log("data.bilder =====>", data?.bilder?.length);
   return (
     <div className="contain-outer">
       <div
@@ -28,24 +29,52 @@ const TextImage = ({ data }: TextImageProps) => {
                 )}
               </div>
             </div>
-            <div className="grid grid-cols-2 grid-rows-3 gap-3 h-[500px]">
-              {data.bilder.map((image: any, index: any) => (
-                <div
-                  key={image?.mediaItemUrl}
-                  data-image={index}
-                  className="relative overflow-hidden rounded-xl"
-                >
-                  <Image
-                    src={image.mediaItemUrl}
-                    fill
-                    style={{
-                      objectFit: "cover",
-                    }}
-                    alt={image?.altText}
-                  />
-                </div>
-              ))}
-            </div>
+            {data?.bilder?.length > 1 ? (
+              <div className="grid grid-cols-2 grid-rows-3 gap-3 h-[500px]">
+                {data?.bilder &&
+                  data.bilder.map((image: any, index: any) => (
+                    <div
+                      key={image?.mediaItemUrl || index}
+                      data-image={index}
+                      className="relative overflow-hidden rounded-xl"
+                    >
+                      {image?.mediaItemUrl && (
+                        <Image
+                          src={image.mediaItemUrl}
+                          fill
+                          style={{
+                            objectFit: "cover",
+                          }}
+                          alt={image?.altText}
+                        />
+                      )}
+                    </div>
+                  ))}
+              </div>
+            ) : (
+              <div className="w-full h-full ">
+                {data?.bilder &&
+                  data.bilder.map((image: any, index: any) => (
+                    <div
+                      key={image?.mediaItemUrl || index}
+                      data-image={index}
+                      className="relative overflow-hidden w-full h-full"
+                    >
+                      {image?.mediaItemUrl && (
+                        <Image
+                          src={image.mediaItemUrl}
+                          fill
+                          style={{
+                            objectFit: "cover",
+                            borderRadius: "12px",
+                          }}
+                          alt={image?.altText}
+                        />
+                      )}
+                    </div>
+                  ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

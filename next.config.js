@@ -449,6 +449,11 @@ module.exports = withBundleAnalyzer({
         destination: "/tjanster/provtagning-av-vatten",
         permanent: true,
       },
+      {
+        source: "/tjanster-malmo",
+        destination: "/tjanster",
+        permanent: true,
+      },
     ];
   },
 });
