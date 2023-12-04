@@ -36,10 +36,10 @@ const Footer = ({}: FooterProps) => {
       <footer className="mb-5 overflow-hidden contain-outer rounded-xl">
         <div className="pb-10 bg-section">
           <div className="contain">
-            <div className="grid md:grid-cols-[2fr,1fr,1fr,1fr,1fr] gap-10">
+            <div className="grid md:grid-cols-[2fr,1fr,1fr,1fr] gap-10">
               <div>
                 <strong className="block mb-3">Spoltec Södra AB</strong>
-                <p className="mb-6">
+                <p className="mb-6 pr-16">
                   Vårt företag startades 1991 och verksamheten drivs idag vidare
                   av en ägargrupp som har fokus på utveckling och nytänkande.
                   Styrkan ligger i vår kompetenta personal, miljötänkande,
@@ -75,7 +75,7 @@ const Footer = ({}: FooterProps) => {
                   })}
                 </ul>
               </div>
-              <div>
+              {/* <div>
                 <strong className="block mb-3">Städer</strong>
                 <ul className="space-y-[6px]">
                   {footerLinks?.stader?.map((link: any, index) => {
@@ -89,7 +89,7 @@ const Footer = ({}: FooterProps) => {
                     );
                   })}
                 </ul>
-              </div>
+              </div> */}
               <div>
                 <strong className="block mb-3">Företag</strong>
                 <ul className="space-y-[6px]">

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import heroImage from "../../public/images/Spoltec-water01.png";
 interface MainHeroProps {}
 
 const MainHero = ({}: MainHeroProps) => {
@@ -23,11 +24,12 @@ const MainHero = ({}: MainHeroProps) => {
           </div>
           <figure className="md:-mb-20 aspect-w-16 aspect-h-12">
             <Image
-              src={`/images/spoltec-water-01.webp`}
+              src={heroImage}
               fill
               style={{
                 objectFit: "contain",
               }}
+              priority
               alt={`image of splashing water`}
               sizes="(min-width: 1460px) 747px, (min-width: 1220px) calc(42.73vw + 132px), (min-width: 780px) calc(90.71vw - 449px), (min-width: 440px) calc(100vw - 80px), calc(88.33vw - 31px)"
             />

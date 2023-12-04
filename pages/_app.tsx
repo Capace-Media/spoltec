@@ -9,6 +9,7 @@ import CookieConsent, {
 
 import * as gtag from "../lib/gtag";
 import { GTM_ID, pageview } from "../lib/gtm";
+import "../styles/global.scss";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {

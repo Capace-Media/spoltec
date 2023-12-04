@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import logo from "../../../public/images/spoltec-logo-new.png";
 interface HeaderProps {}
 
 const buttons = [
@@ -55,13 +56,13 @@ const Header = ({}: HeaderProps) => {
             href={"/"}
           >
             <Image
-              src={`/images/spoltec-logo-new.png`}
+              src={logo}
               fill
               style={{
                 objectFit: "contain",
               }}
               alt="Spoltec Logotyp"
-              sizes="(min-width: 200px) 30vw"
+              sizes="(min-width: 980px) 200px, (min-width: 800px) calc(3.75vw + 127px), (min-width: 760px) calc(160vw - 1092px), calc(6.59vw + 75px)"
             />
           </Link>
           <div className="items-center hidden space-x-5 font-semibold nv:flex text-brand-blue">
