@@ -36,7 +36,7 @@ const Hero = ({ image, title, subtitle, text }: HeroProps) => {
                   className="inline-block mt-10 btn bg-brand-orange "
                   href="/kontakta-oss"
                 >
-                  Kontakta oss
+                  Kontakta oss!
                 </Link>
               </div>
             </div>
