@@ -1,8 +1,0 @@
-@media screen and (min-width: 1024px) {
-  @for $i from 0 through 20 {
-    #infoSection:nth-of-type(#{$i + 1}) {
-      flex-direction: if($i % 2 == 0, row-reverse, row);
-      //background-color: nth($bg-colors, ($i + 1) % 2 + 1);
-    }
-  }
-}
