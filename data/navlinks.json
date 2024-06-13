@@ -30,6 +30,24 @@
       {
         "label": "Kvicksilversanering",
         "href": "/tjanster/kvicksilversanering"
+      },
+      {
+        "label": "Kanaltätning",
+        "href": "/tjanster/kanaltatning"
+      }
+    ]
+  },
+  {
+    "label": "Energibesparing",
+    "href": "/energibesparing",
+    "links": [
+      {
+        "label": "Kanaltätning",
+        "href": "/tjanster/kanaltatning"
+      },
+      {
+        "label": "Bakgrund",
+        "href": "/bakgrund"
       }
     ]
   },
@@ -48,7 +66,7 @@
       },
       {
         "label": "Varför blir det stopp?",
-        "href": "/varfor-blir-det-stopp"
+        "href": "/kunskapsbank/varfor-blir-det-stopp"
       },
       {
         "label": "Om Spoltec",

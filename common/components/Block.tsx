@@ -44,6 +44,9 @@ const Block = ({ block }: BlockProps) => {
   switch (block.fieldGroupName) {
     case "Page_Gqlblocks_Blocks_TextBild":
       return <TextImage data={block} />;
+
+    case "GqlService_Gqlblocks_Blocks_TextBild":
+      return <TextImage data={block} />;
     case "Page_Gqlblocks_Blocks_Tjanster":
       return <Services data={block} />;
     case "Page_Gqlblocks_Blocks_Text":
