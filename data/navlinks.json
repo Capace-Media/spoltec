@@ -48,6 +48,19 @@
       {
         "label": "Bakgrund",
         "href": "/bakgrund"
+      },
+      { "label": "Varför vår metod?", "href": "/varfor-var-metod" },
+      {
+        "label": "Utredning av ventilationssystem",
+        "href": "/utredning-av-ventilationssystem"
+      },
+      {
+        "label": "Varför bryr sig om otäta ventilationskanaler?",
+        "href": "/varfor-bryr-sig-om-otata-ventilationskanaler"
+      },
+      {
+        "label": "Så fungerar Spoltecmetoden",
+        "href": "/sa-fungerar-spoltecmetoden"
       }
     ]
   },
