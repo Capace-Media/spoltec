@@ -9,8 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "svg": "svgr -d components/icons components/icons/svgs",
-    "postbuild": "next-sitemap --config next-sitemap.config.js",
-    "analyze": "ANALYZE=true next build"
+    "postbuild": "next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
     "@headlessui/react": "^2.1.1",
