@@ -83,7 +83,8 @@ function MyApp({ Component, pageProps }) {
       <Layout
         description={
           pageProps?.page?.gqlHeroFields?.introduktionstext ||
-          pageProps?.data?.gqlService?.gqlHeroFields?.introduktionstext
+          pageProps?.data?.gqlService?.gqlHeroFields?.introduktionstext ||
+          pageProps?.post?.gqlHeroFields?.introduktionstext
         }
         seoPage={
           pageProps?.page || pageProps?.data?.gqlService || pageProps?.post
