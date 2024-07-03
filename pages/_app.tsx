@@ -115,7 +115,9 @@ function MyApp({ Component, pageProps }) {
           pageProps?.page?.gqlHeroFields?.introduktionstext ||
           pageProps?.data?.gqlService?.gqlHeroFields?.introduktionstext
         }
-        seoPage={pageProps?.page || pageProps?.data?.gqlService}
+        seoPage={
+          pageProps?.page || pageProps?.data?.gqlService || pageProps?.post
+        }
         completeRoute={completeRoute}
       >
         <Component {...pageProps} />

@@ -11,6 +11,7 @@ const getPost = async (uri: string) => {
             slug
             uri
             id
+            ${SeoFragment}
             gqlHeroFields {
               underrubrik
               introduktionstext
