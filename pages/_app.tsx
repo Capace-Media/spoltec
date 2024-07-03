@@ -2,10 +2,6 @@ import Layout from "@modules/layout/components/Layout";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import { useEffect, useState } from "react";
-import CookieConsent, {
-  Cookies,
-  getCookieConsentValue,
-} from "react-cookie-consent";
 
 import * as gtag from "../lib/gtag";
 import { GTM_ID, pageview } from "../lib/gtm";
@@ -15,25 +11,19 @@ import "../styles/globals.css";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
-  const [consent, setConsent] = useState(false || true);
-
   const completeRoute = router.asPath;
 
   useEffect(() => {
-    if (consent) {
-      const handleRouteChange = (url: any) => {
-        gtag.pageview(url);
-      };
+    const handleRouteChange = (url: any) => {
+      gtag.pageview(url);
+    };
 
-      router.events.on("routeChangeComplete", handleRouteChange);
-      router.events.on("hashChangeComplete", handleRouteChange);
-      return () => {
-        router.events.off("routeChangeComplete", handleRouteChange);
-        router.events.off("hashChangeComplete", handleRouteChange);
-      };
-    } else {
-      console.log("no tracking");
-    }
+    router.events.on("routeChangeComplete", handleRouteChange);
+    router.events.on("hashChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+      router.events.off("hashChangeComplete", handleRouteChange);
+    };
   }, [router.events]);
 
   useEffect(() => {
@@ -43,35 +33,16 @@ function MyApp({ Component, pageProps }) {
     };
   }, [router.events]);
 
-  const handleAcceptCookie = () => {
-    if (process.env.NEXT_PUBLIC_GA_ID) {
-      setConsent(true);
-    }
-  };
-
-  const handleDeclineCookie = () => {
-    Cookies.remove("_ga");
-    Cookies.remove("_gat");
-    Cookies.remove("_gid");
-    setConsent(false);
-  };
-
-  useEffect(() => {
-    const isConsent = getCookieConsentValue();
-    if (isConsent === "true") {
-      handleAcceptCookie();
-    }
-  }, []);
   return (
     <>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
-      {consent && (
-        <>
-          <Script
-            id="gtag-init"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
+
+      <>
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag() {
                   dataLayer.push(arguments);
@@ -81,10 +52,9 @@ function MyApp({ Component, pageProps }) {
                   page_path: window.location.pathname,
                 });
               `,
-            }}
-          />
-        </>
-      )}
+          }}
+        />
+      </>
 
       {/* Google Tag Manager - Global base code */}
       {process.env.NEXT_PUBLIC_GA_ID && (
@@ -122,14 +92,6 @@ function MyApp({ Component, pageProps }) {
       >
         <Component {...pageProps} />
       </Layout>
-      <CookieConsent
-        enableDeclineButton
-        onAccept={handleAcceptCookie}
-        onDecline={() => handleDeclineCookie}
-        expires={7}
-      >
-        This website uses cookies to enhance the user experience.
-      </CookieConsent>
     </>
   );
 }
