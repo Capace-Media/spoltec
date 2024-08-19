@@ -2,63 +2,143 @@
   "nodes": [
     {
       "id": "RL101KR",
-      "uri": "relining-kristianstad",
+      "uri": "/relining-kristianstad",
       "title": "Relining Kristianstad"
     },
     {
       "id": "KB102",
-      "uri": "kunskapsbank",
+      "uri": "/kunskapsbank",
       "title": "Kunskapsbank"
     },
     {
       "id": "QS103",
-      "uri": "tjanster/kvicksilversanering",
+      "uri": "/tjanster/kvicksilversanering",
       "title": "Kvicksilver Sanering"
     },
     {
       "id": "RL104HE",
-      "uri": "relining-helsingborg",
+      "uri": "/relining-helsingborg",
       "title": "Relining Helsingborg"
     },
     {
       "id": "RL105HA",
-      "uri": "relining-halmstad",
+      "uri": "/relining-halmstad",
       "title": "Relining Halmstad"
     },
     {
       "id": "OS106HE",
-      "uri": "oljeavskiljare-helsingborg",
+      "uri": "/oljeavskiljare-helsingborg",
       "title": "Oljeavskiljare Helsingborg"
     },
     {
       "id": "RL107JO",
-      "uri": "relining-jonkoping",
+      "uri": "/relining-jonkoping",
       "title": "Relining Jönköping"
     },
     {
       "id": "OS108HA",
-      "uri": "oljeavskiljare-halmstad",
+      "uri": "/oljeavskiljare-halmstad",
       "title": "Oljeavskiljare Halmstad"
     },
     {
       "id": "OS109KA",
-      "uri": "oljeavskiljare-karlskrona",
+      "uri": "/oljeavskiljare-karlskrona",
       "title": "Oljeavskiljare Karlskrona"
     },
     {
       "id": "RL110BO",
-      "uri": "relining-boras",
+      "uri": "/relining-boras",
       "title": "Relining Borås"
     },
     {
       "id": "OS111GO",
-      "uri": "oljeavskiljare-goteborg",
+      "uri": "/oljeavskiljare-goteborg",
       "title": "Oljeavskiljare Göteborg"
     },
     {
       "id": "OS112VA",
-      "uri": "oljeavskiljare-varberg",
+      "uri": "/oljeavskiljare-varberg",
       "title": "Oljeavskiljare Varberg"
+    },
+    {
+      "id": "SP113MA",
+      "uri": "/avloppsspolning-malmo",
+      "title": "Avloppsspolning Malmö"
+    },
+    {
+      "id": "RL114GO",
+      "uri": "/relining-goteborg",
+      "title": "Relining Göteborg"
+    },
+    {
+      "id": "OS115KA",
+      "uri": "/oljeavskiljare-kalmar",
+      "title": "Oljeavskiljare Kalmar"
+    },
+    {
+      "id": "RL116VA",
+      "uri": "/relining-vaxjo",
+      "title": "Relining Växjö"
+    },
+    {
+      "id": "SP117KA",
+      "uri": "/avloppsspolning-kalmar",
+      "title": "Avloppsspolning Kalmar"
+    },
+    {
+      "id": "SP118GO",
+      "uri": "/avloppsspolning-goteborg",
+      "title": "Avloppsspolning Göteborg"
+    },
+    {
+      "id": "OS119VA",
+      "uri": "/oljeavskiljare-vaxjo",
+      "title": "Oljeavskiljare Växjö"
+    },
+    {
+      "id": "SP120HA",
+      "uri": "/avloppsspolning-halmstad",
+      "title": "Avloppsspolning Halmstad"
+    },
+    {
+      "id": "SP121KR",
+      "uri": "/avloppsspolning-karlskrona",
+      "title": "Avloppsspolning Karlskrona"
+    },
+    {
+      "id": "SP122KR",
+      "uri": "/avloppsspolning-kristianstad",
+      "title": "Avloppsspolning Kristianstad"
+    },
+    {
+      "id": "OS123KR",
+      "uri": "/oljeavskiljare-kristianstad",
+      "title": "Oljeavskiljare Kristianstad"
+    },
+    {
+      "id": "SP124BO",
+      "uri": "/avloppsspolning-boras",
+      "title": "Avloppsspolning Borås"
+    },
+    {
+      "id": "SP125JO",
+      "uri": "/avloppsspolning-jonkoping",
+      "title": "Avloppsspolning Jönköping"
+    },
+    {
+      "id": "RL126MA",
+      "uri": "/relining-malmo",
+      "title": "Relining Malmö"
+    },
+    {
+      "id": "OS127JO",
+      "uri": "/oljeavskiljare-jonkoping",
+      "title": "Oljeavskiljare Jönköping"
+    },
+    {
+      "id": "RL128VA",
+      "uri": "/relining-varberg",
+      "title": "Relining Varberg"
     }
   ]
 }
