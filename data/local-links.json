@@ -1,0 +1,64 @@
+{
+  "nodes": [
+    {
+      "id": "RL101KR",
+      "uri": "relining-kristianstad",
+      "title": "Relining Kristianstad"
+    },
+    {
+      "id": "KB102",
+      "uri": "kunskapsbank",
+      "title": "Kunskapsbank"
+    },
+    {
+      "id": "QS103",
+      "uri": "tjanster/kvicksilversanering",
+      "title": "Kvicksilver Sanering"
+    },
+    {
+      "id": "RL104HE",
+      "uri": "relining-helsingborg",
+      "title": "Relining Helsingborg"
+    },
+    {
+      "id": "RL105HA",
+      "uri": "relining-halmstad",
+      "title": "Relining Halmstad"
+    },
+    {
+      "id": "OS106HE",
+      "uri": "oljeavskiljare-helsingborg",
+      "title": "Oljeavskiljare Helsingborg"
+    },
+    {
+      "id": "RL107JO",
+      "uri": "relining-jonkoping",
+      "title": "Relining Jönköping"
+    },
+    {
+      "id": "OS108HA",
+      "uri": "oljeavskiljare-halmstad",
+      "title": "Oljeavskiljare Halmstad"
+    },
+    {
+      "id": "OS109KA",
+      "uri": "oljeavskiljare-karlskrona",
+      "title": "Oljeavskiljare Karlskrona"
+    },
+    {
+      "id": "RL110BO",
+      "uri": "relining-boras",
+      "title": "Relining Borås"
+    },
+    {
+      "id": "OS111GO",
+      "uri": "oljeavskiljare-goteborg",
+      "title": "Oljeavskiljare Göteborg"
+    },
+    {
+      "id": "OS112VA",
+      "uri": "oljeavskiljare-varberg",
+      "title": "Oljeavskiljare Varberg"
+    }
+  ]
+}

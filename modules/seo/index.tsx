@@ -47,6 +47,8 @@ const Seo = ({ seo, uri, img, desc, serviceSeo }) => {
 
   opengraphUrl = opengraphUrl.replace(/\/$/, "");
 
+  console.log("opengraphUrl =====>", opengraphUrl);
+
   let newOpengraphUrl = process.env.NEXT_PUBLIC_MY_WEBSITE + completeRoute;
 
   return (
