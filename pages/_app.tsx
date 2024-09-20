@@ -1,6 +1,7 @@
 import Layout from "@modules/layout/components/Layout";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { useRouter } from "next/router";
+import Script from "next/script";
 import "../styles/global.scss";
 import "../styles/globals.css";
 
@@ -24,6 +25,7 @@ function MyApp({ Component, pageProps }) {
       >
         <Component {...pageProps} />
       </Layout>
+
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID} />
     </>
   );
