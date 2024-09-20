@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const PostsPagination = () => {
-  const [posts, setPosts] = useState(null);
+  const [posts, setPosts] = useState([]);
   const [pageInfo, setPageInfo] = useState(null);
 
   const fetchData = async (
@@ -49,7 +49,7 @@ const PostsPagination = () => {
         <h2>Artiklar</h2>
       </div>
       <ul className="grid justify-center grid-cols-1 gap-5 mt-10 lg:grid-cols-3 md:grid-cols-2">
-        {posts &&
+        {posts?.length < 1 &&
           posts.map((post: any) => (
             <Link
               className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-[100%] text-white p-7 bg-brand-blue text-left rounded-xl"

@@ -26,7 +26,9 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </Layout>
 
-      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID} />
+      <GoogleTagManager
+        gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string}
+      />
     </>
   );
 }

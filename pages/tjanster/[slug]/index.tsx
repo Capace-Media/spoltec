@@ -5,7 +5,7 @@ import WP from "@lib/wp/wp";
 import getService from "@modules/services/lib/getService";
 
 export const isCustomPageSlug = (slug: string) => {
-  const pagesToExclude = [];
+  const pagesToExclude: string[] = [];
   return pagesToExclude.includes(slug);
 };
 
@@ -22,7 +22,7 @@ query GET_PAGES {
 export const getStaticPaths = async () => {
   const { data } = await WP(GET_PAGES);
 
-  const pagePaths = [];
+  const pagePaths: any[] = [];
 
   data?.gqlAllService?.nodes &&
     data?.gqlAllService?.nodes?.map((page: any) => {
@@ -33,7 +33,7 @@ export const getStaticPaths = async () => {
 
   const paths = [...pagePaths];
 
-  return { paths, fallback: true };
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps = async (context) => {

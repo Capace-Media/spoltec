@@ -39,16 +39,17 @@ query GET_POSTS {
 export const getStaticPaths = async () => {
   const { data } = await WP(GET_POSTS);
 
-  const postPaths = [];
+  const postPaths: { params: { article: string } }[] = [];
 
-  data?.posts?.nodes &&
-    data?.posts?.nodes?.map((post: any) => {
-      postPaths.push({ params: { article: post?.slug } });
-    });
+  // Populate postPaths
+  data.posts.nodes.forEach((post) => {
+    if (typeof post.slug === "string") {
+      // Ensure slug is a string
+      postPaths.push({ params: { article: post.slug } });
+    }
+  });
 
-  const paths = [...postPaths];
-
-  return { paths, fallback: "blocking" };
+  return { paths: postPaths, fallback: "blocking" };
 };
 
 export const getStaticProps = async (context) => {

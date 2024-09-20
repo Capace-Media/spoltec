@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   const { after, before, first, last } = req.query;
 
   try {
-    const response = await fetch(process.env.GRAPHQL_ENDPOINT, {
+    const response = await fetch(process.env.GRAPHQL_ENDPOINT as string, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

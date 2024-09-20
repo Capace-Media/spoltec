@@ -1,11 +1,11 @@
-import { token } from './token';
+import { token } from "./token";
 
 const WP = async (query: string, variables?: any) => {
   try {
-    const response = await fetch(process.env.GRAPHQL_ENDPOINT, {
-      method: 'POST',
+    const response = await fetch(process.env.GRAPHQL_ENDPOINT as string, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Basic ${token}`,
       },
       body: JSON.stringify({
@@ -19,7 +19,7 @@ const WP = async (query: string, variables?: any) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('ERROR WP ==>', error);
+    console.error("ERROR WP ==>", error);
     return null;
   }
 };
