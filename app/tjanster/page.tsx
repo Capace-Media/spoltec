@@ -1,24 +1,12 @@
 import Hero from "@common/sections/Hero";
 import getPage from "@modules/pages/lib/getPage";
+import Blocks from "components/globals/blocks";
 
-import dynamic from "next/dynamic";
-const Blocks = dynamic(() => import("@common/components/Blocks"), {
-  loading: () => <p>Loading...</p>,
-});
-
-export const getStaticProps = async (context) => {
+export default async function Services() {
   const page = await getPage("tjanster");
-
-  return {
-    props: {
-      page,
-    },
-  };
-};
-
-export default function Home({ page }) {
+  console.log("page =====>", page);
   return (
-    <>
+    <main>
       <Hero
         title={page?.title}
         subtitle={page?.gqlHeroFields?.underrubrik}
@@ -26,6 +14,6 @@ export default function Home({ page }) {
         image={page?.gqlHeroFields?.bild?.mediaItemUrl}
       />
       <Blocks blocks={page?.gqlBlocks?.blocks} />
-    </>
+    </main>
   );
 }

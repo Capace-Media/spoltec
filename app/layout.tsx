@@ -1,5 +1,7 @@
 import Footer from "@modules/layout/components/Footer";
 import Header from "@modules/layout/components/Header";
+import "../styles/global.scss";
+import "../styles/globals.css";
 
 export default function RootLayout({
   children,
@@ -9,11 +11,11 @@ export default function RootLayout({
   return (
     <html lang="sv">
       <body>
-        <Header />
+        {/* <Header /> */}
         {/* Layout UI */}
-        <main>{children}</main>
+        {children}
 
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

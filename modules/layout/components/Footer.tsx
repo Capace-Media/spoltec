@@ -1,3 +1,4 @@
+"use client";
 import footerLinks from "@data/footerlinks.json";
 import services from "@data/static-services.json";
 import CallToAction from "@modules/blocks/components/Cta";
