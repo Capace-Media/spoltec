@@ -31,7 +31,6 @@ const Block: FC<BlockProps> = memo(({ section }) => {
     | FC<ComponentProps>
     | undefined;
 
-  console.log("section =====>", section);
   return Component ? (
     <Suspense fallback={<p>Loading...</p>}>
       <Component content={section} />

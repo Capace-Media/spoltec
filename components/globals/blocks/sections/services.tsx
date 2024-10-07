@@ -47,7 +47,7 @@ interface Category {
 }
 
 interface ServicesProps {
-  data: {
+  content: {
     rubrik?: string;
     servicesText?: string;
   };
@@ -166,9 +166,10 @@ const ArticleCard: FC<ArticleCardProps> = ({ article, index }) => {
   );
 };
 
-const Services: FC<ServicesProps> = ({ data }) => {
+const Services: FC<ServicesProps> = ({ content }) => {
   const params = useParams();
 
+  console.log("data =====>", content);
   // Using optional chaining to handle potential null or undefined params
   const slug = typeof params?.slug === "string" ? params.slug : undefined;
 
@@ -237,8 +238,8 @@ const Services: FC<ServicesProps> = ({ data }) => {
   return (
     <div className="text-center section contain">
       <div className="max-w-[700px] mx-auto">
-        <h2>{data?.rubrik || "Rubrik"}</h2>
-        <p>{data?.servicesText || "Services text"}</p>
+        <h2>{content?.rubrik || ""}</h2>
+        <p>{content?.servicesText || ""}</p>
       </div>
       <div className="grid justify-center grid-cols-1 gap-5 mt-10 lg:grid-cols-3 md:grid-cols-2">
         {res.map((item, index) => {

@@ -6,9 +6,8 @@ interface TextBildProps {
 }
 
 const TextBild = ({ content }: TextBildProps) => {
-  console.log("content =====>", content);
   return (
-    <div className="contain-outer ">
+    <div className="contain-outer">
       <div
         className={`text-image ${
           content?.installningar?.bakgrund ? "bg-section" : "section"

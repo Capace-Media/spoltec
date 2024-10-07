@@ -4,7 +4,7 @@ import Blocks from "components/globals/blocks";
 
 export default async function Services() {
   const page = await getPage("tjanster");
-  console.log("page =====>", page);
+
   return (
     <main>
       <Hero
