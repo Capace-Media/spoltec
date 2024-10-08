@@ -4,7 +4,6 @@ const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const Mail = async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log("req.body =====>", req.body);
   const { name, phone, email, message, subject } = req.body;
 
   try {
@@ -14,7 +13,7 @@ const Mail = async (req: NextApiRequest, res: NextApiResponse) => {
         email: email,
       },
       replayTo: email,
-      to: `rick@capace.se`,
+      to: `info@spoltec.se`,
       subject: `Offertförfrågan för ${subject}`,
       html: `<div>
           <div>
