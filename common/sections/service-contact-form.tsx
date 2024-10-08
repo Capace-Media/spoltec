@@ -72,7 +72,7 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
     <div className=" flex items-center justify-center w-full">
       <div className=" shadow w-full bg-white p-6 lg:max-w-[399px] rounded-lg">
         <p className="text-brand-blue font-bold text-[18px]">
-          Begär en offert så hör vi av oss inom 24 timmar
+          Begär en gratis offert så hör vi av oss inom 24 timmar
         </p>
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Honeypot Field (Hidden) */}
