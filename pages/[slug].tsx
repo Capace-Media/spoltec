@@ -46,17 +46,6 @@ query GET_PAGES {
 export const getStaticPaths = async () => {
   const { data } = await WP(GET_PAGES);
 
-  // const pagePaths = [];
-
-  // data?.pages?.nodes &&
-  //   data?.pages?.nodes?.map((page: any) => {
-  //     if (!isCustomPageSlug(page?.slug)) {
-  //       pagePaths.push({ params: { slug: page?.slug } });
-  //     }
-  //   });
-
-  // const paths = [...pagePaths];
-  // Populate pagePaths
   const pagePaths: { params: { slug: string } }[] = data.pages.nodes
     .filter(
       (page: any) =>
