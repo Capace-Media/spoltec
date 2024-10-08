@@ -3,27 +3,27 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Chivo';
-  src: url('../public/assets/fonts/Chivo/Chivo-Regular.ttf');
+  font-family: "Chivo";
+  src: url("../public/assets/fonts/Chivo/Chivo-Regular.ttf");
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Chivo';
-  src: url('../public/assets/fonts/Chivo/Chivo-Bold.ttf');
+  font-family: "Chivo";
+  src: url("../public/assets/fonts/Chivo/Chivo-Bold.ttf");
   font-weight: 700;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Chivo';
-  src: url('../public/assets/fonts/Chivo/Chivo-Black.ttf');
+  font-family: "Chivo";
+  src: url("../public/assets/fonts/Chivo/Chivo-Black.ttf");
   font-weight: 900;
   font-display: swap;
 }
 
 @layer base {
   body {
-    font-family: 'Chivo', sans-serif;
+    font-family: "Chivo", sans-serif;
   }
   div,
   figure {
@@ -91,11 +91,11 @@
   }
 
   .parsed img {
-    @apply my-3 w-full max-h-[26.875rem] object-cover
+    @apply my-3 w-full max-h-[26.875rem] object-cover;
   }
 
-  .text-image div[data-image='2'],
-  .text-image div[data-image='1'] {
+  .text-image div[data-image="2"],
+  .text-image div[data-image="1"] {
     @apply row-span-2;
   }
 
@@ -114,12 +114,12 @@
   }
 }
 
-.nav-style{
-  transition: ease-in-out .4s;
+.nav-style {
+  transition: ease-in-out 0.4s;
 }
 
 .nth-child:nth-child(1) {
-  padding-bottom: 0
+  padding-bottom: 0;
 }
 
 @responsive {
@@ -168,8 +168,6 @@
   right: 27rem;
 }
 
-
-
 .right-112 {
   right: 28rem;
 }
@@ -196,5 +194,5 @@
 }
 
 .ul-a:hover {
- color: blue;
+  color: blue;
 }

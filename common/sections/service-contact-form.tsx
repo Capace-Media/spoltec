@@ -69,110 +69,119 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
   };
 
   return (
-    <div className="w-full">
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Honeypot Field (Hidden) */}
-        <div style={{ display: "none" }}>
-          <label htmlFor="honeypot">Do not fill this field</label>
-          <input
-            type="text"
-            id="honeypot"
-            value={formData.honeypot}
-            onChange={handleChange}
-            className="honeypot"
-          />
-        </div>
+    <div className=" flex items-center justify-center w-full">
+      <div className=" shadow w-full bg-white p-6 lg:max-w-[399px] rounded-lg">
+        <p className="text-brand-blue font-bold text-[18px]">
+          Begär en offert så hör vi av oss inom 24 timmar
+        </p>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Honeypot Field (Hidden) */}
+          <div style={{ display: "none" }}>
+            <label htmlFor="honeypot">Do not fill this field</label>
+            <input
+              type="text"
+              id="honeypot"
+              value={formData.honeypot}
+              onChange={handleChange}
+              className="honeypot"
+            />
+          </div>
 
-        {/* Name Field */}
-        <div>
-          <label
-            htmlFor="name"
-            className="block mb-2 text-sm font-medium text-white"
-          >
-            Namn
-          </label>
-          <input
-            type="text"
-            id="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="shadow-sm bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-            placeholder="Ditt namn"
-            required
-          />
-        </div>
+          {/* Name Field */}
+          <div>
+            {/* <label
+              htmlFor="name"
+              className="block mb-2 text-sm font-medium text-brand-blue"
+            >
+              Namn
+            </label> */}
+            <input
+              type="text"
+              id="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="shadow-sm bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+              placeholder="Ditt namn"
+              required
+            />
+          </div>
 
-        {/* Phone Field */}
-        <div>
-          <label
-            htmlFor="phone"
-            className="block mb-2 text-sm font-medium text-white"
-          >
-            Telefonnr
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            className="shadow-sm bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-            placeholder="123-456-7890"
-            required
-          />
-        </div>
+          {/* Phone Field */}
+          <div>
+            {/* <label
+              htmlFor="phone"
+              className="block mb-2 text-sm font-medium text-brand-blue"
+            >
+              Telefon
+            </label> */}
+            <input
+              type="tel"
+              id="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              className="shadow-sm bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+              placeholder="Telefon"
+              required
+            />
+          </div>
 
-        {/* Email Field */}
-        <div>
-          <label
-            htmlFor="email"
-            className="block mb-2 text-sm font-medium text-white"
-          >
-            E-post
-          </label>
-          <input
-            type="email"
-            id="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="shadow-sm bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-            placeholder="namn@example.com"
-            required
-          />
-        </div>
+          {/* Email Field */}
+          <div>
+            {/* <label
+              htmlFor="email"
+              className="block mb-2 text-sm font-medium text-brand-blue"
+            >
+              E-post
+            </label> */}
+            <input
+              type="email"
+              id="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="shadow-sm bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+              placeholder="E-post"
+              required
+            />
+          </div>
 
-        {/* Message Field */}
-        <div className="sm:col-span-2">
-          <label
-            htmlFor="message"
-            className="block mb-2 text-sm font-medium text-white"
-          >
-            Meddelande
-          </label>
-          <textarea
-            id="message"
-            value={formData.message}
-            onChange={handleChange}
-            className="block p-2.5 w-full text-sm text-brand-blue bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
-            placeholder="Skriv ditt meddelande här..."
-            rows={4}
-          ></textarea>
-        </div>
+          {/* Message Field */}
+          <div className="sm:col-span-2">
+            {/* <label
+              htmlFor="message"
+              className="block mb-2 text-sm font-medium text-brand-blue"
+            >
+              Meddelande
+            </label> */}
+            <textarea
+              id="message"
+              value={formData.message}
+              onChange={handleChange}
+              className="block p-2.5 w-full text-sm text-brand-blue bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
+              placeholder="Skriv ditt meddelande här..."
+              rows={4}
+            ></textarea>
+          </div>
 
-        {/* Submission Status Messages */}
-        {status === "error" && (
-          <p className="text-red-500">Fel: {errorMessage}</p>
-        )}
-        {status === "success" && (
-          <p className="text-green-500">Ditt meddelande har skickats!</p>
-        )}
+          {/* Submission Status Messages */}
+          {status === "error" && (
+            <p className="text-red-500">Fel: {errorMessage}</p>
+          )}
+          {status === "success" && (
+            <p className="text-green-500">Ditt meddelande har skickats!</p>
+          )}
 
-        {/* Submit Button */}
-        <div className="flex items-center gap-2">
-          <button type="submit" className="btn" disabled={status === "loading"}>
-            {status === "loading" ? "Skickar..." : "Skicka förfrågan"}
-          </button>
-        </div>
-      </form>
+          {/* Submit Button */}
+          <div className="flex items-center gap-2">
+            <button
+              type="submit"
+              className="btn"
+              disabled={status === "loading"}
+            >
+              {status === "loading" ? "Skickar..." : "Skicka förfrågan"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
