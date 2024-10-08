@@ -6,7 +6,6 @@ interface TextImageProps {
 }
 
 const TextImage = ({ data }: TextImageProps) => {
-  console.log("data.bilder =====>", data?.bilder?.length);
   return (
     <div className="contain-outer ">
       <div
