@@ -169,7 +169,6 @@ const ArticleCard: FC<ArticleCardProps> = ({ article, index }) => {
 const Services: FC<ServicesProps> = ({ content }) => {
   const params = useParams();
 
-  console.log("data =====>", content);
   // Using optional chaining to handle potential null or undefined params
   const slug = typeof params?.slug === "string" ? params.slug : undefined;
 

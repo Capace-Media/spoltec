@@ -1,5 +1,4 @@
-import Footer from "@modules/layout/components/Footer";
-import Header from "@modules/layout/components/Header";
+import Header from "@/components/globals/layout/header";
 import "../styles/global.scss";
 import "../styles/globals.css";
 
@@ -12,6 +11,7 @@ export default function RootLayout({
     <html lang="sv">
       <body>
         {/* <Header /> */}
+        <Header />
         {/* Layout UI */}
         {children}
 

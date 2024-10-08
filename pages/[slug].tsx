@@ -64,8 +64,6 @@ export const getStaticPaths = async () => {
     )
     .map((page: any) => ({ params: { slug: page.slug } }));
 
-  console.log("pagePaths =====>", pagePaths);
-
   return { paths: pagePaths, fallback: "blocking" };
 };
 
