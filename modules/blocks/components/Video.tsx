@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 
 const Video = ({ data }: any) => {
-  console.log("data =====>", data?.thumbnailurl?.mediaItemUrl);
   const videoUrl = data?.video?.mediaItemUrl;
   const fallbackUrl = data?.video?.mediaItemUrl;
   const thumbnailUrl = data?.thumbnailurl?.mediaItemUrl;
@@ -22,7 +21,6 @@ const Video = ({ data }: any) => {
 
   return (
     <section className="contain section relative overflow-hidden">
-      {/* Video Element */}
       <video
         ref={videoRef}
         className="block"
@@ -33,7 +31,6 @@ const Video = ({ data }: any) => {
         Your browser does not support the video tag.
       </video>
 
-      {/* Thumbnail Overlay */}
       {!isPlaying && (
         <div
           className="absolute inset-0 flex items-center justify-center cursor-pointer"
