@@ -1,5 +1,6 @@
 import Blocks from "@common/components/Blocks";
 import Hero from "@common/sections/Hero";
+import ServiceHero from "@common/sections/service-hero";
 
 import WP from "@lib/wp/wp";
 import getService from "@modules/services/lib/getService";
@@ -60,7 +61,7 @@ interface PageProps {
 const Page = ({ page }: PageProps) => {
   return (
     <div key={page?.title}>
-      <Hero
+      <ServiceHero
         title={page?.title}
         subtitle={page?.gqlHeroFields?.underrubrik}
         text={page?.gqlHeroFields?.introduktionstext}
