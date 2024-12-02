@@ -16,6 +16,21 @@ const getService = async (slug: string) => {
             ${SeoFragment}
             gqlBlocks {
               blocks {
+                  ... on GqlService_Gqlblocks_Blocks_Video {
+                  fieldGroupName
+                  thumbnailurl {
+                    mediaItemUrl
+                  }
+                  video {
+                    mediaItemUrl
+                    mediaDetails {
+                      file
+                      height
+                      width
+                    }
+                    altText
+                  }
+                }
                 ... on GqlService_Gqlblocks_Blocks_Blurbs {
                   fieldGroupName
                   blurbText:text

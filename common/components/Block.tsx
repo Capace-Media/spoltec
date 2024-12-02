@@ -34,6 +34,11 @@ const AvailablePositions = dynamic(
   }
 );
 
+const Video = dynamic(() => import("@modules/blocks/components/Video"), {
+  ssr: false,
+  loading: () => <p>Loading...</p>,
+});
+
 import dynamic from "next/dynamic";
 
 interface BlockProps {
@@ -44,7 +49,8 @@ const Block = ({ block }: BlockProps) => {
   switch (block.fieldGroupName) {
     case "Page_Gqlblocks_Blocks_TextBild":
       return <TextImage data={block} />;
-
+    case "GqlService_Gqlblocks_Blocks_Video":
+      return <Video data={block} />;
     case "GqlService_Gqlblocks_Blocks_TextBild":
       return <TextImage data={block} />;
     case "Page_Gqlblocks_Blocks_Tjanster":
