@@ -28,8 +28,6 @@ export async function fetchGraphQL<T>(
 
   const json: GraphQLResponse<T> = await response.json();
 
-  console.log("json =====>", json);
-
   if (json.errors) {
     throw new Error(json.errors.map((error) => error.message).join(", "));
   }

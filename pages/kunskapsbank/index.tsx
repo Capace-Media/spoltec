@@ -64,7 +64,6 @@ const Blog: NextPage = ({ page }: BlogProps) => {
     initialPageParam: null,
   });
 
-  console.log("data =====>", data);
   return (
     <div>
       <Hero
