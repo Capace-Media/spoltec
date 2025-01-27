@@ -14,14 +14,14 @@ const TextImage = ({ data }: TextImageProps) => {
         }`}
       >
         <div className="section-sm contain ">
-          <section id="infoSection" className="flex gap-20">
+          <section id="infoSection" className="flex lg:flex-row gap-20">
             <div className="flex items-center w-full">
               <div>
                 <h2>{data.textBody.rubrik}</h2>
                 <div className="parsed">
-                  {data.textBody.text && parse(data.textBody.text)}
+                  {data?.textBody?.text && parse(data.textBody.text)}
                 </div>
-                {data.textBody.knapp.url && (
+                {data?.textBody?.knapp?.url && (
                   <Link className="mt-10 btn" href={data.textBody.knapp.url}>
                     {data.textBody.knapp.text}
                   </Link>

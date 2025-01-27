@@ -1,8 +1,6 @@
-import WP from "@lib/wp/wp";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
 
 const Seo = ({ seo, uri, img, desc, serviceSeo }) => {
   const router = useRouter();
@@ -53,7 +51,7 @@ const Seo = ({ seo, uri, img, desc, serviceSeo }) => {
     <NextSeo
       title={title || serviceTitle}
       description={opengraphDescription || metaDesc || desc || serviceDesc}
-      canonical={canonical ? canonical : newOpengraphUrl}
+      canonical={newOpengraphUrl}
       noindex={noIndex(metaRobotsNoindex)}
       nofollow={noFollow(metaRobotsNofollow)}
       openGraph={{
