@@ -14,7 +14,10 @@ const TextImage = ({ data }: TextImageProps) => {
         }`}
       >
         <div className="section-sm contain ">
-          <section id="infoSection" className="flex lg:flex-row gap-20">
+          <section
+            id="infoSection"
+            className="flex flex-col lg:flex-row gap-20"
+          >
             <div className="flex items-center w-full">
               <div>
                 <h2>{data.textBody.rubrik}</h2>
