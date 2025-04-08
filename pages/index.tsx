@@ -1,5 +1,4 @@
 import MainHero from "@common/sections/MainHero";
-import LocalLinks from "@modules/blocks/components/LocalLinks.tsx";
 import getPage from "@modules/pages/lib/getPage";
 
 import dynamic from "next/dynamic";
@@ -22,7 +21,6 @@ export default function Home({ page }) {
     <>
       <MainHero />
       <Blocks blocks={page?.gqlBlocks?.blocks} />
-      <LocalLinks />
     </>
   );
 }

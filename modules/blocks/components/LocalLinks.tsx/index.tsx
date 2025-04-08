@@ -1,4 +1,4 @@
-import Link from "next/link";
+/* import Link from "next/link";
 import pages from "../../../../data/local-links.json";
 
 const LocalLinks = () => {
@@ -20,4 +20,4 @@ const LocalLinks = () => {
   );
 };
 
-export default LocalLinks;
+export default LocalLinks;*/
