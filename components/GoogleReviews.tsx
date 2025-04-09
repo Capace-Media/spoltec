@@ -6,6 +6,7 @@ const GoogleReviewsWidget = () => {
   const currentPage = router.asPath;
 
   const widgetPage = [
+    '/',
     '/tjanster',
     '/relining-malmo',
     '/relining-helsingborg',
