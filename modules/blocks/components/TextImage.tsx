@@ -13,8 +13,8 @@ const TextImage = ({ data }: TextImageProps) => {
           data?.installningar?.bakgrund ? "bg-section" : "section"
         }`}
       >
-        <div className="section-sm contain ">
-          <section id="infoSection" className="flex gap-20">
+        <div className="section-sm cotain">
+          <section id="infoSection" className="flex flex-col gap-20">
             <div className="flex items-center w-full">
               <div>
                 <h2>{data.textBody.rubrik}</h2>
@@ -53,7 +53,7 @@ const TextImage = ({ data }: TextImageProps) => {
                     ))}
                 </div>
               ) : (
-                <div className="w-full h-full ">
+                <div className="w-full h-full">
                   {data?.bilder &&
                     data.bilder.map((image: any, index: any) => (
                       <div
