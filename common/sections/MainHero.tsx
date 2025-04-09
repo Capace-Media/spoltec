@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import heroImage from "../../public/images/Spoltec-water01.png";
-import GoogleReviewsWidget from "components/GoogleReviews";
 interface MainHeroProps {}
 
 const MainHero = ({}: MainHeroProps) => {
