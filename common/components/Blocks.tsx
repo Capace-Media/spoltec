@@ -8,6 +8,7 @@ const Blocks = ({ blocks }: BlocksProps) => {
 
   return (
     <>
+    hej
       {blocks?.map((block, i) => (
         <Block key={block.fieldGroupName + i} block={block} />
       ))}

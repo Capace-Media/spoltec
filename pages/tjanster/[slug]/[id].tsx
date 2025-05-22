@@ -12,7 +12,7 @@ export const isCustomPageSlug = (slug: string) => {
 
 export const GET_PAGES = `
 query GET_PAGES {
-    gqlAllService(first: 100, where: {parent: "0"}) {
+    gqlAllService(first: 100) {
     nodes {
       slug
       children {

@@ -206,12 +206,12 @@ module.exports = {
         permanent: true,
       },
       {
-        source: "/avloppsspolning-helsingborg",
+        source: "/avloppsspolning/helsingborg",
         destination: "/avloppsspolning/helsingborg",
         permanent: true,
       },
       {
-        source: "/oljeavskiljare-malmo",
+        source: "/oljeavskiljare/malmo",
         destination: "/oljeavskiljare/malmo",
         permanent: true,
       },
