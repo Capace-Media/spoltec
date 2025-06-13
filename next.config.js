@@ -206,8 +206,8 @@ module.exports = {
         permanent: true,
       },
       {
-        source: "/avloppsspolning-helsingborg",
-        destination: "/avloppsspolning/helsingborg",
+        source: "/avloppsspolning/helsingborg",
+        destination: "/avloppsspolning-helsingborg",
         permanent: true,
       },
       {
