@@ -37,7 +37,7 @@ const Footer = ({}: FooterProps) => {
       <footer className="mb-5 overflow-hidden contain-outer rounded-xl">
         <div className="pb-10 bg-section">
           <div className="contain">
-            <div className="grid md:grid-cols-[2fr,1fr,1fr,1fr] gap-10">
+            <div className="grid md:grid-cols-[2fr_1fr_1fr_1fr] gap-10">
               <div>
                 <strong className="block mb-3">Spoltec Södra AB</strong>
                 <p className="mb-6 pr-16">

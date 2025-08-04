@@ -7,9 +7,9 @@ const MainHero = ({}: MainHeroProps) => {
   return (
     <div className=" contain-outer">
       <div className="overflow-hidden mt-5 rounded-xl pt-[150px] bg-section">
-        <div className="grid md:grid-cols-[1fr,2fr] gap-20 contain ">
+        <div className="grid md:grid-cols-[1fr_2fr] gap-20 contain ">
           <div className="relative flex items-center">
-            <span className="w-[600px] h-[600px] rounded-full absolute -top-1/4 -left-1/2 bg-gradient-to-b from-brand-lightblue to-brand-blue opacity-10" />
+            <span className="w-[600px] h-[600px] rounded-full absolute -top-1/4 -left-1/2 bg-linear-to-b from-brand-lightblue to-brand-blue opacity-10" />
             <div className="relative">
               <h1 className="mb-5">Vi funktionssäkrar ert avloppssystem</h1>
               <p>

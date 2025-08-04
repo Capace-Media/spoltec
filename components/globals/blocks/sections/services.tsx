@@ -158,7 +158,7 @@ const ArticleCard: FC<ArticleCardProps> = ({ article, index }) => {
   return (
     <div
       key={`${article.slug || index}`}
-      className="mb-3 p-7 bg-white rounded-xl shadow"
+      className="mb-3 p-7 bg-white rounded-xl shadow-sm"
     >
       <h3 className="text-xl">{article.slug || "Article Title"}</h3>
       {/* Add more article details as needed */}

@@ -139,7 +139,7 @@ export const Post = ({ data }) => {
   };
   return (
     <Link
-      className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-[100%] text-white p-7 bg-brand-blue text-left rounded-xl"
+      className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-full text-white p-7 bg-brand-blue text-left rounded-xl"
       key={data.id}
       href={`/kunskapsbank/${data?.slug}`}
       aria-label={`Läs mer om ${data?.title}`}

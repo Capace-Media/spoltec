@@ -14,7 +14,7 @@ const buttons = [
 ];
 
 const Header = ({}: HeaderProps) => {
-  const buttonStyles = `px-4 py-2 rounded-sm opacity-90 hover:opacity-100 font-bold`;
+  const buttonStyles = `px-4 py-2 rounded-xs opacity-90 hover:opacity-100 font-bold`;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState(-1);
   const [isMenuScroll, setMenuScroll] = useState(false);
@@ -45,7 +45,7 @@ const Header = ({}: HeaderProps) => {
       >
         <nav
           className={`relative nav-style flex items-center justify-between pt-1 pb-5 contain ${
-            isMenuScroll ? "md:py-2 !py-2" : "md:py-10"
+            isMenuScroll ? "md:py-2 py-2!" : "md:py-10"
           }`}
         >
           <Link
@@ -71,7 +71,7 @@ const Header = ({}: HeaderProps) => {
               if (link.links) {
                 return (
                   <Menu as="div" key={link?.label} className="relative">
-                    <Menu.Button className="flex items-center font-bold outline-none">
+                    <Menu.Button className="flex items-center font-bold outline-hidden">
                       <>{link.label}</>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +84,7 @@ const Header = ({}: HeaderProps) => {
                     </Menu.Button>
                     <Menu.Items
                       as="ul"
-                      className="absolute w-64 p-5 space-y-3 bg-white rounded shadow-xl top-8"
+                      className="absolute w-64 p-5 space-y-3 bg-white rounded-sm shadow-xl top-8"
                     >
                       {link.links.map((sublink) => (
                         <Menu.Item as="li" key={sublink.href}>
@@ -111,7 +111,7 @@ const Header = ({}: HeaderProps) => {
           <div className="flex justify-end w-full nv:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="outline-none"
+              className="outline-hidden"
               aria-label="hamburger-menu"
             >
               <svg
@@ -194,7 +194,7 @@ const MobileSubMenu = ({ link, openIndex, index, setIndex }) => {
     <li className="p-2 rounded-lg" key={link.href}>
       <button
         onClick={() => setIndex(openIndex === index ? -1 : index)}
-        className="w-full outline-none"
+        className="w-full outline-hidden"
       >
         <figure></figure>
         <div className="flex items-center justify-between">
@@ -202,11 +202,11 @@ const MobileSubMenu = ({ link, openIndex, index, setIndex }) => {
         </div>
       </button>
       {openIndex === index && (
-        <ul className="mt-5 space-y-2 rounded ">
+        <ul className="mt-5 space-y-2 rounded-sm ">
           {link.links.map((sublink) => (
             <li key={sublink.href}>
               <Link
-                className="block px-3 py-2 rounded bg-black/5"
+                className="block px-3 py-2 rounded-sm bg-black/5"
                 href={sublink.href}
               >
                 {sublink.label}

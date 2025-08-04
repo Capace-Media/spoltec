@@ -32,7 +32,7 @@ const Employee = ({ data }: EmployeeProps) => {
               return (
                 <div key={emp?.bild?.id}>
                   {emp?.bild?.mediaItemUrl && (
-                    <div className="relative w-[100%] mb-6 lg:h-[500px] md:h-[300px] h-[500px] ">
+                    <div className="relative w-full mb-6 lg:h-[500px] md:h-[300px] h-[500px] ">
                       <Image
                         fill
                         style={{

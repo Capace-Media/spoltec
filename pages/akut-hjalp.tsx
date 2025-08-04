@@ -18,7 +18,7 @@ const Page = ({ page }: PageProps) => {
             </p>
             <a
               href="tel:040474012"
-              className="inline-block px-10 py-4 mt-10 text-3xl font-bold text-white rounded bg-brand-orange"
+              className="inline-block px-10 py-4 mt-10 text-3xl font-bold text-white rounded-sm bg-brand-orange"
             >
               040-47 40 12
             </a>

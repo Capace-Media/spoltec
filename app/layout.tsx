@@ -3,6 +3,10 @@ import Header from "@modules/layout/components/Header";
 import "../styles/global.scss";
 import "../styles/globals.css";
 
+import { Chivo } from "next/font/google";
+
+const chivo = Chivo({ subsets: ["latin"], weight: ["400", "700", "900"] });
+
 export default function RootLayout({
   children,
 }: {
@@ -10,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="sv">
-      <body>
+      <body className={chivo.className}>
         {/* <Header /> */}
         {/* Layout UI */}
         {children}

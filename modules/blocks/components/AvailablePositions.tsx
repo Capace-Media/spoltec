@@ -18,7 +18,7 @@ const AvailablePositions = ({ data }: AvailablePositionsProps) => {
             positions.map((position: any) => {
               return (
                 <Link
-                  className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-[100%] md:w-[48%]  lg:w-[32%] xl:w-[24%] text-white p-7 bg-brand-blue text-left rounded-xl"
+                  className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-full md:w-[48%]  lg:w-[32%] xl:w-[24%] text-white p-7 bg-brand-blue text-left rounded-xl"
                   key={position?.slug}
                   href={`/${position?.slug}`}
                 >

@@ -43,7 +43,7 @@ const Video = ({ data }: any) => {
           }}
           onClick={togglePlay}
         >
-          <button className="bg-black bg-opacity-50 text-white text-2xl font-bold px-4 py-2 rounded">
+          <button className="bg-black bg-opacity-50 text-white text-2xl font-bold px-4 py-2 rounded-sm">
             ▶ Spela
           </button>
         </div>

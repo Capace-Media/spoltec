@@ -70,7 +70,7 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
 
   return (
     <div className=" flex items-center justify-center w-full">
-      <div className=" shadow w-full bg-white p-6 lg:max-w-[399px] rounded-lg">
+      <div className=" shadow-sm w-full bg-white p-6 lg:max-w-[399px] rounded-lg">
         <p className="text-brand-blue font-bold text-[18px]">
           Begär en gratis offert så hör vi av oss inom 24 timmar
         </p>
@@ -100,7 +100,7 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
               id="name"
               value={formData.name}
               onChange={handleChange}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+              className="shadow-xs bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
               placeholder="Ditt namn"
               required
             />
@@ -119,7 +119,7 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
               id="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+              className="shadow-xs bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
               placeholder="Telefon"
               required
             />
@@ -138,7 +138,7 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
               id="email"
               value={formData.email}
               onChange={handleChange}
-              className="shadow-sm bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+              className="shadow-xs bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
               placeholder="E-post"
               required
             />
@@ -156,7 +156,7 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
               id="message"
               value={formData.message}
               onChange={handleChange}
-              className="block p-2.5 w-full text-sm text-brand-blue bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
+              className="block p-2.5 w-full text-sm text-brand-blue bg-gray-50 rounded-lg shadow-xs border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
               placeholder="Skriv ditt meddelande här..."
               rows={4}
             ></textarea>

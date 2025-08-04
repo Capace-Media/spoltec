@@ -4,7 +4,7 @@ import pages from "../../../../data/local-links.json";
 const LocalLinks = () => {
   return (
     <section className="contain-outer">
-      <menu className="flex gap-8 justify-center items-center flex-wrap border-b-[1px] py-10">
+      <menu className="flex gap-8 justify-center items-center flex-wrap border-b py-10">
         {pages?.nodes &&
           pages.nodes.map((page) => {
             return (

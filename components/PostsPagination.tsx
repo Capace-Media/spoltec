@@ -52,7 +52,7 @@ const PostsPagination = () => {
         {posts?.length < 1 &&
           posts.map((post: any) => (
             <Link
-              className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-[100%] text-white p-7 bg-brand-blue text-left rounded-xl"
+              className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-full text-white p-7 bg-brand-blue text-left rounded-xl"
               key={post.node.id}
               href={`/kunskapsbank/${post?.node.slug}`}
             >
