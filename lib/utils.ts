@@ -2,13 +2,15 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { Metadata, ResolvingMetadata } from "next";
 import { Page } from "@lib/types/page";
+import { Service } from "@lib/types/service";
+import { Post } from "@lib/types/post";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 export async function generatePageMetadata(
-  page: Page | null,
+  page: Page | Service | Post | null,
   parent?: ResolvingMetadata,
   fallbackTitle = "Spoltec funktionssäkrar ert avloppssystem",
   fallbackDescription = "Professionell hjälp med avloppsproblem i hela Sverige. Spoltec utför spolning, reparationer och underhåll av avloppssystem för hem och företag."

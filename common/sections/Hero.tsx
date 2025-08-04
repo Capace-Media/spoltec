@@ -1,7 +1,7 @@
 import parse from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
-import Blocks from "../components/Blocks";
+
 interface HeroProps {
   image?: string;
   title: string;
@@ -43,7 +43,6 @@ const Hero = ({ image, title, subtitle, text }: HeroProps) => {
           </div>
         </div>
       </section>
-      {/* <Blocks blocks={} /> */}
     </>
   );
 };

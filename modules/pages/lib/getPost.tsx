@@ -1,5 +1,5 @@
+import { SEO } from "@lib/queries/seo";
 import WP from "@lib/wp/wp";
-import { SeoFragment } from "@modules/seo/lib/get-seo";
 
 const getPost = async (uri: string) => {
   try {
@@ -11,7 +11,7 @@ const getPost = async (uri: string) => {
             slug
             uri
             id
-            ${SeoFragment}
+            ${SEO}
             gqlHeroFields {
               underrubrik
               introduktionstext

@@ -1,12 +1,8 @@
-import { SEO } from "@lib/queries/seo";
-import WP from "@lib/wp/wp";
+import { SEO } from "./seo";
 
-const getPage = async (uri: string) => {
-  try {
-    const response = await WP(
-      `
-      query getPage($uri: ID!) {
-        page(id: $uri, idType: URI) {
+export const POST_QUERY = `
+    query getPost($uri: ID!) {
+      post(id: $uri, idType: URI) {
           title
           slug
           uri
@@ -22,9 +18,9 @@ const getPage = async (uri: string) => {
           }
           gqlBlocks {
             blocks {
-              ... on Page_Gqlblocks_Blocks_Blurbs {
+              ... on Post_Gqlblocks_Blocks_Blurbs {
                 fieldGroupName
-                blurbText:text
+                blurbText: text
                 installningar {
                   bakgrund
                 }
@@ -32,14 +28,13 @@ const getPage = async (uri: string) => {
                   rubrik
                   text
                   underrubrik
-                  
                   bild {
                     mediaItemUrl
                     altText
                   }
                 }
               }
-              ... on Page_Gqlblocks_Blocks_Personal {
+              ... on Post_Gqlblocks_Blocks_Personal {
                 fieldGroupName
                 anstalld {
                   bild {
@@ -54,7 +49,7 @@ const getPage = async (uri: string) => {
                   email
                 }
               }
-              ... on Page_Gqlblocks_Blocks_Lista {
+              ... on Post_Gqlblocks_Blocks_Lista {
                 fieldGroupName
                 text
                 punkter {
@@ -62,12 +57,12 @@ const getPage = async (uri: string) => {
                 }
                 avslut
               }
-              ... on Page_Gqlblocks_Blocks_TextBild {
+              ... on Post_Gqlblocks_Blocks_TextBild {
                 fieldGroupName
                 installningar {
                   bakgrund
                 }
-                textBody:text {
+                textBody: text {
                   rubrik
                   text
                   knapp {
@@ -80,12 +75,12 @@ const getPage = async (uri: string) => {
                   altText
                 }
               }
-              ... on Page_Gqlblocks_Blocks_Tjanster {
+              ... on Post_Gqlblocks_Blocks_Tjanster {
                 fieldGroupName
                 rubrik
                 serviceText: text
               }
-              ... on Page_Gqlblocks_Blocks_Text {
+              ... on Post_Gqlblocks_Blocks_Text {
                 fieldGroupName
                 rubrik
                 text
@@ -93,10 +88,7 @@ const getPage = async (uri: string) => {
                 knapp {
                   text
                   url {
-                    ... on Page {
-                      id
-                      uri
-                    }
+                   
                     ... on GqlService {
                       id
                       slug
@@ -104,28 +96,13 @@ const getPage = async (uri: string) => {
                   }
                 }
               }
-              ... on Page_Gqlblocks_Blocks_LedigaTjanster {
+              ... on Post_Gqlblocks_Blocks_LedigaTjanster {
                 fieldGroupName
                 rubrik
-                jobsText:text
+                jobsText: text
               }
             }
           }
-        }
       }
-    `,
-      { uri }
-    );
-
-    const data = response?.data?.page;
-    if (!data) {
-      throw "Could not fetch data";
     }
-    return data;
-  } catch (error) {
-    console.error("ERROR getPage ==>", error);
-    return false;
-  }
-};
-
-export default getPage;
+  `;
