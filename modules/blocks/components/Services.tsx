@@ -1,38 +1,32 @@
-// Services.tsx
-
+"use client";
 import services from "@data/static-services.json";
 import articles from "data/static-articles.json";
 import categories from "data/static-categories.json";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useParams } from "next/navigation";
 import React from "react";
 
 interface ServicesProps {
-  data: any; // Keeping it as any since the structure is unknown
+  data: any;
 }
 
 const Services: React.FC<ServicesProps> = ({ data }) => {
-  const router = useRouter();
+  const params = useParams();
 
-  // Safely extract 'slug' as a string or undefined
   const slug =
-    typeof router.query.slug === "string" ? router.query.slug : undefined;
+    params && typeof params.slug === "string" ? params.slug : undefined;
 
-  // Ensure 'articles' is treated as an array
   const filterArticles: any[] = slug
     ? articles.filter((article: any) => article.slug === slug)
     : [];
 
-  // Safely access 'artiklar' or default to an empty array
   const relevantArticles: any[] = filterArticles[0]?.gqlArtikel?.artiklar || [];
 
-  // Utility function to limit string length
   const limit = (str: string, max: number): string => {
     return str.length > max ? `${str.substring(0, max)}...` : str;
   };
 
-  // List of cities to filter services
   const cityArray: string[] = [
     "Borås",
     "Göteborg",
@@ -47,14 +41,12 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
     "Växjö",
   ];
 
-  // Find services that match any city in the cityArray
   const matchArray: any[] = services.filter((service: any) =>
     cityArray.some((city) => service.title?.includes(city))
   );
 
   let res: any[] = [];
 
-  // Determine what to display based on the slug
   if (!slug) {
     res = services.filter((service: any) => !matchArray.includes(service));
   } else if (slug.includes("tjanster")) {
@@ -68,13 +60,11 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
   return (
     <div className="text-center section contain">
       <div className="max-w-[700px] mx-auto">
-        <h2>{data?.rubrik || "Rubrik"}</h2> {/* Added default text */}
-        <p>{data?.servicesText || "Services text"}</p>{" "}
-        {/* Added default text */}
+        <h2>{data?.rubrik || "Rubrik"}</h2>
+        <p>{data?.servicesText || "Services text"}</p>
       </div>
       <div className="grid justify-center grid-cols-1 gap-5 mt-10 lg:grid-cols-3 md:grid-cols-2">
         {res.map((service, index) => {
-          // Safely extract properties with fallback values
           const serviceUri =
             service?.uri?.replace("/services/", "") ||
             service?.slug ||
@@ -95,7 +85,7 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
           return (
             <Link
               className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-full text-white p-7 bg-brand-blue text-left rounded-xl"
-              key={`${service.slug || index}`} // Ensure unique key
+              key={`${service.slug || index}`}
               href={`/tjanster/${serviceUri}`}
             >
               <Image

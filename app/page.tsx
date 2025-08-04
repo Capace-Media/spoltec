@@ -2,22 +2,10 @@ import MainHero from "@common/sections/MainHero";
 import LocalLinks from "@modules/blocks/components/LocalLinks.tsx";
 import getPage from "@modules/pages/lib/getPage";
 
-import dynamic from "next/dynamic";
-const Blocks = dynamic(() => import("@common/components/Blocks"), {
-  loading: () => <p>Loading...</p>,
-});
+import Blocks from "@common/components/Blocks";
 
-export const getStaticProps = async (context) => {
+export default async function Home() {
   const page = await getPage("/");
-
-  return {
-    props: {
-      page,
-    },
-  };
-};
-
-export default function Home({ page }) {
   return (
     <>
       <MainHero />
