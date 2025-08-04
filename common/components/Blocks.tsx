@@ -1,11 +1,7 @@
-import Block from './Block';
+import { Block as BlockType } from "@lib/types/page";
+import Block from "./Block";
 
-interface BlocksProps {
-  blocks: any[];
-}
-
-const Blocks = ({ blocks }: BlocksProps) => {
-
+const Blocks = ({ blocks }: { blocks: BlockType[] }) => {
   return (
     <>
       {blocks?.map((block, i) => (

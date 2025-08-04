@@ -20,6 +20,9 @@ export async function fetchGraphQL<T>(
       "Content-Type": "application/json",
       Authorization: `Basic ${token}`,
     },
+    next: {
+      revalidate: 86400, // 24 hours - this handles caching automatically
+    },
     body: JSON.stringify({
       query,
       variables,

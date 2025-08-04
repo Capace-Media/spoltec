@@ -1,45 +1,12 @@
-const List = dynamic(() => import("@modules/blocks/components/List"), {
-  ssr: false,
-  loading: () => <p>Loading...</p>,
-});
-const Employee = dynamic(() => import("@modules/blocks/components/Employee"), {
-  ssr: false,
-  loading: () => <p>Loading...</p>,
-});
-const Blurbs = dynamic(() => import("@modules/blocks/components/Blurbs"), {
-  ssr: false,
-  loading: () => <p>Loading...</p>,
-});
-
-const Text = dynamic(() => import("@modules/blocks/components/Text"), {
-  ssr: false,
-  loading: () => <p>Loading...</p>,
-});
-const Services = dynamic(() => import("@modules/blocks/components/Services"), {
-  ssr: false,
-  loading: () => <p>Loading...</p>,
-});
-const TextImage = dynamic(
-  () => import("@modules/blocks/components/TextImage"),
-  {
-    ssr: false,
-    loading: () => <p>Loading...</p>,
-  }
-);
-const AvailablePositions = dynamic(
-  () => import("@modules/blocks/components/AvailablePositions"),
-  {
-    ssr: false,
-    loading: () => <p>Loading...</p>,
-  }
-);
-
-const Video = dynamic(() => import("@modules/blocks/components/Video"), {
-  ssr: false,
-  loading: () => <p>Loading...</p>,
-});
-
-import dynamic from "next/dynamic";
+import List from "@modules/blocks/components/List";
+import Employee from "@modules/blocks/components/Employee";
+import Blurbs from "@modules/blocks/components/Blurbs";
+import Text from "@modules/blocks/components/Text";
+import Services from "@modules/blocks/components/Services";
+import TextImage from "@modules/blocks/components/TextImage";
+import AvailablePositions from "@modules/blocks/components/AvailablePositions";
+import Video from "@modules/blocks/components/Video";
+import { TextBildBlock, TjansterBlock } from "@lib/types/page";
 
 interface BlockProps {
   block: any;
@@ -48,13 +15,13 @@ interface BlockProps {
 const Block = ({ block }: BlockProps) => {
   switch (block.fieldGroupName) {
     case "Page_Gqlblocks_Blocks_TextBild":
-      return <TextImage data={block} />;
+      return <TextImage data={block as TextBildBlock} />;
     case "GqlService_Gqlblocks_Blocks_Video":
       return <Video data={block} />;
     case "GqlService_Gqlblocks_Blocks_TextBild":
-      return <TextImage data={block} />;
+      return <TextImage data={block as TextBildBlock} />;
     case "Page_Gqlblocks_Blocks_Tjanster":
-      return <Services data={block} />;
+      return <Services data={block as TjansterBlock} />;
     case "Page_Gqlblocks_Blocks_Text":
       return <Text data={block} />;
     case "Page_Gqlblocks_Blocks_LedigaTjanster":

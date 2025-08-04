@@ -1,7 +1,6 @@
 import { handleSanitize } from "@lib/utils/miscellaneous";
-import Seo from "@modules/seo";
+
 import Head from "next/head";
-import Script from "next/script";
 import { ReactChild } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -26,13 +25,7 @@ const Layout = ({
   return (
     <>
       <Header />
-      <Seo
-        desc={description}
-        img={seoPage?.gqlHeroFields?.bild?.mediaItemUrl}
-        seo={seoPage?.seo}
-        uri={seoPage?.uri ? `${seoPage?.uri}` : `/${seoPage?.slug}`}
-        serviceSeo={serviceSeo}
-      />
+
       <Head>
         <meta
           name="google-site-verification"

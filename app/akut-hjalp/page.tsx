@@ -1,14 +1,26 @@
-import getPage from "@modules/pages/lib/getPage";
-import dynamic from "next/dynamic";
-const Blocks = dynamic(() => import("@common/components/Blocks"));
+import Blocks from "@common/components/Blocks";
+import { getPage } from "@lib/data/page";
+import { generatePageMetadata } from "@lib/utils";
+import { Metadata, ResolvingMetadata } from "next";
 
-interface PageProps {
-  page: any;
+export async function generateMetadata(
+  {},
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const page = await getPage("/akut-hjalp");
+  return generatePageMetadata(
+    page,
+    parent,
+    "Akut hjälp - Spoltec",
+    "Hjälplinje för dig som är i behov av akut hjälp med avloppsproblem. Ring 040-47 40 12 för omedelbar hjälp."
+  );
 }
 
-const Page = ({ page }: PageProps) => {
+export default async function AkutHjalpPage() {
+  const page = await getPage("/akut-hjalp");
+
   return (
-    <div key={`akut-hjalp`}>
+    <div key="akut-hjalp">
       <div className="contain-outer">
         <div className="bg-section">
           <div className="mt-24 text-center contain">
@@ -29,19 +41,8 @@ const Page = ({ page }: PageProps) => {
       <div id="content" className="w-full h-10 md:h-0"></div>
 
       <div>
-        <Blocks blocks={page?.gqlBlocks?.blocks} />
+        <Blocks blocks={page?.gqlBlocks?.blocks || []} />
       </div>
     </div>
   );
-};
-
-export const getStaticProps = async (context) => {
-  const page = await getPage("/akut-hjalp");
-  return {
-    props: {
-      page,
-    },
-  };
-};
-
-export default Page;
+}
