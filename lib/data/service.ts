@@ -6,6 +6,6 @@ export const getService = async (slug: string) => {
   const response = await fetchGraphQL<GetServiceQueryData>(SERVICE_QUERY, {
     slug,
   });
-  console.log("response", response);
+
   return response.gqlService;
 };
