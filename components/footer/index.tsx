@@ -1,7 +1,7 @@
 "use client";
 import footerLinks from "@data/footerlinks.json";
-import services from "@data/static-services.json";
-import CallToAction from "@modules/blocks/components/Cta";
+import { CallToAction } from "components/flexible-content/sections";
+
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

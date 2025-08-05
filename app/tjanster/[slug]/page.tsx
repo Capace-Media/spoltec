@@ -1,5 +1,4 @@
-import Blocks from "@common/components/Blocks";
-import ServiceHero from "@common/sections/service-hero";
+import ServiceHero from "components/header/service-hero";
 import { notFound } from "next/navigation";
 import { Metadata, ResolvingMetadata } from "next";
 
@@ -7,6 +6,7 @@ import WP from "@lib/wp/wp";
 
 import { generatePageMetadata } from "@lib/utils";
 import { getService } from "@lib/data/service";
+import Blocks from "components/flexible-content/block";
 
 export const dynamicParams = true;
 

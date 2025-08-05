@@ -1,4 +1,5 @@
 "use client";
+import { submitContactForm } from "actions/contact";
 import { useState } from "react";
 
 interface ServiceContactFormProps {
@@ -6,63 +7,39 @@ interface ServiceContactFormProps {
 }
 
 const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    message: "",
-    honeypot: "", // Honeypot field
-  });
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Handle input changes
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { id, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [id]: value,
-    }));
-  };
-
-  // Handle form submission
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  // Handle form submission with server action
+  const handleSubmit = async (formData: FormData) => {
     setStatus("loading");
     setErrorMessage(null);
 
-    // If honeypot field is filled, it's likely a bot
-    if (formData.honeypot !== "") {
+    // Check honeypot field
+    const honeypot = formData.get("honeypot") as string;
+    if (honeypot !== "") {
       setStatus("error");
       setErrorMessage("Submission failed. Possible bot detected.");
       return;
     }
 
+    // Add subject to form data
+    formData.append("subject", subject);
+
     try {
-      const response = await fetch("/api/service/contact/route", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...formData, subject }),
-      });
+      const result = await submitContactForm(formData);
 
-      if (!response.ok) {
-        throw new Error("Failed to submit form");
+      if (result.success) {
+        setStatus("success");
+        // Reset form
+        const form = document.getElementById("contact-form") as HTMLFormElement;
+        form?.reset();
+      } else {
+        setStatus("error");
+        setErrorMessage(result.error || "Something went wrong");
       }
-
-      setStatus("success");
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        message: "",
-        honeypot: "", // Reset honeypot field
-      });
     } catch (error: any) {
       setStatus("error");
       setErrorMessage(error.message || "Something went wrong");
@@ -75,32 +52,24 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
         <p className="text-brand-blue font-bold text-[18px]">
           Begär en gratis offert så hör vi av oss inom 24 timmar
         </p>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form id="contact-form" action={handleSubmit} className="space-y-4">
           {/* Honeypot Field (Hidden) */}
           <div style={{ display: "none" }}>
             <label htmlFor="honeypot">Do not fill this field</label>
             <input
               type="text"
+              name="honeypot"
               id="honeypot"
-              value={formData.honeypot}
-              onChange={handleChange}
               className="honeypot"
             />
           </div>
 
           {/* Name Field */}
           <div>
-            {/* <label
-              htmlFor="name"
-              className="block mb-2 text-sm font-medium text-brand-blue"
-            >
-              Namn
-            </label> */}
             <input
               type="text"
+              name="name"
               id="name"
-              value={formData.name}
-              onChange={handleChange}
               className="shadow-xs bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
               placeholder="Ditt namn"
               required
@@ -109,17 +78,10 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
 
           {/* Phone Field */}
           <div>
-            {/* <label
-              htmlFor="phone"
-              className="block mb-2 text-sm font-medium text-brand-blue"
-            >
-              Telefon
-            </label> */}
             <input
               type="tel"
+              name="phone"
               id="phone"
-              value={formData.phone}
-              onChange={handleChange}
               className="shadow-xs bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
               placeholder="Telefon"
               required
@@ -128,17 +90,10 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
 
           {/* Email Field */}
           <div>
-            {/* <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium text-brand-blue"
-            >
-              E-post
-            </label> */}
             <input
               type="email"
+              name="email"
               id="email"
-              value={formData.email}
-              onChange={handleChange}
               className="shadow-xs bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
               placeholder="E-post"
               required
@@ -147,16 +102,9 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
 
           {/* Message Field */}
           <div className="sm:col-span-2">
-            {/* <label
-              htmlFor="message"
-              className="block mb-2 text-sm font-medium text-brand-blue"
-            >
-              Meddelande
-            </label> */}
             <textarea
+              name="message"
               id="message"
-              value={formData.message}
-              onChange={handleChange}
               className="block p-2.5 w-full text-sm text-brand-blue bg-gray-50 rounded-lg shadow-xs border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
               placeholder="Skriv ditt meddelande här..."
               rows={4}

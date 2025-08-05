@@ -1,5 +1,5 @@
-import Blocks from "@common/components/Blocks";
-import Hero from "@common/sections/Hero";
+import Hero from "components/header/hero";
+import Blocks from "components/flexible-content/block";
 import { getPage } from "@lib/data/page";
 import { notFound } from "next/navigation";
 

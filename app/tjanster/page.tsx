@@ -1,7 +1,7 @@
-import Blocks from "@common/components/Blocks";
-import Hero from "@common/sections/Hero";
 import { getPage } from "@lib/data/page";
 import { generatePageMetadata } from "@lib/utils";
+import Hero from "components/header/hero";
+import Blocks from "components/flexible-content/block";
 import { Metadata, ResolvingMetadata } from "next";
 
 export async function generateMetadata(

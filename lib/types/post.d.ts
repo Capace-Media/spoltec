@@ -1,11 +1,23 @@
 import { Seo } from "./page";
 
+export interface PostImage {
+  mediaItemUrl: string;
+  altText?: string;
+}
+
+export interface PostHeroFields {
+  underrubrik?: string;
+  introduktionstext?: string;
+  bild?: PostImage;
+}
+
 export interface Post {
   title: string;
   slug: string;
   uri: string;
   id: string;
   seo: Seo;
+  gqlHeroFields?: PostHeroFields;
   gqlBlocks?: {
     blocks: PostBlock[];
   };

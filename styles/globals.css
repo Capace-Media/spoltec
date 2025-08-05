@@ -127,31 +127,7 @@
   line-height: 1rem;
 }
 
-@layer utilities {
-  @font-face {
-    font-family: "Chivo";
-    src: url("../public/assets/fonts/Chivo/Chivo-Regular.ttf");
-    font-weight: 400;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "Chivo";
-    src: url("../public/assets/fonts/Chivo/Chivo-Bold.ttf");
-    font-weight: 700;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "Chivo";
-    src: url("../public/assets/fonts/Chivo/Chivo-Black.ttf");
-    font-weight: 900;
-    font-display: swap;
-  }
-}
-
 @layer base {
-  body {
-    font-family: "Chivo", sans-serif;
-  }
   div,
   figure {
     @apply relative;

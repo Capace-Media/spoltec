@@ -1,6 +1,6 @@
 import handleParse from "@lib/utils/parse";
 
-import { Arrow } from "../../../components/icons";
+import { Arrow } from "../../icons";
 
 interface ListProps {
   data: any;

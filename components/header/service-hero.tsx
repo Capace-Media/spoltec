@@ -1,7 +1,7 @@
 import parse from "html-react-parser";
 import Image from "next/image";
 
-import ServiceContactForm from "./service-contact-form";
+import ServiceContactForm from "../service-contact-form";
 interface ServiceHeroProps {
   image?: string;
   title: string;

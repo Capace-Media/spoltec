@@ -37,17 +37,7 @@ module.exports = {
     GRAPHQL_PASS: process.env.GRAPHQL_PASS,
     GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
   },
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      Object.assign(config.resolve.alias, {
-        react: "preact/compat",
-        "react-dom/test-utils": "preact/test-utils",
-        "react-dom": "preact/compat",
-      });
-    }
 
-    return config;
-  },
   async redirects() {
     return [
       {

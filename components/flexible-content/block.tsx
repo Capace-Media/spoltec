@@ -1,12 +1,20 @@
-import List from "@modules/blocks/components/List";
-import Employee from "@modules/blocks/components/Employee";
-import Blurbs from "@modules/blocks/components/Blurbs";
-import Text from "@modules/blocks/components/Text";
-import Services from "@modules/blocks/components/Services";
-import TextImage from "@modules/blocks/components/TextImage";
-import AvailablePositions from "@modules/blocks/components/AvailablePositions";
-import Video from "@modules/blocks/components/Video";
 import { TextBildBlock, TjansterBlock } from "@lib/types/page";
+import {
+  TextImage,
+  Video,
+  Services,
+  Text,
+  Blurbs,
+  List,
+  Employee,
+  AvailablePositions,
+  Contact,
+  CallToAction,
+} from "./sections";
+
+import { Block as BlockType } from "@lib/types/page";
+import { ServiceBlock } from "@lib/types/service";
+import { PostBlock } from "@lib/types/post";
 
 interface BlockProps {
   block: any;
@@ -57,4 +65,18 @@ const Block = ({ block }: BlockProps) => {
   }
 };
 
-export default Block;
+const Blocks = ({
+  blocks,
+}: {
+  blocks: BlockType[] | ServiceBlock[] | PostBlock[];
+}) => {
+  return (
+    <>
+      {blocks?.map((block, i) => (
+        <Block key={block.fieldGroupName + i} block={block} />
+      ))}
+    </>
+  );
+};
+
+export default Blocks;

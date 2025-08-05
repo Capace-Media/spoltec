@@ -1,6 +1,6 @@
-import Blocks from "@common/components/Blocks";
 import { getPage } from "@lib/data/page";
 import { generatePageMetadata } from "@lib/utils";
+import Blocks from "components/flexible-content/block";
 import { Metadata, ResolvingMetadata } from "next";
 
 export async function generateMetadata(
