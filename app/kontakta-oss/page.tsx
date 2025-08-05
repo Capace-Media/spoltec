@@ -2,6 +2,21 @@ import { getPage } from "@lib/data/page";
 
 import Blocks from "components/flexible-content/block";
 import { Contact } from "components/flexible-content/sections";
+import { generatePageMetadata } from "@lib/utils";
+import { Metadata, ResolvingMetadata } from "next";
+
+export async function generateMetadata(
+  {},
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const page = await getPage("/kontakta-oss");
+  return generatePageMetadata(
+    page,
+    parent,
+    "Kontakta oss - Spoltec",
+    "Kontakta oss för att få hjälp med dina avloppsproblem. Ring oss på 040-47 40 12."
+  );
+}
 
 const KontaktaOssPage = async () => {
   const page = await getPage("/kontakta-oss");

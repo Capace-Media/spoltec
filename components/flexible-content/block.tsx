@@ -72,9 +72,10 @@ const Blocks = ({
 }) => {
   return (
     <>
-      {blocks?.map((block, i) => (
-        <Block key={block.fieldGroupName + i} block={block} />
-      ))}
+      {blocks?.map((block, i) => {
+        console.log(block);
+        return <Block key={block.fieldGroupName + i} block={block} />;
+      })}
     </>
   );
 };

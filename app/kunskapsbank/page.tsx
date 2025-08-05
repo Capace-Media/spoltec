@@ -2,6 +2,21 @@ import Hero from "components/header/hero";
 import Blocks from "components/flexible-content/block";
 import { getPage } from "@lib/data/page";
 import { notFound } from "next/navigation";
+import { generatePageMetadata } from "@lib/utils";
+import { Metadata, ResolvingMetadata } from "next";
+
+export async function generateMetadata(
+  {},
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const page = await getPage("/kunskapsbank");
+  return generatePageMetadata(
+    page,
+    parent,
+    "Kunskapsbank - Spoltec",
+    "Kunskapsbank"
+  );
+}
 
 export default async function KunskapsBank() {
   const page = await getPage("kunskapsbank");

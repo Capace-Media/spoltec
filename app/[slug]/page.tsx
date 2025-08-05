@@ -5,7 +5,8 @@ import { notFound } from "next/navigation";
 import WP from "@lib/wp/wp";
 import { getPage } from "@lib/data/page";
 import { GET_PAGES_QUERY } from "@lib/queries/page";
-import { isBlacklistedPageSlug } from "@lib/utils";
+import { generatePageMetadata, isBlacklistedPageSlug } from "@lib/utils";
+import { Metadata, ResolvingMetadata } from "next";
 
 export const dynamicParams = true;
 
@@ -46,6 +47,17 @@ export async function generateStaticParams() {
     .map((page: any) => ({ slug: page.slug }));
 
   return pagePaths;
+}
+
+export async function generateMetadata(
+  props: { params: Promise<{ slug: string }> },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const params = await props.params;
+
+  const page = await getPage(params.slug);
+
+  return generatePageMetadata(page, parent);
 }
 
 interface PageProps {
