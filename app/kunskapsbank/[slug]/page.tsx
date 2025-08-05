@@ -29,20 +29,19 @@ export async function generateStaticParams() {
   return postPaths;
 }
 
-export async function generateMetadata(
-  { params }: { params: { slug: string } },
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   const post = await getPost(params.slug);
 
   return generatePageMetadata(post, parent);
 }
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-export default async function ArticlePage({ params }: PageProps) {
+export default async function ArticlePage(props: PageProps) {
+  const params = await props.params;
   const post = await getPost(params.slug);
 
   if (!post) {

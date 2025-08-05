@@ -49,10 +49,11 @@ export async function generateStaticParams() {
 }
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page(props: PageProps) {
+  const params = await props.params;
   const page = await getPage(params.slug);
 
   if (!page) {

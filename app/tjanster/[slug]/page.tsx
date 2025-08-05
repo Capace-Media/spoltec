@@ -33,10 +33,8 @@ export async function generateStaticParams() {
   return servicePaths;
 }
 
-export async function generateMetadata(
-  { params }: { params: { slug: string } },
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   const uri = `/services/${params.slug}`;
   const page = await getService(uri);
 
@@ -44,10 +42,11 @@ export async function generateMetadata(
 }
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-export default async function ServicePage({ params }: PageProps) {
+export default async function ServicePage(props: PageProps) {
+  const params = await props.params;
   const uri = `/services/${params.slug}`;
   const page = await getService(uri);
 

@@ -1,4 +1,6 @@
-module.exports = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
@@ -30,7 +32,6 @@ module.exports = {
     // formats: ['image/jpeg', 'image/svg+xml']
     dangerouslyAllowSVG: true,
   },
-  swcMinify: true,
   reactStrictMode: true,
   env: {
     GRAPHQL_USER: process.env.GRAPHQL_USER,
@@ -387,7 +388,7 @@ module.exports = {
         permanent: true,
       },
       {
-        source: "//relining/helsingborg",
+        source: "/relining/helsingborg",
         destination: "/relining-helsingborg",
         permanent: true,
       },
@@ -443,3 +444,5 @@ module.exports = {
     ];
   },
 };
+
+export default nextConfig;
