@@ -16,6 +16,7 @@ import { cn } from "@lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { useScrollBehavior } from "hooks/useScrollBehavior";
+import { NavSheet } from "./nav-sheet";
 
 export default function Nav() {
   const { isScrolled, isVisible } = useScrollBehavior({
@@ -24,12 +25,12 @@ export default function Nav() {
   });
 
   return (
-    <header className="relative w-full">
+    <header className="relative ">
       <nav
         className={cn(
-          "md:py-10 flex justify-between py-2 contain fixed -translate-x-1/2 top-0 left-1/2 w-full z-50 transition-all duration-300 ease-in-out",
+          "flex justify-between py-10 fixed top-0 left-1/2 -translate-x-1/2 w-full px-8 md:px-14 max-w-360  z-50 transition-all duration-300 ease-in-out",
           // Dynamic styles based on scroll state
-          isScrolled && "bg-white/95 backdrop-blur-md shadow-lg py-1 md:py-4",
+          isScrolled && "bg-white/95 px-8 lg:px-24   py-1 md:py-4 ",
           !isVisible && "-translate-y-full",
           isVisible && "translate-y-0"
         )}
@@ -43,7 +44,7 @@ export default function Nav() {
             priority
             className={cn(
               "w-auto transition-all duration-300 ease-in-out",
-              isScrolled ? "h-6 md:h-8" : "h-8 md:h-12"
+              isScrolled ? "h-12" : "h-12 lg:h-16"
             )}
           />
         </Link>
@@ -95,6 +96,10 @@ export default function Nav() {
               Akut hjälp
             </Link>
           </div>
+        </div>
+
+        <div className="lg:hidden flex items-center gap-4">
+          <NavSheet />
         </div>
       </nav>
     </header>
