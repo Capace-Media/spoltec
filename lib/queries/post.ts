@@ -106,3 +106,29 @@ export const POST_QUERY = `
       }
     }
   `;
+export const POSTS_QUERY = `
+  query POSTS_QUERY($after: String, $first: Int) {
+    posts(first: $first, after: $after) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        node {
+          title
+          slug
+          uri
+          id
+          gqlHeroFields {
+            underrubrik
+            introduktionstext
+            bild {
+              mediaItemUrl
+              altText
+            }
+          }
+        }
+      }
+    }
+  }
+`;

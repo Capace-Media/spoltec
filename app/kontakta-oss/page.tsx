@@ -23,7 +23,7 @@ const KontaktaOssPage = async () => {
 
   return (
     <div key={`kontakta-oss`}>
-      <div className="contain-outer">
+      <div className="contain-outer mt-5">
         <div className="bg-section">
           <div className="mt-24 text-center contain">
             <h1>Kontakta oss</h1>

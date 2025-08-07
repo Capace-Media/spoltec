@@ -12,7 +12,7 @@ interface HeroProps {
 const Hero = ({ image, title, subtitle, text }: HeroProps) => {
   return (
     <>
-      <section className="relative pt-40 contain-outer">
+      <section className="relative pt-[138px] contain-outer">
         <div className="overflow-hidden bg-black bg-section rounded-xl">
           {image && (
             <Image
