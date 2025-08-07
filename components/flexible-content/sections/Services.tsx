@@ -58,7 +58,7 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
   }
 
   return (
-    <div className="text-center section contain">
+    <section className="text-center section contain">
       <div className="max-w-[700px] mx-auto">
         <h2>{data?.rubrik || "Rubrik"}</h2>
         <p>{data?.servicesText || "Services text"}</p>
@@ -116,7 +116,7 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 };
 

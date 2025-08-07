@@ -21,7 +21,7 @@ export default async function AkutHjalpPage() {
 
   return (
     <div key="akut-hjalp">
-      <div className="contain-outer">
+      <div className="contain-outer mt-5">
         <div className="bg-section">
           <div className="mt-24 text-center contain">
             <h1>Akut hjälp</h1>

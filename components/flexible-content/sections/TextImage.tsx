@@ -7,7 +7,7 @@ interface TextImageProps {
 
 const TextImage = ({ data }: TextImageProps) => {
   return (
-    <div className="contain-outer ">
+    <section className="contain-outer ">
       <div
         className={`text-image ${
           data?.installningar?.bakgrund ? "bg-section" : "section"
@@ -83,7 +83,7 @@ const TextImage = ({ data }: TextImageProps) => {
           </section>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

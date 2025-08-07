@@ -30,8 +30,9 @@ const Blurbs = ({ data }: BlurbsProps) => {
                   ? "md:grid-cols-3"
                   : "md:grid-cols-3"
               }`}
+              role="list"
             >
-              {data.blurbs.map((blurb: any) => (
+              {data.blurbs.map((blurb: any, index: number) => (
                 <div
                   key={blurb?.rubrik || blurb?.underrubrik || blurb?.text}
                   className={`${
@@ -39,22 +40,29 @@ const Blurbs = ({ data }: BlurbsProps) => {
                       ? "flex flex-col justify-center items-center"
                       : ""
                   }`}
+                  role="listitem"
                 >
                   {blurb.bild && (
-                    <figure className="block w-10 h-10 mb-5 md:w-14 md:h-14">
+                    <figure
+                      className="block w-10 h-10 mb-5 md:w-14 md:h-14 relative"
+                      role="img"
+                      aria-labelledby={`blurb-${index}-title`}
+                    >
                       <Image
                         src={blurb?.bild?.mediaItemUrl}
                         alt={
-                          blurb?.bild?.altText
-                            ? blurb?.bild?.altText
-                            : data?.rubrik
-                            ? data?.rubrik
-                            : blurb?.text
+                          blurb?.bild?.altText ||
+                          blurb?.rubrik ||
+                          data?.rubrik ||
+                          "Service icon"
                         }
                         fill
                         style={{
                           objectFit: "contain",
                         }}
+                        sizes="(max-width: 768px) 40px, 56px"
+                        loading={index < 3 ? "eager" : "lazy"}
+                        decoding="async"
                       />
                     </figure>
                   )}

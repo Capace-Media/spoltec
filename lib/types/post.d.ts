@@ -121,3 +121,15 @@ export interface PostLedigaTjansterBlock {
   rubrik?: string;
   jobsText?: string;
 }
+
+export interface GetPostsQueryData {
+  posts: {
+    pageInfo: {
+      hasNextPage: boolean;
+      endCursor: string;
+    };
+    edges: {
+      node: Omit<Post, "seo" | "gqlBlocks">;
+    }[];
+  } | null;
+}
