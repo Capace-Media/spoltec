@@ -11,7 +11,7 @@ const Footer = ({}: FooterProps) => {
   const pathname = usePathname();
 
   return (
-    <>
+    <footer>
       {pathname === "/serviceavtal" ||
       pathname === "/karriar" ||
       pathname === "/kontakta-oss" ? null : (
@@ -34,7 +34,7 @@ const Footer = ({}: FooterProps) => {
           </a>
         </div>
       </div>
-      <footer className="mb-5 overflow-hidden contain-outer rounded-xl">
+      <div className="mb-5 overflow-hidden contain-outer rounded-xl">
         <div className="pb-10 bg-section">
           <div className="contain">
             <div className="grid md:grid-cols-[2fr_1fr_1fr_1fr] gap-10">
@@ -146,8 +146,8 @@ const Footer = ({}: FooterProps) => {
             </div>
           </div>
         </div>
-      </footer>
-    </>
+      </div>
+    </footer>
   );
 };
 

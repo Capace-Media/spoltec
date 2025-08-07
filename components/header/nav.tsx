@@ -60,22 +60,32 @@ export default function Nav() {
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
                         <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                          {link.links.map((child) => (
-                            <li key={child.label} className="row-span-3">
-                              <NavMenuLink href={child.href}>
-                                {child.label}
-                              </NavMenuLink>
-                            </li>
-                          ))}
+                          {link.links.map((child) => {
+                            return (
+                              <li key={child.label} className="row-span-3">
+                                <NavigationMenuLink
+                                  className="text-primary font-bold"
+                                  asChild
+                                >
+                                  <Link href={child.href}>{child.label}</Link>
+                                </NavigationMenuLink>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </NavigationMenuContent>
                     </NavigationMenuItem>
                   );
                 }
                 return (
-                  <NavMenuLink key={link.label} href={link.href}>
-                    {link.label}
-                  </NavMenuLink>
+                  <NavigationMenuItem key={link.label}>
+                    <NavigationMenuLink
+                      className="text-primary font-bold"
+                      asChild
+                    >
+                      <Link href={link.href}>{link.label}</Link>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
                 );
               })}
             </NavigationMenuList>
@@ -103,21 +113,5 @@ export default function Nav() {
         </div>
       </nav>
     </header>
-  );
-}
-
-export function NavMenuLink({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <NavigationMenuItem>
-      <NavigationMenuLink className="text-primary font-bold" asChild>
-        <Link href={href}>{children}</Link>
-      </NavigationMenuLink>
-    </NavigationMenuItem>
   );
 }

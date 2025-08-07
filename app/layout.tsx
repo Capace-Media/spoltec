@@ -21,10 +21,11 @@ export default function RootLayout({
       />
       <body className={chivo.className}>
         <Nav />
-        {/* Layout UI */}
-        <Providers>{children}</Providers>
 
-        {/* <Footer /> */}
+        <Providers>
+          <main>{children}</main>
+        </Providers>
+
         <Footer />
       </body>
     </html>
