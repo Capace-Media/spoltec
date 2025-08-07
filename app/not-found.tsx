@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Metadata } from "next";
+import { cn } from "@lib/utils";
+import { buttonVariants } from "components/ui/button";
 
 export const metadata: Metadata = {
   title: "404 - Sidan hittades inte | Spoltec",
@@ -103,14 +105,18 @@ export default function NotFound() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 href="/"
-                className="btn bg-brand-orange"
+                className={cn(
+                  buttonVariants({ variant: "secondary", size: "lg" })
+                )}
                 title="Gå till Spoltecs startsida"
               >
                 Gå till startsidan
               </Link>
               <Link
                 href="/kontakta-oss"
-                className="btn bg-brand-blue"
+                className={cn(
+                  buttonVariants({ variant: "default", size: "lg" })
+                )}
                 title="Kontakta Spoltec för hjälp"
               >
                 Kontakta oss

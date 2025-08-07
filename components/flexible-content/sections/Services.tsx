@@ -60,8 +60,8 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
   return (
     <section className="text-center section contain">
       <div className="max-w-[700px] mx-auto">
-        <h2>{data?.rubrik || "Rubrik"}</h2>
-        <p>{data?.servicesText || "Services text"}</p>
+        {data?.rubrik && <h2>{data?.rubrik}</h2>}
+        {data?.servicesText && <p>{data?.servicesText}</p>}
       </div>
       <div className="grid justify-center grid-cols-1 gap-5 mt-10 lg:grid-cols-3 md:grid-cols-2">
         {res.map((service, index) => {
@@ -87,6 +87,9 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
               className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-full text-white p-7 bg-brand-blue text-left rounded-xl"
               key={`${service.slug || index}`}
               href={`/tjanster/${serviceUri}`}
+              itemScope
+              itemType="https://schema.org/Service"
+              aria-label={`Läs mer om ${service?.title}`}
             >
               <Image
                 src={imageUrl}
@@ -96,13 +99,17 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
                 alt={service?.title || "Service Image"}
               />
               <div>
-                <h3 className="text-xl text-white md:text-2xl">
+                <h3 className="text-xl text-white md:text-2xl" itemProp="name">
                   {service?.title || "Service Title"}
                 </h3>
-                <p className="mt-3 text-sm">{limit(introText, 140)}</p>
+                <p className="mt-3 text-sm" itemProp="description">
+                  {limit(introText, 140)}
+                </p>
               </div>
               <div className="flex items-center justify-end space-x-3">
-                <p>Läs mer</p>
+                <p>
+                  Läs mer <span className="sr-only"> om {service?.title}</span>
+                </p>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"

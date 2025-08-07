@@ -1,3 +1,5 @@
+import { cn } from "@lib/utils";
+import { buttonVariants } from "components/ui/button";
 import parse from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,11 +23,16 @@ const TextImage = ({ data }: TextImageProps) => {
             <div className="flex items-center w-full">
               <div>
                 <h2>{data.textBody.rubrik}</h2>
-                <div className="parsed">
+                <div className="parsed pb-10">
                   {data?.textBody?.text && parse(data.textBody.text)}
                 </div>
                 {data?.textBody?.knapp?.url && (
-                  <Link className="mt-10 btn" href={data.textBody.knapp.url}>
+                  <Link
+                    className={cn(
+                      buttonVariants({ variant: "default", size: "lg" })
+                    )}
+                    href={data.textBody.knapp.url}
+                  >
                     {data.textBody.knapp.text}
                   </Link>
                 )}

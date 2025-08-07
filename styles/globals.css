@@ -74,10 +74,6 @@
   @apply pb-5 last:pb-0;
 }
 
-@utility btn {
-  @apply inline-block px-5 py-3 font-bold text-white rounded-sm bg-brand-blue opacity-90 hover:opacity-100;
-}
-
 @utility bg-section {
   @apply section bg-brand-lightblue rounded-xl;
 }

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import CTABGIMAGE from "../../../public/images/spoltec-cta-bg.jpg";
+import { buttonVariants } from "components/ui/button";
+import { cn } from "@lib/utils";
 
 interface CallToActionProps {}
 
@@ -30,7 +32,9 @@ const CallToAction = ({}: CallToActionProps) => {
                 månadskostnad under avtalstiden.
               </p>
               <Link
-                className="px-10 mt-10 transition ease-in bg-transparent border-2 border-white duration-400 hover:text-brand-blue hover:bg-white btn"
+                className={cn(
+                  buttonVariants({ variant: "default", size: "lg" })
+                )}
                 href="/serviceavtal"
               >
                 Läs mer om serviceavtal

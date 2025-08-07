@@ -5,6 +5,8 @@ import { getPosts } from "@lib/data/post";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { cn } from "@lib/utils";
+import { buttonVariants } from "components/ui/button";
 
 export default function Posts() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -122,7 +124,7 @@ export default function Posts() {
           <button
             onClick={handleLoadMore}
             disabled={isFetchingNextPage || isLoadingMore}
-            className="btn bg-brand-blue hover:bg-brand-orange transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            className={cn(buttonVariants({ variant: "default", size: "lg" }))}
           >
             {isFetchingNextPage || isLoadingMore ? (
               <>

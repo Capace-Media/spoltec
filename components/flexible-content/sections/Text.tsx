@@ -1,6 +1,7 @@
-import parse from "html-react-parser";
 import Link from "next/link";
 import handleParse from "../../../lib/utils/parse";
+import { cn } from "@lib/utils";
+import { buttonVariants } from "components/ui/button";
 interface TextProps {
   data: {
     fieldGroupName: string;
@@ -23,7 +24,7 @@ const Text = ({ data }: TextProps) => {
 
         {data?.installning === true && data?.knapp?.url !== null ? (
           <Link
-            className="inline-block mt-10 btn bg-brand-orange"
+            className={cn(buttonVariants({ variant: "secondary", size: "lg" }))}
             href={
               data?.knapp?.url?.uri
                 ? data?.knapp?.url?.uri

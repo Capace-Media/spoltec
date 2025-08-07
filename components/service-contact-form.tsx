@@ -1,6 +1,7 @@
 "use client";
 import { submitContactForm } from "actions/contact";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 interface ServiceContactFormProps {
   subject: string;
@@ -121,13 +122,9 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
 
           {/* Submit Button */}
           <div className="flex items-center gap-2">
-            <button
-              type="submit"
-              className="btn"
-              disabled={status === "loading"}
-            >
+            <Button type="submit" disabled={status === "loading"}>
               {status === "loading" ? "Skickar..." : "Skicka förfrågan"}
-            </button>
+            </Button>
           </div>
         </form>
       </div>

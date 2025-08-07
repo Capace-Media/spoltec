@@ -1,3 +1,5 @@
+import { cn } from "@lib/utils";
+import { buttonVariants } from "components/ui/button";
 import parse from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,9 +33,11 @@ const Hero = ({ image, title, subtitle, text }: HeroProps) => {
               <h1 className="text-white">{title}</h1>
               <strong className="block mb-3">{subtitle}</strong>
               {text && parse(text)}
-              <div>
+              <div className="pt-10">
                 <Link
-                  className="inline-block mt-10 btn bg-brand-orange "
+                  className={cn(
+                    buttonVariants({ variant: "secondary", size: "lg" })
+                  )}
                   href="/kontakta-oss"
                 >
                   Kontakta oss

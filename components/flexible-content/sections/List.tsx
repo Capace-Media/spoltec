@@ -1,34 +1,49 @@
 import handleParse from "@lib/utils/parse";
-
 import { Arrow } from "../../icons";
 
 interface ListProps {
-  data: any;
+  data: {
+    fieldGroupName: string;
+    text: string;
+    punkter: Array<{
+      text: string;
+    }>;
+    avslut: string;
+  };
 }
 
 const List = ({ data }: ListProps) => {
   return (
-    <section className="contain-outer">
+    <section
+      className="contain-outer"
+      itemScope
+      itemType="https://schema.org/ItemList"
+    >
       <div className="flex flex-col items-center justify-center px-3 md:px-20 bg-section">
-        <div className="mb-10">{handleParse(data?.text)}</div>
+        <header className="mb-10">
+          <div itemProp="name">{handleParse(data?.text)}</div>
+        </header>
         <div className="w-full mb-10">
-          <ul className=" lg:columns-3 md:columns-2 columns-1 gap-7">
-            {data?.punkter?.map((li: any) => {
+          <ul className="lg:columns-3 md:columns-2 columns-1 gap-7" role="list">
+            {data?.punkter?.map((li: any, index: number) => {
               return (
                 <li
-                  key={li?.text}
+                  key={li?.text || index}
                   className="flex mb-10 space-x-4 break-inside-avoid"
+                  itemScope
+                  itemType="https://schema.org/ListItem"
                 >
-                  <div className="mt-[5px]">
+                  <div className="mt-[5px]" aria-hidden="true">
                     <Arrow />
                   </div>
-                  {handleParse(li?.text)}
+                  <div itemProp="name">{handleParse(li?.text)}</div>
+                  <meta itemProp="position" content={String(index + 1)} />
                 </li>
               );
             })}
           </ul>
         </div>
-        <div>{handleParse(data?.avslut)}</div>
+        {data?.avslut && <footer>{handleParse(data.avslut)}</footer>}
       </div>
     </section>
   );
