@@ -1,6 +1,9 @@
 "use client";
+import { Separator } from "components/ui/separator";
 import footerLinks from "@data/footerlinks.json";
 import { CallToAction } from "components/flexible-content/sections";
+
+import { Facebook, Linkedin } from "lucide-react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -76,21 +79,7 @@ const Footer = ({}: FooterProps) => {
                   })}
                 </ul>
               </div>
-              {/* <div>
-                <strong className="block mb-3">Städer</strong>
-                <ul className="space-y-[6px]">
-                  {footerLinks?.stader?.map((link: any, index) => {
-                    return (
-                      <li
-                        className="hover:text-brand-blue"
-                        key={index + link?.href + link?.label}
-                      >
-                        <Link href={link?.href}>{link?.label}</Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div> */}
+
               <div>
                 <strong className="block mb-3">Företag</strong>
                 <ul className="space-y-[6px]">
@@ -122,26 +111,36 @@ const Footer = ({}: FooterProps) => {
                 </ul>
               </div>
             </div>
-            <div className="flex flex-col items-center justify-between space-y-3 text-sm md:flex-row mt-14">
+            <Separator />
+            <div className="flex flex-col items-center justify-between space-y-3 text-sm md:flex-row pt-10">
               <div>Copyright © Spoltec Södra AB {new Date().getFullYear()}</div>
-              <a
-                href="https://www.facebook.com/spoltec"
-                target="_blank"
-                rel="noreferrer"
-                className="relative block w-8 h-8 transition duration-300 ease-in-out hover:scale-105"
-              >
-                <Image
-                  src={`/images/facebook-spoltec.png`}
-                  fill
-                  style={{
-                    objectFit: "contain",
-                  }}
-                  alt={`facebook logo`}
-                />
-              </a>
+              <div className="flex h-5 items-center space-x-4 text-sm">
+                <a
+                  href="https://www.linkedin.com/company/spoltec-södra-ab/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Linkedin />
+                </a>
+                <Separator orientation="vertical" />
+                <a
+                  href="https://www.facebook.com/spoltec"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Facebook />
+                </a>
+              </div>
               <div>
-                Byggd med <span className="text-brand-orange">♥</span> av Capace
-                Media
+                Byggd med <span className="text-brand-orange">♥</span> av{" "}
+                <a
+                  className="hover:underline"
+                  href="https://capace.se"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Capace Media | Webbyrå Malmö
+                </a>
               </div>
             </div>
           </div>
