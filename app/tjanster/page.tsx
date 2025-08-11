@@ -20,7 +20,7 @@ export default async function ServicesPage() {
   }
 
   return (
-    <div key={page.title}>
+    <main key={page.title}>
       <Hero
         title={page?.title}
         subtitle={page?.gqlHeroFields?.underrubrik || ""}
@@ -31,6 +31,6 @@ export default async function ServicesPage() {
       <div>
         <Blocks blocks={page?.gqlBlocks?.blocks || []} />
       </div>
-    </div>
+    </main>
   );
 }

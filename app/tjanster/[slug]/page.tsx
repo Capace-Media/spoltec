@@ -7,6 +7,7 @@ import WP from "@lib/wp/wp";
 import { generatePageMetadata } from "@lib/utils";
 import { getService } from "@lib/data/service";
 import Blocks from "components/flexible-content/block";
+import { generateServiceStructuredData } from "@lib/structured-data/generateServiceStructuredData";
 
 export const dynamicParams = true;
 
@@ -33,7 +34,10 @@ export async function generateStaticParams() {
   return servicePaths;
 }
 
-export async function generateMetadata(props: { params: Promise<{ slug: string }> }, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  props: { params: Promise<{ slug: string }> },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const params = await props.params;
   const uri = `/services/${params.slug}`;
   const page = await getService(uri);
@@ -53,19 +57,29 @@ export default async function ServicePage(props: PageProps) {
   if (!page) {
     notFound();
   }
+  const structuredData = generateServiceStructuredData(page);
 
   return (
-    <div key={page?.title}>
-      <ServiceHero
-        title={page?.title}
-        subtitle={page?.gqlHeroFields?.underrubrik}
-        text={page?.gqlHeroFields?.introduktionstext}
-        image={page?.gqlHeroFields?.bild?.mediaItemUrl}
+    <>
+      <script
+        id="service-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
       />
-      <div id="content" className="w-full h-10 md:h-0"></div>
-      <div>
-        <Blocks blocks={page?.gqlBlocks?.blocks || []} />
-      </div>
-    </div>
+      <main key={page?.title}>
+        <ServiceHero
+          title={page?.title}
+          subtitle={page?.gqlHeroFields?.underrubrik}
+          text={page?.gqlHeroFields?.introduktionstext}
+          image={page?.gqlHeroFields?.bild?.mediaItemUrl}
+        />
+        <div id="content" className="w-full h-10 md:h-0"></div>
+        <div>
+          <Blocks blocks={page?.gqlBlocks?.blocks || []} />
+        </div>
+      </main>
+    </>
   );
 }
