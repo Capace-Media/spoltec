@@ -5,6 +5,8 @@ import { Metadata, ResolvingMetadata } from "next";
 import WP from "@lib/wp/wp";
 import { generatePageMetadata } from "@lib/utils";
 import Blocks from "components/flexible-content/block";
+import JsonLd from "components/JsonLd";
+import { breadcrumbsSchema } from "@lib/seo/schema";
 
 export const dynamicParams = true;
 
@@ -29,7 +31,10 @@ export async function generateStaticParams() {
   return postPaths;
 }
 
-export async function generateMetadata(props: { params: Promise<{ slug: string }> }, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  props: { params: Promise<{ slug: string }> },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const params = await props.params;
   const post = await getPost(params.slug);
 
@@ -48,8 +53,24 @@ export default async function ArticlePage(props: PageProps) {
     notFound();
   }
 
+  const bread = breadcrumbsSchema([
+    {
+      name: "Hem",
+      url: "/",
+    },
+    {
+      name: "Kunskapsbank",
+      url: "/kunskapsbank",
+    },
+    {
+      name: post?.title,
+      url: `/kunskapsbank/${params.slug}`,
+    },
+  ]);
+
   return (
     <div key={post.title}>
+      <JsonLd json={bread} id="breadcrumbs-schema" />
       <Hero
         title={post?.title}
         subtitle={post?.gqlHeroFields?.underrubrik || ""}

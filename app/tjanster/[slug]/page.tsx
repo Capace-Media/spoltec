@@ -8,6 +8,8 @@ import { generatePageMetadata } from "@lib/utils";
 import { getService } from "@lib/data/service";
 import Blocks from "components/flexible-content/block";
 import { generateServiceStructuredData } from "@lib/structured-data/generateServiceStructuredData";
+import { breadcrumbsSchema } from "@lib/seo/schema";
+import JsonLd from "components/JsonLd";
 
 export const dynamicParams = true;
 
@@ -57,17 +59,25 @@ export default async function ServicePage(props: PageProps) {
   if (!page) {
     notFound();
   }
-  const structuredData = generateServiceStructuredData(page);
+
+  const bread = breadcrumbsSchema([
+    {
+      name: "Hem",
+      url: "/",
+    },
+    {
+      name: "Tjänster",
+      url: "/tjanster",
+    },
+    {
+      name: page?.title,
+      url: `/tjanster/${params.slug}`,
+    },
+  ]);
 
   return (
     <>
-      <script
-        id="service-structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-      />
+      <JsonLd json={bread} id="breadcrumbs-schema" />
       <main key={page?.title}>
         <ServiceHero
           title={page?.title}
