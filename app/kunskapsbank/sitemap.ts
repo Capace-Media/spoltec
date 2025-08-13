@@ -1,5 +1,5 @@
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 
 const BASE_URL = process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se";
 

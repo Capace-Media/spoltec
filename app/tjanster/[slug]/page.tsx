@@ -1,6 +1,6 @@
 import ServiceHero from "components/header/service-hero";
 import { notFound } from "next/navigation";
-import { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 
 import WP from "@lib/wp/wp";
 

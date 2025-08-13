@@ -1,4 +1,4 @@
-import { Organization, WithContext } from "schema-dts";
+import type { Organization, WithContext } from "schema-dts";
 
 export function buildOrgSchema(input: {
   name: string;

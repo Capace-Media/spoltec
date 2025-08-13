@@ -1,5 +1,5 @@
 // lib/seo/article.ts
-import { Post } from "@lib/types/post";
+import type { Post } from "@lib/types/post";
 import type { WithContext, Article, ImageObject } from "schema-dts";
 
 export function buildArticleSchema(

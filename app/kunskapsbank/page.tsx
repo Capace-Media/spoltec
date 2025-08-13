@@ -3,7 +3,7 @@ import Blocks from "components/flexible-content/block";
 import { getPage } from "@lib/data/page";
 import { notFound } from "next/navigation";
 import { generatePageMetadata } from "@lib/utils";
-import { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import {
   dehydrate,
   HydrationBoundary,
@@ -40,7 +40,7 @@ export default async function KunskapsBank() {
       return posts;
     },
     initialPageParam: undefined,
-    getNextPageParam: (lastPage, pages) => lastPage.pageInfo.endCursor,
+    getNextPageParam: (lastPage: any) => lastPage.node.pageInfo.endCursor,
   });
 
   if (!page) {

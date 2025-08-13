@@ -9,7 +9,7 @@ import Providers from "./providers";
 import JsonLd from "components/JsonLd";
 import { orgSchema } from "@lib/seo/schema";
 import logo from "../public/images/spoltec-logo-new.png";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 const chivo = Chivo({ subsets: ["latin"], weight: ["400", "700", "900"] });
 

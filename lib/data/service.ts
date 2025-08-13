@@ -1,5 +1,5 @@
 import { SERVICE_QUERY } from "@lib/queries/service";
-import { GetServiceQueryData } from "@lib/types/service";
+import type { GetServiceQueryData } from "@lib/types/service";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
 
 export const getService = async (slug: string) => {

@@ -1,5 +1,5 @@
 import { POST_QUERY, POSTS_QUERY } from "@lib/queries/post";
-import { GetPostQueryData, GetPostsQueryData } from "@lib/types/post";
+import type { GetPostQueryData, GetPostsQueryData } from "@lib/types/post";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
 
 export const getPost = async (uri: string) => {

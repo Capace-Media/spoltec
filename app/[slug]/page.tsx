@@ -6,7 +6,7 @@ import WP from "@lib/wp/wp";
 import { getPage } from "@lib/data/page";
 import { GET_PAGES_QUERY } from "@lib/queries/page";
 import { generatePageMetadata, isBlacklistedPageSlug } from "@lib/utils";
-import { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 
 export const dynamicParams = true;
 

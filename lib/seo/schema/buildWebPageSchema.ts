@@ -1,5 +1,5 @@
 // lib/seo/webpage.ts
-import { Page } from "@lib/types/page";
+import type { Page } from "@lib/types/page";
 import type {
   WithContext,
   WebPage as WebPageSchema,

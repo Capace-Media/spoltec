@@ -1,7 +1,7 @@
 import { getPage } from "@lib/data/page";
 import Blocks from "components/flexible-content/block";
 import { generatePageMetadata } from "@lib/utils";
-import { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Hero from "components/header/hero";
 import { notFound } from "next/navigation";
 import { webPageSchema } from "@lib/seo/schema";

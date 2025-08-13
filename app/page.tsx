@@ -1,12 +1,11 @@
 import { getPage } from "@lib/data/page";
 import { generatePageMetadata } from "@lib/utils";
-import { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import LocalLinks from "components/local-links";
 import Blocks from "components/flexible-content/block";
 import MainHero from "components/header/main-hero";
 import { webPageSchema } from "@lib/seo/schema";
 import JsonLd from "components/JsonLd";
-import { notFound } from "next/navigation";
 
 export async function generateMetadata(
   {},

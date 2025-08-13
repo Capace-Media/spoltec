@@ -1,4 +1,4 @@
-import { Service } from "@lib/types/service";
+import type { Service } from "@lib/types/service";
 
 export function generateServiceStructuredData(service: Service | null) {
   const baseUrl = "https://www.spoltec.se";

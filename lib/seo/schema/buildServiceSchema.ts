@@ -1,5 +1,5 @@
-import { Service as ServiceType } from "@lib/types/service";
-import { Service, WithContext, ImageObject } from "schema-dts";
+import type { Service as ServiceType } from "@lib/types/service";
+import type { Service, WithContext, ImageObject } from "schema-dts";
 
 export function buildServiceSchema(service: ServiceType): WithContext<Service> {
   const imageUrl = service.gqlHeroFields?.bild?.mediaItemUrl ?? "";

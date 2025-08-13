@@ -1,4 +1,4 @@
-import { TextBildBlock, TjansterBlock } from "@lib/types/page";
+import type { TextBildBlock, TjansterBlock } from "@lib/types/page";
 import {
   TextImage,
   Video,
@@ -12,9 +12,9 @@ import {
   CallToAction,
 } from "./sections";
 
-import { Block as BlockType } from "@lib/types/page";
-import { ServiceBlock } from "@lib/types/service";
-import { PostBlock } from "@lib/types/post";
+import type { Block as BlockType } from "@lib/types/page";
+import type { ServiceBlock } from "@lib/types/service";
+import type { PostBlock } from "@lib/types/post";
 
 interface BlockProps {
   block: any;
