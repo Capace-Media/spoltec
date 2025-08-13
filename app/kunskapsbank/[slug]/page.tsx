@@ -56,7 +56,7 @@ export default async function ArticlePage(props: PageProps) {
 
   const canonical = await absoluteUrl(`/kunskapsbank/${params.slug}`);
 
-  const articleLD = articleSchema({ post: post }, "Article");
+  const articleLD = articleSchema({ post }, "Article", canonical);
 
   const bread = breadcrumbsSchema(
     [

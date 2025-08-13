@@ -11,7 +11,8 @@ type ArticleType = "Article" | "BlogPosting";
 
 export function buildArticleSchema(
   input: GetPostQueryData,
-  articleType?: ArticleType
+  articleType?: ArticleType,
+  canonical?: string
 ): WithContext<ArticleSchema | BlogPostingSchema> {
   const t: ArticleType = articleType ?? "Article";
 
@@ -30,15 +31,15 @@ export function buildArticleSchema(
   return {
     "@context": "https://schema.org",
     "@type": t,
-    "@id": `${input.post?.seo?.canonical ?? ""}#article`,
+    "@id": `${canonical ?? ""}#article`,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": input.post?.seo?.canonical ?? "",
+      "@id": canonical ?? "",
     },
     headline: input.post?.title ?? "",
     name: input.post?.title ?? "",
     description: input.post?.seo?.metaDesc ?? "",
-    url: input.post?.seo?.canonical ?? "",
+    url: canonical ?? "",
     image: img,
     keywords: input.post?.seo?.focuskw ? [input.post?.seo?.focuskw] : undefined,
     inLanguage: "sv-SE",
