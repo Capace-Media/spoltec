@@ -32,7 +32,7 @@ export function buildArticleSchema(
     "@type": "Article",
     ...(id && { "@id": id }),
     ...(url && { mainEntityOfPage: { "@type": "WebPage", "@id": url }, url }),
-    headline: post?.seo?.title || post?.title || undefined,
+    headline: post?.title || undefined,
     name: post?.seo?.title || post?.title || undefined,
     description: post?.seo?.metaDesc || undefined,
     image,
