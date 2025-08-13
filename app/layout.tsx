@@ -18,20 +18,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const org = orgSchema({
-    name: "Spoltec",
-    legalName: "Spoltec södra ab",
+    name: "Spoltec Södra AB",
+    legalName: "Spoltec Södra AB",
     alternateName: "Spoltec",
     description:
-      "Spoltec södra ab är ett svenskt företag som erbjuder tjänster som kanaltätning, kvicksilversanering, relining, rörinspektion med filmning, oljeavskiljare och avloppsspolning.",
-    telephone: "+46 70 123 45 67",
+      "Spoltec Södra AB är ett svenskt företag grundat 1991 som erbjuder tjänster inom relining, avloppsspolning, kvicksilversanering, rörinspektion med filmning, oljeavskiljarrengöring, fettavskiljare, provtagning och förebyggande underhåll av avloppssystem.",
+    telephone: "+46 40 47 40 12",
     email: "info@spoltec.se",
-    foundingDate: "1990-01-01",
+    foundingDate: "1991-01-01",
     url: "https://www.spoltec.se",
     logoUrl: `https://www.spoltec.se${logo.src}`,
     sameAs: [
       "https://www.linkedin.com/company/spoltec-södra-ab/",
       "https://www.facebook.com/spoltec",
     ],
+    address: {
+      streetAddress: "Grävmaskinsvägen 2",
+      postalCode: "241 38",
+      addressLocality: "Eslöv",
+      addressRegion: "Skåne län",
+      addressCountry: "SE",
+    },
   });
   return (
     <html lang="sv">

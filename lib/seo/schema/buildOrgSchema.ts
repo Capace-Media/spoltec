@@ -36,5 +36,13 @@ export function buildOrgSchema(input: {
     foundingDate: input.foundingDate,
     founder: input.founders?.map((name) => ({ "@type": "Person", name })),
     address: input.address && { "@type": "PostalAddress", ...input.address },
+    knowsAbout: [
+      "Miljövänliga metoder (utan bisfenol och epoxi)",
+      "Certifierad provtagning i samarbete med miljöförvaltningar i Skåne",
+    ],
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      name: "Certifierad provtagare av miljöförvaltningar i Skåne",
+    },
   };
 }
