@@ -1,11 +1,6 @@
 // lib/seo/article.ts
-import { GetPostQueryData, Post } from "@lib/types/post";
-import type {
-  WithContext,
-  Article as ArticleSchema,
-  BlogPosting as BlogPostingSchema,
-  ImageObject,
-} from "schema-dts";
+import { Post } from "@lib/types/post";
+import type { WithContext, Article, ImageObject } from "schema-dts";
 
 type ArticleType = "Article" | "BlogPosting";
 
@@ -13,7 +8,7 @@ export function buildArticleSchema(
   post: Post,
   articleType?: ArticleType,
   canonical?: string
-): WithContext<ArticleSchema | BlogPostingSchema> {
+): WithContext<Article> {
   const t: ArticleType = articleType ?? "Article";
 
   const img: ImageObject | undefined = post?.gqlHeroFields?.bild?.mediaItemUrl
@@ -49,7 +44,7 @@ export function buildArticleSchema(
       "@id": "https://www.spoltec.se/#organization",
     },
     provider: {
-      "@id": "https://www.spoltec.se/#organization", // reference the org schema in layout
+      "@id": "https://www.spoltec.se/#organization",
     },
     datePublished: post?.dateGmt ?? "",
     dateModified: post?.modifiedGmt ?? post?.dateGmt ?? "",
