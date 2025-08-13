@@ -4,7 +4,6 @@ import { getPage } from "@lib/data/page";
 import { notFound } from "next/navigation";
 import { generatePageMetadata } from "@lib/utils";
 import { Metadata, ResolvingMetadata } from "next";
-import Script from "next/script";
 import {
   dehydrate,
   HydrationBoundary,
@@ -26,90 +25,8 @@ export async function generateMetadata(
   );
 }
 
-// Generate JSON-LD structured data
-function generateBlogStructuredData(initialPosts: any) {
-  const baseUrl = process.env.NEXT_PUBLIC_MY_WEBSITE || "https://spoltec.se";
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    name: "Spoltec Kunskapsbank",
-    description:
-      "Expertkunskap om avlopp, spolning och underhåll från Spoltecs specialister",
-    url: `${baseUrl}/kunskapsbank`,
-    inLanguage: "sv-SE",
-    publisher: {
-      "@type": "Organization",
-      name: "Spoltec",
-      url: baseUrl,
-      logo: {
-        "@type": "ImageObject",
-        url: `${baseUrl}/images/spoltec-logo-new.png`,
-        width: 300,
-        height: 100,
-      },
-    },
-    blogPost:
-      initialPosts?.edges?.map((edge: any) => {
-        const post = edge.node;
-        const postUrl = `${baseUrl}/kunskapsbank/${post.slug}`;
-
-        return {
-          "@type": "BlogPosting",
-          headline: post.title,
-          description:
-            post.gqlHeroFields?.underrubrik ||
-            post.gqlHeroFields?.introduktionstext ||
-            post.title,
-          url: postUrl,
-          mainEntityOfPage: {
-            "@type": "WebPage",
-            "@id": postUrl,
-          },
-          author: {
-            "@type": "Organization",
-            name: "Spoltec",
-          },
-          publisher: {
-            "@type": "Organization",
-            name: "Spoltec",
-            logo: {
-              "@type": "ImageObject",
-              url: `${baseUrl}/images/spoltec-logo-new.png`,
-            },
-          },
-          image: {
-            "@type": "ImageObject",
-            url:
-              post.gqlHeroFields?.bild?.mediaItemUrl ||
-              `${baseUrl}/images/spoltec-cta-bg.jpg`,
-            width: 1200,
-            height: 630,
-          },
-          keywords: [
-            "avlopp",
-            "spolning",
-            "rörinspektion",
-            "relining",
-            "underhåll",
-            "Spoltec",
-          ],
-          inLanguage: "sv-SE",
-          isPartOf: {
-            "@type": "Blog",
-            "@id": `${baseUrl}/kunskapsbank`,
-          },
-        };
-      }) || [],
-  };
-}
-
 export default async function KunskapsBank() {
   const page = await getPage("kunskapsbank");
-
-  // Fetch initial posts for schema
-  const initialPosts = await getPosts(undefined, 9);
-  const structuredData = generateBlogStructuredData(initialPosts);
 
   const queryClient = new QueryClient();
   const dehydratedState = dehydrate(queryClient);
@@ -130,17 +47,7 @@ export default async function KunskapsBank() {
 
   return (
     <>
-      {/* Proper JSON-LD using Next.js Script component */}
-      <Script
-        id="blog-structured-data"
-        type="application/ld+json"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-      />
-
-      <div>
+      <main>
         <Hero
           title={page?.title}
           subtitle={page?.gqlHeroFields?.underrubrik || ""}
@@ -155,7 +62,7 @@ export default async function KunskapsBank() {
             <Posts />
           </HydrationBoundary>
         </section>
-      </div>
+      </main>
     </>
   );
 }
