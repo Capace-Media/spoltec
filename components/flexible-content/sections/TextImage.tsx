@@ -9,17 +9,14 @@ interface TextImageProps {
 
 const TextImage = ({ data }: TextImageProps) => {
   return (
-    <section className="contain-outer ">
+    <section className="contain-outer section">
       <div
         className={`text-image ${
           data?.installningar?.bakgrund ? "bg-section" : "section"
         }`}
       >
         <div className="section-sm contain ">
-          <section
-            id="infoSection"
-            className="flex flex-col lg:flex-row gap-20"
-          >
+          <div id="infoSection" className="flex flex-col lg:flex-row gap-20">
             <div className="flex items-center w-full">
               <div>
                 <h2>{data.textBody.rubrik}</h2>
@@ -87,7 +84,7 @@ const TextImage = ({ data }: TextImageProps) => {
                 </div>
               )}
             </div>
-          </section>
+          </div>
         </div>
       </div>
     </section>

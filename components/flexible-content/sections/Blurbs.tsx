@@ -7,20 +7,20 @@ interface BlurbsProps {
 
 const Blurbs = ({ data }: BlurbsProps) => {
   return (
-    <section className="contain-outer">
+    <section className="contain-outer section">
       <div
         className={`${data.installningar.bakgrund ? "bg-section" : "section"}`}
       >
         <div className="contain">
           <div>
             {data?.blurbText && (
-              <div className="max-w-[85%] mx-auto text-center">
+              <div className="max-w-[85%] mx-auto text-center ">
                 {handleParse(data.blurbText)}
               </div>
             )}
             <div
               className={`grid  gap-5 md:gap-10 ${
-                data?.blurbText ? "mt-20" : ""
+                data?.blurbText ? "mt-8" : ""
               } ${
                 data.blurbs.length == 4
                   ? "md:grid-cols-4"

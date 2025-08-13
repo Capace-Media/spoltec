@@ -17,11 +17,10 @@ interface TextProps {
 
 const Text = ({ data }: TextProps) => {
   return (
-    <section className="contain section nth-child">
+    <section className="contain-outer section">
       <div className="max-w-2xl">
         <h2>{data.rubrik}</h2>
         <div className="parsed">{data?.text && handleParse(data.text)}</div>
-
         {data?.installning === true && data?.knapp?.url !== null ? (
           <Link
             className={cn(buttonVariants({ variant: "secondary", size: "lg" }))}

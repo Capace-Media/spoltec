@@ -3,6 +3,8 @@ import { generatePageMetadata } from "@lib/utils";
 import Hero from "components/header/hero";
 import Blocks from "components/flexible-content/block";
 import { Metadata, ResolvingMetadata } from "next";
+import { webPageSchema } from "@lib/seo/schema";
+import JsonLd from "components/JsonLd";
 
 export async function generateMetadata(
   {},
@@ -19,18 +21,24 @@ export default async function ServicesPage() {
     return <div>Page not found</div>;
   }
 
+  const canonical = "https://www.spoltec.se/tjanster";
+  const schema = webPageSchema(page, "CollectionPage", canonical);
+
   return (
-    <main key={page.title}>
-      <Hero
-        title={page?.title}
-        subtitle={page?.gqlHeroFields?.underrubrik || ""}
-        text={page?.gqlHeroFields?.introduktionstext || ""}
-        image={page?.gqlHeroFields?.bild?.mediaItemUrl}
-      />
-      <div id="content" className="w-full h-10 md:h-0"></div>
-      <div>
-        <Blocks blocks={page?.gqlBlocks?.blocks || []} />
-      </div>
-    </main>
+    <>
+      <JsonLd json={schema} id={"services-collection-page"} />
+      <main key={page.title}>
+        <Hero
+          title={page?.title}
+          subtitle={page?.gqlHeroFields?.underrubrik || ""}
+          text={page?.gqlHeroFields?.introduktionstext || ""}
+          image={page?.gqlHeroFields?.bild?.mediaItemUrl}
+        />
+        <div id="content" className="w-full h-10 md:h-0"></div>
+        <div>
+          <Blocks blocks={page?.gqlBlocks?.blocks || []} />
+        </div>
+      </main>
+    </>
   );
 }

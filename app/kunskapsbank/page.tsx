@@ -11,6 +11,8 @@ import {
 } from "@tanstack/react-query";
 import { getPosts } from "@lib/data/post";
 import Posts from "./posts";
+import { webPageSchema } from "@lib/seo/schema";
+import JsonLd from "components/JsonLd";
 
 export async function generateMetadata(
   {},
@@ -45,9 +47,13 @@ export default async function KunskapsBank() {
     notFound();
   }
 
+  const canonical = "https://www.spoltec.se/kunskapsbank";
+  const schema = webPageSchema(page, "CollectionPage", canonical);
+
   return (
     <>
-      <main>
+      <JsonLd json={schema} id={"kunskapsbank-collection-page"} />
+      <main key={`kunskapsbank`}>
         <Hero
           title={page?.title}
           subtitle={page?.gqlHeroFields?.underrubrik || ""}

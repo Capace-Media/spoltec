@@ -73,17 +73,19 @@ export default async function Page(props: PageProps) {
   }
 
   return (
-    <div key={page.title}>
-      <Hero
-        title={page?.title}
-        subtitle={page?.gqlHeroFields?.underrubrik || ""}
-        text={page?.gqlHeroFields?.introduktionstext || ""}
-        image={page?.gqlHeroFields?.bild?.mediaItemUrl}
-      />
-      <div id="content" className="w-full h-10 md:h-0"></div>
-      <div>
-        <Blocks blocks={page?.gqlBlocks?.blocks || []} />
-      </div>
-    </div>
+    <>
+      <main key={page.title}>
+        <Hero
+          title={page?.title}
+          subtitle={page?.gqlHeroFields?.underrubrik || ""}
+          text={page?.gqlHeroFields?.introduktionstext || ""}
+          image={page?.gqlHeroFields?.bild?.mediaItemUrl}
+        />
+        <div id="content" className="w-full h-10 md:h-0"></div>
+        <div>
+          <Blocks blocks={page?.gqlBlocks?.blocks || []} />
+        </div>
+      </main>
+    </>
   );
 }

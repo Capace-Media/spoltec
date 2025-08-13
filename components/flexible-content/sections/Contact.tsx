@@ -2,7 +2,7 @@ import { Phone, Mail, Address } from "../../icons";
 
 const Contact = () => {
   return (
-    <section className="contain-outer">
+    <section className="contain-outer section">
       <div className={`section`}>
         <div className="contain">
           <div className="flex flex-col items-center justify-center mb-10 text-center">

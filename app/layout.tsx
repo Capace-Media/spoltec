@@ -9,8 +9,43 @@ import Providers from "./providers";
 import JsonLd from "components/JsonLd";
 import { orgSchema } from "@lib/seo/schema";
 import logo from "../public/images/spoltec-logo-new.png";
+import { Metadata } from "next";
 
 const chivo = Chivo({ subsets: ["latin"], weight: ["400", "700", "900"] });
+
+export const metadata: Metadata = {
+  title: {
+    default: "Spoltec funktionssäkrar ert avloppssystem",
+    template: "%s | Spoltec",
+  },
+  description:
+    "Professionell hjälp med avloppsproblem i hela Sverige. Spoltec utför spolning, reparationer och underhåll av avloppssystem för hem och företag.",
+  keywords: [
+    "avlopp",
+    "spolning",
+    "relining",
+    "rörinspektion",
+    "kvicksilversanering",
+    "oljeavskiljare",
+  ],
+  authors: [{ name: "Spoltec Södra AB" }],
+  creator: "Spoltec Södra AB",
+  publisher: "Spoltec Södra AB",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  alternates: {
+    canonical: "https://www.spoltec.se",
+  },
+  // verification: {
+  //   google: "your-google-verification-code", // if you have one
+  // },
+};
 
 export default function RootLayout({
   children,

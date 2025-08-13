@@ -14,7 +14,11 @@ interface HeroProps {
 const Hero = ({ image, title, subtitle, text }: HeroProps) => {
   return (
     <>
-      <section className="relative pt-[138px] contain-outer">
+      <section
+        className="relative pt-[138px] contain-outer"
+        aria-labelledby="hero-heading"
+        role="banner"
+      >
         <div className="overflow-hidden bg-black bg-section rounded-xl">
           {image && (
             <Image
@@ -25,20 +29,24 @@ const Hero = ({ image, title, subtitle, text }: HeroProps) => {
                 opacity: "0.4",
               }}
               alt={title}
+              priority
             />
           )}
 
           <div className="flex items-center contain h-96">
             <div className="max-w-lg text-white">
               <h1 className="text-white">{title}</h1>
-              <strong className="block mb-3">{subtitle}</strong>
-              {text && parse(text)}
+              {subtitle && (
+                <p className="block mb-3 font-bold text-lg">{subtitle}</p>
+              )}
+              {text && <div className="hero-description">{parse(text)}</div>}
               <div className="pt-10">
                 <Link
                   className={cn(
                     buttonVariants({ variant: "secondary", size: "lg" })
                   )}
                   href="/kontakta-oss"
+                  aria-label="Kontakta oss för mer information"
                 >
                   Kontakta oss
                 </Link>

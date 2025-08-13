@@ -15,7 +15,7 @@ interface ListProps {
 const List = ({ data }: ListProps) => {
   return (
     <section
-      className="contain-outer"
+      className="contain-outer section"
       itemScope
       itemType="https://schema.org/ItemList"
     >
@@ -23,6 +23,7 @@ const List = ({ data }: ListProps) => {
         <header className="mb-10">
           <div itemProp="name">{handleParse(data?.text)}</div>
         </header>
+
         <div className="w-full mb-10">
           <ul className="lg:columns-3 md:columns-2 columns-1 gap-7" role="list">
             {data?.punkter?.map((li: any, index: number) => {

@@ -13,7 +13,7 @@ const MainHero = ({}: MainHeroProps) => {
       aria-labelledby="hero-heading"
       role="banner"
     >
-      <div className="overflow-hidden mt-5 rounded-xl pt-[150px] bg-section">
+      <div className="overflow-hidden mt-5 rounded-xl pt-[150px] bg-brand-lightblue py-10 md:py-20">
         <div className="grid lg:grid-cols-[4fr_5fr] gap-20 contain">
           <div className="relative flex items-center">
             <span

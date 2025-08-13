@@ -8,7 +8,7 @@ interface CallToActionProps {}
 
 const CallToAction = ({}: CallToActionProps) => {
   return (
-    <div className="relative mt-10 rounded-xl contain-outer md:mt-20">
+    <section className="relative mt-10 rounded-xl contain-outer md:mt-20">
       <div className="overflow-hidden bg-black bg-section">
         <Image
           src={CTABGIMAGE}
@@ -43,7 +43,7 @@ const CallToAction = ({}: CallToActionProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

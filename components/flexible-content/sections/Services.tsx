@@ -58,7 +58,7 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
   }
 
   return (
-    <section className="text-center section contain">
+    <section className="contain-outer section">
       <div className="max-w-[700px] mx-auto">
         {data?.rubrik && <h2>{data?.rubrik}</h2>}
         {data?.servicesText && <p>{data?.servicesText}</p>}

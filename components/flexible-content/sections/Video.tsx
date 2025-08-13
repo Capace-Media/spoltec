@@ -21,7 +21,7 @@ const Video = ({ data }: any) => {
   };
 
   return (
-    <section className="contain section relative overflow-hidden">
+    <section className="contain-outer section">
       <video
         ref={videoRef}
         className="block"
