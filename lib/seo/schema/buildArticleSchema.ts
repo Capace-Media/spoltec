@@ -2,51 +2,52 @@
 import { Post } from "@lib/types/post";
 import type { WithContext, Article, ImageObject } from "schema-dts";
 
-type ArticleType = "Article" | "BlogPosting";
-
 export function buildArticleSchema(
   post: Post,
-  articleType?: ArticleType,
+
   canonical?: string
 ): WithContext<Article> {
-  const t: ArticleType = articleType ?? "Article";
+  const url = canonical ?? "";
+  const id = url ? `${url}#article` : undefined;
 
-  const img: ImageObject | undefined = post?.gqlHeroFields?.bild?.mediaItemUrl
+  const imageUrl = post?.gqlHeroFields?.bild?.mediaItemUrl;
+  const image: ImageObject | undefined = imageUrl
     ? {
         "@type": "ImageObject",
-        url: post.gqlHeroFields.bild.mediaItemUrl,
-        caption: post.gqlHeroFields.bild.altText,
-        // Only include width/height if you have actual dimension data
-        // width: someWidthValue ? `${someWidthValue}px` : undefined,
-        // height: someHeightValue ? `${someHeightValue}px` : undefined,
+        url: imageUrl,
+        caption: post?.gqlHeroFields?.bild?.altText || post?.title || undefined,
       }
     : undefined;
 
+  const datePublished = post?.dateGmt
+    ? new Date(post.dateGmt).toISOString()
+    : undefined;
+  const dateModified =
+    post?.modifiedGmt || post?.dateGmt
+      ? new Date(post.modifiedGmt || post.dateGmt!).toISOString()
+      : undefined;
+
   return {
     "@context": "https://schema.org",
-    "@type": t,
-    "@id": `${canonical ?? ""}#article`,
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": canonical ?? "",
-    },
-    headline: post?.title ?? "",
-    name: post?.title ?? "",
-    description: post?.seo?.metaDesc ?? "",
-    url: canonical ?? "",
-    image: img,
-    keywords: post?.seo?.focuskw ? [post?.seo?.focuskw] : undefined,
+    "@type": "Article",
+    ...(id && { "@id": id }),
+    ...(url && { mainEntityOfPage: { "@type": "WebPage", "@id": url }, url }),
+    headline: post?.seo?.title || post?.title || undefined,
+    name: post?.seo?.title || post?.title || undefined,
+    description: post?.seo?.metaDesc || undefined,
+    image,
+    keywords: post?.seo?.focuskw ? [post.seo.focuskw] : undefined,
     inLanguage: "sv-SE",
     articleSection: "Kunskapsbank",
-    author: { "@type": "Organization", name: "Spoltec Södra AB" },
+    author: {
+      "@type": "Organization",
+      "@id": "https://www.spoltec.se/#organization",
+    },
     publisher: {
       "@type": "Organization",
       "@id": "https://www.spoltec.se/#organization",
     },
-    provider: {
-      "@id": "https://www.spoltec.se/#organization",
-    },
-    datePublished: post?.dateGmt ?? "",
-    dateModified: post?.modifiedGmt ?? post?.dateGmt ?? "",
+    ...(datePublished && { datePublished }),
+    ...(dateModified && { dateModified }),
   };
 }

@@ -56,8 +56,6 @@ export default async function ArticlePage(props: PageProps) {
 
   const canonical = await absoluteUrl(`/kunskapsbank/${params.slug}`);
 
-  const articleLD = articleSchema(post, "Article", canonical);
-
   const bread = breadcrumbsSchema(
     [
       {
@@ -77,6 +75,7 @@ export default async function ArticlePage(props: PageProps) {
     ],
     canonical
   );
+  const articleLD = articleSchema(post, canonical);
 
   return (
     <>
