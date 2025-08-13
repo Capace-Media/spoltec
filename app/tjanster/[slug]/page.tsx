@@ -10,6 +10,7 @@ import Blocks from "components/flexible-content/block";
 import { generateServiceStructuredData } from "@lib/structured-data/generateServiceStructuredData";
 import { breadcrumbsSchema, serviceSchema } from "@lib/seo/schema";
 import JsonLd from "components/JsonLd";
+import { absoluteUrl } from "@lib/utils/url";
 
 export const dynamicParams = true;
 
@@ -40,8 +41,8 @@ export async function generateMetadata(
   props: { params: Promise<{ slug: string }> },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const params = await props.params;
-  const uri = `/services/${params.slug}`;
+  const { slug } = await props.params;
+  const uri = `/services/${slug}`; // ✅ fix path
   const page = await getService(uri);
 
   return generatePageMetadata(page, parent);
@@ -52,28 +53,33 @@ interface PageProps {
 }
 
 export default async function ServicePage(props: PageProps) {
-  const params = await props.params;
-  const uri = `/services/${params.slug}`;
+  const { slug } = await props.params;
+  const uri = `/services/${slug}`; // ✅ fix path
   const page = await getService(uri);
 
   if (!page) {
     notFound();
   }
 
-  const bread = breadcrumbsSchema([
-    {
-      name: "Hem",
-      url: "/",
-    },
-    {
-      name: "Tjänster",
-      url: "/tjanster",
-    },
-    {
-      name: page?.title,
-      url: `/tjanster/${params.slug}`,
-    },
-  ]);
+  const canonical = await absoluteUrl(`/tjanster/${slug}`);
+
+  const bread = breadcrumbsSchema(
+    [
+      {
+        name: "Hem",
+        url: await absoluteUrl("/"),
+      },
+      {
+        name: "Tjänster",
+        url: await absoluteUrl("/tjanster"),
+      },
+      {
+        name: page?.title,
+        url: canonical,
+      },
+    ],
+    canonical
+  );
   const serviceSchemaLD = serviceSchema(page);
 
   return (
