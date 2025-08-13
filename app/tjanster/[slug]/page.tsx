@@ -76,7 +76,6 @@ export default async function ServicePage(props: PageProps) {
         name: page?.title ?? "",
         url: canonical,
         type: "Service",
-        entityId: `${canonical}#service`,
       },
     ],
     canonical

@@ -70,7 +70,6 @@ export default async function ArticlePage(props: PageProps) {
         name: post?.title ?? "",
         url: canonical,
         type: "Article",
-        entityId: `${canonical}#article`,
       },
     ],
     canonical
