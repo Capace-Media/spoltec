@@ -1,5 +1,5 @@
 // lib/seo/article.ts
-import { GetPostQueryData } from "@lib/types/post";
+import { GetPostQueryData, Post } from "@lib/types/post";
 import type {
   WithContext,
   Article as ArticleSchema,
@@ -10,18 +10,17 @@ import type {
 type ArticleType = "Article" | "BlogPosting";
 
 export function buildArticleSchema(
-  input: GetPostQueryData,
+  post: Post,
   articleType?: ArticleType,
   canonical?: string
 ): WithContext<ArticleSchema | BlogPostingSchema> {
   const t: ArticleType = articleType ?? "Article";
 
-  const img: ImageObject | undefined = input.post?.gqlHeroFields?.bild
-    ?.mediaItemUrl
+  const img: ImageObject | undefined = post?.gqlHeroFields?.bild?.mediaItemUrl
     ? {
         "@type": "ImageObject",
-        url: input.post.gqlHeroFields.bild.mediaItemUrl,
-        caption: input.post.gqlHeroFields.bild.altText,
+        url: post.gqlHeroFields.bild.mediaItemUrl,
+        caption: post.gqlHeroFields.bild.altText,
         // Only include width/height if you have actual dimension data
         // width: someWidthValue ? `${someWidthValue}px` : undefined,
         // height: someHeightValue ? `${someHeightValue}px` : undefined,
@@ -36,12 +35,12 @@ export function buildArticleSchema(
       "@type": "WebPage",
       "@id": canonical ?? "",
     },
-    headline: input.post?.title ?? "",
-    name: input.post?.title ?? "",
-    description: input.post?.seo?.metaDesc ?? "",
+    headline: post?.title ?? "",
+    name: post?.title ?? "",
+    description: post?.seo?.metaDesc ?? "",
     url: canonical ?? "",
     image: img,
-    keywords: input.post?.seo?.focuskw ? [input.post?.seo?.focuskw] : undefined,
+    keywords: post?.seo?.focuskw ? [post?.seo?.focuskw] : undefined,
     inLanguage: "sv-SE",
     articleSection: "Kunskapsbank",
     author: { "@type": "Organization", name: "Spoltec Södra AB" },
@@ -49,7 +48,7 @@ export function buildArticleSchema(
       "@type": "Organization",
       "@id": "https://www.spoltec.se/#organization",
     },
-    datePublished: input.post?.dateGmt ?? "",
-    dateModified: input.post?.modifiedGmt ?? input.post?.dateGmt ?? "",
+    datePublished: post?.dateGmt ?? "",
+    dateModified: post?.modifiedGmt ?? post?.dateGmt ?? "",
   };
 }
