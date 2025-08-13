@@ -7,6 +7,7 @@ import { generatePageMetadata } from "@lib/utils";
 import Blocks from "components/flexible-content/block";
 import JsonLd from "components/JsonLd";
 import { breadcrumbsSchema } from "@lib/seo/schema";
+import { absoluteUrl } from "@lib/utils/url";
 
 export const dynamicParams = true;
 
@@ -53,20 +54,25 @@ export default async function ArticlePage(props: PageProps) {
     notFound();
   }
 
-  const bread = breadcrumbsSchema([
-    {
-      name: "Hem",
-      url: "/",
-    },
-    {
-      name: "Kunskapsbank",
-      url: "/kunskapsbank",
-    },
-    {
-      name: post?.title,
-      url: `/kunskapsbank/${params.slug}`,
-    },
-  ]);
+  const canonical = await absoluteUrl(`/kunskapsbank/${params.slug}`);
+
+  const bread = breadcrumbsSchema(
+    [
+      {
+        name: "Hem",
+        url: await absoluteUrl("/"),
+      },
+      {
+        name: "Kunskapsbank",
+        url: await absoluteUrl("/kunskapsbank"),
+      },
+      {
+        name: post?.title,
+        url: canonical,
+      },
+    ],
+    canonical
+  );
 
   return (
     <div key={post.title}>
