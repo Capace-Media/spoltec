@@ -79,19 +79,21 @@ export default async function ArticlePage(props: PageProps) {
   );
 
   return (
-    <div key={post.title}>
+    <>
       <JsonLd json={bread} id="breadcrumbs-schema" />
       <JsonLd json={articleLD} id="article-schema" />
-      <Hero
-        title={post?.title}
-        subtitle={post?.gqlHeroFields?.underrubrik || ""}
-        text={post?.gqlHeroFields?.introduktionstext || ""}
-        image={post?.gqlHeroFields?.bild?.mediaItemUrl || ""}
-      />
-      <div id="content" className="w-full h-10 md:h-0"></div>
-      <div>
-        <Blocks blocks={post?.gqlBlocks?.blocks || []} />
-      </div>
-    </div>
+      <main key={post.title}>
+        <Hero
+          title={post?.title}
+          subtitle={post?.gqlHeroFields?.underrubrik || ""}
+          text={post?.gqlHeroFields?.introduktionstext || ""}
+          image={post?.gqlHeroFields?.bild?.mediaItemUrl || ""}
+        />
+        <div id="content" className="w-full h-10 md:h-0"></div>
+        <div>
+          <Blocks blocks={post?.gqlBlocks?.blocks || []} />
+        </div>
+      </main>
+    </>
   );
 }
