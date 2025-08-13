@@ -48,6 +48,9 @@ export function buildArticleSchema(
       "@type": "Organization",
       "@id": "https://www.spoltec.se/#organization",
     },
+    provider: {
+      "@id": "https://www.spoltec.se/#organization", // reference the org schema in layout
+    },
     datePublished: post?.dateGmt ?? "",
     dateModified: post?.modifiedGmt ?? post?.dateGmt ?? "",
   };
