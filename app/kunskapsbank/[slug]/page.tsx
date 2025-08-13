@@ -67,8 +67,10 @@ export default async function ArticlePage(props: PageProps) {
         url: await absoluteUrl("/kunskapsbank"),
       },
       {
-        name: post?.title,
+        name: post?.title ?? "",
         url: canonical,
+        type: "Article",
+        entityId: `${canonical}#article`,
       },
     ],
     canonical

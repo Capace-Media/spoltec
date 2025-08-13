@@ -62,7 +62,6 @@ export default async function ServicePage(props: PageProps) {
   }
 
   const canonical = await absoluteUrl(`/tjanster/${slug}`);
-
   const bread = breadcrumbsSchema(
     [
       {
@@ -74,8 +73,10 @@ export default async function ServicePage(props: PageProps) {
         url: await absoluteUrl("/tjanster"),
       },
       {
-        name: page?.title,
+        name: page?.title ?? "",
         url: canonical,
+        type: "Service",
+        entityId: `${canonical}#service`,
       },
     ],
     canonical
