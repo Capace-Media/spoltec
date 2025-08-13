@@ -23,6 +23,7 @@ export function buildOrgSchema(input: {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `https://www.spoltec.se/#organization`,
     name: input.name,
     url: input.url,
     logo: input.logoUrl,

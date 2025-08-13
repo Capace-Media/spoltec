@@ -8,7 +8,7 @@ import { generatePageMetadata } from "@lib/utils";
 import { getService } from "@lib/data/service";
 import Blocks from "components/flexible-content/block";
 import { generateServiceStructuredData } from "@lib/structured-data/generateServiceStructuredData";
-import { breadcrumbsSchema } from "@lib/seo/schema";
+import { breadcrumbsSchema, serviceSchema } from "@lib/seo/schema";
 import JsonLd from "components/JsonLd";
 
 export const dynamicParams = true;
@@ -74,10 +74,12 @@ export default async function ServicePage(props: PageProps) {
       url: `/tjanster/${params.slug}`,
     },
   ]);
+  const serviceSchemaLD = serviceSchema(page);
 
   return (
     <>
       <JsonLd json={bread} id="breadcrumbs-schema" />
+      <JsonLd json={serviceSchemaLD} id="service-schema" />
       <main key={page?.title}>
         <ServiceHero
           title={page?.title}

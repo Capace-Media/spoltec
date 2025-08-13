@@ -1,19 +1,27 @@
 import { Service as ServiceType } from "@lib/types/service";
-import { Service, WithContext } from "schema-dts";
-import { orgSchema } from ".";
+import { Service, WithContext, ImageObject } from "schema-dts";
 
 export function buildServiceSchema(service: ServiceType): WithContext<Service> {
+  const imageUrl = service.gqlHeroFields?.bild?.mediaItemUrl ?? "";
+
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: service.seo.title ?? "",
-    serviceType: service.title ?? "",
+    "@id": `${service.seo?.canonical ?? ""}#service`,
+    name: service.seo.title || service.title || "",
+    serviceType: service.title || "",
     description: service.seo.metaDesc ?? "",
     url: service.seo?.canonical ?? "",
-    image: service.gqlHeroFields?.bild?.mediaItemUrl ?? "",
-    provider: orgSchema({
-      name: "Spoltec",
-      url: "https://www.spoltec.se",
-    }),
+    image: imageUrl
+      ? ({
+          "@type": "ImageObject",
+          url: imageUrl,
+          caption: service.gqlHeroFields?.bild?.altText || service.title || "",
+        } as ImageObject)
+      : undefined,
+    provider: {
+      "@id": "https://www.spoltec.se/#organization", // reference the org schema in layout
+    },
+    areaServed: ["Sverige"],
   };
 }
