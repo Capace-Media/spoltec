@@ -16,6 +16,8 @@ export interface Post {
   slug: string;
   uri: string;
   id: string;
+  modifiedGmt?: string;
+  dateGmt?: string;
   seo: Seo;
   gqlHeroFields?: PostHeroFields;
   gqlBlocks?: {

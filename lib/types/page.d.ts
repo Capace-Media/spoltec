@@ -25,7 +25,7 @@ export interface Seo {
   opengraphDescription: string | null;
   opengraphTitle: string | null;
   title: string | null;
-  schema: SeoSchema | null;
+  focuskw: string | null;
   opengraphImage: SeoOpengraphImage | null;
   opengraphSiteName: string | null;
   opengraphPublishedTime: string | null;

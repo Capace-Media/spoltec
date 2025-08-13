@@ -12,9 +12,7 @@ export const SEO = `
         opengraphDescription
         opengraphTitle
         title
-        schema {
-            raw
-        }
+        focuskw
         opengraphImage {
             sourceUrl
         }

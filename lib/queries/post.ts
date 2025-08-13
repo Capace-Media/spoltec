@@ -7,6 +7,8 @@ export const POST_QUERY = `
           slug
           uri
           id
+          modifiedGmt
+          dateGmt
           ${SEO}
           gqlHeroFields {
             underrubrik

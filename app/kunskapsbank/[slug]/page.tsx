@@ -6,7 +6,7 @@ import WP from "@lib/wp/wp";
 import { generatePageMetadata } from "@lib/utils";
 import Blocks from "components/flexible-content/block";
 import JsonLd from "components/JsonLd";
-import { breadcrumbsSchema } from "@lib/seo/schema";
+import { articleSchema, breadcrumbsSchema } from "@lib/seo/schema";
 import { absoluteUrl } from "@lib/utils/url";
 
 export const dynamicParams = true;
@@ -56,6 +56,8 @@ export default async function ArticlePage(props: PageProps) {
 
   const canonical = await absoluteUrl(`/kunskapsbank/${params.slug}`);
 
+  const articleLD = articleSchema({ post: post }, "Article");
+
   const bread = breadcrumbsSchema(
     [
       {
@@ -79,6 +81,7 @@ export default async function ArticlePage(props: PageProps) {
   return (
     <div key={post.title}>
       <JsonLd json={bread} id="breadcrumbs-schema" />
+      <JsonLd json={articleLD} id="article-schema" />
       <Hero
         title={post?.title}
         subtitle={post?.gqlHeroFields?.underrubrik || ""}
