@@ -11,16 +11,22 @@ import { buttonVariants } from "components/ui/button";
 export default function Posts() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: ["posts"],
-      queryFn: async ({ pageParam }: { pageParam: string | undefined }) => {
-        const posts = await getPosts(pageParam, 9);
-        return posts;
-      },
-      initialPageParam: undefined,
-      getNextPageParam: (lastPage, pages) => lastPage?.pageInfo.endCursor,
-    });
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isFetching,
+  } = useInfiniteQuery({
+    queryKey: ["posts"],
+    queryFn: async ({ pageParam }: { pageParam: string | undefined }) => {
+      const posts = await getPosts(pageParam, 9);
+      return posts;
+    },
+    initialPageParam: undefined,
+    getNextPageParam: (lastPage, pages) => lastPage?.pageInfo.endCursor,
+  });
 
   const handleLoadMore = async () => {
     if (hasNextPage && !isFetchingNextPage) {
@@ -38,11 +44,44 @@ export default function Posts() {
     return text.length > length ? text.substring(0, length) + "..." : text;
   };
 
+  // Create a reusable skeleton component
+  const PostSkeleton = () => (
+    <div className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between w-full text-white p-7 bg-brand-blue rounded-xl animate-pulse">
+      {/* Shimmer effect overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] animate-[shimmer_1.5s_infinite] pointer-events-none"></div>
+
+      <div className="relative z-10">
+        {/* Title skeleton */}
+        <div className="space-y-2">
+          <div className="h-6 md:h-7 bg-white/20 rounded animate-pulse"></div>
+          <div className="h-6 md:h-7 bg-white/20 rounded w-3/4 animate-pulse"></div>
+        </div>
+
+        {/* Description skeleton */}
+        <div className="mt-3 space-y-2">
+          <div className="h-4 bg-white/15 rounded animate-pulse"></div>
+          <div className="h-4 bg-white/15 rounded w-5/6 animate-pulse"></div>
+          <div className="h-4 bg-white/15 rounded w-2/3 animate-pulse"></div>
+        </div>
+      </div>
+
+      {/* "Read more" skeleton */}
+      <div className="flex items-center justify-end space-x-3 relative z-10">
+        <div className="h-4 bg-white/20 rounded w-16 animate-pulse"></div>
+        <div className="w-5 h-5 bg-white/20 rounded animate-pulse"></div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="w-full">
       {/* Posts Grid */}
       <div>
         <h2>Artiklar</h2>
+        <p>
+          Här hittar du artiklar om avloppssystem, avloppsrenovering och annat
+          relaterat.
+        </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
         {allPosts.map((edge, index) => {
@@ -111,7 +150,16 @@ export default function Posts() {
         })}
       </div>
 
+      {isLoading && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+          {Array.from({ length: 6 }, (_, index) => (
+            <PostSkeleton key={`skeleton-${index}`} />
+          ))}
+        </div>
+      )}
+
       {/* No posts message */}
+
       {allPosts.length === 0 && !isFetchingNextPage && (
         <div className="text-center py-12">
           <p className="text-gray-500">Inga artiklar hittades.</p>
@@ -159,23 +207,9 @@ export default function Posts() {
 
       {/* Loading state for initial load */}
       {allPosts.length === 0 && isFetchingNextPage && (
-        <div className="flex flex-wrap justify-center mt-10">
-          {[...Array(6)].map((_, index) => (
-            <div
-              key={`skeleton-${index}`}
-              className="mb-3 mr-3 w-full md:w-[48%] lg:w-[32%] xl:w-[24%] h-56 md:h-96 bg-brand-blue rounded-xl animate-pulse"
-            >
-              <div className="p-7 flex flex-col justify-between h-full">
-                <div>
-                  <div className="h-6 bg-white/20 rounded mb-3"></div>
-                  <div className="h-4 bg-white/20 rounded mb-2"></div>
-                  <div className="h-4 bg-white/20 rounded w-3/4"></div>
-                </div>
-                <div className="flex justify-end">
-                  <div className="h-4 bg-white/20 rounded w-16"></div>
-                </div>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+          {Array.from({ length: 6 }, (_, index) => (
+            <PostSkeleton key={`skeleton-more-${index}`} />
           ))}
         </div>
       )}

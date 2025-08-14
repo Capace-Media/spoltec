@@ -13,9 +13,11 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/kontakta-oss");
+  const canonical = "https://www.spoltec.se/kontakta-oss";
   return generatePageMetadata(
     page,
     parent,
+    canonical,
     "Kontakta oss - Spoltec",
     "Kontakta oss för att få hjälp med dina avloppsproblem. Ring oss på 040-47 40 12."
   );

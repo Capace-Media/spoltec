@@ -45,7 +45,8 @@ export async function generateMetadata(
   const uri = `/services/${slug}`; // ✅ fix path
   const page = await getService(uri);
 
-  return generatePageMetadata(page, parent);
+  const canonical = `https://www.spoltec.se/tjanster/${slug}`;
+  return generatePageMetadata(page, parent, canonical);
 }
 
 interface PageProps {

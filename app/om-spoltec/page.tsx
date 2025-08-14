@@ -12,9 +12,11 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/om-spoltec");
+  const canonical = "https://www.spoltec.se/om-spoltec";
   return generatePageMetadata(
     page,
     parent,
+    canonical,
     "Om Spoltec - Spoltec",
     "Läs mer om Spoltec och våra tjänster."
   );

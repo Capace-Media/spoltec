@@ -39,7 +39,8 @@ export async function generateMetadata(
   const params = await props.params;
   const post = await getPost(params.slug);
 
-  return generatePageMetadata(post, parent);
+  const canonical = `https://www.spoltec.se/kunskapsbank/${params.slug}`;
+  return generatePageMetadata(post, parent, canonical);
 }
 
 interface PageProps {

@@ -11,9 +11,11 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/akut-hjalp");
+  const canonical = "https://www.spoltec.se/akut-hjalp";
   return generatePageMetadata(
     page,
     parent,
+    canonical,
     "Akut hjälp - Spoltec",
     "Hjälplinje för dig som är i behov av akut hjälp med avloppsproblem. Ring 040-47 40 12 för omedelbar hjälp."
   );

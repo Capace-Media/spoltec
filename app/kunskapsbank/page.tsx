@@ -19,9 +19,11 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/kunskapsbank");
+  const canonical = "https://www.spoltec.se/kunskapsbank";
   return generatePageMetadata(
     page,
     parent,
+    canonical,
     "Kunskapsbank - Spoltec",
     "Kunskapsbank"
   );

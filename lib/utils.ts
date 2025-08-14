@@ -12,6 +12,7 @@ export function cn(...inputs: ClassValue[]) {
 export async function generatePageMetadata(
   page: Page | Service | Post | null,
   parent?: ResolvingMetadata,
+  canonical?: string,
   fallbackTitle = "Spoltec funktionssäkrar ert avloppssystem",
   fallbackDescription = "Professionell hjälp med avloppsproblem i hela Sverige. Spoltec utför spolning, reparationer och underhåll av avloppssystem för hem och företag."
 ): Promise<Metadata> {
@@ -61,7 +62,7 @@ export async function generatePageMetadata(
       follow: page.seo.metaRobotsNofollow !== "nofollow",
     },
     ...(page.seo.canonical && {
-      alternates: { canonical: page.seo.canonical },
+      alternates: { canonical: canonical ? canonical : page.seo.canonical },
     }),
   };
 }

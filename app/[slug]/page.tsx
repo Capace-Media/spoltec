@@ -57,7 +57,8 @@ export async function generateMetadata(
 
   const page = await getPage(params.slug);
 
-  return generatePageMetadata(page, parent);
+  const canonical = `https://www.spoltec.se/${params.slug}`;
+  return generatePageMetadata(page, parent, canonical);
 }
 
 interface PageProps {

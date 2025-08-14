@@ -12,7 +12,8 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/");
-  return generatePageMetadata(page, parent);
+  const canonical = "https://www.spoltec.se";
+  return generatePageMetadata(page, parent, canonical);
 }
 
 export default async function Home() {
