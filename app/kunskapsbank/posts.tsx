@@ -106,6 +106,7 @@ export default function Posts() {
               href={postUrl}
               itemScope
               itemType="https://schema.org/Article"
+              aria-label={`Läs mer om ${post.title}`}
             >
               <Image
                 src={imageUrl}

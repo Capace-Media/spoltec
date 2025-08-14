@@ -9,8 +9,13 @@ const LocalLinks = () => {
           pages.nodes.map((page) => {
             return (
               <li key={page?.id}>
-                <Link className=" py-2 md:hover:underline" href={page?.uri}>
+                <Link
+                  className=" py-2 md:hover:underline"
+                  href={page?.uri}
+                  aria-label={`Gå till ${page?.title}`}
+                >
                   {page?.title}
+                  <span className="sr-only">Gå till {page?.title}</span>
                 </Link>
               </li>
             );

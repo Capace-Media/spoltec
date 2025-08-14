@@ -47,6 +47,7 @@ export default function Nav() {
               isScrolled ? "h-12" : "h-12 lg:h-16"
             )}
           />
+          <span className="sr-only">Gå till startsidan</span>
         </Link>
         <div className="hidden lg:flex items-center gap-5">
           <NavigationMenu viewport={false}>
@@ -83,7 +84,12 @@ export default function Nav() {
                       className="text-primary font-bold"
                       asChild
                     >
-                      <Link href={link.href}>{link.label}</Link>
+                      <Link
+                        href={link.href}
+                        aria-label={`Gå till ${link.label}`}
+                      >
+                        {link.label}
+                      </Link>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
                 );
@@ -94,6 +100,7 @@ export default function Nav() {
             <Link
               className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
               href="/kontakta-oss"
+              aria-label="Kontakta oss för mer information"
             >
               Kontakta oss
             </Link>
@@ -102,6 +109,7 @@ export default function Nav() {
                 buttonVariants({ variant: "secondary", size: "lg" })
               )}
               href="/akut-hjalp"
+              aria-label="Akut hjälp för ert avloppssystem"
             >
               Akut hjälp
             </Link>

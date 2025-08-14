@@ -29,8 +29,10 @@ const Text = ({ data }: TextProps) => {
                 ? data?.knapp?.url?.uri
                 : `/${data?.knapp?.url?.slug}`
             }
+            aria-label={`Läs mer om ${data.rubrik}`}
           >
             {data?.knapp?.text}
+            <span className="sr-only">Läs mer om {data.rubrik}</span>
           </Link>
         ) : null}
       </div>

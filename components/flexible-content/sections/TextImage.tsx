@@ -37,8 +37,12 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
                       buttonVariants({ variant: "default", size: "lg" })
                     )}
                     href={data.textBody.knapp.url}
+                    aria-label={`Läs mer om ${data.textBody.rubrik}`}
                   >
                     {data.textBody.knapp.text}
+                    <span className="sr-only">
+                      Läs mer om {data.textBody.rubrik}
+                    </span>
                   </Link>
                 )}
               </div>

@@ -74,6 +74,7 @@ export function NavSheet() {
                             <Link
                               href={subLink.href}
                               className="block p-2 text-sm text-gray-600 hover:text-brand-blue hover:bg-gray-50 rounded transition-colors"
+                              aria-label={`Gå till ${subLink.label}`}
                             >
                               {subLink.label}
                             </Link>
@@ -90,6 +91,7 @@ export function NavSheet() {
                     <Link
                       href={link.href}
                       className="block p-3 font-medium hover:bg-gray-100 rounded transition-colors"
+                      aria-label={`Gå till ${link.label}`}
                     >
                       {link.label}
                     </Link>
