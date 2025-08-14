@@ -91,7 +91,26 @@
   }
 
   & a {
-    @apply text-brand-blue hover:underline;
+    @apply hover:text-brand-blue underline transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2;
+
+    /* Ensure sufficient color contrast */
+    color: #0066cc; /* or your brand color that meets WCAG contrast requirements */
+
+    /* Improve focus visibility */
+    &:focus-visible {
+      @apply outline-2 outline-offset-2 outline-brand-blue rounded-sm;
+    }
+
+    /* Ensure the link is distinguishable from regular text */
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+
+    /* Improve hover state */
+    &:hover {
+      @apply text-brand-blue;
+      text-decoration-thickness: 2px;
+    }
   }
 
   & img {
