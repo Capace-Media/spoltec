@@ -33,10 +33,20 @@ const Video = ({ data }: VideoProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState<number | null>(null);
   const [currentTime, setCurrentTime] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // Generate unique IDs for accessibility
-  const videoId = `video-${Math.random().toString(36).substr(2, 9)}`;
+  // Generate stable IDs for accessibility (avoid hydration mismatch)
+  const videoId = `video-${
+    videoUrl
+      ?.split("/")
+      .pop()
+      ?.replace(/[^a-zA-Z0-9]/g, "") || "default"
+  }`;
   const descriptionId = `${videoId}-description`;
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -102,6 +112,27 @@ const Video = ({ data }: VideoProps) => {
     return null;
   }
 
+  // Prevent hydration mismatch by not rendering dynamic content until mounted
+  if (!isMounted) {
+    return (
+      <section className="contain-outer section">
+        <div className="relative">
+          <video
+            className="block w-full h-auto rounded-[20px] focus:outline-none focus:ring-2 focus:ring-blue-500"
+            style={{ borderRadius: "20px" }}
+            controls
+            preload="metadata"
+            poster={thumbnailUrl}
+          >
+            <source src={videoUrl} type="video/webm" />
+            <source src={videoUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <>
       {/* JSON-LD structured data for SEO */}
@@ -134,43 +165,13 @@ const Video = ({ data }: VideoProps) => {
             poster={thumbnailUrl}
             aria-label={videoAltText}
             aria-describedby={data?.description ? descriptionId : undefined}
-            // SEO and accessibility attributes
             title={data?.title || videoAltText}
           >
             <source src={videoUrl} type="video/webm" />
             <source src={videoUrl} type="video/mp4" />
-            <track
-              kind="captions"
-              srcLang="sv"
-              label="Svenska undertexter"
-              // Add caption file URL when available
-            />
+            <track kind="captions" srcLang="sv" label="Svenska undertexter" />
             Your browser does not support the video tag.
           </video>
-
-          {/* Custom play button overlay - only shown when not playing */}
-          {!isPlaying && (
-            <div
-              className="absolute inset-0 flex items-center justify-center cursor-pointer rounded-[20px]"
-              onClick={togglePlay}
-              role="button"
-              tabIndex={0}
-              aria-label={`Spela video: ${videoAltText}`}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  togglePlay();
-                }
-              }}
-            >
-              <button
-                className="bg-black bg-opacity-50 text-white text-2xl font-bold px-6 py-3 rounded-lg hover:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-200"
-                aria-label="Spela video"
-              >
-                ▶ Spela
-              </button>
-            </div>
-          )}
         </div>
 
         {/* Video description for SEO and accessibility */}
