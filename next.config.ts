@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
           // Use ONE of the COEP lines below.
 
           // If all third-party assets respond with proper CORP/CORS:
-          { key: "Cross-Origin-Embedder-Policy", value: "require-corp" },
+          // { key: "Cross-Origin-Embedder-Policy", value: "require-corp" },
 
           // OR, if you prefer a softer mode (fewer breakages with third-party):
           // { key: "Cross-Origin-Embedder-Policy", value: "credentialless" },
