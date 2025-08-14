@@ -36,6 +36,7 @@ const CallToAction = ({}: CallToActionProps) => {
                   buttonVariants({ variant: "default", size: "lg" })
                 )}
                 href="/serviceavtal"
+                aria-label="Läs mer om serviceavtal"
               >
                 Läs mer om serviceavtal
               </Link>
