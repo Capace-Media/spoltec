@@ -121,6 +121,7 @@ const Footer = ({}: FooterProps) => {
                   rel="noreferrer"
                 >
                   <Linkedin />
+                  <span className="sr-only">Besök vår LinkedIn</span>
                 </a>
                 <Separator orientation="vertical" />
                 <a
@@ -129,6 +130,7 @@ const Footer = ({}: FooterProps) => {
                   rel="noreferrer"
                 >
                   <Facebook />
+                  <span className="sr-only">Besök vår Facebook</span>
                 </a>
               </div>
               <div>

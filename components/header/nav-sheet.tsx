@@ -28,6 +28,7 @@ export function NavSheet() {
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="cursor-pointer">
           <MenuIcon className="size-6" />
+          <span className="sr-only">Öppna meny</span>
         </Button>
       </SheetTrigger>
       <SheetContent className="w-80 p-0">
@@ -42,6 +43,7 @@ export function NavSheet() {
                   height={48}
                   priority
                 />
+                <span className="sr-only">Spoltec startsidan</span>
               </Link>
             </SheetClose>
           </SheetTitle>

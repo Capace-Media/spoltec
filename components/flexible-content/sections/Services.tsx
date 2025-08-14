@@ -1,6 +1,5 @@
 "use client";
 import services from "@data/static-services.json";
-import articles from "data/static-articles.json";
 import categories from "data/static-categories.json";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,12 +15,6 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
 
   const slug =
     params && typeof params.slug === "string" ? params.slug : undefined;
-
-  const filterArticles: any[] = slug
-    ? articles.filter((article: any) => article.slug === slug)
-    : [];
-
-  const relevantArticles: any[] = filterArticles[0]?.gqlArtikel?.artiklar || [];
 
   const limit = (str: string, max: number): string => {
     return str.length > max ? `${str.substring(0, max)}...` : str;
@@ -53,8 +46,6 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
     res = matchArray.filter((match: any) => slug.includes(match.slug));
   } else if (slug === "kunskapsbank") {
     res = categories;
-  } else if (filterArticles.length > 0 && filterArticles[0].slug === slug) {
-    res = relevantArticles;
   }
 
   return (

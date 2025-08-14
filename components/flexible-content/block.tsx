@@ -18,7 +18,7 @@ import type { PostBlock } from "@lib/types/post";
 
 interface BlockProps {
   block: any;
-  textImageOrdinal?: number;
+  textImageOrdinal: number | undefined;
 }
 
 const Block = ({ block, textImageOrdinal }: BlockProps) => {

@@ -6,11 +6,10 @@ import Link from "next/link";
 
 interface TextImageProps {
   data: any;
-  ordinal: number;
+  ordinal: number | undefined;
 }
 
 const TextImage = ({ data, ordinal }: TextImageProps) => {
-  console.log(ordinal);
   return (
     <section className="contain-outer section" data-ordinal={ordinal}>
       <div
@@ -21,7 +20,9 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
         <div className="section-sm contain ">
           <div
             className={`flex flex-col gap-20 ${
-              ordinal % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+              ordinal && ordinal % 2 === 0
+                ? "lg:flex-row"
+                : "lg:flex-row-reverse"
             }`}
           >
             <div className="flex items-center w-full">
