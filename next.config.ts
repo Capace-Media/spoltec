@@ -1,25 +1,20 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Add compression (though it's often default)
+  compress: true,
+
+  // Remove X-Powered-By header for security
+  poweredByHeader: false,
+
+  // Your existing config...
   async headers() {
     return [
       {
-        source: "/(.*)", // all routes
+        source: "/(.*)",
         headers: [
-          // Strict isolation (recommended)
           { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
-
-          // Optional: enable cross-origin isolation (needed for SharedArrayBuffer, etc.)
-          // Use ONE of the COEP lines below.
-
-          // If all third-party assets respond with proper CORP/CORS:
-          // { key: "Cross-Origin-Embedder-Policy", value: "require-corp" },
-
-          // OR, if you prefer a softer mode (fewer breakages with third-party):
-          // { key: "Cross-Origin-Embedder-Policy", value: "credentialless" },
-
-          // Optional hardening (safe default):
-          // { key: "Cross-Origin-Resource-Policy", value: "same-site" },
+          // Could add more security headers if needed
         ],
       },
     ];
