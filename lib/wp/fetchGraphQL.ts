@@ -10,7 +10,8 @@ type GraphQLResponse<T> = {
 
 export async function fetchGraphQL<T>(
   query: string,
-  variables: { [key: string]: any } = {}
+  variables: { [key: string]: any } = {},
+  tags?: string[]
 ): Promise<T> {
   const endpoint = process.env.GRAPHQL_ENDPOINT as string;
 
@@ -21,7 +22,7 @@ export async function fetchGraphQL<T>(
       Authorization: `Basic ${token}`,
     },
     next: {
-      revalidate: 86400, // 24 hours - this handles caching automatically
+      tags: tags,
     },
     body: JSON.stringify({
       query,

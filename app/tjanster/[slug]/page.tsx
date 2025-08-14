@@ -7,7 +7,6 @@ import WP from "@lib/wp/wp";
 import { generatePageMetadata } from "@lib/utils";
 import { getService } from "@lib/data/service";
 import Blocks from "components/flexible-content/block";
-import { generateServiceStructuredData } from "@lib/structured-data/generateServiceStructuredData";
 import { breadcrumbsSchema, serviceSchema } from "@lib/seo/schema";
 import JsonLd from "components/JsonLd";
 import { absoluteUrl } from "@lib/utils/url";
