@@ -3,20 +3,27 @@ import { buttonVariants } from "components/ui/button";
 import parse from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
+
 interface TextImageProps {
   data: any;
+  ordinal: number;
 }
 
-const TextImage = ({ data }: TextImageProps) => {
+const TextImage = ({ data, ordinal }: TextImageProps) => {
+  console.log(ordinal);
   return (
-    <section className="contain-outer section">
+    <section className="contain-outer section" data-ordinal={ordinal}>
       <div
         className={`text-image ${
           data?.installningar?.bakgrund ? "bg-section" : "section"
         }`}
       >
         <div className="section-sm contain ">
-          <div id="infoSection" className="flex flex-col lg:flex-row gap-20">
+          <div
+            className={`flex flex-col gap-20 ${
+              ordinal % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+            }`}
+          >
             <div className="flex items-center w-full">
               <div>
                 <h2>{data.textBody.rubrik}</h2>

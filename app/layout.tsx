@@ -1,4 +1,3 @@
-import "../styles/global.scss";
 import "../styles/globals.css";
 
 import { Chivo } from "next/font/google";

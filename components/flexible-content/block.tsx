@@ -18,16 +18,21 @@ import type { PostBlock } from "@lib/types/post";
 
 interface BlockProps {
   block: any;
+  textImageOrdinal?: number;
 }
 
-const Block = ({ block }: BlockProps) => {
+const Block = ({ block, textImageOrdinal }: BlockProps) => {
   switch (block.fieldGroupName) {
     case "Page_Gqlblocks_Blocks_TextBild":
-      return <TextImage data={block as TextBildBlock} />;
+      return (
+        <TextImage data={block as TextBildBlock} ordinal={textImageOrdinal} />
+      );
     case "GqlService_Gqlblocks_Blocks_Video":
       return <Video data={block} />;
     case "GqlService_Gqlblocks_Blocks_TextBild":
-      return <TextImage data={block as TextBildBlock} />;
+      return (
+        <TextImage data={block as TextBildBlock} ordinal={textImageOrdinal} />
+      );
     case "Page_Gqlblocks_Blocks_Tjanster":
       return <Services data={block as TjansterBlock} />;
     case "Page_Gqlblocks_Blocks_Text":
@@ -35,7 +40,7 @@ const Block = ({ block }: BlockProps) => {
     case "Page_Gqlblocks_Blocks_LedigaTjanster":
       return <AvailablePositions data={block} />;
     case "Post_Gqlblocks_Blocks_TextBild":
-      return <TextImage data={block} />;
+      return <TextImage data={block} ordinal={textImageOrdinal} />;
     case "Post_Gqlblocks_Blocks_Tjanster":
       return <Services data={block} />;
     case "Post_Gqlblocks_Blocks_Text":
@@ -70,10 +75,26 @@ const Blocks = ({
 }: {
   blocks: BlockType[] | ServiceBlock[] | PostBlock[];
 }) => {
+  const isTextImage = (fg: string) =>
+    fg === "Page_Gqlblocks_Blocks_TextBild" ||
+    fg === "GqlService_Gqlblocks_Blocks_TextBild" ||
+    fg === "Post_Gqlblocks_Blocks_TextBild";
+
+  let textImageCounter = 0;
+
   return (
     <>
       {blocks?.map((block, i) => {
-        return <Block key={block.fieldGroupName + i} block={block} />;
+        const ordinal = isTextImage(block.fieldGroupName)
+          ? ++textImageCounter
+          : undefined;
+        return (
+          <Block
+            key={block.fieldGroupName + i}
+            block={block}
+            textImageOrdinal={ordinal}
+          />
+        );
       })}
     </>
   );
