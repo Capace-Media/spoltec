@@ -16,7 +16,6 @@ interface VideoProps {
       mediaItemUrl: string;
       altText?: string;
     };
-    // Additional fields that could be added to CMS
     title?: string;
     description?: string;
     duration?: number;
@@ -35,7 +34,6 @@ const Video = ({ data }: VideoProps) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
 
-  // Generate stable IDs for accessibility (avoid hydration mismatch)
   const videoId = `video-${
     videoUrl
       ?.split("/")
@@ -92,7 +90,6 @@ const Video = ({ data }: VideoProps) => {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  // Generate structured data for SEO
   const videoStructuredData = {
     "@context": "https://schema.org",
     "@type": "VideoObject",
@@ -112,7 +109,6 @@ const Video = ({ data }: VideoProps) => {
     return null;
   }
 
-  // Prevent hydration mismatch by not rendering dynamic content until mounted
   if (!isMounted) {
     return (
       <section className="contain-outer section">
@@ -135,7 +131,6 @@ const Video = ({ data }: VideoProps) => {
 
   return (
     <>
-      {/* JSON-LD structured data for SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -174,14 +169,12 @@ const Video = ({ data }: VideoProps) => {
           </video>
         </div>
 
-        {/* Video description for SEO and accessibility */}
         {data?.description && (
           <div id={descriptionId} className="mt-4 text-sm text-gray-600">
             <p className="sr-only">{data.description}</p>
           </div>
         )}
 
-        {/* Video metadata for SEO */}
         {duration && (
           <div className="mt-2 text-xs text-gray-500">
             <span className="sr-only">Videolängd: {formatTime(duration)}</span>
