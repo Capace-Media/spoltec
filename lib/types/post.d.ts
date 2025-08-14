@@ -99,7 +99,10 @@ export interface PostTextBildBlock {
 }
 
 export interface PostTjansterBlock {
-  fieldGroupName: "Post_Gqlblocks_Blocks_Tjanster";
+  fieldGroupName:
+    | "Page_Gqlblocks_Blocks_Tjanster"
+    | "GqlService_Gqlblocks_Blocks_Tjanster"
+    | "Post_Gqlblocks_Blocks_Tjanster";
   rubrik?: string;
   serviceText?: string;
 }

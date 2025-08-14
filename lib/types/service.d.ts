@@ -68,7 +68,10 @@ export interface ServiceListaBlock {
 }
 
 export interface ServiceTjansterBlock {
-  fieldGroupName: "GqlService_Gqlblocks_Blocks_Tjanster";
+  fieldGroupName:
+    | "Page_Gqlblocks_Blocks_Tjanster"
+    | "GqlService_Gqlblocks_Blocks_Tjanster"
+    | "Post_Gqlblocks_Blocks_Tjanster";
   rubrik: string;
   serviceText: string;
 }
