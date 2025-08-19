@@ -10,9 +10,9 @@ const Mail = async (req: NextApiRequest, res: NextApiResponse) => {
     const emailRes = await sgMail.send({
       from: {
         name: `${name} / ${email}`,
-        email: email,
+        email: "info@spoltec.se",
       },
-      replayTo: email,
+      replyTo: email,
       to: `info@spoltec.se`,
       subject: `Offertförfrågan för ${subject}`,
       html: `<div>
