@@ -55,9 +55,9 @@ export const metadata: Metadata = {
   appleWebApp: {
     title: "Spoltec.se",
   },
-  // verification: {
-  //   google: "your-google-verification-code", // if you have one
-  // },
+  verification: {
+    google: "7Y3kGTLDtFMwKc8UwJusW3-UKm6PB1fhMglOi5UVwwI",
+  },
 };
 
 export default function RootLayout({
