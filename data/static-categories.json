@@ -1,1 +1,62 @@
-[{"uri":"kunskapsbank/avloppsspolning","title":"Avloppsspolning","slug":"avloppsspolning","underrubrik":"Underrubrik text","introduktionstext":"Artiklar och kunskapsinlägg kring Avloppsspolning","bild":{"mediaItemUrl":"https://media.spoltec.se/wp-content/uploads/2022/04/0H8A7808-scaled.jpg"}},{"uri":"kunskapsbank/oljeavskiljare","title":"Oljeavskiljare","slug":"oljeavskiljare","underrubrik":"Underrubrik text","introduktionstext":"Artiklar och kunskapsinlägg kring Oljeavskiljare","bild":{"mediaItemUrl":"https://media.spoltec.se/wp-content/uploads/2022/02/olja.png"}},{"uri":"kunskapsbank/relining","title":"Relining","slug":"relining","underrubrik":"Underrubrik text","introduktionstext":"Artiklar och kunskapsinlägg kring Relining","bild":{"mediaItemUrl":"https://media.spoltec.se/wp-content/uploads/2022/02/0H8A7482-scaled.jpg"}},{"uri":"kunskapsbank/kvicksilversanering","title":"Kvicksilversanering","slug":"kvicksilversanering","underrubrik":"Underrubrik text","introduktionstext":"Artiklar och kunskapsinlägg kring Kvicksilversanering","bild":{"mediaItemUrl":"https://media.spoltec.se/wp-content/uploads/2022/04/0H8A7755-scaled.jpg"}},{"uri":"kunskapsbank/rorinspektion","title":"Rörinspektion","slug":"rorinspektion","underrubrik":"Underrubrik text","introduktionstext":"Artiklar och kunskapsinlägg kring Rörinspektion","bild":{"mediaItemUrl":"https://media.spoltec.se/wp-content/uploads/2022/02/0H8A7568-scaled.jpg"}},{"uri":"kunskapsbank/provtagning-av-vatten","title":"Provtagning av vatten","slug":"provtagning-av-vatten","underrubrik":null,"introduktionstext":"Artiklar och kunskapsinlägg kring Provtagning av vatten","bild":{"mediaItemUrl":"https://media.spoltec.se/wp-content/uploads/2022/02/labb.png"}}]
+[
+  {
+    "uri": "kunskapsbank/avloppsspolning",
+    "title": "Avloppsspolning",
+    "slug": "avloppsspolning",
+    "underrubrik": "Underrubrik text",
+    "introduktionstext": "Artiklar och kunskapsinlägg kring Avloppsspolning",
+    "bild": {
+      "mediaItemUrl": "https://media.spoltec.se/wp-content/uploads/2022/04/0H8A7808-scaled.jpg"
+    }
+  },
+  {
+    "uri": "kunskapsbank/oljeavskiljare",
+    "title": "Oljeavskiljare",
+    "slug": "oljeavskiljare",
+    "underrubrik": "Underrubrik text",
+    "introduktionstext": "Artiklar och kunskapsinlägg kring Oljeavskiljare",
+    "bild": {
+      "mediaItemUrl": "https://media.spoltec.se/wp-content/uploads/2022/02/olja.png"
+    }
+  },
+  {
+    "uri": "kunskapsbank/relining",
+    "title": "Relining",
+    "slug": "relining",
+    "underrubrik": "Underrubrik text",
+    "introduktionstext": "Artiklar och kunskapsinlägg kring Relining",
+    "bild": {
+      "mediaItemUrl": "https://media.spoltec.se/wp-content/uploads/2022/02/0H8A7482-scaled.jpg"
+    }
+  },
+  {
+    "uri": "kunskapsbank/kvicksilversanering",
+    "title": "Kvicksilversanering",
+    "slug": "kvicksilversanering",
+    "underrubrik": "Underrubrik text",
+    "introduktionstext": "Artiklar och kunskapsinlägg kring Kvicksilversanering",
+    "bild": {
+      "mediaItemUrl": "https://media.spoltec.se/wp-content/uploads/2022/04/0H8A7755-scaled.jpg"
+    }
+  },
+  {
+    "uri": "kunskapsbank/rorinspektion",
+    "title": "Rörinspektion",
+    "slug": "rorinspektion",
+    "underrubrik": "Underrubrik text",
+    "introduktionstext": "Artiklar och kunskapsinlägg kring Rörinspektion",
+    "bild": {
+      "mediaItemUrl": "https://media.spoltec.se/wp-content/uploads/2022/02/0H8A7568-scaled.jpg"
+    }
+  },
+  {
+    "uri": "kunskapsbank/provtagning-av-vatten",
+    "title": "Provtagning av vatten",
+    "slug": "provtagning-av-vatten",
+    "underrubrik": null,
+    "introduktionstext": "Artiklar och kunskapsinlägg kring Provtagning av vatten",
+    "bild": {
+      "mediaItemUrl": "https://media.spoltec.se/wp-content/uploads/2022/02/labb.png"
+    }
+  }
+]

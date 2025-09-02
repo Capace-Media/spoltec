@@ -10,7 +10,8 @@ type GraphQLResponse<T> = {
 
 export async function fetchGraphQL<T>(
   query: string,
-  variables: { [key: string]: any } = {}
+  variables: { [key: string]: any } = {},
+  tags?: string[]
 ): Promise<T> {
   const endpoint = process.env.GRAPHQL_ENDPOINT as string;
 
@@ -19,6 +20,9 @@ export async function fetchGraphQL<T>(
     headers: {
       "Content-Type": "application/json",
       Authorization: `Basic ${token}`,
+    },
+    next: {
+      tags: tags,
     },
     body: JSON.stringify({
       query,

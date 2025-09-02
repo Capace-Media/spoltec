@@ -1,0 +1,51 @@
+import { getPage } from "@lib/data/page";
+import { generatePageMetadata } from "@lib/utils";
+import type { Metadata, ResolvingMetadata } from "next";
+import LocalLinks from "components/local-links";
+import Blocks from "components/flexible-content/block";
+import MainHero from "components/header/main-hero";
+import { webPageSchema } from "@lib/seo/schema";
+import JsonLd from "components/JsonLd";
+
+export async function generateMetadata(
+  {},
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const page = await getPage("/");
+  const canonical = "https://www.spoltec.se";
+  return generatePageMetadata(page, parent, canonical);
+}
+
+export default async function Home() {
+  const page = await getPage("/");
+
+  if (!page) {
+    return (
+      <main>
+        <MainHero />
+        <section className="contain layout">
+          <h2>Tekniskt fel</h2>
+          <p>
+            Det gick inte att ladda sidans innehåll. Vänligen försök igen
+            senare. Prova att ladda om sidan.
+          </p>
+        </section>
+        <LocalLinks />
+      </main>
+    );
+  }
+
+  const canonical = "https://www.spoltec.se";
+  const schema = webPageSchema(page, "WebPage", canonical);
+
+  return (
+    <>
+      <JsonLd json={schema} id={"home-page"} />
+      <main key={page.title}>
+        <MainHero />
+        <Blocks blocks={page?.gqlBlocks?.blocks || []} />
+        <LocalLinks />
+      </main>
+    </>
+  );
+}

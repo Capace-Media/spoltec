@@ -1,30 +1,148 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
+/*
+  ---break---
+*/
+@custom-variant dark (&:is(.dark *));
 
-@font-face {
-  font-family: "Chivo";
-  src: url("../public/assets/fonts/Chivo/Chivo-Regular.ttf");
-  font-weight: 400;
-  font-display: swap;
+@plugin '@tailwindcss/aspect-ratio';
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-xs: 300px;
+  --breakpoint-3xl: 2189px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  --breakpoint-nv: 975px;
+
+  --color-brand-blue: #2c4696;
+  --color-brand-lightblue: #ebf4f8;
+  --color-brand-orange: #fc8512;
 }
-@font-face {
-  font-family: "Chivo";
-  src: url("../public/assets/fonts/Chivo/Chivo-Bold.ttf");
-  font-weight: 700;
-  font-display: swap;
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  .color-brand-blue {
+    color: oklch(0.441 0.124 265.6);
+    background-color: oklch(0.769 0.188 70.08);
+  }
 }
-@font-face {
-  font-family: "Chivo";
-  src: url("../public/assets/fonts/Chivo/Chivo-Black.ttf");
-  font-weight: 900;
-  font-display: swap;
+
+@utility contain {
+  @apply px-5 mx-auto md:px-10 max-w-7xl;
+}
+
+@utility contain-textbutton {
+  @apply mr-12 ml-auto max-w-160 bottom-48 lg:bottom-40;
+}
+
+@utility contain-outer {
+  @apply px-5 mx-auto md:px-10 max-w-360;
+}
+
+@utility section {
+  @apply py-10 md:py-16;
+}
+
+@utility section-sm {
+  @apply py-5 md:py-10;
+}
+
+@utility row {
+  @apply pb-10 last:pb-0;
+}
+
+@utility row-sm {
+  @apply pb-5 last:pb-0;
+}
+
+@utility bg-section {
+  @apply section bg-brand-lightblue rounded-xl;
+}
+
+@utility parsed {
+  & p {
+    @apply mb-4 last:mb-0;
+  }
+  & ul {
+    @apply pl-5 mb-4 list-disc list-outside;
+  }
+
+  & ul li {
+    @apply mb-2;
+  }
+
+  & a {
+    @apply hover:text-brand-blue underline transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2;
+
+    /* Ensure sufficient color contrast */
+    color: #0066cc; /* or your brand color that meets WCAG contrast requirements */
+
+    /* Improve focus visibility */
+    &:focus-visible {
+      @apply outline-2 outline-offset-2 outline-brand-blue rounded-sm;
+    }
+
+    /* Ensure the link is distinguishable from regular text */
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+
+    /* Improve hover state */
+    &:hover {
+      @apply text-brand-blue;
+      text-decoration-thickness: 2px;
+    }
+  }
+
+  & img {
+    @apply my-3 w-full max-h-107.5 object-cover;
+  }
+}
+
+@utility text-image {
+  & div[data-image="2"] {
+    @apply row-span-2;
+  }
+
+  & div[data-image="1"] {
+    @apply row-span-2;
+  }
+}
+
+@utility article-ul {
+  @apply list-disc list-outside!;
+  /* lg:!list-inside */
+}
+
+@utility small-breadcrumb-text {
+  font-size: 0.43rem;
+}
+
+@utility breadcrumb-text {
+  font-size: 0.5rem;
+  line-height: 1rem;
 }
 
 @layer base {
-  body {
-    font-family: "Chivo", sans-serif;
-  }
   div,
   figure {
     @apply relative;
@@ -47,73 +165,6 @@
   }
 }
 
-@layer components {
-  .contain {
-    @apply px-5 mx-auto md:px-10 max-w-[80rem];
-  }
-  .contain-textbutton {
-    @apply mr-[3rem] ml-auto max-w-[40rem] bottom-48 lg:bottom-40;
-  }
-  .contain-outer {
-    @apply px-5 mx-auto md:px-10 max-w-[90rem];
-  }
-  .section {
-    @apply py-10 md:py-20;
-  }
-  .section-sm {
-    @apply py-5 md:py-10;
-  }
-  .row {
-    @apply pb-10 last:pb-0;
-  }
-  .row-sm {
-    @apply pb-5 last:pb-0;
-  }
-  .btn {
-    @apply inline-block px-5 py-3 font-bold text-white rounded bg-brand-blue opacity-90 hover:opacity-100;
-  }
-  .bg-section {
-    @apply section bg-brand-lightblue rounded-xl;
-  }
-  .parsed p {
-    @apply mb-4 last:mb-0;
-  }
-  .parsed ul {
-    @apply pl-5 mb-4 list-disc list-outside;
-  }
-
-  .parsed ul li {
-    @apply mb-2;
-  }
-
-  .parsed a {
-    @apply text-brand-blue hover:underline;
-  }
-
-  .parsed img {
-    @apply my-3 w-full max-h-[26.875rem] object-cover;
-  }
-
-  .text-image div[data-image="2"],
-  .text-image div[data-image="1"] {
-    @apply row-span-2;
-  }
-
-  .article-ul {
-    @apply list-disc !list-outside;
-    /* lg:!list-inside */
-  }
-
-  .small-breadcrumb-text {
-    font-size: 0.43rem;
-  }
-
-  .breadcrumb-text {
-    font-size: 0.5rem;
-    line-height: 1rem;
-  }
-}
-
 .nav-style {
   transition: ease-in-out 0.4s;
 }
@@ -122,43 +173,41 @@
   padding-bottom: 0;
 }
 
-@responsive {
-  .max-w-1-25 {
-    max-width: 5rem;
-  }
+.max-w-1-25 {
+  max-width: 5rem;
+}
 
-  .max-w-1-5 {
-    max-width: 6rem;
-  }
+.max-w-1-5 {
+  max-width: 6rem;
+}
 
-  .max-w-2 {
-    max-width: 8rem;
-  }
+.max-w-2 {
+  max-width: 8rem;
+}
 
-  .max-w-2-25 {
-    max-width: 9rem;
-  }
+.max-w-2-25 {
+  max-width: 9rem;
+}
 
-  .max-w-2-5 {
-    max-width: 10rem;
-  }
+.max-w-2-5 {
+  max-width: 10rem;
+}
 
-  .max-w-4-5 {
-    max-width: 18rem;
-  }
+.max-w-4-5 {
+  max-width: 18rem;
+}
 
-  .right-23 {
-    right: 5.75rem;
-  }
+.right-23 {
+  right: 5.75rem;
+}
 
-  .right-110 {
-    right: 27.5rem;
-  }
+.right-110 {
+  right: 27.5rem;
+}
 
-  /* .right-3/10 {
+/* .right-3/10 {
 
   } */
-}
 
 .right-104 {
   right: 26rem;
@@ -195,4 +244,176 @@
 
 .ul-a:hover {
   color: blue;
+}
+
+/*
+  ---break---
+*/
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.2138 0.0019 286.2347);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2138 0.0019 286.2347);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2138 0.0019 286.2347);
+  --primary: oklch(0.4169 0.1376 267.7135);
+  --primary-foreground: oklch(0.9615 0.011 225.981);
+  --secondary: oklch(0.7421 0.1762 56.7861);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.9702 0 0);
+  --muted-foreground: oklch(0.5555 0 0);
+  --accent: oklch(0.9702 0 0);
+  --accent-foreground: oklch(0.4169 0.1376 267.7135);
+  --destructive: oklch(0.5377 0.2188 26.4875);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.4169 0.1376 267.7135);
+  --input: oklch(0.9615 0.011 225.981);
+  --ring: oklch(0.4169 0.1376 267.7135);
+  --chart-1: oklch(0.8051 0.1001 253.9208);
+  --chart-2: oklch(0.6145 0.1929 260.7991);
+  --chart-3: oklch(0.5438 0.2237 263.5919);
+  --chart-4: oklch(0.484 0.2235 264.4238);
+  --chart-5: oklch(0.4173 0.1816 266.3963);
+  --sidebar: oklch(0.9851 0 0);
+  --sidebar-foreground: oklch(0.2138 0.0019 286.2347);
+  --sidebar-primary: oklch(0.2138 0.0019 286.2347);
+  --sidebar-primary-foreground: oklch(0.9851 0 0);
+  --sidebar-accent: oklch(0.9702 0 0);
+  --sidebar-accent-foreground: oklch(0.2138 0.0019 286.2347);
+  --sidebar-border: oklch(0.9219 0 0);
+  --sidebar-ring: oklch(0.709 0 0);
+  --font-sans: Chivo, ui-sans-serif, sans-serif, system-ui;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --radius: 0.625rem;
+  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 2px 4px -1px hsl(0 0% 0% / 0.1);
+  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 4px 6px -1px hsl(0 0% 0% / 0.1);
+  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 8px 10px -1px hsl(0 0% 0% / 0.1);
+  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+  --tracking-normal: 0em;
+  --spacing: 0.24rem;
+}
+
+.dark {
+  --background: oklch(0.2138 0.0019 286.2347);
+  --foreground: oklch(0.9851 0 0);
+  --card: oklch(0.2138 0.0019 286.2347);
+  --card-foreground: oklch(0.9851 0 0);
+  --popover: oklch(0.2686 0 0);
+  --popover-foreground: oklch(0.9851 0 0);
+  --primary: oklch(0.4169 0.1376 267.7135);
+  --primary-foreground: oklch(0.9615 0.011 225.981);
+  --secondary: oklch(0.7421 0.1762 56.7861);
+  --secondary-foreground: oklch(0.9851 0 0);
+  --muted: oklch(0.2686 0 0);
+  --muted-foreground: oklch(0.709 0 0);
+  --accent: oklch(0.3715 0 0);
+  --accent-foreground: oklch(0.9851 0 0);
+  --destructive: oklch(0.703 0.1884 23.2564);
+  --destructive-foreground: oklch(0.9851 0 0);
+  --border: oklch(0.2768 0 0);
+  --input: oklch(0.325 0 0);
+  --ring: oklch(0.5555 0 0);
+  --chart-1: oklch(0.8051 0.1001 253.9208);
+  --chart-2: oklch(0.6145 0.1929 260.7991);
+  --chart-3: oklch(0.5438 0.2237 263.5919);
+  --chart-4: oklch(0.484 0.2235 264.4238);
+  --chart-5: oklch(0.4173 0.1816 266.3963);
+  --sidebar: oklch(0.2138 0.0019 286.2347);
+  --sidebar-foreground: oklch(0.9851 0 0);
+  --sidebar-primary: oklch(0.4814 0.2473 264.7154);
+  --sidebar-primary-foreground: oklch(0.9851 0 0);
+  --sidebar-accent: oklch(0.2686 0 0);
+  --sidebar-accent-foreground: oklch(0.9851 0 0);
+  --sidebar-border: oklch(0.2768 0 0);
+  --sidebar-ring: oklch(0.4386 0 0);
+  --font-sans: Chivo, ui-sans-serif, sans-serif, system-ui;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --radius: 0.625rem;
+  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 2px 4px -1px hsl(0 0% 0% / 0.1);
+  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 4px 6px -1px hsl(0 0% 0% / 0.1);
+  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+    0 8px 10px -1px hsl(0 0% 0% / 0.1);
+  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
