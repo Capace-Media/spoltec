@@ -21,6 +21,7 @@ export async function fetchGraphQL<T>(
       "Content-Type": "application/json",
       Authorization: `Basic ${token}`,
     },
+    cache: "force-cache",
     next: {
       tags: tags,
     },
