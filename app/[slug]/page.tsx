@@ -7,11 +7,22 @@ import { getPage } from "@lib/data/page";
 import { GET_PAGES_QUERY } from "@lib/queries/page";
 import { generatePageMetadata, isBlacklistedPageSlug } from "@lib/utils";
 import type { Metadata, ResolvingMetadata } from "next";
+import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
 
 export const dynamicParams = true;
 
+type GetPagesQueryData = {
+  pages: {
+    nodes: {
+      slug: string;
+    }[];
+  };
+};
+
 export async function generateStaticParams() {
-  const { data } = await WP(GET_PAGES_QUERY);
+  const response = await fetchGraphQL<GetPagesQueryData>(GET_PAGES_QUERY, {}, [
+    "pages",
+  ]);
   const pagesToExclude = [
     "hem",
     "akut-hjalp",
@@ -38,7 +49,7 @@ export async function generateStaticParams() {
     "tjanster",
   ];
 
-  const pagePaths = data.pages.nodes
+  const pagePaths = response.pages.nodes
     .filter(
       (page: any) =>
         !isBlacklistedPageSlug(page.slug, pagesToExclude) &&
@@ -46,6 +57,7 @@ export async function generateStaticParams() {
     )
     .map((page: any) => ({ slug: page.slug }));
 
+  console.log("dose page paths work?", pagePaths);
   return pagePaths;
 }
 

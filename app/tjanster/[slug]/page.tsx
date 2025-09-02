@@ -10,8 +10,17 @@ import Blocks from "components/flexible-content/block";
 import { breadcrumbsSchema, serviceSchema } from "@lib/seo/schema";
 import JsonLd from "components/JsonLd";
 import { absoluteUrl } from "@lib/utils/url";
+import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
 
 export const dynamicParams = true;
+
+type GetServicesQueryData = {
+  gqlAllService: {
+    nodes: {
+      slug: string;
+    }[];
+  };
+};
 
 const GET_SERVICES_QUERY = `
   query GET_SERVICES {
@@ -24,15 +33,20 @@ const GET_SERVICES_QUERY = `
 `;
 
 export async function generateStaticParams() {
-  const { data } = await WP(GET_SERVICES_QUERY);
+  const response = await fetchGraphQL<GetServicesQueryData>(
+    GET_SERVICES_QUERY,
+    {},
+    ["services"]
+  );
 
   const servicePaths =
-    data?.gqlAllService?.nodes
+    response.gqlAllService?.nodes
       ?.filter(
         (service: any) => service?.slug && typeof service.slug === "string"
       )
       ?.map((service: any) => ({ slug: service.slug })) || [];
 
+  console.log("dose service paths work?", servicePaths);
   return servicePaths;
 }
 

@@ -8,8 +8,17 @@ import Blocks from "components/flexible-content/block";
 import JsonLd from "components/JsonLd";
 import { articleSchema, breadcrumbsSchema } from "@lib/seo/schema";
 import { absoluteUrl } from "@lib/utils/url";
+import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
 
 export const dynamicParams = true;
+
+type GetPostsQueryData = {
+  posts: {
+    nodes: {
+      slug: string;
+    }[];
+  };
+};
 
 const GET_POSTS_QUERY = `
   query GET_POSTS {
@@ -22,13 +31,16 @@ const GET_POSTS_QUERY = `
 `;
 
 export async function generateStaticParams() {
-  const { data } = await WP(GET_POSTS_QUERY);
+  const response = await fetchGraphQL<GetPostsQueryData>(GET_POSTS_QUERY, {}, [
+    "posts",
+  ]);
 
   const postPaths =
-    data?.posts?.nodes
+    response.posts?.nodes
       ?.filter((post: any) => post?.slug && typeof post.slug === "string")
       ?.map((post: any) => ({ slug: post.slug })) || [];
 
+  console.log("dose post paths work?", postPaths);
   return postPaths;
 }
 
