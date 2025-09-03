@@ -1,7 +1,6 @@
 import { getPage } from "@lib/data/page";
 import { generatePageMetadata } from "@lib/utils";
 import type { Metadata, ResolvingMetadata } from "next";
-import LocalLinks from "components/local-links";
 import Blocks from "components/flexible-content/block";
 import MainHero from "components/header/main-hero";
 import { webPageSchema } from "@lib/seo/schema";
@@ -30,7 +29,6 @@ export default async function Home() {
             senare. Prova att ladda om sidan.
           </p>
         </section>
-        <LocalLinks />
       </main>
     );
   }
@@ -44,7 +42,6 @@ export default async function Home() {
       <main key={page.title}>
         <MainHero />
         <Blocks blocks={page?.gqlBlocks?.blocks || []} />
-        <LocalLinks />
       </main>
     </>
   );
