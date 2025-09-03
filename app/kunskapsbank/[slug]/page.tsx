@@ -9,7 +9,7 @@ import { articleSchema, breadcrumbsSchema } from "@lib/seo/schema";
 import { absoluteUrl } from "@lib/utils/url";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 type GetPostsQueryData = {
   posts: {
@@ -30,16 +30,24 @@ const GET_POSTS_QUERY = `
 `;
 
 export async function generateStaticParams() {
-  const response = await fetchGraphQL<GetPostsQueryData>(GET_POSTS_QUERY, {}, [
-    "posts",
-  ]);
+  try {
+    const response = await fetchGraphQL<GetPostsQueryData>(
+      GET_POSTS_QUERY,
+      {},
+      ["posts"]
+    );
 
-  const postPaths =
-    response.posts?.nodes
-      ?.filter((post: any) => post?.slug && typeof post.slug === "string")
-      ?.map((post: any) => ({ slug: post.slug })) || [];
+    const postPaths =
+      response.posts?.nodes
+        ?.filter((post: any) => post?.slug && typeof post.slug === "string")
+        ?.map((post: any) => ({ slug: post.slug })) || [];
 
-  return postPaths;
+    console.log(`Generated ${postPaths.length} post paths for kunskapsbank`);
+    return postPaths;
+  } catch (error) {
+    console.error("Error generating static params for kunskapsbank:", error);
+    return []; // Return empty array instead of failing
+  }
 }
 
 export async function generateMetadata(

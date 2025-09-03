@@ -7,7 +7,7 @@ import { generatePageMetadata, isBlacklistedPageSlug } from "@lib/utils";
 import type { Metadata, ResolvingMetadata } from "next";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 type GetPagesQueryData = {
   pages: {

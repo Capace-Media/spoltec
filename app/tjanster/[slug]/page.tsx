@@ -9,7 +9,7 @@ import JsonLd from "components/JsonLd";
 import { absoluteUrl } from "@lib/utils/url";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 type GetServicesQueryData = {
   gqlAllService: {
