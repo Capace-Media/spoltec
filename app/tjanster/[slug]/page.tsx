@@ -1,7 +1,6 @@
 import ServiceHero from "components/header/service-hero";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
-
 import { generatePageMetadata } from "@lib/utils";
 import { getService } from "@lib/data/service";
 import Blocks from "components/flexible-content/block";
@@ -40,7 +39,11 @@ export async function generateStaticParams() {
   const servicePaths =
     response.gqlAllService?.nodes
       ?.filter(
-        (service: any) => service?.slug && typeof service.slug === "string"
+        (service: any) =>
+          service?.slug &&
+          typeof service.slug === "string" &&
+          service.slug !== "relining" &&
+          service.slug !== "rorinspektion"
       )
       ?.map((service: any) => ({ slug: service.slug })) || [];
 
