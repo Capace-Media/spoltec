@@ -10,6 +10,11 @@ export const PAGE_QUERY = `
       id
       ${SEO}
       ${BLOCKS}
+      pageSchema: gqlPageFields {
+        schema {
+          json
+        }
+      }
       gqlHeroFields {
         underrubrik
         introduktionstext

@@ -152,7 +152,11 @@ export interface GqlBlocks {
   blocks: Block[];
 }
 
-// ... existing code ...
+export interface PageSchema {
+  schema: {
+    json: string;
+  };
+}
 
 export interface Page {
   title: string;
@@ -162,6 +166,7 @@ export interface Page {
   seo?: Seo;
   gqlBlocks?: GqlBlocks; // Dynamic block structure that varies based on content
   gqlHeroFields: GqlHeroFields | null;
+  pageSchema: PageSchema | null;
 }
 
 export interface GetPageQueryData {
