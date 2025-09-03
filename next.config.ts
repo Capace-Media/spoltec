@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
   // Remove X-Powered-By header for security
   poweredByHeader: false,
 
+  // Remove the experimental section that's causing issues
+  // experimental: {
+  //   optimizeCss: true,
+  //   cssChunking: "strict",
+  // },
+
   // Your existing config...
   async headers() {
     return [
@@ -14,7 +20,31 @@ const nextConfig: NextConfig = {
         source: "/(.*)",
         headers: [
           { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
-          // Could add more security headers if needed
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          // Cache control for better performance
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/images/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // Add specific caching for CSS files
+      {
+        source: "/_next/static/css/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
         ],
       },
     ];
@@ -51,11 +81,11 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
   },
   reactStrictMode: true,
-  env: {
-    GRAPHQL_USER: process.env.GRAPHQL_USER,
-    GRAPHQL_PASS: process.env.GRAPHQL_PASS,
-    GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
-  },
+  // env: {
+  //   GRAPHQL_USER: process.env.GRAPHQL_USER,
+  //   GRAPHQL_PASS: process.env.GRAPHQL_PASS,
+  //   GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
+  // },
 
   async redirects() {
     return [
