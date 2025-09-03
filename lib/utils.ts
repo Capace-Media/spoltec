@@ -58,8 +58,8 @@ export async function generatePageMetadata(
         : undefined,
     },
     robots: {
-      index: page.seo.metaRobotsNoindex !== "noindex",
-      follow: page.seo.metaRobotsNofollow !== "nofollow",
+      index: true,
+      follow: true,
     },
     ...(page.seo.canonical && {
       alternates: { canonical: canonical ? canonical : page.seo.canonical },

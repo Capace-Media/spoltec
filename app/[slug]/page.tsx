@@ -45,6 +45,7 @@ export async function generateStaticParams() {
     "vaxjo",
     "kunskapsbank",
     "tjanster",
+    "lokala-tjanster",
   ];
 
   const pagePaths = response.pages.nodes
