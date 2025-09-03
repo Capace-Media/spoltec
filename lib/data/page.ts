@@ -6,5 +6,7 @@ export const getPage = async (uri: string) => {
   const response = await fetchGraphQL<GetPageQueryData>(PAGE_QUERY, { uri }, [
     "page",
   ]);
+  console.log(response.page);
+
   return response.page;
 };

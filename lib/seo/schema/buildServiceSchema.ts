@@ -20,7 +20,7 @@ export function buildServiceSchema(service: ServiceType): WithContext<Service> {
         } as ImageObject)
       : undefined,
     provider: {
-      "@id": "https://www.spoltec.se/#organization", // reference the org schema in layout
+      "@id": "https://www.spoltec.se/#organization",
     },
     areaServed: ["Sverige"],
   };

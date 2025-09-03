@@ -79,24 +79,27 @@ export default async function Page(props: PageProps) {
   const params = await props.params;
   const page = await getPage(params.slug);
 
+  console.log(page);
+
   if (!page) {
     notFound();
   }
 
-  const raw = page?.pageSchema?.schema?.json;
-  if (!raw) return null;
+  // const raw = page?.pageSchema?.schema?.json;
+  // if (!raw) return null;
 
-  let json: unknown = null;
-  try {
-    json = JSON.parse(raw); // parse the GraphQL string ➜ JS object
-  } catch {
-    return null; // bad JSON in ACF, skip rendering
-  }
+  // let json: unknown = null;
+  // try {
+  //   json = JSON.parse(raw); // parse the GraphQL string ➜ JS object
+  // } catch {
+  //   return null; // bad JSON in ACF, skip rendering
+  // }
 
-  console.log(json);
+  // console.log(page);
+  // console.log(json);
   return (
     <>
-      {json && (
+      {/* {json && (
         <script
           type="application/ld+json"
           id="service-schema-local"
@@ -104,7 +107,7 @@ export default async function Page(props: PageProps) {
             __html: JSON.stringify(json).replace(/</g, "\\u003c"),
           }}
         />
-      )}
+      )} */}
       <main key={page.title}>
         <Hero
           title={page?.title}
