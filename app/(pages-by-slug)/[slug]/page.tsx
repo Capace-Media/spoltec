@@ -21,6 +21,7 @@ export async function generateStaticParams() {
   const response = await fetchGraphQL<GetPagesQueryData>(GET_PAGES_QUERY, {}, [
     "pages",
   ]);
+  console.log(response.pages.nodes);
   const pagesToExclude = [
     "hem",
     "akut-hjalp",
@@ -55,6 +56,8 @@ export async function generateStaticParams() {
         typeof page.slug === "string"
     )
     .map((page: any) => ({ slug: page.slug }));
+
+  console.log(pagePaths);
 
   return pagePaths;
 }

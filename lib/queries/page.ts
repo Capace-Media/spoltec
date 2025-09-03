@@ -22,12 +22,43 @@ export const PAGE_QUERY = `
   }
 `;
 
-export const GET_PAGES_QUERY = `
-    query GET_PAGES_QUERY {
-    pages(first: 100) {
-        nodes {
-        slug
+export const PAGE_WITH_PARENT_QUERY = `
+  query getPage($uri: ID!) {
+    page(id: $uri, idType: URI) {
+      title
+      slug
+      uri
+      id
+      ${SEO}
+      ${BLOCKS}
+      gqlHeroFields {
+        underrubrik
+        introduktionstext
+        bild {
+          mediaItemUrl
+          altText
         }
+      }
     }
+  }
+`;
+
+export const GET_PAGES_WITH_PARENT_QUERY = `
+    query GET_PAGES_WITH_PARENT_QUERY($parentIn: [ID!] = [1431]) {
+      pages(where: {parentIn: $parentIn}) {
+          nodes {
+          slug
+          }
+      }
+    }
+`;
+
+export const GET_PAGES_QUERY = `
+    query GET_PAGES_QUERY() {
+      pages(first: 100) {
+          nodes {
+          slug
+          }
+      }
     }
 `;
