@@ -42,7 +42,6 @@ export async function generateStaticParams() {
         ?.filter((post: any) => post?.slug && typeof post.slug === "string")
         ?.map((post: any) => ({ slug: post.slug })) || [];
 
-    console.log(`Generated ${postPaths.length} post paths for kunskapsbank`);
     return postPaths;
   } catch (error) {
     console.error("Error generating static params for kunskapsbank:", error);
