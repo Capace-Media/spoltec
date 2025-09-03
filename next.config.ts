@@ -7,11 +7,17 @@ const nextConfig: NextConfig = {
   // Remove X-Powered-By header for security
   poweredByHeader: false,
 
-  // Remove the experimental section that's causing issues
-  // experimental: {
-  //   optimizeCss: true,
-  //   cssChunking: "strict",
-  // },
+  // Target modern browsers
+  experimental: {
+    // Enable modern JavaScript output
+    esmExternals: true,
+  },
+
+  // Optimize for modern browsers
+  compiler: {
+    // Remove console logs in production
+    removeConsole: process.env.NODE_ENV === "production",
+  },
 
   // Your existing config...
   async headers() {
