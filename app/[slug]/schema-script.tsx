@@ -3,7 +3,7 @@ export default function SchemaScript({ raw }: { raw?: string }) {
 
   // Try 2 passes in case it's double-encoded: "\"{...}\""
   let v: unknown = raw;
-  console.log("hello v string", v);
+
   for (let i = 0; i < 2; i++) {
     if (typeof v === "string") {
       try {
