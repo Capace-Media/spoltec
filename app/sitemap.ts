@@ -55,15 +55,38 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const dynamicPages: MetadataRoute.Sitemap =
       response?.pages?.nodes
-        ?.filter((page: any) => page.slug !== "hem") // Exclude /hem as it duplicates root page
-        ?.map((page: any) => ({
-          url: `${BASE_URL}/${page.slug}`,
-          lastModified: page.modifiedGmt
-            ? new Date(page.modifiedGmt)
-            : new Date(),
-          changeFrequency: "weekly" as const,
-          priority: 0.8,
-        })) || [];
+        ?.filter((page: any) => page.slug !== "hem")
+        ?.map((page: any) => {
+          // High priority for location/commercial pages
+          const isLocationPage =
+            /-(boras|goteborg|malmo|helsingborg|kalmar|karlskrona|kristianstad|halmstad|varberg|vaxjo|jonkoping)$/.test(
+              page.slug
+            );
+          const isCommercialPage =
+            page.slug.includes("avloppsspolning") ||
+            page.slug.includes("relining") ||
+            page.slug.includes("oljeavskiljare") ||
+            page.slug.includes("rorinspektion");
+
+          let priority = 0.8; // default
+
+          if (isLocationPage && isCommercialPage) {
+            priority = 0.95; // Highest for location + service pages
+          } else if (isCommercialPage) {
+            priority = 0.9; // High for service pages
+          } else if (isLocationPage) {
+            priority = 0.85; // Medium-high for location pages
+          }
+
+          return {
+            url: `${BASE_URL}/${page.slug}`,
+            lastModified: page.modifiedGmt
+              ? new Date(page.modifiedGmt)
+              : new Date(),
+            changeFrequency: "weekly" as const,
+            priority,
+          };
+        }) || [];
 
     return [...staticPages, ...dynamicPages];
   } catch (error) {

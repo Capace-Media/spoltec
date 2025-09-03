@@ -80,8 +80,6 @@ export default async function Page(props: PageProps) {
   const params = await props.params;
   const page = await getPage(params.slug);
 
-  console.log(page);
-
   if (!page) {
     notFound();
   }
