@@ -38,10 +38,6 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
-  alternates: {
-    canonical: "https://www.spoltec.se",
-  },
-  // Add favicon and icon configuration
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
