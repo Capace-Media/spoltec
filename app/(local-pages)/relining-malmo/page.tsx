@@ -94,6 +94,7 @@ export default async function Page() {
     <>
       <script
         type="application/ld+json"
+        id="service-schema-local"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
