@@ -2,7 +2,6 @@ import Hero from "components/header/hero";
 import { getPost } from "@lib/data/post";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
-import WP from "@lib/wp/wp";
 import { generatePageMetadata } from "@lib/utils";
 import Blocks from "components/flexible-content/block";
 import JsonLd from "components/JsonLd";
@@ -40,7 +39,6 @@ export async function generateStaticParams() {
       ?.filter((post: any) => post?.slug && typeof post.slug === "string")
       ?.map((post: any) => ({ slug: post.slug })) || [];
 
-  console.log("dose post paths work?", postPaths);
   return postPaths;
 }
 

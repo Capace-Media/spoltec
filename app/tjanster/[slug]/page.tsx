@@ -2,8 +2,6 @@ import ServiceHero from "components/header/service-hero";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
 
-import WP from "@lib/wp/wp";
-
 import { generatePageMetadata } from "@lib/utils";
 import { getService } from "@lib/data/service";
 import Blocks from "components/flexible-content/block";
@@ -46,7 +44,6 @@ export async function generateStaticParams() {
       )
       ?.map((service: any) => ({ slug: service.slug })) || [];
 
-  console.log("dose service paths work?", servicePaths);
   return servicePaths;
 }
 

@@ -1,8 +1,6 @@
 import Hero from "components/header/hero";
 import Blocks from "components/flexible-content/block";
 import { notFound } from "next/navigation";
-
-import WP from "@lib/wp/wp";
 import { getPage } from "@lib/data/page";
 import { GET_PAGES_QUERY } from "@lib/queries/page";
 import { generatePageMetadata, isBlacklistedPageSlug } from "@lib/utils";
@@ -57,7 +55,6 @@ export async function generateStaticParams() {
     )
     .map((page: any) => ({ slug: page.slug }));
 
-  console.log("dose page paths work?", pagePaths);
   return pagePaths;
 }
 
