@@ -120,6 +120,9 @@ query SERVICE_QUERY($slug: ID!) {
         gqlHeroFields {
             underrubrik
             introduktionstext
+             usp {
+              text
+            }
             bild {
                 mediaItemUrl
                 altText

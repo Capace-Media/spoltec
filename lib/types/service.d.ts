@@ -151,6 +151,7 @@ export interface ServiceBlocks {
 export interface ServiceHeroFields {
   underrubrik: string;
   introduktionstext: string;
+  usp: { text: string }[];
   bild: ServiceImage;
 }
 

@@ -11,9 +11,17 @@ interface ServiceHeroProps {
   title: string;
   subtitle?: string;
   text?: string;
+  usp?: { text: string }[];
 }
 
-const ServiceHero = ({ image, title, subtitle, text }: ServiceHeroProps) => {
+const ServiceHero = ({
+  image,
+  title,
+  subtitle,
+  text,
+  usp,
+}: ServiceHeroProps) => {
+  console.log(usp);
   return (
     <>
       <section className="relative pt-40 contain-outer" role="banner">
@@ -35,23 +43,13 @@ const ServiceHero = ({ image, title, subtitle, text }: ServiceHeroProps) => {
               <h1 className="text-white">{title}</h1>
               <strong className="block mb-3">{subtitle}</strong>
               {text && parse(text)}
-              {/* <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
-                <li className="flex items-center gap-2">
-                  <Star className="size-4" /> 30+ års erfarenhet & certifierade
-                  tekniker
-                </li>
-                <li className="flex items-center gap-2">
-                  <Star className="size-4" /> Offert – svar inom 24h
-                </li>
-                <li className="flex items-center gap-2">
-                  <Star className="size-4" /> Miljövänliga material (utan
-                  bisfenol/epoxi)
-                </li>
-                <li className="flex items-center gap-2">
-                  <Star className="size-4" /> Dokumenterad kvalitetskontroll med
-                  film
-                </li>
-              </ul> */}
+              <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
+                {usp?.map((item) => (
+                  <li className="flex items-center gap-2">
+                    <Star className="size-4" /> {item.text}
+                  </li>
+                ))}
+              </ul>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link
                   href="/kontakta-oss"
