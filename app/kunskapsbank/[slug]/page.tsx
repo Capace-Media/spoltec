@@ -57,7 +57,11 @@ export async function generateMetadata(
   const post = await getPost(params.slug);
 
   const canonical = `https://www.spoltec.se/kunskapsbank/${params.slug}`;
-  return generatePageMetadata(post, parent, canonical);
+  const meta = await generatePageMetadata(post, parent, canonical);
+  return {
+    ...meta,
+    openGraph: { ...(meta.openGraph || {}), type: "article" },
+  };
 }
 
 interface PageProps {
@@ -99,16 +103,18 @@ export default async function ArticlePage(props: PageProps) {
       <JsonLd json={bread} id="breadcrumbs-schema" />
       <JsonLd json={articleLD} id="article-schema" />
       <main key={post.title}>
-        <Hero
-          title={post?.title}
-          subtitle={post?.gqlHeroFields?.underrubrik || ""}
-          text={post?.gqlHeroFields?.introduktionstext || ""}
-          image={post?.gqlHeroFields?.bild?.mediaItemUrl || ""}
-        />
-        <div id="content" className="w-full h-10 md:h-0"></div>
-        <div>
-          <Blocks blocks={post?.gqlBlocks?.blocks || []} />
-        </div>
+        <article>
+          <Hero
+            title={post?.title}
+            subtitle={post?.gqlHeroFields?.underrubrik || ""}
+            text={post?.gqlHeroFields?.introduktionstext || ""}
+            image={post?.gqlHeroFields?.bild?.mediaItemUrl || ""}
+          />
+
+          <div>
+            <Blocks blocks={post?.gqlBlocks?.blocks || []} />
+          </div>
+        </article>
       </main>
     </>
   );

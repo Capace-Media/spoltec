@@ -24,8 +24,8 @@ export async function generateMetadata(
     page,
     parent,
     canonical,
-    "Kunskapsbank - Spoltec",
-    "Kunskapsbank"
+    "Kunskapsbank",
+    "Läs våra artiklar och guider om avloppssystem, underhåll och renovering. Spoltec delar med sig av expertkunskap inom avloppsrenovering, spolning och inspektion."
   );
 }
 

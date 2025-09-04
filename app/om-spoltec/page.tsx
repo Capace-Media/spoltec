@@ -17,7 +17,7 @@ export async function generateMetadata(
     page,
     parent,
     canonical,
-    "Om Spoltec - Spoltec",
+    "Om Spoltec",
     "Läs mer om Spoltec och våra tjänster."
   );
 }

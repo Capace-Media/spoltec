@@ -18,7 +18,7 @@ export async function generateMetadata(
     page,
     parent,
     canonical,
-    "Kontakta oss - Spoltec",
+    "Kontakta oss",
     "Kontakta oss för att få hjälp med dina avloppsproblem. Ring oss på 040-47 40 12."
   );
 }
