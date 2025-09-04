@@ -19,7 +19,7 @@ export async function getPosts(after?: string, first?: number) {
       },
       ["post"]
     );
-    console.log("Posts response:", response);
+
     return response.posts || null;
   } catch (error) {
     console.error("Error fetching posts:", error);
