@@ -8,6 +8,48 @@ query SERVICE_QUERY($slug: ID!) {
         ${SEO}
         gqlBlocks {
           blocks {
+                  ... on GqlService_Gqlblocks_Blocks_Faq {
+          fieldGroupName
+          intro {
+            title
+            text
+          }
+          faqs {
+            q
+            a
+          }
+        }
+                  ... on GqlService_Gqlblocks_Blocks_HowTo {
+          fieldGroupName
+          intro {
+            text
+            title
+          }
+          listItem {
+            text
+            title
+          }
+        }
+                  ... on GqlService_Gqlblocks_Blocks_ProsAndCons {
+          fieldGroupName
+          intro {
+            text
+            title
+          }
+          table {
+            caption
+            tbody {
+              td1
+              td2
+              td3
+            }
+            thead {
+              th1
+              th2
+              th3
+            }
+          }
+        }
               ... on GqlService_Gqlblocks_Blocks_Video {
               fieldGroupName
               thumbnailurl {
