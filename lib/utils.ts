@@ -28,6 +28,13 @@ export async function generatePageMetadata(
   // Access and extend parent metadata if provided
   const previousImages = parent ? (await parent).openGraph?.images || [] : [];
 
+  const toAbs = (u?: string) =>
+    u
+      ? u.startsWith("http")
+        ? u
+        : new URL(u, "https://media.spoltec.se").toString()
+      : undefined;
+
   return {
     title: page.seo.title || page.title || fallbackTitle,
     description: page.seo.metaDesc || fallbackDescription,
@@ -36,8 +43,11 @@ export async function generatePageMetadata(
       description:
         page.seo.opengraphDescription || page.seo.metaDesc || undefined,
       siteName: page.seo.opengraphSiteName || undefined,
-      images: page.seo.opengraphImage?.sourceUrl
-        ? [page.seo.opengraphImage.sourceUrl, ...previousImages]
+      images: toAbs(page.seo.opengraphImage?.sourceUrl)
+        ? [
+            { url: toAbs(page.seo.opengraphImage?.sourceUrl)! },
+            ...previousImages,
+          ]
         : [...previousImages],
       type: "website",
     },
@@ -53,17 +63,17 @@ export async function generatePageMetadata(
         page.seo.opengraphDescription ||
         page.seo.metaDesc ||
         undefined,
-      images: page.seo.twitterImage?.sourceUrl
-        ? [page.seo.twitterImage.sourceUrl]
+      images: toAbs(page.seo.twitterImage?.sourceUrl)
+        ? [toAbs(page.seo.twitterImage?.sourceUrl)!]
         : undefined,
     },
     robots: {
       index: true,
       follow: true,
     },
-    ...(page.seo.canonical && {
-      alternates: { canonical: canonical ? canonical : page.seo.canonical },
-    }),
+    ...(canonical || page?.seo?.canonical
+      ? { alternates: { canonical: canonical ?? page?.seo?.canonical } }
+      : {}),
   };
 }
 

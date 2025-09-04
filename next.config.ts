@@ -41,7 +41,10 @@ const nextConfig: NextConfig = {
         headers: [
           { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "Cache-Control", value: "no-store" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=0, s-maxage=600, stale-while-revalidate=60",
+          },
         ],
       },
     ];

@@ -33,21 +33,6 @@ export default function Posts() {
 
   const allPosts = data?.pages.flatMap((page) => page?.edges || []) || [];
 
-  // Add detailed debugging
-  console.log("=== POSTS DEBUG ===");
-  console.log("data:", data);
-  console.log("data.pages:", data?.pages);
-  console.log("allPosts:", allPosts);
-  console.log("allPosts.length:", allPosts.length);
-  console.log("isLoading:", isLoading);
-  console.log("isFetching:", isFetching);
-  console.log("hasNextPage:", hasNextPage);
-
-  if (allPosts.length > 0) {
-    console.log("First post structure:", allPosts[0]);
-    console.log("First post node:", allPosts[0]?.node);
-  }
-
   // Function to limit text length like in Services component
   const limit = (text: string, length: number) => {
     if (!text) return "";
@@ -154,7 +139,7 @@ export default function Posts() {
 
               {/* Hidden structured data for SEO */}
               <span itemProp="url" className="hidden">{`${
-                process.env.NEXT_PUBLIC_MY_WEBSITE || "https://spoltec.se"
+                process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se"
               }${postUrl}`}</span>
             </Link>
           );
