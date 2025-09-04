@@ -10,13 +10,19 @@ export const getPost = async (uri: string) => {
 };
 
 export async function getPosts(after?: string, first?: number) {
-  const response = await fetchGraphQL<GetPostsQueryData>(
-    POSTS_QUERY,
-    {
-      after,
-      first,
-    },
-    ["post"]
-  );
-  return response.posts || null;
+  try {
+    const response = await fetchGraphQL<GetPostsQueryData>(
+      POSTS_QUERY,
+      {
+        after,
+        first,
+      },
+      ["post"]
+    );
+    console.log("Posts response:", response);
+    return response.posts || null;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return null;
+  }
 }
