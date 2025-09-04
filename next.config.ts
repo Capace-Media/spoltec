@@ -16,12 +16,10 @@ const nextConfig: NextConfig = {
   // Your existing config...
   async headers() {
     return [
+      // Static assets
       {
-        source: "/(.*)",
+        source: "/_next/static/(.*)",
         headers: [
-          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          // Cache control for better performance
           {
             key: "Cache-Control",
             value: "public, max-age=31536000, immutable",
@@ -37,14 +35,13 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // Add specific caching for CSS files
+      // Avoid long-lived caching for everything else (HTML, data, API)
       {
-        source: "/_next/static/css/(.*)",
+        source: "/(.*)",
         headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
+          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Cache-Control", value: "no-store" },
         ],
       },
     ];
@@ -81,11 +78,11 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
   },
   reactStrictMode: true,
-  // env: {
-  //   GRAPHQL_USER: process.env.GRAPHQL_USER,
-  //   GRAPHQL_PASS: process.env.GRAPHQL_PASS,
-  //   GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
-  // },
+  env: {
+    GRAPHQL_USER: process.env.GRAPHQL_USER,
+    GRAPHQL_PASS: process.env.GRAPHQL_PASS,
+    GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
+  },
 
   async redirects() {
     return [

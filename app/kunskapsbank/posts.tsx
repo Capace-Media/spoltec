@@ -21,22 +21,32 @@ export default function Posts() {
   } = useInfiniteQuery({
     queryKey: ["posts"],
     queryFn: async ({ pageParam }: { pageParam: string | undefined }) => {
+      console.log("Client fetching with pageParam:", pageParam);
       const posts = await getPosts(pageParam, 9);
+      console.log("Client received posts:", posts);
       return posts;
     },
-    initialPageParam: undefined,
+    initialPageParam: undefined, // Add this - must match server
     getNextPageParam: (lastPage, pages) => lastPage?.pageInfo.endCursor,
+    // Remove refetchOnMount and staleTime for now to test hydration
   });
 
-  const handleLoadMore = async () => {
-    if (hasNextPage && !isFetchingNextPage) {
-      setIsLoadingMore(true);
-      await fetchNextPage();
-      setIsLoadingMore(false);
-    }
-  };
-
   const allPosts = data?.pages.flatMap((page) => page?.edges || []) || [];
+
+  // Add detailed debugging
+  console.log("=== POSTS DEBUG ===");
+  console.log("data:", data);
+  console.log("data.pages:", data?.pages);
+  console.log("allPosts:", allPosts);
+  console.log("allPosts.length:", allPosts.length);
+  console.log("isLoading:", isLoading);
+  console.log("isFetching:", isFetching);
+  console.log("hasNextPage:", hasNextPage);
+
+  if (allPosts.length > 0) {
+    console.log("First post structure:", allPosts[0]);
+    console.log("First post node:", allPosts[0]?.node);
+  }
 
   // Function to limit text length like in Services component
   const limit = (text: string, length: number) => {
@@ -171,7 +181,7 @@ export default function Posts() {
       {hasNextPage && (
         <div className="text-center mt-10">
           <button
-            onClick={handleLoadMore}
+            onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage || isLoadingMore}
             className={cn(buttonVariants({ variant: "default", size: "lg" }))}
           >

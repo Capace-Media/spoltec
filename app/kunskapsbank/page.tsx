@@ -33,17 +33,16 @@ export default async function KunskapsBank() {
   const page = await getPage("kunskapsbank");
 
   const queryClient = new QueryClient();
-  const dehydratedState = dehydrate(queryClient);
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: ["posts"],
-    queryFn: async ({ pageParam }: { pageParam: string | undefined }) => {
-      const posts = await getPosts(pageParam, 9);
-      return posts;
-    },
+    queryFn: async ({ pageParam }: { pageParam: string | undefined }) =>
+      getPosts(pageParam, 9),
     initialPageParam: undefined,
-    getNextPageParam: (lastPage: any) => lastPage.node.pageInfo.endCursor,
+    getNextPageParam: (lastPage: any) => lastPage?.pageInfo?.endCursor,
   });
+
+  const dehydratedState = dehydrate(queryClient);
 
   if (!page) {
     notFound();
