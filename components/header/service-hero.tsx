@@ -45,7 +45,7 @@ const ServiceHero = ({
               {text && parse(text)}
               <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
                 {usp?.map((item) => (
-                  <li className="flex items-center gap-2">
+                  <li key={item.text} className="flex items-center gap-2">
                     <Star className="size-4" /> {item.text}
                   </li>
                 ))}

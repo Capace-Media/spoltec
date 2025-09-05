@@ -16,12 +16,12 @@ export default function HowTo({ data }: { data: ServiceHowToBlock }) {
           <ol className="grid md:grid-cols-3 gap-5">
             {listItem.map((s, i) => (
               <li key={s.title} className="rounded-lg border bg-white p-4">
-                <h3 className="text-lg text-brand-orange">
-                  {s.title}{" "}
+                <div className="pb-2">
+                  <h3 className="text-lg text-brand-orange mb-0">{s.title} </h3>
                   <span className="block text-xs text-gray-500">
                     Steg {i + 1}
                   </span>
-                </h3>
+                </div>
                 <p className="mt-2 text-sm">{s.text}</p>
               </li>
             ))}
