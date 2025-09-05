@@ -21,7 +21,6 @@ const ServiceHero = ({
   text,
   usp,
 }: ServiceHeroProps) => {
-  console.log(usp);
   return (
     <>
       <section className="relative pt-40 contain-outer" role="banner">

@@ -88,6 +88,14 @@
       {
         "label": "Kunskapsbank",
         "href": "/kunskapsbank"
+      },
+      {
+        "label": "Varför vår metod?",
+        "href": "/varfor-var-metod"
+      },
+      {
+        "label": "Betyg",
+        "href": "/betyg"
       }
     ]
   },
