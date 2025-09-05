@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     const tagMap = {
       post: "kunskapsbank",
       page: "page",
-      tjanster: "tjanster",
+      tjanster: "services",
       "lediga-tjanster": "lediga-tjanster",
     };
 

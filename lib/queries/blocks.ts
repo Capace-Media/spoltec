@@ -1,6 +1,48 @@
 export const BLOCKS = `
   gqlBlocks {
             blocks {
+          ... on Page_Gqlblocks_Blocks_Faq {
+           fieldGroupName
+          intro {
+            title
+            text
+          }
+          faqs {
+            q
+            a
+          }
+        }
+        ... on Page_Gqlblocks_Blocks_HowTo {
+           fieldGroupName
+          intro {
+            text
+            title
+          }
+          listItem {
+            text
+            title
+          }
+        }
+        ... on Page_Gqlblocks_Blocks_ProsAndCons {
+           fieldGroupName
+          intro {
+            text
+            title
+          }
+          table {
+            caption
+            tbody {
+              td1
+              td2
+              td3
+            }
+            thead {
+              th1
+              th2
+              th3
+            }
+          }
+        }
               ... on Page_Gqlblocks_Blocks_Blurbs {
                 fieldGroupName
                 blurbText:text

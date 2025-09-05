@@ -8,13 +8,15 @@ import {
   TableRow,
 } from "@components/ui/table";
 import type { ServiceProsAndConsBlock } from "@lib/types/service";
+import type { ProsAndConsBlock } from "@lib/types/page";
 
 export default function CompareTable({
   data,
 }: {
-  data: ServiceProsAndConsBlock;
+  data: ServiceProsAndConsBlock | ProsAndConsBlock;
 }) {
   const { intro, table } = data;
+  if (!intro.title || !table?.tbody || !table?.thead) return null;
   return (
     <section className="contain-outer section">
       <div className="contain">

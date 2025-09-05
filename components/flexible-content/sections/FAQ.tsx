@@ -1,6 +1,7 @@
 "use client";
 
 import type { ServiceFaqBlock } from "@lib/types/service";
+import type { FaqBlock } from "@lib/types/page";
 import {
   Accordion,
   AccordionContent,
@@ -9,8 +10,10 @@ import {
 } from "@components/ui/accordion";
 import handleParse from "@lib/utils/parse";
 
-export default function FAQ({ data }: { data: ServiceFaqBlock }) {
+export default function FAQ({ data }: { data: ServiceFaqBlock | FaqBlock }) {
   const { intro, faqs } = data;
+
+  if (!intro.title || !faqs || faqs.length === 0) return null;
 
   return (
     <section
