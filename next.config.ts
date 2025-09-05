@@ -19,6 +19,9 @@ const nextConfig: NextConfig = {
 
     // Improved performance for large apps
     webpackMemoryOptimizations: true,
+
+    // Force modern JS compilation
+    forceSwcTransforms: true,
   },
 
   // Your existing headers, images, redirects are perfect for Vercel
