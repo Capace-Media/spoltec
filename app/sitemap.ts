@@ -99,7 +99,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           };
         }) || [];
 
-    return [...staticPages, ...dynamicPages];
+    // Add this to your main sitemap function
+    const postsResponse = await fetchGraphQL<any>(
+      `
+      query GET_ALL_POSTS {
+        posts(first: 100) {
+          nodes {
+            slug
+            modifiedGmt
+          }
+        }
+      }
+      `
+    );
+
+    const postPages: MetadataRoute.Sitemap =
+      postsResponse?.posts?.nodes?.map((post: any) => ({
+        url: `${BASE_URL}/kunskapsbank/${post.slug}`,
+        lastModified: post.modifiedGmt
+          ? new Date(post.modifiedGmt)
+          : new Date(),
+        changeFrequency: "weekly" as const,
+        priority: 0.6,
+      })) || [];
+
+    return [...staticPages, ...dynamicPages, ...postPages];
   } catch (error) {
     console.error("Error generating sitemap:", error);
     // Return minimal sitemap on error
