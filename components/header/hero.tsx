@@ -1,5 +1,6 @@
 import { cn } from "@lib/utils";
 import { buttonVariants } from "components/ui/button";
+import { Star } from "lucide-react";
 import parse from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,9 +10,10 @@ interface HeroProps {
   title: string;
   subtitle?: string;
   text?: string;
+  usp?: { text: string }[];
 }
 
-const Hero = ({ image, title, subtitle, text }: HeroProps) => {
+const Hero = ({ image, title, subtitle, text, usp }: HeroProps) => {
   return (
     <>
       <section
@@ -41,6 +43,15 @@ const Hero = ({ image, title, subtitle, text }: HeroProps) => {
               )}
               {text && <div className="hero-description">{parse(text)}</div>}
               <div className="pt-10">
+                {usp && usp.length > 0 && (
+                  <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
+                    {usp?.map((item) => (
+                      <li key={item.text} className="flex items-center gap-2">
+                        <Star className="size-4" /> {item.text}
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 <Link
                   className={cn(
                     buttonVariants({ variant: "secondary", size: "lg" })

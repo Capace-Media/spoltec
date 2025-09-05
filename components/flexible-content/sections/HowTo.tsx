@@ -1,9 +1,16 @@
 "use client";
 
 import type { ServiceHowToBlock } from "@lib/types/service";
+import type { HowToBlock } from "@lib/types/page";
 
-export default function HowTo({ data }: { data: ServiceHowToBlock }) {
+export default function HowTo({
+  data,
+}: {
+  data: ServiceHowToBlock | HowToBlock;
+}) {
   const { intro, listItem } = data;
+
+  if (!intro.title || !listItem || listItem.length === 0) return null;
 
   return (
     <>

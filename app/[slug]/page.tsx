@@ -95,6 +95,7 @@ export default async function Page(props: PageProps) {
           subtitle={page?.gqlHeroFields?.underrubrik || ""}
           text={page?.gqlHeroFields?.introduktionstext || ""}
           image={page?.gqlHeroFields?.bild?.mediaItemUrl}
+          usp={page?.gqlHeroFields?.usp}
         />
         <div id="content" className="w-full h-10 md:h-0"></div>
         <div>
