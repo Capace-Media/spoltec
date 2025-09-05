@@ -22,6 +22,9 @@ export const PAGE_QUERY = `
           mediaItemUrl
           altText
         }
+        usp{
+          text
+        }
       }
     }
   }

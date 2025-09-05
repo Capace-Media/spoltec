@@ -43,6 +43,7 @@ export interface GqlHeroFields {
   underrubrik: string | null;
   introduktionstext: string | null;
   bild: PageImage | null;
+  usp: { text: string }[];
 }
 
 // ... existing code ...

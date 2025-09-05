@@ -40,16 +40,20 @@ const ServiceHero = ({
 
           <div className="flex flex-col gap-10 lg:flex-row contain lg:gap-20">
             <div className="max-w-lg text-white">
-              <h1 className="text-white">{title}</h1>
-              <strong className="block mb-3">{subtitle}</strong>
-              {text && parse(text)}
-              <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
-                {usp?.map((item) => (
-                  <li key={item.text} className="flex items-center gap-2">
-                    <Star className="size-4" /> {item.text}
-                  </li>
-                ))}
-              </ul>
+              <div className="pb-3">
+                <h1 className="text-white">{title}</h1>
+                {subtitle && <strong className="block">{subtitle}</strong>}
+              </div>
+              {text && <p>{parse(text)}</p>}
+              {usp && usp.length > 0 && (
+                <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
+                  {usp?.map((item) => (
+                    <li key={item.text} className="flex items-center gap-2">
+                      <Star className="size-4" /> {item.text}
+                    </li>
+                  ))}
+                </ul>
+              )}
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link
                   href="/kontakta-oss"
@@ -73,7 +77,6 @@ const ServiceHero = ({
           </div>
         </div>
       </section>
-      {/* <Blocks blocks={} /> */}
     </>
   );
 };
