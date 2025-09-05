@@ -90,8 +90,6 @@ export default async function Page(props: PageProps) {
     page.slug.includes("oljeavskiljare") ||
     page.slug.includes("rorinspektion");
 
-  console.log("isCommercialPage", isCommercialPage);
-
   const raw = page?.pageSchema?.schema?.json;
 
   return (

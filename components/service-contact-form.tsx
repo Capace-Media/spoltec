@@ -79,7 +79,6 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({
     [slug]
   );
 
-  console.log("readableLocation", readableLocation);
   // Handle form submission with server action
   const handleSubmit = async (formData: FormData) => {
     setStatus("loading");
