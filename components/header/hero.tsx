@@ -4,6 +4,7 @@ import { Star } from "lucide-react";
 import parse from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
+import ServiceContactForm from "@components/service-contact-form";
 
 interface HeroProps {
   image?: string;
@@ -11,9 +12,19 @@ interface HeroProps {
   subtitle?: string;
   text?: string;
   usp?: { text: string }[];
+  isCommercialPage?: boolean;
+  slug?: string;
 }
 
-const Hero = ({ image, title, subtitle, text, usp }: HeroProps) => {
+const Hero = ({
+  image,
+  title,
+  subtitle,
+  text,
+  usp,
+  isCommercialPage,
+  slug,
+}: HeroProps) => {
   return (
     <>
       <section
@@ -63,6 +74,9 @@ const Hero = ({ image, title, subtitle, text, usp }: HeroProps) => {
                 </Link>
               </div>
             </div>
+            {isCommercialPage && (
+              <ServiceContactForm subject={title} slug={slug} />
+            )}
           </div>
         </div>
       </section>
