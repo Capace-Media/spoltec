@@ -14,10 +14,12 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
     <section className="contain-outer section" data-ordinal={ordinal}>
       <div
         className={`text-image ${
-          data?.installningar?.bakgrund ? "bg-section" : "section"
+          data?.installningar?.bakgrund ? "bg-section" : ""
         }`}
       >
-        <div className="section-sm contain ">
+        <div
+          className={data?.installningar?.bakgrund ? "section-sm contain " : ""}
+        >
           <div
             className={`flex flex-col gap-20 ${
               ordinal && ordinal % 2 === 0
