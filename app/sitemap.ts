@@ -17,13 +17,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url: `${BASE_URL}/tjanster`,
         lastModified: new Date(),
         changeFrequency: "weekly",
-        priority: 0.9,
+        priority: 0.8,
       },
       {
         url: `${BASE_URL}/kunskapsbank`,
         lastModified: new Date(),
         changeFrequency: "weekly",
-        priority: 0.8,
+        priority: 0.6,
       },
       {
         url: `${BASE_URL}/kontakta-oss`,
@@ -82,7 +82,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           let priority = 0.8; // default
 
           if (isLocationPage && isCommercialPage) {
-            priority = 0.95; // Highest for location + service pages
+            priority = 0.9; // Highest for location + service pages
           } else if (isCommercialPage) {
             priority = 0.9; // High for service pages
           } else if (isLocationPage) {
