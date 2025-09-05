@@ -1,18 +1,85 @@
 "use client";
 import { submitContactForm } from "actions/contact";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Button } from "./ui/button";
+
+// Move constants outside component to avoid recreation
+const LOCATION_MAP: { [key: string]: string } = {
+  boras: "Borås",
+  goteborg: "Göteborg",
+  malmo: "Malmö",
+  helsingborg: "Helsingborg",
+  kalmar: "Kalmar",
+  karlskrona: "Karlskrona",
+  kristianstad: "Kristianstad",
+  halmstad: "Halmstad",
+  varberg: "Varberg",
+  vaxjo: "Växjö",
+  jonkoping: "Jönköping",
+};
+
+// Add service mapping
+const SERVICE_MAP: { [key: string]: string } = {
+  avloppsspolning: "Avloppsspolning",
+  relining: "Relining",
+  oljeavskiljare: "Oljeavskiljare",
+  rorinspektion: "Rörinspektion",
+  kanaltatning: "Kanaltätning",
+  kvicksilversanering: "Kvicksilversanering",
+};
+
+// Pre-compile regex outside component
+const LOCATION_REGEX =
+  /-(boras|goteborg|malmo|helsingborg|kalmar|karlskrona|kristianstad|halmstad|varberg|vaxjo|jonkoping)$/;
+
+// Add service regex - matches service at the beginning of slug
+const SERVICE_REGEX =
+  /^(avloppsspolning|relining|oljeavskiljare|rorinspektion|kanaltatning|kvicksilversanering)/;
+
+// Move function outside component to avoid recreation
+const getReadableLocation = (slug: string): string | null => {
+  const match = slug.match(LOCATION_REGEX);
+  if (match) {
+    return LOCATION_MAP[match[1] as keyof typeof LOCATION_MAP] || null;
+  }
+  return null;
+};
+
+// Add service extraction function
+const getReadableService = (slug: string): string | null => {
+  const match = slug.match(SERVICE_REGEX);
+  if (match) {
+    return SERVICE_MAP[match[1] as keyof typeof SERVICE_MAP] || null;
+  }
+  return null;
+};
 
 interface ServiceContactFormProps {
   subject: string;
+  slug?: string;
 }
 
-const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
+const ServiceContactForm: React.FC<ServiceContactFormProps> = ({
+  subject,
+  slug,
+}) => {
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  // Memoize both location and service calculations
+  const readableLocation = useMemo(
+    () => (slug ? getReadableLocation(slug) : null),
+    [slug]
+  );
+
+  const readableService = useMemo(
+    () => (slug ? getReadableService(slug) : null),
+    [slug]
+  );
+
+  console.log("readableLocation", readableLocation);
   // Handle form submission with server action
   const handleSubmit = async (formData: FormData) => {
     setStatus("loading");
@@ -26,8 +93,16 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
       return;
     }
 
+    let newsubject;
+
+    if (readableService && readableLocation) {
+      newsubject = `${readableService} i ${readableLocation}`;
+    } else {
+      newsubject = subject;
+    }
+
     // Add subject to form data
-    formData.append("subject", subject);
+    formData.append("subject", newsubject);
 
     try {
       const result = await submitContactForm(formData);
@@ -50,8 +125,13 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
   return (
     <div className=" flex items-center justify-center w-full">
       <div className=" shadow-sm w-full bg-white p-6 lg:max-w-[399px] rounded-lg">
-        <p className="text-brand-blue font-bold text-[18px]">
-          Begär en gratis offert så hör vi av oss inom 24 timmar
+        <h2 className="text-brand-blue font-bold text-[18px] mb-2">
+          Få kostnadsfri offert på professionell
+          {readableService ? ` ${readableService.toLowerCase()}` : " service"}
+          {readableLocation ? ` i ${readableLocation}` : ""}
+        </h2>
+        <p className="text-brand-blue text-sm mb-4">
+          Certifierade tekniker kontaktar dig inom 24 timmar
         </p>
         <form id="contact-form" action={handleSubmit} className="space-y-4">
           {/* Honeypot Field (Hidden) */}
@@ -72,7 +152,7 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
               name="name"
               id="name"
               className="shadow-xs bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-              placeholder="Ditt namn"
+              placeholder="Ditt fullständiga namn"
               required
             />
           </div>
@@ -84,7 +164,7 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
               name="phone"
               id="phone"
               className="shadow-xs bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-              placeholder="Telefon"
+              placeholder="Telefonnummer för kontakt"
               required
             />
           </div>
@@ -96,7 +176,7 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
               name="email"
               id="email"
               className="shadow-xs bg-gray-50 border border-gray-300 text-brand-blue text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-              placeholder="E-post"
+              placeholder="E-postadress"
               required
             />
           </div>
@@ -107,7 +187,7 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
               name="message"
               id="message"
               className="block p-2.5 w-full text-sm text-brand-blue bg-gray-50 rounded-lg shadow-xs border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
-              placeholder="Skriv ditt meddelande här..."
+              placeholder="Beskriv ditt avloppsproblem eller dina behov..."
               rows={4}
             ></textarea>
           </div>
@@ -117,13 +197,17 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({ subject }) => {
             <p className="text-red-500">Fel: {errorMessage}</p>
           )}
           {status === "success" && (
-            <p className="text-green-500">Ditt meddelande har skickats!</p>
+            <p className="text-green-500">
+              Tack! Vi kontaktar dig inom 24 timmar.
+            </p>
           )}
 
           {/* Submit Button */}
           <div className="flex items-center gap-2">
             <Button type="submit" disabled={status === "loading"}>
-              {status === "loading" ? "Skickar..." : "Skicka förfrågan"}
+              {status === "loading"
+                ? "Skickar förfrågan..."
+                : "Få gratis offert nu"}
             </Button>
           </div>
         </form>

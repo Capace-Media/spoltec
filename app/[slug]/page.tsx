@@ -84,6 +84,14 @@ export default async function Page(props: PageProps) {
     notFound();
   }
 
+  const isCommercialPage =
+    page.slug.includes("avloppsspolning") ||
+    page.slug.includes("relining") ||
+    page.slug.includes("oljeavskiljare") ||
+    page.slug.includes("rorinspektion");
+
+  console.log("isCommercialPage", isCommercialPage);
+
   const raw = page?.pageSchema?.schema?.json;
 
   return (
@@ -96,6 +104,8 @@ export default async function Page(props: PageProps) {
           text={page?.gqlHeroFields?.introduktionstext || ""}
           image={page?.gqlHeroFields?.bild?.mediaItemUrl}
           usp={page?.gqlHeroFields?.usp}
+          isCommercialPage={isCommercialPage}
+          slug={page?.slug}
         />
         <div id="content" className="w-full h-10 md:h-0"></div>
         <div>
