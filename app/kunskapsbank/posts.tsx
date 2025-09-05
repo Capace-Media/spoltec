@@ -21,9 +21,7 @@ export default function Posts() {
   } = useInfiniteQuery({
     queryKey: ["posts"],
     queryFn: async ({ pageParam }: { pageParam: string | undefined }) => {
-      console.log("Client fetching with pageParam:", pageParam);
       const posts = await getPosts(pageParam, 9);
-      console.log("Client received posts:", posts);
       return posts;
     },
     initialPageParam: undefined, // Add this - must match server
