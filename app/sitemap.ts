@@ -55,7 +55,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const dynamicPages: MetadataRoute.Sitemap =
       response?.pages?.nodes
-        ?.filter((page: any) => page.slug !== "hem")
+        ?.filter((page: any) => {
+          // Exclude pages that are handled statically
+          const pagesToExclude = [
+            "hem",
+            "akut-hjalp",
+            "kontakta-oss",
+            "kunskapsbank", // Add this to prevent duplicate
+            "tjanster",
+            // Add other exclusions as needed
+          ];
+          return !pagesToExclude.includes(page.slug);
+        })
         ?.map((page: any) => {
           // High priority for location/commercial pages
           const isLocationPage =
