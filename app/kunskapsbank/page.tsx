@@ -4,15 +4,12 @@ import { getPage } from "@lib/data/page";
 import { notFound } from "next/navigation";
 import { generatePageMetadata } from "@lib/utils";
 import type { Metadata, ResolvingMetadata } from "next";
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getPosts } from "@lib/data/post";
 import Posts from "./posts";
 import { webPageSchema } from "@lib/seo/schema";
 import JsonLd from "components/JsonLd";
+import { getServerQueryClient } from "@lib/query-client";
 
 export async function generateMetadata(
   {},
@@ -32,7 +29,8 @@ export async function generateMetadata(
 export default async function KunskapsBank() {
   const page = await getPage("kunskapsbank");
 
-  const queryClient = new QueryClient();
+  // Use the dedicated server-side query client
+  const queryClient = getServerQueryClient();
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: ["posts"],

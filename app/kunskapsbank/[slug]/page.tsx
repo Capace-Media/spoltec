@@ -9,6 +9,8 @@ import { articleSchema, breadcrumbsSchema } from "@lib/seo/schema";
 import { absoluteUrl } from "@lib/utils/url";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
 
+import BreadcrumbsComponent from "components/breadcrumbs";
+
 export const dynamicParams = false;
 
 type GetPostsQueryData = {
@@ -78,22 +80,29 @@ export default async function ArticlePage(props: PageProps) {
 
   const canonical = await absoluteUrl(`/kunskapsbank/${params.slug}`);
 
+  // Breadcrumb items for both structured data and visual breadcrumbs
+  const breadcrumbItems = [
+    {
+      name: "Hem",
+      url: await absoluteUrl("/"),
+    },
+    {
+      name: "Kunskapsbank",
+      url: await absoluteUrl("/kunskapsbank"),
+    },
+    {
+      name: post?.title ?? "",
+      url: canonical,
+      current: true,
+    },
+  ];
+
   const bread = breadcrumbsSchema(
-    [
-      {
-        name: "Hem",
-        url: await absoluteUrl("/"),
-      },
-      {
-        name: "Kunskapsbank",
-        url: await absoluteUrl("/kunskapsbank"),
-      },
-      {
-        name: post?.title ?? "",
-        url: canonical,
-        type: "Article",
-      },
-    ],
+    breadcrumbItems.map((item) => ({
+      name: item.name,
+      url: item.url,
+      type: item.current ? "Article" : undefined,
+    })),
     canonical
   );
   const articleLD = articleSchema(post, canonical);
@@ -102,6 +111,9 @@ export default async function ArticlePage(props: PageProps) {
     <>
       <JsonLd json={bread} id="breadcrumbs-schema" />
       <JsonLd json={articleLD} id="article-schema" />
+
+      {/* Visual breadcrumbs - crawlers can follow these links! */}
+
       <main key={post.title}>
         <article>
           <Hero
@@ -110,6 +122,7 @@ export default async function ArticlePage(props: PageProps) {
             text={post?.gqlHeroFields?.introduktionstext || ""}
             image={post?.gqlHeroFields?.bild?.mediaItemUrl || ""}
           />
+          <BreadcrumbsComponent items={breadcrumbItems} />
 
           <div>
             <Blocks blocks={post?.gqlBlocks?.blocks || []} />
