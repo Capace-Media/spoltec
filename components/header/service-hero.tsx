@@ -42,7 +42,11 @@ const ServiceHero = ({
             <div className="max-w-lg text-white">
               <div className="pb-3">
                 <h1 className="text-white">{title}</h1>
-                {subtitle && <strong className="block">{subtitle}</strong>}
+                {subtitle && (
+                  <p>
+                    <strong className="block">{subtitle}</strong>
+                  </p>
+                )}
               </div>
               {text && (
                 <p className="text-[.885rem] leading-[1.4rem]">{parse(text)}</p>
