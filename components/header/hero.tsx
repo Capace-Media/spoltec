@@ -63,15 +63,37 @@ const Hero = ({
                     ))}
                   </ul>
                 )}
-                <Link
-                  className={cn(
-                    buttonVariants({ variant: "secondary", size: "lg" })
-                  )}
-                  href="/kontakta-oss"
-                  aria-label="Kontakta oss för mer information"
-                >
-                  Kontakta oss
-                </Link>
+
+                {!isCommercialPage ? (
+                  <Link
+                    className={cn(
+                      buttonVariants({ variant: "secondary", size: "lg" })
+                    )}
+                    href="/kontakta-oss"
+                    aria-label="Kontakta oss för mer information"
+                  >
+                    Kontakta oss
+                  </Link>
+                ) : (
+                  <div className="mt-7 flex flex-wrap gap-3">
+                    <Link
+                      href="/kontakta-oss"
+                      className={cn(
+                        buttonVariants({ variant: "default", size: "lg" })
+                      )}
+                    >
+                      Begär kostnadsfri offert
+                    </Link>
+                    <a
+                      href={`tel:040474012`}
+                      className={cn(
+                        buttonVariants({ variant: "secondary", size: "lg" })
+                      )}
+                    >
+                      Ring 040-47 40 12
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
             {isCommercialPage && (
