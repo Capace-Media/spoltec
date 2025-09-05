@@ -46,24 +46,25 @@ const Hero = ({
             />
           )}
 
-          <div className="flex items-center contain h-96">
+          <div className="flex flex-col gap-10 lg:flex-row contain lg:gap-20">
             <div className="max-w-lg text-white">
-              <h1 className="text-white">{title}</h1>
-              {subtitle && (
-                <p className="block mb-3 font-bold text-lg">{subtitle}</p>
+              <div className="pb-3">
+                <h1 className="text-white">{title}</h1>
+                {subtitle && <strong className="block">{subtitle}</strong>}
+              </div>
+              {text && (
+                <p className="text-[.885rem] leading-[1.4rem]">{parse(text)}</p>
               )}
-              {text && <div className="hero-description">{parse(text)}</div>}
-              <div className="pt-10">
-                {usp && usp.length > 0 && (
-                  <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
-                    {usp?.map((item) => (
-                      <li key={item.text} className="flex items-center gap-2">
-                        <Star className="size-4" /> {item.text}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
+              {usp && usp.length > 0 && (
+                <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
+                  {usp?.map((item) => (
+                    <li key={item.text} className="flex items-center gap-2">
+                      <Star className="size-4" /> {item.text}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div className=" md:pt-6 flex flex-wrap gap-3">
                 {!isCommercialPage ? (
                   <Link
                     className={cn(

@@ -35,6 +35,7 @@ const ServiceHero = ({
                 opacity: "0.4",
               }}
               alt={title}
+              priority
             />
           )}
 
@@ -44,7 +45,9 @@ const ServiceHero = ({
                 <h1 className="text-white">{title}</h1>
                 {subtitle && <strong className="block">{subtitle}</strong>}
               </div>
-              {text && <p>{parse(text)}</p>}
+              {text && (
+                <p className="text-[.885rem] leading-[1.4rem]">{parse(text)}</p>
+              )}
               {usp && usp.length > 0 && (
                 <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
                   {usp?.map((item) => (
@@ -54,7 +57,7 @@ const ServiceHero = ({
                   ))}
                 </ul>
               )}
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="md:pt-6 flex flex-wrap gap-3">
                 <Link
                   href="/kontakta-oss"
                   className={cn(
