@@ -27,10 +27,7 @@
       "label": "Underhållsspolning",
       "href": "/tjanster/underhallsspolning"
     },
-    {
-      "label": "Akuta spolningsuppdrag",
-      "href": "/akut-hjalp"
-    },
+
     {
       "label": "Oljeavskiljare",
       "href": "/tjanster/oljeavskiljare"
@@ -42,6 +39,10 @@
     {
       "label": "Rörinspektion",
       "href": "/tjanster/rorinspektion"
+    },
+    {
+      "label": "Avloppsspolning",
+      "href": "/tjanster/avloppsspolning"
     }
   ],
   "information": [
