@@ -10,6 +10,7 @@ interface TextImageProps {
 }
 
 const TextImage = ({ data, ordinal }: TextImageProps) => {
+  if (!data.textBody.text) return null;
   return (
     <section className="contain-outer section" data-ordinal={ordinal}>
       <div
