@@ -173,8 +173,8 @@ export interface ProsAndConsBlock {
     caption: string;
     tbody: Array<{
       td1: string;
-      td2: { text: string; truefalse: string };
-      td3: { text: string; truefalse: string };
+      td2: { text: string; truefalse: boolean };
+      td3: { text: string; truefalse: boolean };
     }>;
     thead: {
       th1: string;

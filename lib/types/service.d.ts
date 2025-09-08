@@ -117,8 +117,8 @@ export interface ServiceTableHeader {
 
 export interface ServiceTableBody {
   td1: string;
-  td2: { text: string; truefalse: string };
-  td3: { text: string; truefalse: string };
+  td2: { text: string; truefalse: boolean };
+  td3: { text: string; truefalse: boolean };
 }
 
 export interface ServiceTable {
