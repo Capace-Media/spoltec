@@ -27,14 +27,14 @@ const Blurbs = ({ data }: BlurbsProps) => {
   const blurbCount = data?.blurbs?.length || 0;
 
   return (
-    <section className="contain-outer section">
+    <section className="contain-outer">
       <div
         className={`${data.installningar.bakgrund ? "bg-section" : "section"}`}
       >
-        <div className="contain">
+        <div className={`${data.installningar.bakgrund ? "contain" : ""}`}>
           <div>
             {data?.blurbText && (
-              <div className="max-w-[95%] md:mx-auto md:text-center ">
+              <div className="max-w-[95%] md:mx-auto md:text-center pb-6">
                 {handleParse(data.blurbText)}
               </div>
             )}
