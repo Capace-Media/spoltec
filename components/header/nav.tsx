@@ -49,7 +49,7 @@ export default function Nav() {
           />
           <span className="sr-only">Gå till startsidan</span>
         </Link>
-        <div className="hidden lg:flex items-center gap-5">
+        <div className="hidden 2lg:flex items-center gap-5">
           <NavigationMenu viewport={false}>
             <NavigationMenuList>
               {links.map((link) => {
@@ -116,7 +116,7 @@ export default function Nav() {
           </div>
         </div>
 
-        <div className="lg:hidden flex items-center gap-4">
+        <div className="2lg:hidden flex items-center gap-4">
           <NavSheet />
         </div>
       </nav>

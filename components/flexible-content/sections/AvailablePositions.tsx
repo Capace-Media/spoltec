@@ -1,20 +1,22 @@
 import positions from "@data/static-positions.json";
 import Image from "next/image";
 import Link from "next/link";
+import type { LedigaTjansterBlock } from "@lib/types/page";
 interface AvailablePositionsProps {
-  data: any;
+  data: LedigaTjansterBlock;
 }
 
 const AvailablePositions = ({ data }: AvailablePositionsProps) => {
+  if (!data || !data?.jobsText || !data?.rubrik) return null;
   return (
     <>
       <div className="text-center section contain">
         <div className="max-w-[700px] mx-auto">
           <h2>{data.rubrik}</h2>
-          <p>{data.positionsText}</p>
+          <p>{data.jobsText}</p>
         </div>
         <div className="flex flex-wrap justify-center mt-10">
-          {positions?.length < 1 &&
+          {positions?.length > 0 &&
             positions.map((position: any) => {
               return (
                 <Link

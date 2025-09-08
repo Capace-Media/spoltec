@@ -62,17 +62,17 @@ const ServiceHero = ({
               )}
               <div className="md:pt-6 flex flex-wrap gap-3">
                 <Link
-                  href="/kontakta-oss"
+                  href="/akut-hjalp"
                   className={cn(
-                    buttonVariants({ variant: "default", size: "lg" })
+                    buttonVariants({ variant: "secondary", size: "lg" })
                   )}
                 >
-                  Begär kostnadsfri offert
+                  Kontakta Jouren
                 </Link>
                 <a
                   href={`tel:040474012`}
                   className={cn(
-                    buttonVariants({ variant: "secondary", size: "lg" })
+                    buttonVariants({ variant: "default", size: "lg" })
                   )}
                 >
                   Ring 040-47 40 12

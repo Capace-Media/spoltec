@@ -12,6 +12,27 @@ export const BLOCKS = `
             a
           }
         }
+        ... on Page_Gqlblocks_Blocks_TjansterHighlights {
+          fieldGroupName
+          intro {
+            title
+            text
+          }
+          services {
+            ... on GqlService {
+              id
+              title
+              slug
+              gqlHeroFields{
+                introduktionstext
+                bild{
+                  mediaItemUrl
+                  altText
+                }
+              }
+            }
+          }
+        }
         ... on Page_Gqlblocks_Blocks_HowTo {
            fieldGroupName
           intro {

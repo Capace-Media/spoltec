@@ -34,7 +34,7 @@ const Blurbs = ({ data }: BlurbsProps) => {
         <div className={`${data.installningar.bakgrund ? "contain" : ""}`}>
           <div>
             {data?.blurbText && (
-              <div className="max-w-[95%] md:mx-auto md:text-center pb-6">
+              <div className="max-w-[95%] md:max-w-[65%] lg:max-w-[52%] md:mx-auto md:text-center pb-6">
                 {handleParse(data.blurbText)}
               </div>
             )}

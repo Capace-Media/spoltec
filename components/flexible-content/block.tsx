@@ -4,6 +4,7 @@ import type {
   ProsAndConsBlock,
   TextBildBlock,
   TjansterBlock,
+  TjansterHighlightsBlock,
 } from "@lib/types/page";
 import {
   TextImage,
@@ -19,6 +20,7 @@ import {
   FAQ,
   ProsAndCons,
   HowTo,
+  ServiceHighlights,
 } from "./sections";
 
 import type { Block as BlockType } from "@lib/types/page";
@@ -47,7 +49,8 @@ const Block = ({ block, textImageOrdinal }: BlockProps) => {
       return <HowTo data={block as ServiceHowToBlock} />;
     case "GqlService_Gqlblocks_Blocks_ProsAndCons":
       return <ProsAndCons data={block as ServiceProsAndConsBlock} />;
-
+    case "Page_Gqlblocks_Blocks_TjansterHighlights":
+      return <ServiceHighlights data={block as TjansterHighlightsBlock} />;
     case "Page_Gqlblocks_Blocks_Faq":
       return <FAQ data={block as FaqBlock} />;
     case "Page_Gqlblocks_Blocks_HowTo":
