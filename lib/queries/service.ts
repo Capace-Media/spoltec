@@ -40,8 +40,14 @@ query SERVICE_QUERY($slug: ID!) {
             caption
             tbody {
               td1
-              td2
-              td3
+              td2{
+              text
+              truefalse
+            }
+              td3{
+              text
+              truefalse
+            }
             }
             thead {
               th1

@@ -48,10 +48,10 @@ export default function CompareTable({
                     {invoice.td1}
                   </TableCell>
                   <TableCell className="text-[#363636] text-center bg-[#f8fbff] border-l border-gray-200">
-                    {invoice.td2}
+                    {invoice.td2.text}
                   </TableCell>
                   <TableCell className="text-[#363636] text-center bg-[#fffaf8] border-l border-gray-200">
-                    {invoice.td3}
+                    {invoice.td3.text}
                   </TableCell>
                 </TableRow>
               ))}
