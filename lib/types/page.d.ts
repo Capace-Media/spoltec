@@ -163,6 +163,23 @@ export interface HowToBlock {
   }>;
 }
 
+export interface TjansterHighlightsBlock {
+  fieldGroupName: "Page_Gqlblocks_Blocks_TjansterHighlights";
+  intro: {
+    title: string;
+    text: string;
+  };
+  services: Array<{
+    id: string;
+    title: string;
+    slug: string;
+    gqlHeroFields: {
+      introduktionstext: string | null;
+      bild: PageImage | null;
+    };
+  }>;
+}
+
 export interface ProsAndConsBlock {
   fieldGroupName: "Page_Gqlblocks_Blocks_ProsAndCons";
   intro: {
@@ -185,6 +202,7 @@ export interface ProsAndConsBlock {
 }
 
 // Union type for all possible blocks
+// Union type for all possible blocks
 export type Block =
   | BlurbsBlock
   | PersonalBlock
@@ -194,6 +212,7 @@ export type Block =
   | TextBlock
   | LedigaTjansterBlock
   | FaqBlock
+  | TjansterHighlightsBlock
   | HowToBlock
   | ProsAndConsBlock;
 

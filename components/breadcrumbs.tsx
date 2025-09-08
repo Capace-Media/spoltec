@@ -20,7 +20,6 @@ interface BreadcrumbsProps {
 }
 
 export default function BreadcrumbsComponent({ items }: BreadcrumbsProps) {
-  console.log(items);
   return (
     <div className="contain-outer pt-6">
       <Breadcrumb>

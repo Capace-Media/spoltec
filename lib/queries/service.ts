@@ -30,6 +30,7 @@ query SERVICE_QUERY($slug: ID!) {
             title
           }
         }
+
                   ... on GqlService_Gqlblocks_Blocks_ProsAndCons {
           fieldGroupName
           intro {
