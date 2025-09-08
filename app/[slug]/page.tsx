@@ -105,10 +105,8 @@ export default async function Page(props: PageProps) {
           isCommercialPage={isCommercialPage}
           slug={page?.slug}
         />
-        <div id="content" className="w-full h-10 md:h-0"></div>
-        <div>
-          <Blocks blocks={page?.gqlBlocks?.blocks || []} />
-        </div>
+
+        <Blocks blocks={page?.gqlBlocks?.blocks || []} />
       </main>
     </>
   );

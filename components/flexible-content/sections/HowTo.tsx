@@ -15,7 +15,7 @@ export default function HowTo({
   return (
     <>
       <section className="contain-outer section">
-        <div className="contain">
+        <div className="">
           <div className="pb-4">
             <h2>{intro.title}</h2>
             {intro.text && <p>{intro.text}</p>}
