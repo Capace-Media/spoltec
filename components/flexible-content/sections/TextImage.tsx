@@ -50,7 +50,7 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
                 )}
               </div>
             </div>
-            <div className="w-full">
+            <div className="w-full hidden lg:block">
               {data?.bilder?.length > 1 ? (
                 <div className="grid grid-cols-2 grid-rows-3 gap-3 h-[500px]">
                   {data?.bilder &&
