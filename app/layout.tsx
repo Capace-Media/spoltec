@@ -15,6 +15,8 @@ const chivo = Chivo({
   weight: ["400", "700", "900"],
   display: "swap", // This helps with render blocking
   preload: true, // Preload the font
+  fallback: ["Arial", "sans-serif"], // Add fallback
+  adjustFontFallback: true, // Optimize layout shift
 });
 
 export const metadata: Metadata = {
