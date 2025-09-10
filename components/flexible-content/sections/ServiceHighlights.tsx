@@ -50,7 +50,11 @@ export default function ServiceHighlights({ data }: ServiceHighlightsProps) {
                     fill
                     style={{ objectFit: "cover" }}
                     className="transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-20"
-                    alt={service.gqlHeroFields.bild?.altText || service.title}
+                    alt={
+                      service.gqlHeroFields.bild?.altText ||
+                      service.title ||
+                      "Service image"
+                    }
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     itemProp="image"
                   />

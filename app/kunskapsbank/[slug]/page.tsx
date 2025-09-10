@@ -11,7 +11,7 @@ import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
 
 import BreadcrumbsComponent from "components/breadcrumbs";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 type GetPostsQueryData = {
   posts: {

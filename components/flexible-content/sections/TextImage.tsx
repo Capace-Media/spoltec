@@ -1,6 +1,6 @@
 import { cn } from "@lib/utils";
+import handleParse from "@lib/utils/parse";
 import { buttonVariants } from "components/ui/button";
-import parse from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,7 +19,9 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
         }`}
       >
         <div
-          className={data?.installningar?.bakgrund ? "section-sm contain " : ""}
+          className={
+            data?.installningar?.bakgrund ? "py-5 md:py-10 contain " : ""
+          }
         >
           <div
             className={`flex flex-col gap-20 ${
@@ -31,22 +33,27 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
             <div className="flex items-center w-full">
               <div>
                 <h2>{data.textBody.rubrik}</h2>
-                <div className="parsed pb-10">
-                  {data?.textBody?.text && parse(data.textBody.text)}
-                </div>
+                {data?.textBody?.text && (
+                  <div className="parsed pb-10">
+                    {handleParse(data.textBody.text)}
+                  </div>
+                )}
+
                 {data?.textBody?.knapp?.url && (
-                  <Link
-                    className={cn(
-                      buttonVariants({ variant: "default", size: "lg" })
-                    )}
-                    href={data.textBody.knapp.url}
-                    aria-label={`Läs mer om ${data.textBody.rubrik}`}
-                  >
-                    {data.textBody.knapp.text}
-                    <span className="sr-only">
-                      Läs mer om {data.textBody.rubrik}
-                    </span>
-                  </Link>
+                  <div>
+                    <Link
+                      className={cn(
+                        buttonVariants({ variant: "default", size: "lg" })
+                      )}
+                      href={data.textBody.knapp.url}
+                      aria-label={`Läs mer om ${data.textBody.rubrik}`}
+                    >
+                      {data.textBody.knapp.text}
+                      <span className="sr-only">
+                        Läs mer om {data.textBody.rubrik}
+                      </span>
+                    </Link>
+                  </div>
                 )}
               </div>
             </div>
@@ -68,7 +75,7 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
                               objectFit: "cover",
                               borderRadius: "12px",
                             }}
-                            alt={image?.altText}
+                            alt={image?.altText || "Text image"}
                           />
                         )}
                       </div>
@@ -91,7 +98,7 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
                               objectFit: "cover",
                               borderRadius: "12px",
                             }}
-                            alt={image?.altText}
+                            alt={image?.altText || "Text image"}
                           />
                         )}
                       </div>

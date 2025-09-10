@@ -33,7 +33,7 @@ const ServiceHero = ({
                 objectFit: "cover",
                 opacity: "0.4",
               }}
-              alt={title}
+              alt={title || "Service hero image"}
               priority
             />
           )}
