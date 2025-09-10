@@ -6,7 +6,7 @@ import { GET_PAGES_QUERY } from "@lib/queries/page";
 import { generatePageMetadata, isBlacklistedPageSlug } from "@lib/utils";
 import type { Metadata, ResolvingMetadata } from "next";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
-import SchemaScript from "./schema-script";
+import SchemaScript from "@lib/utils/schema-script";
 
 export const dynamicParams = false;
 
@@ -47,6 +47,7 @@ export async function generateStaticParams() {
     "kunskapsbank",
     "tjanster",
     "lokala-tjanster",
+    "faq",
   ];
 
   const pagePaths = response.pages.nodes
