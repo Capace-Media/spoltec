@@ -23,7 +23,26 @@ export default function handleParse(content: string): React.ReactElement {
                 return <></>;
               }
 
-              // Remove all styling attributes
+              // Handle iframes specially to preserve essential attributes
+              if (element.name === "iframe") {
+                if (element.attribs) {
+                  // Remove only styling-related attributes for iframes
+                  delete element.attribs.style;
+                  delete element.attribs.class;
+                  delete element.attribs.className;
+                  // Keep essential iframe attributes like src, width, height, frameborder, allowfullscreen, etc.
+                  // Remove only data-mce-* attributes which are editor-specific
+                  Object.keys(element.attribs).forEach((key) => {
+                    if (key.startsWith("data-mce-")) {
+                      delete element.attribs[key];
+                    }
+                  });
+                }
+
+                return domToReact([element as DOMNode]);
+              }
+
+              // Remove all styling attributes for other elements
               if (element.attribs) {
                 delete element.attribs.style;
                 delete element.attribs.class;
@@ -100,6 +119,7 @@ function isEmptyElement(element: Element): boolean {
     "source",
     "track",
     "wbr",
+    "iframe",
   ];
 
   if (preserveTags.includes(element.name)) {
