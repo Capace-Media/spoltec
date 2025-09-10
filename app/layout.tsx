@@ -26,6 +26,51 @@ export const metadata: Metadata = {
   },
   description:
     "Professionell hjälp med avloppsproblem i hela Sverige. Spoltec utför spolning, reparationer och underhåll av avloppssystem för hem och företag.",
+
+  // Add missing SEO metadata
+  metadataBase: new URL("https://www.spoltec.se"),
+  alternates: {
+    canonical: "/",
+  },
+
+  // Add resource hints through metadata
+  other: {
+    // DNS prefetch
+    "dns-prefetch":
+      "https://fonts.googleapis.com https://www.googletagmanager.com https://consent.cookiebot.eu",
+    // Preconnect
+    preconnect: "https://fonts.gstatic.com https://media.spoltec.se",
+  },
+
+  // Add Open Graph for better social sharing
+  openGraph: {
+    type: "website",
+    locale: "sv_SE",
+    url: "https://www.spoltec.se",
+    siteName: "Spoltec",
+    title: "Spoltec funktionssäkrar ert avloppssystem",
+    description:
+      "Professionell hjälp med avloppsproblem i hela Sverige. Spoltec utför spolning, reparationer och underhåll av avloppssystem för hem och företag.",
+    images: [
+      {
+        url: "/images/spoltec-logo-new.png",
+        width: 1200,
+        height: 630,
+        alt: "Spoltec - Avloppstjänster i Sverige",
+      },
+    ],
+  },
+
+  // Add Twitter Card
+  twitter: {
+    card: "summary_large_image",
+    site: "@spoltec", // Add if you have Twitter
+    title: "Spoltec funktionssäkrar ert avloppssystem",
+    description: "Professionell hjälp med avloppsproblem i hela Sverige.",
+    images: ["/images/spoltec-logo-new.png"],
+  },
+
+  // Add missing keywords (but don't overdo it)
   keywords: [
     "avlopp",
     "spolning",
@@ -33,7 +78,11 @@ export const metadata: Metadata = {
     "rörinspektion",
     "kvicksilversanering",
     "oljeavskiljare",
+    "avloppsproblem",
+    "avloppstjänster Sverige",
+    "Spoltec",
   ],
+
   authors: [{ name: "Spoltec Södra AB" }],
   creator: "Spoltec Södra AB",
   publisher: "Spoltec Södra AB",
