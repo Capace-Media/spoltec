@@ -72,7 +72,7 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
                               objectFit: "cover",
                               borderRadius: "12px",
                             }}
-                            alt={image?.altText}
+                            alt={image?.altText || "Text image"}
                           />
                         )}
                       </div>
@@ -95,7 +95,7 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
                               objectFit: "cover",
                               borderRadius: "12px",
                             }}
-                            alt={image?.altText}
+                            alt={image?.altText || "Text image"}
                           />
                         )}
                       </div>

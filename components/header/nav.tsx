@@ -38,7 +38,7 @@ export default function Nav() {
         <Link href="/">
           <Image
             src={logo}
-            alt="Spoltec"
+            alt="Spoltec logo"
             width={150}
             height={60}
             priority

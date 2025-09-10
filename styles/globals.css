@@ -25,14 +25,6 @@
   --color-darkblue: #0f1836;
 }
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,
@@ -41,94 +33,17 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
   }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 
   .color-brand-blue {
     color: oklch(0.441 0.124 265.6);
     background-color: oklch(0.769 0.188 70.08);
   }
-}
-
-@utility contain {
-  @apply px-5 mx-auto md:px-10 max-w-7xl;
-}
-
-@utility contain-outer {
-  @apply px-5 mx-auto md:px-10 max-w-360;
-}
-
-@utility section {
-  @apply py-10 md:py-16;
-}
-
-@utility bg-section {
-  @apply section bg-brand-lightblue rounded-xl;
-}
-
-@utility parsed {
-  & p {
-    @apply mb-4 last:mb-0;
-  }
-  & ul {
-    @apply pl-5 mb-4 list-disc list-outside;
-  }
-
-  & ul li {
-    @apply mb-2;
-  }
-
-  & a {
-    @apply hover:text-brand-blue underline transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2;
-
-    /* Ensure sufficient color contrast */
-    color: #0066cc; /* or your brand color that meets WCAG contrast requirements */
-
-    /* Improve focus visibility */
-    &:focus-visible {
-      @apply outline-2 outline-offset-2 outline-brand-blue rounded-sm;
-    }
-
-    /* Ensure the link is distinguishable from regular text */
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
-
-    /* Improve hover state */
-    &:hover {
-      @apply text-brand-blue;
-      text-decoration-thickness: 2px;
-    }
-  }
-
-  & img {
-    @apply my-3 w-full max-h-107.5 object-cover;
-  }
-}
-
-@utility text-image {
-  & div[data-image="2"] {
-    @apply row-span-2;
-  }
-
-  & div[data-image="1"] {
-    @apply row-span-2;
-  }
-}
-
-@utility article-ul {
-  @apply list-disc list-outside!;
-  /* lg:!list-inside */
-}
-
-@utility small-breadcrumb-text {
-  font-size: 0.43rem;
-}
-
-@utility breadcrumb-text {
-  font-size: 0.5rem;
-  line-height: 1rem;
-}
-
-@layer base {
   div,
   figure {
     @apply relative;
@@ -141,100 +56,49 @@
     @apply font-semibold text-brand-blue;
   }
   h1 {
-    @apply text-3xl md:text-4xl;
+    @apply pb-1 text-3xl md:text-4xl;
   }
   h2 {
-    @apply mb-3 text-2xl md:text-3xl;
+    @apply pb-3 text-2xl md:text-3xl;
   }
   h3 {
-    @apply mb-3 text-xl md:text-2xl;
+    @apply pb-3 text-xl md:text-2xl;
+  }
+  p {
+    @apply pb-2;
   }
 }
 
-.nav-style {
-  transition: ease-in-out 0.4s;
+@utility contain {
+  @apply px-5 mx-auto md:px-10 max-w-7xl;
+}
+@utility contain-outer {
+  @apply px-5 mx-auto md:px-10 max-w-360;
+}
+@utility section {
+  @apply py-10 md:py-14;
+}
+@utility bg-section {
+  @apply section bg-brand-lightblue rounded-xl;
+}
+@utility parsed {
+  & a {
+    @apply text-brand-blue underline hover:text-purple-900;
+  }
+  ul {
+    @apply pl-5 mb-4 list-disc list-outside space-y-2;
+  }
 }
 
-.nth-child:nth-child(1) {
-  padding-bottom: 0;
+@utility text-image {
+  & div[data-image="2"] {
+    @apply row-span-2;
+  }
+
+  & div[data-image="1"] {
+    @apply row-span-2;
+  }
 }
-
-.max-w-1-25 {
-  max-width: 5rem;
-}
-
-.max-w-1-5 {
-  max-width: 6rem;
-}
-
-.max-w-2 {
-  max-width: 8rem;
-}
-
-.max-w-2-25 {
-  max-width: 9rem;
-}
-
-.max-w-2-5 {
-  max-width: 10rem;
-}
-
-.max-w-4-5 {
-  max-width: 18rem;
-}
-
-.right-23 {
-  right: 5.75rem;
-}
-
-.right-110 {
-  right: 27.5rem;
-}
-
-/* .right-3/10 {
-
-  } */
-
-.right-104 {
-  right: 26rem;
-}
-
-.right-108 {
-  right: 27rem;
-}
-
-.right-112 {
-  right: 28rem;
-}
-
-.right-120 {
-  right: 30rem;
-}
-
-.text-1-5xs {
-  font-size: 0.7rem;
-}
-
-.text-2xs {
-  font-size: 0.5rem;
-  line-height: 0.25rem;
-}
-
-.line-height {
-  line-height: 0.7rem;
-}
-
-.ul-a {
-  text-decoration: underline;
-}
-
-.ul-a:hover {
-  color: blue;
-}
-
-/*
-  ---break---
-*/
 
 :root {
   --background: oklch(1 0 0);
@@ -393,13 +257,4 @@
   --shadow-lg: var(--shadow-lg);
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
 }

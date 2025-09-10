@@ -41,7 +41,7 @@ const Hero = ({
                 objectFit: "cover",
                 opacity: "0.4",
               }}
-              alt={title}
+              alt={title || "Hero image"}
               priority
               // 🚀 2025 LCP optimizations
               fetchPriority="high"
