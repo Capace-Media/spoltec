@@ -39,6 +39,19 @@ export default function handleParse(content: string): React.ReactElement {
                   });
                 }
 
+                // Clean up iframe children (remove editor-specific spans)
+                if (element.children) {
+                  element.children = element.children.filter((child: any) => {
+                    if (child.type === "tag" && child.name === "span") {
+                      // Remove editor-specific spans
+                      if (child.attribs?.["data-mce-type"] === "bookmark") {
+                        return false;
+                      }
+                    }
+                    return true;
+                  });
+                }
+
                 return domToReact([element as DOMNode]);
               }
 
