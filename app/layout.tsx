@@ -42,24 +42,24 @@ export const metadata: Metadata = {
     preconnect: "https://fonts.gstatic.com https://media.spoltec.se",
   },
 
-  // // Add Open Graph for better social sharing
-  // openGraph: {
-  //   type: "website",
-  //   locale: "sv_SE",
-  //   url: "https://www.spoltec.se",
-  //   siteName: "Spoltec",
-  //   title: "Spoltec funktionssäkrar ert avloppssystem",
-  //   description:
-  //     "Professionell hjälp med avloppsproblem i hela Sverige. Spoltec utför spolning, reparationer och underhåll av avloppssystem för hem och företag.",
-  //   images: [
-  //     {
-  //       url: "/images/spoltec-logo-new.png",
-  //       width: 1200,
-  //       height: 630,
-  //       alt: "Spoltec - Avloppstjänster i Sverige",
-  //     },
-  //   ],
-  // },
+  // Add Open Graph for better social sharing
+  openGraph: {
+    type: "website",
+    locale: "sv_SE",
+    url: "https://www.spoltec.se",
+    siteName: "Spoltec",
+    title: "Spoltec funktionssäkrar ert avloppssystem",
+    description:
+      "Professionell hjälp med avloppsproblem i hela Sverige. Spoltec utför spolning, reparationer och underhåll av avloppssystem för hem och företag.",
+    images: [
+      {
+        url: "/images/spoltec-logo-new.png",
+        width: 1200,
+        height: 630,
+        alt: "Spoltec - Avloppstjänster i Sverige",
+      },
+    ],
+  },
 
   // // Add Twitter Card
   // twitter: {
