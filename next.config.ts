@@ -24,6 +24,27 @@ const nextConfig: NextConfig = {
     forceSwcTransforms: true,
   },
 
+  // Modern JavaScript compilation settings
+  compiler: {
+    // Remove console logs in production
+    removeConsole: process.env.NODE_ENV === "production",
+  },
+
+  // Webpack configuration for modern JavaScript
+  webpack: (config, { dev, isServer }) => {
+    // Target modern browsers only
+    if (!isServer) {
+      config.target = ["web", "es2022"];
+    }
+
+    // Optimize for modern browsers
+    config.resolve.alias = {
+      ...config.resolve.alias,
+    };
+
+    return config;
+  },
+
   // Your existing headers, images, redirects are perfect for Vercel
   async headers() {
     return [
