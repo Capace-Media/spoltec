@@ -61,14 +61,14 @@ export const metadata: Metadata = {
     ],
   },
 
-  // // Add Twitter Card
-  // twitter: {
-  //   card: "summary_large_image",
-  //   site: "@spoltec", // Add if you have Twitter
-  //   title: "Spoltec funktionssäkrar ert avloppssystem",
-  //   description: "Professionell hjälp med avloppsproblem i hela Sverige.",
-  //   images: ["/images/spoltec-logo-new.png"],
-  // },
+  // Add Twitter Card
+  twitter: {
+    card: "summary_large_image",
+    site: "@spoltec", // Add if you have Twitter
+    title: "Spoltec funktionssäkrar ert avloppssystem",
+    description: "Professionell hjälp med avloppsproblem i hela Sverige.",
+    images: [logo.src as string],
+  },
 
   // Add missing keywords (but don't overdo it)
   keywords: [
