@@ -38,19 +38,22 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
                     {handleParse(data.textBody.text)}
                   </div>
                 )}
+
                 {data?.textBody?.knapp?.url && (
-                  <Link
-                    className={cn(
-                      buttonVariants({ variant: "default", size: "lg" })
-                    )}
-                    href={data.textBody.knapp.url}
-                    aria-label={`Läs mer om ${data.textBody.rubrik}`}
-                  >
-                    {data.textBody.knapp.text}
-                    <span className="sr-only">
-                      Läs mer om {data.textBody.rubrik}
-                    </span>
-                  </Link>
+                  <div>
+                    <Link
+                      className={cn(
+                        buttonVariants({ variant: "default", size: "lg" })
+                      )}
+                      href={data.textBody.knapp.url}
+                      aria-label={`Läs mer om ${data.textBody.rubrik}`}
+                    >
+                      {data.textBody.knapp.text}
+                      <span className="sr-only">
+                        Läs mer om {data.textBody.rubrik}
+                      </span>
+                    </Link>
+                  </div>
                 )}
               </div>
             </div>

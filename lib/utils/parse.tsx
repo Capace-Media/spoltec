@@ -23,6 +23,20 @@ export default function handleParse(content: string): React.ReactElement {
                 return <></>;
               }
 
+              // Remove all styling attributes
+              if (element.attribs) {
+                delete element.attribs.style;
+                delete element.attribs.class;
+                delete element.attribs.className;
+                delete element.attribs.id;
+                // Remove any other styling-related attributes
+                Object.keys(element.attribs).forEach((key) => {
+                  if (key.startsWith("data-") || key.startsWith("aria-")) {
+                    delete element.attribs[key];
+                  }
+                });
+              }
+
               if (element.name === "a") {
                 if (
                   element.attribs?.href &&
@@ -50,6 +64,11 @@ export default function handleParse(content: string): React.ReactElement {
 
                 if (imgElement?.attribs) {
                   imgElement.attribs.decoding = "defer";
+                  // Remove styling from images too
+                  delete imgElement.attribs.style;
+                  delete imgElement.attribs.class;
+                  delete imgElement.attribs.className;
+                  delete imgElement.attribs.id;
                 }
 
                 return <div>{domToReact(element.children as DOMNode[])}</div>;
