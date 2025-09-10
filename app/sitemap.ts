@@ -20,6 +20,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
       },
       {
+        url: `${BASE_URL}/faq`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.8,
+      },
+      {
         url: `${BASE_URL}/kunskapsbank`,
         lastModified: new Date(),
         changeFrequency: "weekly",
@@ -63,6 +69,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             "kontakta-oss",
             "kunskapsbank", // Add this to prevent duplicate
             "tjanster",
+            "faq",
             // Add other exclusions as needed
           ];
           return !pagesToExclude.includes(page.slug);
