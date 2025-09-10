@@ -38,7 +38,7 @@ export function NavSheet() {
               <Link href="/" className="block">
                 <Image
                   src={logo}
-                  alt="Spoltec"
+                  alt="Spoltec logo"
                   width={120}
                   height={48}
                   priority

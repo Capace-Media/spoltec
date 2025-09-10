@@ -41,7 +41,7 @@ const Employee = ({ data }: EmployeeProps) => {
                           borderRadius: "16px",
                         }}
                         src={emp?.bild?.mediaItemUrl}
-                        alt={emp?.bild?.altText}
+                        alt={emp?.bild?.altText || "Employee image"}
                       />
                     </div>
                   )}
