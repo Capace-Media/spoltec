@@ -4,8 +4,8 @@ import { generatePageMetadata } from "@lib/utils";
 import type { Metadata, ResolvingMetadata } from "next";
 import Hero from "components/header/hero";
 import { notFound } from "next/navigation";
-
-import SchemaScript from "@lib/utils/schema-script";
+import JsonLd from "@components/JsonLd";
+import { buildFAQSchema, type FAQData } from "@lib/seo/schema/buildFAQSchema";
 
 export async function generateMetadata(
   {},
@@ -29,11 +29,17 @@ const FaqPage = async () => {
     notFound();
   }
 
-  const raw = page?.pageSchema?.schema?.json;
+  const canonical = "https://www.spoltec.se/faq";
+  const faqData = page?.gqlBlocks?.blocks?.filter(
+    (block) => block.fieldGroupName === "Page_Gqlblocks_Blocks_Faq"
+  ) as FAQData;
+
+  const schema = buildFAQSchema(faqData, canonical);
 
   return (
     <>
-      <SchemaScript raw={raw} />
+      <JsonLd json={schema} id={"faq-page"} />
+
       <main key={`faq`}>
         <Hero
           title={page?.title || "Frågor och svar om avloppservice"}
