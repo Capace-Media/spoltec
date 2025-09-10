@@ -53,7 +53,7 @@ export const metadata: Metadata = {
       "Professionell hjälp med avloppsproblem i hela Sverige. Spoltec utför spolning, reparationer och underhåll av avloppssystem för hem och företag.",
     images: [
       {
-        url: "/images/spoltec-logo-new.png",
+        url: logo.src as string,
         width: 1200,
         height: 630,
         alt: "Spoltec - Avloppstjänster i Sverige",
