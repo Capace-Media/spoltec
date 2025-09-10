@@ -8,6 +8,7 @@ import { breadcrumbsSchema, serviceSchema } from "@lib/seo/schema";
 import JsonLd from "components/JsonLd";
 import { absoluteUrl } from "@lib/utils/url";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
+import BreadcrumbsComponent from "@components/breadcrumbs";
 
 export const dynamicParams = true;
 
@@ -68,7 +69,7 @@ interface PageProps {
 
 export default async function ServicePage(props: PageProps) {
   const { slug } = await props.params;
-  const uri = `/services/${slug}`; // ✅ fix path
+  const uri = `/services/${slug}/`; // ✅ fix path
   const page = await getService(uri);
 
   if (!page) {
@@ -76,22 +77,29 @@ export default async function ServicePage(props: PageProps) {
   }
 
   const canonical = await absoluteUrl(`/tjanster/${slug}`);
+
+  const breadcrumbItems = [
+    {
+      name: "Hem",
+      url: await absoluteUrl("/"),
+    },
+    {
+      name: "Tjänster",
+      url: await absoluteUrl("/tjanster"),
+    },
+    {
+      name: page?.title ?? "",
+      url: canonical,
+      type: "Service",
+      current: true,
+    },
+  ];
   const bread = breadcrumbsSchema(
-    [
-      {
-        name: "Hem",
-        url: await absoluteUrl("/"),
-      },
-      {
-        name: "Tjänster",
-        url: await absoluteUrl("/tjanster"),
-      },
-      {
-        name: page?.title ?? "",
-        url: canonical,
-        type: "Service",
-      },
-    ],
+    breadcrumbItems.map((item) => ({
+      name: item.name,
+      url: item.url,
+      type: item.current ? "Service" : undefined,
+    })),
     canonical
   );
   const serviceSchemaLD = serviceSchema(page);
@@ -106,8 +114,10 @@ export default async function ServicePage(props: PageProps) {
           subtitle={page?.gqlHeroFields?.underrubrik}
           text={page?.gqlHeroFields?.introduktionstext}
           image={page?.gqlHeroFields?.bild?.mediaItemUrl}
+          usp={page?.gqlHeroFields.usp}
         />
-        <div id="content" className="w-full h-10 md:h-0"></div>
+        <BreadcrumbsComponent items={breadcrumbItems} />
+
         <div>
           <Blocks blocks={page?.gqlBlocks?.blocks || []} />
         </div>

@@ -14,6 +14,7 @@
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
+  --breakpoint-2lg: 1170px;
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
   --breakpoint-nv: 975px;
@@ -21,6 +22,7 @@
   --color-brand-blue: #2c4696;
   --color-brand-lightblue: #ebf4f8;
   --color-brand-orange: #fc8512;
+  --color-darkblue: #0f1836;
 }
 
 /*
@@ -50,28 +52,12 @@
   @apply px-5 mx-auto md:px-10 max-w-7xl;
 }
 
-@utility contain-textbutton {
-  @apply mr-12 ml-auto max-w-160 bottom-48 lg:bottom-40;
-}
-
 @utility contain-outer {
   @apply px-5 mx-auto md:px-10 max-w-360;
 }
 
 @utility section {
   @apply py-10 md:py-16;
-}
-
-@utility section-sm {
-  @apply py-5 md:py-10;
-}
-
-@utility row {
-  @apply pb-10 last:pb-0;
-}
-
-@utility row-sm {
-  @apply pb-5 last:pb-0;
 }
 
 @utility bg-section {

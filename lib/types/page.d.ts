@@ -43,6 +43,7 @@ export interface GqlHeroFields {
   underrubrik: string | null;
   introduktionstext: string | null;
   bild: PageImage | null;
+  usp: { text: string }[];
 }
 
 // ... existing code ...
@@ -138,6 +139,69 @@ export interface LedigaTjansterBlock {
   jobsText: string;
 }
 
+export interface FaqBlock {
+  fieldGroupName: "Page_Gqlblocks_Blocks_Faq";
+  intro: {
+    title: string;
+    text: string;
+  };
+  faqs: Array<{
+    q: string;
+    a: string;
+  }>;
+}
+
+export interface HowToBlock {
+  fieldGroupName: "Page_Gqlblocks_Blocks_HowTo";
+  intro: {
+    text: string;
+    title: string;
+  };
+  listItem: Array<{
+    text: string;
+    title: string;
+  }>;
+}
+
+export interface TjansterHighlightsBlock {
+  fieldGroupName: "Page_Gqlblocks_Blocks_TjansterHighlights";
+  intro: {
+    title: string;
+    text: string;
+  };
+  services: Array<{
+    id: string;
+    title: string;
+    slug: string;
+    gqlHeroFields: {
+      introduktionstext: string | null;
+      bild: PageImage | null;
+    };
+  }>;
+}
+
+export interface ProsAndConsBlock {
+  fieldGroupName: "Page_Gqlblocks_Blocks_ProsAndCons";
+  intro: {
+    text: string;
+    title: string;
+  };
+  table: {
+    caption: string;
+    tbody: Array<{
+      td1: string;
+      td2: { text: string; truefalse: boolean };
+      td3: { text: string; truefalse: boolean };
+    }>;
+    thead: {
+      th1: string;
+      th2: string;
+      th3: string;
+    };
+  };
+}
+
+// Union type for all possible blocks
 // Union type for all possible blocks
 export type Block =
   | BlurbsBlock
@@ -146,7 +210,11 @@ export type Block =
   | TextBildBlock
   | TjansterBlock
   | TextBlock
-  | LedigaTjansterBlock;
+  | LedigaTjansterBlock
+  | FaqBlock
+  | TjansterHighlightsBlock
+  | HowToBlock
+  | ProsAndConsBlock;
 
 export interface GqlBlocks {
   blocks: Block[];

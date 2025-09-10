@@ -20,7 +20,7 @@ const chivo = Chivo({
 export const metadata: Metadata = {
   title: {
     default: "Spoltec funktionssäkrar ert avloppssystem",
-    template: "%s | Spoltec",
+    template: "%s",
   },
   description:
     "Professionell hjälp med avloppsproblem i hela Sverige. Spoltec utför spolning, reparationer och underhåll av avloppssystem för hem och företag.",

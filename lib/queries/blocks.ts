@@ -1,6 +1,75 @@
 export const BLOCKS = `
   gqlBlocks {
             blocks {
+          ... on Page_Gqlblocks_Blocks_Faq {
+           fieldGroupName
+          intro {
+            title
+            text
+          }
+          faqs {
+            q
+            a
+          }
+        }
+        ... on Page_Gqlblocks_Blocks_TjansterHighlights {
+          fieldGroupName
+          intro {
+            title
+            text
+          }
+          services {
+            ... on GqlService {
+              id
+              title
+              slug
+              gqlHeroFields{
+                introduktionstext
+                bild{
+                  mediaItemUrl
+                  altText
+                }
+              }
+            }
+          }
+        }
+        ... on Page_Gqlblocks_Blocks_HowTo {
+           fieldGroupName
+          intro {
+            text
+            title
+          }
+          listItem {
+            text
+            title
+          }
+        }
+        ... on Page_Gqlblocks_Blocks_ProsAndCons {
+           fieldGroupName
+          intro {
+            text
+            title
+          }
+          table {
+            caption
+            tbody {
+              td1
+              td2{
+              text
+              truefalse
+            }
+              td3{
+              text
+              truefalse
+            }
+            }
+            thead {
+              th1
+              th2
+              th3
+            }
+          }
+        }
               ... on Page_Gqlblocks_Blocks_Blurbs {
                 fieldGroupName
                 blurbText:text

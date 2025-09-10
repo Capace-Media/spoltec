@@ -4,15 +4,12 @@ import { getPage } from "@lib/data/page";
 import { notFound } from "next/navigation";
 import { generatePageMetadata } from "@lib/utils";
 import type { Metadata, ResolvingMetadata } from "next";
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getPosts } from "@lib/data/post";
 import Posts from "./posts";
 import { webPageSchema } from "@lib/seo/schema";
 import JsonLd from "components/JsonLd";
+import { getServerQueryClient } from "@lib/query-client";
 
 export async function generateMetadata(
   {},
@@ -24,26 +21,26 @@ export async function generateMetadata(
     page,
     parent,
     canonical,
-    "Kunskapsbank - Spoltec",
-    "Kunskapsbank"
+    "Kunskapsbank",
+    "Läs våra artiklar och guider om avloppssystem, underhåll och renovering. Spoltec delar med sig av expertkunskap inom avloppsrenovering, spolning och inspektion."
   );
 }
 
 export default async function KunskapsBank() {
   const page = await getPage("kunskapsbank");
 
-  const queryClient = new QueryClient();
-  const dehydratedState = dehydrate(queryClient);
+  // Use the dedicated server-side query client
+  const queryClient = getServerQueryClient();
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: ["posts"],
-    queryFn: async ({ pageParam }: { pageParam: string | undefined }) => {
-      const posts = await getPosts(pageParam, 9);
-      return posts;
-    },
+    queryFn: async ({ pageParam }: { pageParam: string | undefined }) =>
+      getPosts(pageParam, 9),
     initialPageParam: undefined,
-    getNextPageParam: (lastPage: any) => lastPage.node.pageInfo.endCursor,
+    getNextPageParam: (lastPage: any) => lastPage?.pageInfo?.endCursor,
   });
+
+  const dehydratedState = dehydrate(queryClient);
 
   if (!page) {
     notFound();

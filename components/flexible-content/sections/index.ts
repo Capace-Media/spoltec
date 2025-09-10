@@ -8,3 +8,7 @@ export { default as Employee } from "./Employee";
 export { default as AvailablePositions } from "./AvailablePositions";
 export { default as Contact } from "./Contact";
 export { default as CallToAction } from "./Cta";
+export { default as FAQ } from "./FAQ";
+export { default as HowTo } from "./HowTo";
+export { default as ProsAndCons } from "./CompareTable";
+export { default as ServiceHighlights } from "./ServiceHighlights";

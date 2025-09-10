@@ -37,14 +37,18 @@ const List = ({ data }: ListProps) => {
                   <div className="mt-[5px]" aria-hidden="true">
                     <Arrow />
                   </div>
-                  <div itemProp="name">{handleParse(li?.text)}</div>
+                  <div itemProp="name" className="parsed">
+                    {handleParse(li?.text)}
+                  </div>
                   <meta itemProp="position" content={String(index + 1)} />
                 </li>
               );
             })}
           </ul>
         </div>
-        {data?.avslut && <footer>{handleParse(data.avslut)}</footer>}
+        {data?.avslut && (
+          <footer className="parsed">{handleParse(data.avslut)}</footer>
+        )}
       </div>
     </section>
   );

@@ -24,17 +24,10 @@ export default function Posts() {
       const posts = await getPosts(pageParam, 9);
       return posts;
     },
-    initialPageParam: undefined,
+    initialPageParam: undefined, // Add this - must match server
     getNextPageParam: (lastPage, pages) => lastPage?.pageInfo.endCursor,
+    // Remove refetchOnMount and staleTime for now to test hydration
   });
-
-  const handleLoadMore = async () => {
-    if (hasNextPage && !isFetchingNextPage) {
-      setIsLoadingMore(true);
-      await fetchNextPage();
-      setIsLoadingMore(false);
-    }
-  };
 
   const allPosts = data?.pages.flatMap((page) => page?.edges || []) || [];
 
@@ -144,7 +137,7 @@ export default function Posts() {
 
               {/* Hidden structured data for SEO */}
               <span itemProp="url" className="hidden">{`${
-                process.env.NEXT_PUBLIC_MY_WEBSITE || "https://spoltec.se"
+                process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se"
               }${postUrl}`}</span>
             </Link>
           );
@@ -171,7 +164,7 @@ export default function Posts() {
       {hasNextPage && (
         <div className="text-center mt-10">
           <button
-            onClick={handleLoadMore}
+            onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage || isLoadingMore}
             className={cn(buttonVariants({ variant: "default", size: "lg" }))}
           >

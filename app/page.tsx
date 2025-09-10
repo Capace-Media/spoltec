@@ -11,6 +11,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/");
+
   const canonical = "https://www.spoltec.se";
   return generatePageMetadata(page, parent, canonical);
 }
@@ -40,7 +41,12 @@ export default async function Home() {
     <>
       <JsonLd json={schema} id={"home-page"} />
       <main key={page.title}>
-        <MainHero />
+        <MainHero
+          title={page?.title}
+          subtitle={page?.gqlHeroFields?.underrubrik || ""}
+          text={page?.gqlHeroFields?.introduktionstext || ""}
+        />
+
         <Blocks blocks={page?.gqlBlocks?.blocks || []} />
       </main>
     </>

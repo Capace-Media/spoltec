@@ -6,48 +6,54 @@ interface BlurbsProps {
 }
 
 const Blurbs = ({ data }: BlurbsProps) => {
+  // Grid mapping based on number of blurbs
+  const getGridColumns = (count: number): string => {
+    const gridMapping: { [key: number]: string } = {
+      1: "md:grid-cols-1",
+      2: "md:grid-cols-2",
+      3: "md:grid-cols-3",
+      4: "md:grid-cols-4",
+      5: "md:grid-cols-3",
+      6: "md:grid-cols-3",
+      7: "md:grid-cols-3",
+      8: "md:grid-cols-4",
+      9: "md:grid-cols-3",
+      16: "md:grid-cols-4",
+    };
+
+    return gridMapping[count] || "md:grid-cols-3";
+  };
+
+  const blurbCount = data?.blurbs?.length || 0;
+
   return (
-    <section className="contain-outer section">
+    <section className="contain-outer">
       <div
         className={`${data.installningar.bakgrund ? "bg-section" : "section"}`}
       >
-        <div className="contain">
+        <div className={`${data.installningar.bakgrund ? "contain" : ""}`}>
           <div>
             {data?.blurbText && (
-              <div className="max-w-[85%] mx-auto text-center ">
+              <div className="max-w-[95%] md:max-w-[65%] lg:max-w-[52%] md:mx-auto md:text-center pb-6 parsed">
                 {handleParse(data.blurbText)}
               </div>
             )}
-            <div
-              className={`grid  gap-5 md:gap-10 ${
+            <ul
+              className={`grid gap-5 md:gap-10 ${
                 data?.blurbText ? "mt-8" : ""
-              } ${
-                data.blurbs.length == 4
-                  ? "md:grid-cols-4"
-                  : data?.blurbs?.length == 2
-                  ? "md:grid-cols-2"
-                  : data?.blurbs?.length == 6
-                  ? "md:grid-cols-3"
-                  : "md:grid-cols-3"
-              }`}
-              role="list"
+              } ${getGridColumns(blurbCount)}`}
             >
               {data.blurbs.map((blurb: any, index: number) => (
-                <div
+                <li
                   key={blurb?.rubrik || blurb?.underrubrik || blurb?.text}
                   className={`${
-                    data?.blurbs?.length == 2
+                    blurbCount === 2
                       ? "flex flex-col justify-center items-center"
                       : ""
                   }`}
-                  role="listitem"
                 >
                   {blurb.bild && (
-                    <figure
-                      className="block w-10 h-10 mb-5 md:w-14 md:h-14 relative"
-                      role="img"
-                      aria-labelledby={`blurb-${index}-title`}
-                    >
+                    <figure className="block w-10 h-10 mb-5 md:w-14 md:h-14 relative">
                       <Image
                         src={blurb?.bild?.mediaItemUrl}
                         alt={
@@ -61,8 +67,6 @@ const Blurbs = ({ data }: BlurbsProps) => {
                           objectFit: "contain",
                         }}
                         sizes="(max-width: 768px) 40px, 56px"
-                        loading={index < 3 ? "eager" : "lazy"}
-                        decoding="async"
                       />
                     </figure>
                   )}
@@ -76,12 +80,16 @@ const Blurbs = ({ data }: BlurbsProps) => {
                     </h3>
                   )}
                   {blurb.underrubrik && (
-                    <h4 className="mb-3">{blurb.underrubrik}</h4>
+                    <p className="mb-3">
+                      <strong>{blurb.underrubrik}</strong>
+                    </p>
                   )}
-                  {handleParse(blurb.text)}
-                </div>
+                  {blurb.text && (
+                    <div className="parsed">{handleParse(blurb.text)}</div>
+                  )}
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </div>

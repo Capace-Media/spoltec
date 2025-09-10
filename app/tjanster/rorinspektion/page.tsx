@@ -7,6 +7,7 @@ import Blocks from "components/flexible-content/block";
 import { breadcrumbsSchema, serviceSchema } from "@lib/seo/schema";
 import JsonLd from "components/JsonLd";
 import { absoluteUrl } from "@lib/utils/url";
+import BreadcrumbsComponent from "@components/breadcrumbs";
 
 export async function generateMetadata(
   props: {},
@@ -28,22 +29,28 @@ export default async function ServicePage() {
   }
 
   const canonical = await absoluteUrl(`/tjanster/rorinspektion`);
+  const breadcrumbItems = [
+    {
+      name: "Hem",
+      url: await absoluteUrl("/"),
+    },
+    {
+      name: "Tjänster",
+      url: await absoluteUrl("/tjanster"),
+    },
+    {
+      name: page?.title ?? "",
+      url: canonical,
+      type: "Service",
+      current: true,
+    },
+  ];
   const bread = breadcrumbsSchema(
-    [
-      {
-        name: "Hem",
-        url: await absoluteUrl("/"),
-      },
-      {
-        name: "Tjänster",
-        url: await absoluteUrl("/tjanster"),
-      },
-      {
-        name: page?.title ?? "",
-        url: canonical,
-        type: "Service",
-      },
-    ],
+    breadcrumbItems.map((item) => ({
+      name: item.name,
+      url: item.url,
+      type: item.current ? "Service" : undefined,
+    })),
     canonical
   );
   const serviceSchemaLD = serviceSchema(page);
@@ -58,8 +65,10 @@ export default async function ServicePage() {
           subtitle={page?.gqlHeroFields?.underrubrik}
           text={page?.gqlHeroFields?.introduktionstext}
           image={page?.gqlHeroFields?.bild?.mediaItemUrl}
+          usp={page?.gqlHeroFields.usp}
         />
-        <div id="content" className="w-full h-10 md:h-0"></div>
+        <BreadcrumbsComponent items={breadcrumbItems} />
+
         <div>
           <Blocks blocks={page?.gqlBlocks?.blocks || []} />
         </div>

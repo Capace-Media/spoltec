@@ -1,33 +1,36 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Add compression (though it's often default)
-  compress: true,
-
-  // Remove X-Powered-By header for security
+  // Your existing config is already good for Vercel
+  compress: true, // Vercel handles this, but keeping it doesn't hurt
   poweredByHeader: false,
 
-  // Target modern browsers
+  // Vercel-specific optimizations
   experimental: {
-    // Enable modern JavaScript output
-    esmExternals: true,
+    // Enable optimized package imports (2025 feature)
+    optimizePackageImports: [
+      "lucide-react",
+      "@radix-ui/react-accordion",
+      "@radix-ui/react-dialog",
+    ],
+
+    // Better caching for static content
+    staticGenerationRetryCount: 3,
+
+    // Improved performance for large apps
+    webpackMemoryOptimizations: true,
+
+    // Force modern JS compilation
+    forceSwcTransforms: true,
   },
 
-  // Optimize for modern browsers
-  compiler: {
-    // Remove console logs in production
-    removeConsole: process.env.NODE_ENV === "production",
-  },
-
-  // Your existing config...
+  // Your existing headers, images, redirects are perfect for Vercel
   async headers() {
     return [
+      // Static assets
       {
-        source: "/(.*)",
+        source: "/_next/static/(.*)",
         headers: [
-          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          // Cache control for better performance
           {
             key: "Cache-Control",
             value: "public, max-age=31536000, immutable",
@@ -43,19 +46,24 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // Add specific caching for CSS files
+      // Avoid long-lived caching for everything else (HTML, data, API)
       {
-        source: "/_next/static/css/(.*)",
+        source: "/(.*)",
         headers: [
+          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            value: "public, max-age=0, s-maxage=600, stale-while-revalidate=60",
           },
         ],
       },
     ];
   },
+
   images: {
+    // Your existing config is good
+    // Vercel automatically optimizes these
     remotePatterns: [
       {
         protocol: "https",
@@ -82,16 +90,15 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
-
-    // formats: ['image/jpeg', 'image/svg+xml']
     dangerouslyAllowSVG: true,
   },
+
   reactStrictMode: true,
-  // env: {
-  //   GRAPHQL_USER: process.env.GRAPHQL_USER,
-  //   GRAPHQL_PASS: process.env.GRAPHQL_PASS,
-  //   GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
-  // },
+  env: {
+    GRAPHQL_USER: process.env.GRAPHQL_USER,
+    GRAPHQL_PASS: process.env.GRAPHQL_PASS,
+    GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
+  },
 
   async redirects() {
     return [

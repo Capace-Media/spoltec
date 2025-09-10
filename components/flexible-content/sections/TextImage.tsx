@@ -1,6 +1,6 @@
 import { cn } from "@lib/utils";
+import handleParse from "@lib/utils/parse";
 import { buttonVariants } from "components/ui/button";
-import parse from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,14 +10,19 @@ interface TextImageProps {
 }
 
 const TextImage = ({ data, ordinal }: TextImageProps) => {
+  if (!data.textBody.text) return null;
   return (
     <section className="contain-outer section" data-ordinal={ordinal}>
       <div
         className={`text-image ${
-          data?.installningar?.bakgrund ? "bg-section" : "section"
+          data?.installningar?.bakgrund ? "bg-section" : ""
         }`}
       >
-        <div className="section-sm contain ">
+        <div
+          className={
+            data?.installningar?.bakgrund ? "py-5 md:py-10 contain " : ""
+          }
+        >
           <div
             className={`flex flex-col gap-20 ${
               ordinal && ordinal % 2 === 0
@@ -28,9 +33,11 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
             <div className="flex items-center w-full">
               <div>
                 <h2>{data.textBody.rubrik}</h2>
-                <div className="parsed pb-10">
-                  {data?.textBody?.text && parse(data.textBody.text)}
-                </div>
+                {data?.textBody?.text && (
+                  <div className="parsed pb-10">
+                    {handleParse(data.textBody.text)}
+                  </div>
+                )}
                 {data?.textBody?.knapp?.url && (
                   <Link
                     className={cn(
@@ -47,7 +54,7 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
                 )}
               </div>
             </div>
-            <div className="w-full">
+            <div className="w-full hidden lg:block">
               {data?.bilder?.length > 1 ? (
                 <div className="grid grid-cols-2 grid-rows-3 gap-3 h-[500px]">
                   {data?.bilder &&

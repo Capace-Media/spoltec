@@ -82,13 +82,67 @@ export interface ServiceTextBlock {
   text: string;
 }
 
+export interface ServiceIntro {
+  title: string;
+  text: string;
+}
+
+export interface ServiceFaq {
+  q: string;
+  a: string;
+}
+
+export interface ServiceFaqBlock {
+  fieldGroupName: "GqlService_Gqlblocks_Blocks_Faq";
+  intro: ServiceIntro;
+  faqs: ServiceFaq[];
+}
+
+export interface ServiceListItem {
+  text: string;
+  title: string;
+}
+
+export interface ServiceHowToBlock {
+  fieldGroupName: "GqlService_Gqlblocks_Blocks_HowTo";
+  intro: ServiceIntro;
+  listItem: ServiceListItem[];
+}
+
+export interface ServiceTableHeader {
+  th1: string;
+  th2: string;
+  th3: string;
+}
+
+export interface ServiceTableBody {
+  td1: string;
+  td2: { text: string; truefalse: boolean };
+  td3: { text: string; truefalse: boolean };
+}
+
+export interface ServiceTable {
+  caption: string;
+  thead: ServiceTableHeader;
+  tbody: ServiceTableBody[];
+}
+
+export interface ServiceProsAndConsBlock {
+  fieldGroupName: "GqlService_Gqlblocks_Blocks_ProsAndCons";
+  intro: ServiceIntro;
+  table: ServiceTable;
+}
+
 export type ServiceBlock =
   | ServiceVideoBlock
   | ServiceBlurbsBlock
   | ServiceTextBildBlock
   | ServiceListaBlock
   | ServiceTjansterBlock
-  | ServiceTextBlock;
+  | ServiceTextBlock
+  | ServiceFaqBlock
+  | ServiceHowToBlock
+  | ServiceProsAndConsBlock;
 
 export interface ServiceBlocks {
   blocks: ServiceBlock[];
@@ -97,6 +151,7 @@ export interface ServiceBlocks {
 export interface ServiceHeroFields {
   underrubrik: string;
   introduktionstext: string;
+  usp: { text: string }[];
   bild: ServiceImage;
 }
 

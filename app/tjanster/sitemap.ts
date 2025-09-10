@@ -26,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           ? new Date(service.modifiedGmt)
           : new Date(),
         changeFrequency: "weekly" as const,
-        priority: 0.9,
+        priority: 0.95,
       })) || [];
 
     return [...dynamicPages];

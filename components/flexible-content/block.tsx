@@ -1,4 +1,11 @@
-import type { TextBildBlock, TjansterBlock } from "@lib/types/page";
+import type {
+  FaqBlock,
+  HowToBlock,
+  ProsAndConsBlock,
+  TextBildBlock,
+  TjansterBlock,
+  TjansterHighlightsBlock,
+} from "@lib/types/page";
 import {
   TextImage,
   Video,
@@ -10,10 +17,19 @@ import {
   AvailablePositions,
   Contact,
   CallToAction,
+  FAQ,
+  ProsAndCons,
+  HowTo,
+  ServiceHighlights,
 } from "./sections";
 
 import type { Block as BlockType } from "@lib/types/page";
-import type { ServiceBlock } from "@lib/types/service";
+import type {
+  ServiceBlock,
+  ServiceFaqBlock,
+  ServiceHowToBlock,
+  ServiceProsAndConsBlock,
+} from "@lib/types/service";
 import type { PostBlock } from "@lib/types/post";
 
 interface BlockProps {
@@ -27,6 +43,21 @@ const Block = ({ block, textImageOrdinal }: BlockProps) => {
       return (
         <TextImage data={block as TextBildBlock} ordinal={textImageOrdinal} />
       );
+    case "GqlService_Gqlblocks_Blocks_Faq":
+      return <FAQ data={block as ServiceFaqBlock} />;
+    case "GqlService_Gqlblocks_Blocks_HowTo":
+      return <HowTo data={block as ServiceHowToBlock} />;
+    case "GqlService_Gqlblocks_Blocks_ProsAndCons":
+      return <ProsAndCons data={block as ServiceProsAndConsBlock} />;
+    case "Page_Gqlblocks_Blocks_TjansterHighlights":
+      return <ServiceHighlights data={block as TjansterHighlightsBlock} />;
+    case "Page_Gqlblocks_Blocks_Faq":
+      return <FAQ data={block as FaqBlock} />;
+    case "Page_Gqlblocks_Blocks_HowTo":
+      return <HowTo data={block as HowToBlock} />;
+    case "Page_Gqlblocks_Blocks_ProsAndCons":
+      return <ProsAndCons data={block as ProsAndConsBlock} />;
+
     case "GqlService_Gqlblocks_Blocks_Video":
       return <Video data={block} />;
     case "GqlService_Gqlblocks_Blocks_TextBild":

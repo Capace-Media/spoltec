@@ -23,6 +23,7 @@ interface IBild {
 }
 
 const Employee = ({ data }: EmployeeProps) => {
+  if (data?.anstalld?.length === 0) return null;
   return (
     <section className="contain-outer">
       <div className="section">
