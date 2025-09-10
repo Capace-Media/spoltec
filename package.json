@@ -35,13 +35,15 @@
     "tailwind-merge": "^3.3.1"
   },
   "browserslist": [
-    "> 2%",
-    "last 1 versions",
+    "> 0.5%",
+    "last 2 versions",
     "not dead",
     "not ie 11",
     "not op_mini all",
-    "not android < 5",
-    "not safari < 12"
+    "Chrome >= 90",
+    "Firefox >= 88",
+    "Safari >= 14",
+    "Edge >= 90"
   ],
   "devDependencies": {
     "@svgr/cli": "^8.1.0",
