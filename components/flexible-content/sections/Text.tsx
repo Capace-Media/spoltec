@@ -1,7 +1,8 @@
 import Link from "next/link";
-import handleParse from "../../../lib/utils/parse";
+
 import { cn } from "@lib/utils";
 import { buttonVariants } from "components/ui/button";
+import handleParse from "@lib/utils/parse";
 interface TextProps {
   data: {
     fieldGroupName: string;
@@ -21,7 +22,7 @@ const Text = ({ data }: TextProps) => {
     <section className="contain-outer section">
       <div className="max-w-2xl">
         <h2>{data.rubrik}</h2>
-        <div className="parsed">{data?.text && handleParse(data.text)}</div>
+        {data?.text && <div className="parsed">{handleParse(data.text)}</div>}
         {data?.installning === true && data?.knapp?.url !== null ? (
           <Link
             className={cn(buttonVariants({ variant: "secondary", size: "lg" }))}

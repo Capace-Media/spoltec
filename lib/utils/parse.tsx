@@ -5,22 +5,24 @@ import parse, {
   type Element,
 } from "html-react-parser";
 
+/**
+ * Parse HTML content to React elements
+ * @param content string HTML content
+ * @returns React.ReactElement
+ */
 export default function handleParse(content: string): React.ReactElement {
   return (
     <>
       {content &&
         parse(content, {
           replace: (domNode: DOMNode) => {
-            // Type guard to check if domNode is an Element
             if ((domNode as any).type === "tag") {
               const element = domNode as Element;
 
-              // Filter out empty tags (tags with no meaningful content)
               if (isEmptyElement(element)) {
-                return <></>; // Return empty fragment to remove the element
+                return <></>;
               }
 
-              // Handle anchor tags - add target="_blank" for external links
               if (element.name === "a") {
                 if (
                   element.attribs?.href &&
@@ -33,7 +35,6 @@ export default function handleParse(content: string): React.ReactElement {
                 }
               }
 
-              // Handle elements containing images
               if (
                 element.children?.some(
                   (child) =>
@@ -60,9 +61,12 @@ export default function handleParse(content: string): React.ReactElement {
   );
 }
 
-// Helper function to check if an element is empty
+/**
+ * Check if an element is empty
+ * @param element Element to check
+ * @returns boolean
+ */
 function isEmptyElement(element: Element): boolean {
-  // Tags that should be preserved even if empty (self-closing or meaningful when empty)
   const preserveTags = [
     "img",
     "br",
@@ -83,12 +87,10 @@ function isEmptyElement(element: Element): boolean {
     return false;
   }
 
-  // Check if element has no children
   if (!element.children || element.children.length === 0) {
     return true;
   }
 
-  // Check if all children are empty text nodes or whitespace
   const hasOnlyWhitespace = element.children.every((child: any) => {
     if (child.type === "text") {
       return !child.data || child.data.trim() === "";

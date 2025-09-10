@@ -50,7 +50,9 @@ export default function FAQ({ data }: { data: ServiceFaqBlock | FaqBlock }) {
                   itemType="https://schema.org/Answer"
                   itemProp="acceptedAnswer"
                 >
-                  <div itemProp="text">{handleParse(item.a)}</div>
+                  <div itemProp="text" className="parsed">
+                    {handleParse(item.a)}
+                  </div>
                 </AccordionContent>
               </AccordionItem>
             ))}
