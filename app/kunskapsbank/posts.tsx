@@ -7,6 +7,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@lib/utils";
 import { buttonVariants } from "components/ui/button";
+import PostCard from "@components/post-card";
+import { Post } from "@lib/types/post";
 
 export default function Posts() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -39,29 +41,24 @@ export default function Posts() {
 
   // Create a reusable skeleton component
   const PostSkeleton = () => (
-    <div className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between w-full text-white p-7 bg-brand-blue rounded-xl animate-pulse">
-      {/* Shimmer effect overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] animate-[shimmer_1.5s_infinite] pointer-events-none"></div>
-
-      <div className="relative z-10">
-        {/* Title skeleton */}
-        <div className="space-y-2">
-          <div className="h-6 md:h-7 bg-white/20 rounded animate-pulse"></div>
-          <div className="h-6 md:h-7 bg-white/20 rounded w-3/4 animate-pulse"></div>
-        </div>
-
-        {/* Description skeleton */}
-        <div className="mt-3 space-y-2">
-          <div className="h-4 bg-white/15 rounded animate-pulse"></div>
-          <div className="h-4 bg-white/15 rounded w-5/6 animate-pulse"></div>
-          <div className="h-4 bg-white/15 rounded w-2/3 animate-pulse"></div>
-        </div>
+    <div className="group overflow-hidden rounded-xl border border-brand-blue/10 bg-white shadow-sm transition duration-200 hover:shadow-md">
+      <div className="relative aspect-[16/9] w-full overflow-hidden">
+        <div className="absolute inset-0 bg-gray-200 animate-pulse" />
       </div>
-
-      {/* "Read more" skeleton */}
-      <div className="flex items-center justify-end space-x-3 relative z-10">
-        <div className="h-4 bg-white/20 rounded w-16 animate-pulse"></div>
-        <div className="w-5 h-5 bg-white/20 rounded animate-pulse"></div>
+      <div className="p-5">
+        <div className="space-y-2">
+          <div className="h-6 md:h-7 bg-gray-200 rounded" />
+          <div className="h-6 md:h-7 bg-gray-200 rounded w-3/4" />
+        </div>
+        <div className="mt-3 space-y-2">
+          <div className="h-4 bg-gray-200 rounded" />
+          <div className="h-4 bg-gray-200 rounded w-5/6" />
+          <div className="h-4 bg-gray-200 rounded w-2/3" />
+        </div>
+        <div className="mt-4 flex items-center space-x-2">
+          <div className="h-4 w-20 bg-gray-200 rounded" />
+          <div className="h-5 w-5 bg-gray-200 rounded" />
+        </div>
       </div>
     </div>
   );
@@ -93,57 +90,15 @@ export default function Posts() {
             "";
 
           return (
-            <Link
-              key={`${post.id}-${index}`}
-              className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-full text-white p-7 bg-brand-blue text-left rounded-xl"
-              href={postUrl}
-              itemScope
-              itemType="https://schema.org/Article"
-              aria-label={`Läs mer om ${post.title}`}
-            >
-              <Image
-                src={imageUrl}
-                fill
-                style={{ objectFit: "cover" }}
-                className="transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-20"
-                alt={post.gqlHeroFields?.bild?.altText || post.title}
-                quality={85}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-              />
-
-              <div>
-                <h3
-                  className="text-xl text-white md:text-2xl"
-                  itemProp="headline"
-                >
-                  {post.title}
-                </h3>
-                {introText && (
-                  <p className="mt-3 text-sm" itemProp="description">
-                    {limit(introText, 140)}
-                  </p>
-                )}
-              </div>
-
-              <div className="flex items-center justify-end space-x-3">
-                <p>Läs mer</p>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  className="w-5 h-5 fill-current"
-                >
-                  <rect fill="none" height="24" width="24" />
-                  <path d="M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z" />
-                </svg>
-              </div>
-
-              {/* Hidden structured data for SEO */}
-              <span itemProp="url" className="hidden">{`${
-                process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se"
-              }${postUrl}`}</span>
-            </Link>
+            <PostCard
+              key={`post-${index}`}
+              post={post as Post}
+              index={index}
+              postUrl={postUrl}
+              imageUrl={imageUrl}
+              introText={introText}
+              limit={limit}
+            />
           );
         })}
       </div>
