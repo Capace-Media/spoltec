@@ -24,6 +24,29 @@ export default function handleParse(content: string): React.ReactElement {
                 return <></>;
               }
 
+              // Handle p tags that contain YouTube iframes - convert to div
+              if (element.name === "p") {
+                const hasYouTubeIframe = element.children?.some(
+                  (child: any) => {
+                    if (child.type === "tag" && child.name === "iframe") {
+                      const src = child.attribs?.src;
+                      return (
+                        src &&
+                        (src.includes("youtube.com") ||
+                          src.includes("youtu.be"))
+                      );
+                    }
+                    return false;
+                  }
+                );
+
+                if (hasYouTubeIframe) {
+                  // Convert p to div to allow block-level YouTube wrapper
+                  const divElement = { ...element, name: "div" };
+                  return domToReact([divElement as DOMNode]);
+                }
+              }
+
               // Handle iframes specially to preserve essential attributes
               if (element.name === "iframe") {
                 const src = element.attribs?.src;
