@@ -59,8 +59,10 @@ const Footer = ({}: FooterProps) => {
                   <Image
                     src="https://www.uc.se/ucsigill2/sigill?org=556712-5363&language=swe&product=lsa&special=&fontcolor=b&type=svg"
                     alt="God Kreditvärdighet"
-                    height="70"
-                    width="310"
+                    height={70}
+                    width={310}
+                    quality={85}
+                    sizes="(max-width: 768px) 100vw, 310px"
                   />
                 </a>
               </div>
