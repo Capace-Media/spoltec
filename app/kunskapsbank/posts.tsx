@@ -2,13 +2,11 @@
 
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getPosts } from "@lib/data/post";
-import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@lib/utils";
 import { buttonVariants } from "components/ui/button";
 import PostCard from "@components/post-card";
-import { Post } from "@lib/types/post";
+import type { Post } from "@lib/types/post";
 
 export default function Posts() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
