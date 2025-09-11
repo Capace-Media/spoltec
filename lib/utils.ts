@@ -25,7 +25,6 @@ export async function generatePageMetadata(
     };
   }
 
-  console.log("seo page", page?.seo);
   // Access and extend parent metadata if provided
   const previousImages = parent ? (await parent).openGraph?.images || [] : [];
 

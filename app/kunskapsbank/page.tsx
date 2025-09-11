@@ -10,6 +10,7 @@ import Posts from "./posts";
 import { webPageSchema } from "@lib/seo/schema";
 import JsonLd from "components/JsonLd";
 import { getServerQueryClient } from "@lib/query-client";
+import type { GetPostsQueryData } from "@lib/types/post";
 
 export async function generateMetadata(
   {},

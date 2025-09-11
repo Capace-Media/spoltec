@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
 
   // Vercel-specific optimizations
   experimental: {
-    // Enable optimized package imports (2025 feature)
+    // Enable optimized package imports
     optimizePackageImports: [
       "lucide-react",
       "@radix-ui/react-accordion",
@@ -37,6 +37,20 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // CSS files - optimize loading
+      {
+        source: "/_next/static/css/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+          {
+            key: "Content-Type",
+            value: "text/css",
+          },
+        ],
+      },
       {
         source: "/images/(.*)",
         headers: [
@@ -46,15 +60,47 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // Avoid long-lived caching for everything else (HTML, data, API)
+      // Privacy and security headers for all pages
       {
         source: "/(.*)",
         headers: [
           { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          // Privacy-focused headers
+          {
+            key: "Permissions-Policy",
+            value:
+              "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+          },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-XSS-Protection", value: "1; mode=block" },
+          // Cookie policy for first-party cookies
+          {
+            key: "Set-Cookie",
+            value: "SameSite=Lax; Secure; HttpOnly",
+          },
           {
             key: "Cache-Control",
             value: "public, max-age=0, s-maxage=600, stale-while-revalidate=60",
+          },
+        ],
+      },
+      // Specific headers for media domain to prevent third-party cookie issues
+      {
+        source: "/images/(.*)",
+        headers: [
+          {
+            key: "Cross-Origin-Resource-Policy",
+            value: "cross-origin",
+          },
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "https://www.spoltec.se",
+          },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
@@ -62,8 +108,11 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    // Your existing config is good
-    // Vercel automatically optimizes these
+    // Optimize image loading and compression
+    formats: ["image/webp", "image/avif"],
+    minimumCacheTTL: 60,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
       {
         protocol: "https",
@@ -76,6 +125,12 @@ const nextConfig: NextConfig = {
         hostname: "media.spoltec.se",
         port: "",
         pathname: "/wp-content/**",
+      },
+      {
+        protocol: "https",
+        hostname: "media.spoltec.se",
+        port: "",
+        pathname: "/**",
       },
       {
         protocol: "https",

@@ -4,6 +4,7 @@ import parse, {
   type DOMNode,
   type Element,
 } from "html-react-parser";
+import YouTubeWrapper from "components/YouTubeWrapper";
 
 /**
  * Parse HTML content to React elements
@@ -25,6 +26,33 @@ export default function handleParse(content: string): React.ReactElement {
 
               // Handle iframes specially to preserve essential attributes
               if (element.name === "iframe") {
+                const src = element.attribs?.src;
+
+                // Check if this is a YouTube iframe
+                if (
+                  src &&
+                  (src.includes("youtube.com") || src.includes("youtu.be"))
+                ) {
+                  // Extract video ID from YouTube URL
+                  const videoId = extractYouTubeVideoId(src);
+                  if (videoId) {
+                    return (
+                      <YouTubeWrapper
+                        videoId={videoId}
+                        title={element.attribs?.title || "YouTube Video"}
+                        width={parseInt(element.attribs?.width || "560")}
+                        height={parseInt(element.attribs?.height || "315")}
+                        className={
+                          element.attribs?.class ||
+                          element.attribs?.className ||
+                          ""
+                        }
+                      />
+                    );
+                  }
+                }
+
+                // Handle other iframes normally
                 if (element.attribs) {
                   // Remove only styling-related attributes for iframes
                   delete element.attribs.style;
@@ -110,6 +138,25 @@ export default function handleParse(content: string): React.ReactElement {
         })}
     </>
   );
+}
+
+/**
+ * Extract YouTube video ID from various YouTube URL formats
+ * @param url YouTube URL
+ * @returns video ID or null
+ */
+function extractYouTubeVideoId(url: string): string | null {
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
+    /youtube\.com\/v\/([^&\n?#]+)/,
+  ];
+
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match && match[1]) return match[1];
+  }
+
+  return null;
 }
 
 /**
