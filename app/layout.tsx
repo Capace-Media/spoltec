@@ -154,6 +154,10 @@ export default function RootLayout({
     <html lang="sv">
       <GoogleTagManager
         gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string}
+        dataLayer={{
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
+        }}
       />
       <body className={chivo.className}>
         <Nav />
