@@ -18,6 +18,7 @@ interface TextProps {
 
 const Text = ({ data }: TextProps) => {
   if (!data.text) return null;
+
   return (
     <section className="contain-outer section">
       <div className="max-w-2xl">

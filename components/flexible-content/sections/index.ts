@@ -1,5 +1,5 @@
 export { default as TextImage } from "./TextImage";
-export { default as Video } from "./Video";
+export { default as Video } from "./video";
 export { default as Services } from "./Services";
 export { default as Text } from "./Text";
 export { default as Blurbs } from "./Blurbs";
