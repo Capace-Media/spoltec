@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
 
   // Vercel-specific optimizations
   experimental: {
-    // Enable optimized package imports (2025 feature)
+    // Enable optimized package imports
     optimizePackageImports: [
       "lucide-react",
       "@radix-ui/react-accordion",
@@ -37,6 +37,20 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // CSS files - optimize loading
+      {
+        source: "/_next/static/css/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+          {
+            key: "Content-Type",
+            value: "text/css",
+          },
+        ],
+      },
       {
         source: "/images/(.*)",
         headers: [
@@ -62,8 +76,11 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    // Your existing config is good
-    // Vercel automatically optimizes these
+    // Optimize image loading and compression
+    formats: ["image/webp", "image/avif"],
+    minimumCacheTTL: 60,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
       {
         protocol: "https",

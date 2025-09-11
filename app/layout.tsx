@@ -17,6 +17,9 @@ const chivo = Chivo({
   preload: true, // Preload the font
   fallback: ["Arial", "sans-serif"], // Add fallback
   adjustFontFallback: true, // Optimize layout shift
+  variable: "--font-chivo", // CSS variable for better performance
+  // Optimize font loading
+  style: "normal",
 });
 
 export const metadata: Metadata = {
