@@ -122,6 +122,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "img.youtube.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "media.spoltec.se",
         port: "",
         pathname: "/wp-content/**",
