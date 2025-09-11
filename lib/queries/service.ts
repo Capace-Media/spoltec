@@ -8,6 +8,32 @@ query SERVICE_QUERY($slug: ID!) {
         ${SEO}
         gqlBlocks {
           blocks {
+                  ... on GqlService_Gqlblocks_Blocks_PostHighligths {
+          fieldGroupName
+          intro {
+            title
+            text
+          }
+          posts {
+            ... on Post {
+              id
+              title
+              slug
+              uri
+              id
+              modifiedGmt
+              dateGmt
+              gqlHeroFields {
+                bild {
+                  mediaItemUrl
+                  altText
+                }
+                underrubrik
+                introduktionstext
+              }
+            }
+          }
+        }
                   ... on GqlService_Gqlblocks_Blocks_Faq {
           fieldGroupName
           intro {

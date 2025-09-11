@@ -201,8 +201,27 @@ export interface ProsAndConsBlock {
   };
 }
 
-// Union type for all possible blocks
-// Union type for all possible blocks
+export interface PostHighlightsBlock {
+  fieldGroupName: "Page_Gqlblocks_Blocks_PostHighligths";
+  intro: {
+    title: string;
+    text: string;
+  };
+  posts: Array<{
+    id: string;
+    title: string;
+    slug: string;
+    uri: string;
+    modifiedGmt: string;
+    dateGmt: string;
+    gqlHeroFields: {
+      bild: PageImage;
+      underrubrik: string;
+      introduktionstext: string;
+    };
+  }>;
+}
+
 export type Block =
   | BlurbsBlock
   | PersonalBlock
@@ -214,7 +233,8 @@ export type Block =
   | FaqBlock
   | TjansterHighlightsBlock
   | HowToBlock
-  | ProsAndConsBlock;
+  | ProsAndConsBlock
+  | PostHighlightsBlock;
 
 export interface GqlBlocks {
   blocks: Block[];

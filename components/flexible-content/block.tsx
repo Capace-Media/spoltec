@@ -1,6 +1,7 @@
 import type {
   FaqBlock,
   HowToBlock,
+  PostHighlightsBlock,
   ProsAndConsBlock,
   TextBildBlock,
   TjansterBlock,
@@ -21,6 +22,7 @@ import {
   ProsAndCons,
   HowTo,
   ServiceHighlights,
+  BlogPosts,
 } from "./sections";
 
 import type { Block as BlockType } from "@lib/types/page";
@@ -28,6 +30,7 @@ import type {
   ServiceBlock,
   ServiceFaqBlock,
   ServiceHowToBlock,
+  ServicePostHighlightsBlock,
   ServiceProsAndConsBlock,
 } from "@lib/types/service";
 import type { PostBlock } from "@lib/types/post";
@@ -43,6 +46,10 @@ const Block = ({ block, textImageOrdinal }: BlockProps) => {
       return (
         <TextImage data={block as TextBildBlock} ordinal={textImageOrdinal} />
       );
+    case "Page_Gqlblocks_Blocks_PostHighligths":
+      return <BlogPosts data={block as PostHighlightsBlock} />;
+    case "GqlService_Gqlblocks_Blocks_PostHighligths":
+      return <BlogPosts data={block as ServicePostHighlightsBlock} />;
     case "GqlService_Gqlblocks_Blocks_Faq":
       return <FAQ data={block as ServiceFaqBlock} />;
     case "GqlService_Gqlblocks_Blocks_HowTo":
