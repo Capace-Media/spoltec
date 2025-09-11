@@ -74,18 +74,14 @@ const Blurbs = ({ data }: BlurbsProps) => {
                     </figure>
                   )}
                   {blurb.rubrik && (
-                    <h3
-                      className={`text-lg ${
-                        blurb.bild ? "text-brand-blue" : "text-brand-orange"
-                      }`}
-                    >
+                    <h3 className={`text-lg pb-1 text-heading`}>
                       {blurb.rubrik}
                     </h3>
                   )}
                   {blurb.underrubrik && (
-                    <p className="mb-3">
-                      <strong>{blurb.underrubrik}</strong>
-                    </p>
+                    <span className="mb-3 text-brand-orange text-sm ">
+                      {blurb.underrubrik}
+                    </span>
                   )}
                   {blurb.text && (
                     <div className="parsed">{handleParse(blurb.text)}</div>
