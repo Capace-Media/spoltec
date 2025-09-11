@@ -50,14 +50,18 @@ export default function PrivacyEnhancedYouTube({
   const thumbnailUrl = `https://img.youtube.com/vi/${cleanVideoId}/maxresdefault.jpg`;
 
   // Use youtube-nocookie.com for privacy-enhanced embeds
-  const embedUrl = `https://www.youtube-nocookie.com/embed/${cleanVideoId}?rel=0&modestbranding=1&fs=1&cc_load_policy=1&iv_load_policy=3&autohide=1&showinfo=0&controls=1&disablekb=1&playsinline=1`;
+  const embedUrl = `https://www.youtube-nocookie.com/embed/${cleanVideoId}?rel=0&modestbranding=1&fs=1&cc_load_policy=1&iv_load_policy=3&autohide=1&showinfo=0&controls=1&disablekb=1&playsinline=1&autoplay=1`;
 
   // Show thumbnail with play button if not loaded yet
   if (!isLoaded) {
     return (
-      <div className={`relative ${className}`} style={{ width, height }}>
-        <div
-          className="relative w-full h-full bg-gray-900 rounded-lg overflow-hidden cursor-pointer group"
+      <span
+        id="privacy-enhanced-youtube-waiting"
+        className={`relative block ${className}`}
+        style={{ width, height }}
+      >
+        <span
+          className="relative block w-full h-full bg-gray-900 rounded-lg overflow-hidden cursor-pointer group"
           onClick={handleLoadVideo}
           role="button"
           tabIndex={0}
@@ -75,11 +79,12 @@ export default function PrivacyEnhancedYouTube({
             className="w-full h-full object-cover"
             width={width}
             height={height}
+            priority
           />
 
           {/* Play button overlay */}
-          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 group-hover:bg-opacity-40 transition-all">
-            <div className="bg-red-600 rounded-full p-4 group-hover:scale-110 transition-transform">
+          <span className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 group-hover:bg-opacity-40 transition-all">
+            <span className="bg-red-600 rounded-full p-4 group-hover:scale-110 transition-transform">
               <svg
                 className="w-8 h-8 text-white ml-1"
                 fill="currentColor"
@@ -88,35 +93,37 @@ export default function PrivacyEnhancedYouTube({
               >
                 <path d="M8 5v14l11-7z" />
               </svg>
-            </div>
-          </div>
+            </span>
+          </span>
 
           {/* YouTube branding */}
-          <div className="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white text-xs px-2 py-1 rounded">
+          <span className="absolute bottom-2 right-2 bg-black bg-opacity-75 text-white text-xs px-2 py-1 rounded">
             YouTube
-          </div>
-        </div>
-      </div>
+          </span>
+        </span>
+      </span>
     );
   }
 
   // Show the actual iframe
   return (
-    <div className={`relative ${className}`} style={{ width, height }}>
+    <span
+      id="privacy-enhanced-youtube-accepted"
+      className={`relative block ${className}`}
+      style={{ width, height }}
+    >
       <iframe
         src={embedUrl}
         title={title}
         width={width}
         height={height}
-        frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
         className="w-full h-full rounded-lg"
         loading="lazy"
-        // Privacy enhancements
         referrerPolicy="no-referrer-when-downgrade"
         sandbox="allow-scripts allow-same-origin allow-presentation"
       />
-    </div>
+    </span>
   );
 }
