@@ -107,6 +107,7 @@ export default function handleParse(content: string): React.ReactElement {
                   element.attribs.href.charAt(0) !== "/"
                 ) {
                   element.attribs.target = "_blank";
+                  element.attribs.rel = "noopener noreferrer";
                 }
               }
 

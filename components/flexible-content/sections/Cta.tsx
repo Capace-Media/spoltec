@@ -1,11 +1,23 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import CTABGIMAGE from "../../../public/images/spoltec-cta-bg.jpg";
 import { buttonVariants } from "components/ui/button";
 import { cn } from "@lib/utils";
+import { usePathname } from "next/navigation";
 
 const CallToAction = () => {
   const sectionId = "serviceavtal-cta";
+  const pathname = usePathname();
+
+  if (
+    pathname === "/serviceavtal" ||
+    pathname === "/karriar" ||
+    pathname === "/kontakta-oss"
+  ) {
+    return null;
+  }
 
   return (
     <section
