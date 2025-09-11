@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Post } from "@lib/types/post";
+import LongHeader from "./long-header";
 
 export default function PostCard({
   post,
@@ -42,9 +43,12 @@ export default function PostCard({
       </div>
       <div className="p-5 flex flex-col justify-between flex-1">
         <div>
-          <h3 className="text-xl md:text-2xl" itemProp="headline">
-            {post.title}
-          </h3>
+          <LongHeader
+            text={post.title}
+            as="h3"
+            itemProp="headline"
+            className="text-xl"
+          />
           {introText && (
             <p className="pt-2 text-sm" itemProp="description">
               {limit(introText, 140)}

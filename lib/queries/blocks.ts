@@ -33,6 +33,32 @@ export const BLOCKS = `
             }
           }
         }
+        ... on Page_Gqlblocks_Blocks_PostHighligths {
+          fieldGroupName
+          intro {
+            title
+            text
+          }
+          posts {
+            ... on Post {
+              id
+              title
+              slug
+              uri
+              id
+              modifiedGmt
+              dateGmt
+              gqlHeroFields {
+                bild {
+                  mediaItemUrl
+                  altText
+                }
+                underrubrik
+                introduktionstext
+              }
+            }
+          }
+        }
         ... on Page_Gqlblocks_Blocks_HowTo {
            fieldGroupName
           intro {

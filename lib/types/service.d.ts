@@ -133,6 +133,24 @@ export interface ServiceProsAndConsBlock {
   table: ServiceTable;
 }
 
+export interface ServicePostHighlightsBlock {
+  fieldGroupName: "GqlService_Gqlblocks_Blocks_PostHighligths";
+  intro: ServiceIntro;
+  posts: {
+    id: string;
+    title: string;
+    slug: string;
+    uri: string;
+    modifiedGmt: string;
+    dateGmt: string;
+    gqlHeroFields: {
+      bild: ServiceImage;
+      underrubrik: string;
+      introduktionstext: string;
+    };
+  }[];
+}
+
 export type ServiceBlock =
   | ServiceVideoBlock
   | ServiceBlurbsBlock
@@ -142,7 +160,8 @@ export type ServiceBlock =
   | ServiceTextBlock
   | ServiceFaqBlock
   | ServiceHowToBlock
-  | ServiceProsAndConsBlock;
+  | ServiceProsAndConsBlock
+  | ServicePostHighlightsBlock;
 
 export interface ServiceBlocks {
   blocks: ServiceBlock[];

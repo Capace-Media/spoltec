@@ -12,3 +12,4 @@ export { default as FAQ } from "./FAQ";
 export { default as HowTo } from "./HowTo";
 export { default as ProsAndCons } from "./CompareTable";
 export { default as ServiceHighlights } from "./ServiceHighlights";
+export { default as BlogPosts } from "./BlogPosts";
