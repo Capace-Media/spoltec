@@ -168,7 +168,7 @@ const Footer = () => {
             </div>
             <Separator />
             <footer className="flex flex-col items-center justify-between space-y-3 text-sm md:flex-row pt-10">
-              <div itemProp="copyrightHolder">
+              <div>
                 Copyright © <span itemProp="name">Spoltec Södra AB</span>{" "}
                 {new Date().getFullYear()} - Avloppsteknik i Skåne
               </div>
