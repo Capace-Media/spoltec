@@ -70,9 +70,9 @@ export default function PostCard({
           </svg>
 
           {/* Hidden structured data for SEO */}
-          <span itemProp="url" className="hidden">{`${
+          <span itemProp="url" className="sr-only">{`${
             process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se"
-          }${postUrl}`}</span>
+          }/kunskapsbank/${postUrl}`}</span>
         </div>
       </div>
     </Link>
