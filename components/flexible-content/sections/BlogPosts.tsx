@@ -98,7 +98,7 @@ export default function BlogPosts({
                   {/* Hidden structured data for SEO */}
                   <span itemProp="url" className="hidden">{`${
                     process.env.NEXT_PUBLIC_MY_WEBSITE ||
-                    "https://www.spoltec.se"
+                    "https://www.spoltec.se/kunskapsbank/"
                   }${post.slug}`}</span>
                 </div>
               </div>
