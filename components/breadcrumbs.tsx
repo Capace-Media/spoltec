@@ -21,7 +21,7 @@ interface BreadcrumbsProps {
 
 export default function BreadcrumbsComponent({ items }: BreadcrumbsProps) {
   return (
-    <div className="contain-outer pt-6">
+    <div className="contain-outer pt-6 pb-6">
       <Breadcrumb>
         <BreadcrumbList>
           {items.map((item, index) => (
