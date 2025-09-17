@@ -19,20 +19,11 @@ export default function CompareTable({
   const { intro, table } = data;
   if (!intro.title || !table?.tbody || !table?.thead) return null;
   return (
-    <section
-      className="contain-outer section"
-      id="jamforelsetabell"
-      itemScope
-      itemType="https://schema.org/Table"
-    >
+    <section className="contain-outer section" id="jamforelsetabell">
       <div className="">
         <div className="pb-4 lg:max-w-2/4">
-          <h2 itemProp="name">{intro.title}</h2>
-          {intro.text && (
-            <p className="text-[#4b5563]" itemProp="description">
-              {intro.text}
-            </p>
-          )}
+          <h2>{intro.title}</h2>
+          {intro.text && <p className="text-[#4b5563]">{intro.text}</p>}
         </div>
 
         {/* Bordered/rounded container */}
@@ -40,8 +31,6 @@ export default function CompareTable({
           <Table
             className="text-[0.9rem]"
             aria-label={`Jämförelsetabell: ${table.thead.th2} jämfört med ${table.thead.th3}`}
-            itemScope
-            itemType="https://schema.org/Table"
           >
             <TableHeader>
               <TableRow className="bg-gradient-to-b from-gray-50 to-gray-100/60">
@@ -49,27 +38,21 @@ export default function CompareTable({
                   <TableHead
                     scope="col"
                     className="w-[140px] sticky left-0 z-20 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/75 border-r border-gray-200"
-                    itemScope
-                    itemType="https://schema.org/PropertyValue"
                   >
-                    <span itemProp="name">{table.thead.th1}</span>
+                    {table.thead.th1}
                   </TableHead>
                 )}
                 <TableHead
                   scope="col"
                   className=" bg-[#f8fbff] border-l border-gray-200"
-                  itemScope
-                  itemType="https://schema.org/PropertyValue"
                 >
-                  <span itemProp="name">{table.thead.th2}</span>
+                  {table.thead.th2}
                 </TableHead>
                 <TableHead
                   scope="col"
                   className=" bg-[#fffaf8] border-l border-gray-200"
-                  itemScope
-                  itemType="https://schema.org/PropertyValue"
                 >
-                  <span itemProp="name">{table.thead.th3}</span>
+                  {table.thead.th3}
                 </TableHead>
               </TableRow>
             </TableHeader>
@@ -85,17 +68,11 @@ export default function CompareTable({
                   .toLowerCase()}`;
 
                 return (
-                  <TableRow
-                    key={uniqueKey}
-                    className="odd:bg-gray-50/40"
-                    itemScope
-                    itemType="https://schema.org/Thing"
-                  >
+                  <TableRow key={uniqueKey} className="odd:bg-gray-50/40">
                     {table.thead.th1 && (
                       <TableHead
                         scope="row"
                         className="text-brand-blue font-bold sticky left-0 z-10 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/75 border-r border-gray-200"
-                        itemProp="name"
                       >
                         {invoice?.td1 ? invoice.td1 : "-"}
                       </TableHead>
@@ -107,9 +84,6 @@ export default function CompareTable({
                           ? "bg-emerald-50/80 text-emerald-900 font-semibold ring-1 ring-inset ring-emerald-200"
                           : "bg-[#f8fbff]"
                       }`}
-                      itemProp="additionalProperty"
-                      itemScope
-                      itemType="https://schema.org/PropertyValue"
                     >
                       <div className="flex items-center gap-2">
                         {td2Best && (
@@ -122,13 +96,9 @@ export default function CompareTable({
                             <span className="sr-only">Bättre alternativ</span>
                           </>
                         )}
-                        <span itemProp="value">
+                        <span>
                           {invoice?.td2?.text ? invoice.td2.text : "-"}
                         </span>
-                        <meta itemProp="name" content={table.thead.th2} />
-                        {td2Best && (
-                          <meta itemProp="bestValue" content="true" />
-                        )}
                       </div>
                     </TableCell>
 
@@ -138,9 +108,6 @@ export default function CompareTable({
                           ? "bg-emerald-50/80 text-emerald-900 font-semibold ring-1 ring-inset ring-emerald-200"
                           : "bg-[#fffaf8]"
                       }`}
-                      itemProp="additionalProperty"
-                      itemScope
-                      itemType="https://schema.org/PropertyValue"
                     >
                       <div className="flex items-center gap-2">
                         {td3Best && (
@@ -153,13 +120,9 @@ export default function CompareTable({
                             <span className="sr-only">Bättre alternativ</span>
                           </>
                         )}
-                        <span itemProp="value">
+                        <span>
                           {invoice?.td3?.text ? invoice.td3.text : "-"}
                         </span>
-                        <meta itemProp="name" content={table.thead.th3} />
-                        {td3Best && (
-                          <meta itemProp="bestValue" content="true" />
-                        )}
                       </div>
                     </TableCell>
                   </TableRow>
@@ -168,10 +131,7 @@ export default function CompareTable({
             </TableBody>
 
             {table.caption && (
-              <TableCaption
-                className="text-[#6b7280] border-t border-gray-200 mt-0 p-2 text-left"
-                itemProp="description"
-              >
+              <TableCaption className="text-[#6b7280] border-t border-gray-200 mt-0 p-2 text-left">
                 {table.caption}
               </TableCaption>
             )}
