@@ -118,9 +118,7 @@ export default async function ServicePage(props: PageProps) {
         />
         <BreadcrumbsComponent items={breadcrumbItems} />
 
-        <div>
-          <Blocks blocks={page?.gqlBlocks?.blocks || []} />
-        </div>
+        <Blocks blocks={page?.gqlBlocks?.blocks || []} />
       </main>
     </>
   );
