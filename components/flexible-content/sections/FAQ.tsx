@@ -95,7 +95,6 @@ export default function FAQ({ data }: { data: ServiceFaqBlock | FaqBlock }) {
                   itemScope
                   itemType="https://schema.org/Question"
                   id={`faq-question-${index + 1}`}
-                  itemProp="acceptedAnswer"
                 >
                   <AccordionTrigger itemProp="name" className="text-left">
                     {item.q}
@@ -104,6 +103,7 @@ export default function FAQ({ data }: { data: ServiceFaqBlock | FaqBlock }) {
                     className="flex flex-col gap-3 text-balance md:pr-6"
                     itemScope
                     itemType="https://schema.org/Answer"
+                    itemProp="acceptedAnswer"
                   >
                     <span itemProp="text" className="sr-only">
                       {stripHtml(item.a)}
