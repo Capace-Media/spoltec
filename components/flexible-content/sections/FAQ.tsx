@@ -1,5 +1,3 @@
-"use client";
-
 import type { ServiceFaqBlock } from "@lib/types/service";
 import type { FaqBlock } from "@lib/types/page";
 import {
