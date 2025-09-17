@@ -39,6 +39,9 @@ export function buildWebPageSchema(
     name: page.seo?.title || page.title || "",
     headline: page.title || "",
     description: page.seo?.metaDesc || "",
+    provider: {
+      "@id": "https://www.spoltec.se/#organization",
+    },
     inLanguage: "sv-SE",
     mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
     ...(image && { image }),
