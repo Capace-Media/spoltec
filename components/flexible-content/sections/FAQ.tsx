@@ -91,6 +91,7 @@ export default function FAQ({ data }: { data: ServiceFaqBlock | FaqBlock }) {
                   key={uniqueKey}
                   value={`item-${index + 1}`}
                   itemScope
+                  itemProp="mainEntity"
                   itemType="https://schema.org/Question"
                   id={`faq-question-${index + 1}`}
                 >
