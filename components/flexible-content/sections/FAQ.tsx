@@ -75,45 +75,42 @@ export default function FAQ({ data }: { data: ServiceFaqBlock | FaqBlock }) {
           className="max-w-3xl space-y-3"
           defaultValue="item-1"
         >
-          {faqs
-            .filter((item) => item.q && item.a) // Filter out items with empty questions or answers
-            .map((item, index) => {
-              // Create a more unique key based on question content
-              const questionSlug = item.q
-                ?.replace(/[^a-zA-Z0-9\s]/g, "")
-                .replace(/\s+/g, "-")
-                .toLowerCase()
-                .slice(0, 30);
-              const uniqueKey = `faq-${index}-${questionSlug}`;
+          {faqs.map((item, index) => {
+            // Create a more unique key based on question content
+            const questionSlug = item.q
+              ?.replace(/[^a-zA-Z0-9\s]/g, "")
+              .replace(/\s+/g, "-")
+              .toLowerCase()
+              .slice(0, 30);
+            const uniqueKey = `faq-${index}-${questionSlug}`;
 
-              return (
-                <AccordionItem
-                  key={uniqueKey}
-                  value={`item-${index + 1}`}
+            return (
+              <AccordionItem
+                key={uniqueKey}
+                value={`item-${index + 1}`}
+                itemScope
+                itemType="https://schema.org/Question"
+                id={`faq-question-${index + 1}`}
+              >
+                <AccordionTrigger className="text-left">
+                  <span itemProp="name">{item.q}</span>
+                </AccordionTrigger>
+                <div
                   itemScope
-                  itemProp="mainEntity"
-                  itemType="https://schema.org/Question"
-                  id={`faq-question-${index + 1}`}
+                  itemProp="acceptedAnswer"
+                  itemType="https://schema.org/Answer"
+                  className="sr-only"
                 >
-                  <AccordionTrigger itemProp="name" className="text-left">
-                    {item.q}
-                  </AccordionTrigger>
-                  <span
-                    itemScope
-                    itemType="https://schema.org/Answer"
-                    itemProp="acceptedAnswer"
-                    className="sr-only"
-                  >
-                    <span itemProp="text">{stripHtml(item.a)}</span>
-                  </span>
-                  <AccordionContent className="flex flex-col gap-3 text-balance md:pr-6">
-                    <div className="parsed text-muted-foreground leading-relaxed">
-                      {handleParse(item.a)}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              );
-            })}
+                  <span itemProp="text">{stripHtml(item.a)}</span>
+                </div>
+                <AccordionContent className="flex flex-col gap-3 text-balance md:pr-6">
+                  <div className="parsed text-muted-foreground leading-relaxed">
+                    {handleParse(item.a)}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            );
+          })}
         </Accordion>
         {intro?.caption && (
           <div className="max-w-3xl text-muted-foreground space-y-2 pt-4">
