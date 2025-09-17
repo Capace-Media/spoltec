@@ -12,6 +12,7 @@ import handleParse from "@lib/utils/parse";
 import Link from "next/link";
 import { buttonVariants } from "@components/ui/button";
 import { cn } from "@lib/utils";
+import { stripHtml } from "@lib/seo/schema/buildFAQSchema";
 
 // Helper function to check if a path is a full URL or a URI
 const isFullUrl = (path: string): boolean => {
@@ -104,12 +105,12 @@ export default function FAQ({ data }: { data: ServiceFaqBlock | FaqBlock }) {
                     itemType="https://schema.org/Answer"
                     itemProp="acceptedAnswer"
                   >
-                    <div
-                      itemProp="text"
-                      className="parsed text-muted-foreground leading-relaxed"
-                    >
+                    <div className="parsed text-muted-foreground leading-relaxed">
                       {handleParse(item.a)}
                     </div>
+                    <span itemProp="text" className="sr-only">
+                      {stripHtml(item.a)}
+                    </span>
                   </AccordionContent>
                 </AccordionItem>
               );
