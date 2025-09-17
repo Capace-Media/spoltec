@@ -1,4 +1,3 @@
-import parse from "html-react-parser";
 import Image from "next/image";
 
 import ServiceContactForm from "../service-contact-form";
@@ -6,6 +5,7 @@ import { Star } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "@components/ui/button";
 import { cn } from "@lib/utils";
+import handleParse from "@lib/utils/parse";
 interface ServiceHeroProps {
   image?: string;
   title: string;
@@ -44,7 +44,7 @@ const ServiceHero = ({
 
           <div className="flex flex-col gap-10 lg:flex-row contain lg:gap-20">
             <div className="max-w-lg text-white">
-              <div className="pb-3">
+              <div className="">
                 <h1 className="text-white">{title}</h1>
                 {subtitle && (
                   <p>
@@ -53,10 +53,12 @@ const ServiceHero = ({
                 )}
               </div>
               {text && (
-                <p className="text-[.885rem] leading-[1.4rem]">{parse(text)}</p>
+                <p className="text-[.885rem] leading-[1.4rem]">
+                  {handleParse(text)}
+                </p>
               )}
               {usp && usp.length > 0 && (
-                <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
+                <ul className="md:pt-6 pt-4 grid sm:grid-cols-2 gap-3 text-sm">
                   {usp?.map((item) => (
                     <li key={item.text} className="flex items-center gap-2">
                       <Star className="size-4" /> {item.text}
@@ -64,7 +66,7 @@ const ServiceHero = ({
                   ))}
                 </ul>
               )}
-              <div className="md:pt-6 flex flex-wrap gap-3">
+              <div className="md:pt-6 pt-4 flex flex-wrap gap-3">
                 <Link
                   href="/akut-hjalp"
                   className={cn(
