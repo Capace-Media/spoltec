@@ -39,6 +39,13 @@ query SERVICE_QUERY($slug: ID!) {
           intro {
             title
             text
+            caption {
+              text
+              ctaButton {
+                path
+                text
+              }
+            }
           }
           faqs {
             q

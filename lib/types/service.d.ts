@@ -85,6 +85,13 @@ export interface ServiceTextBlock {
 export interface ServiceIntro {
   title: string;
   text: string;
+  caption: {
+    text: string;
+    ctaButton: {
+      path: string;
+      text: string;
+    };
+  };
 }
 
 export interface ServiceFaq {

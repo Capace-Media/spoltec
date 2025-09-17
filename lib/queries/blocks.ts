@@ -6,6 +6,13 @@ export const BLOCKS = `
           intro {
             title
             text
+            caption {
+              text
+              ctaButton {
+                path
+                text
+              }
+            }
           }
           faqs {
             q

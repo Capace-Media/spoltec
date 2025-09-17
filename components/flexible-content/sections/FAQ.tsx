@@ -9,11 +9,50 @@ import {
   AccordionTrigger,
 } from "@components/ui/accordion";
 import handleParse from "@lib/utils/parse";
+import Link from "next/link";
+import { buttonVariants } from "@components/ui/button";
+import { cn } from "@lib/utils";
+
+// Helper function to check if a path is a full URL or a URI
+const isFullUrl = (path: string): boolean => {
+  try {
+    new URL(path);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+// Helper function to render CTA button
+const renderCtaButton = (ctaButton: { text: string; path: string }) => {
+  const buttonClasses = cn(
+    buttonVariants({ variant: "secondary", size: "lg" })
+  );
+
+  if (isFullUrl(ctaButton.path)) {
+    return (
+      <a
+        href={ctaButton.path}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={buttonClasses}
+      >
+        {ctaButton.text}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={ctaButton.path} className={buttonClasses}>
+      {ctaButton.text}
+    </Link>
+  );
+};
 
 export default function FAQ({ data }: { data: ServiceFaqBlock | FaqBlock }) {
   const { intro, faqs } = data;
 
-  if (!intro.title || !faqs || faqs.length === 0) return null;
+  if (!intro?.title || !faqs?.length) return null;
 
   return (
     <section
@@ -21,7 +60,7 @@ export default function FAQ({ data }: { data: ServiceFaqBlock | FaqBlock }) {
       role="region"
       aria-labelledby="faq-heading"
     >
-      <div className="contain">
+      <div className="">
         <div className="pb-4 max-w-3xl">
           <h2 id="faq-heading">{intro.title}</h2>
           {intro.text && (
@@ -64,6 +103,21 @@ export default function FAQ({ data }: { data: ServiceFaqBlock | FaqBlock }) {
             </AccordionItem>
           ))}
         </Accordion>
+        {intro?.caption && (
+          <div className="max-w-3xl text-muted-foreground space-y-2 pt-4">
+            {intro.caption.text && (
+              <div className="text-balance text-sm">
+                {handleParse(intro.caption.text)}
+              </div>
+            )}
+
+            {intro.caption.ctaButton?.text && intro.caption.ctaButton?.path && (
+              <div className="flex">
+                {renderCtaButton(intro.caption.ctaButton)}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );

@@ -144,6 +144,13 @@ export interface FaqBlock {
   intro: {
     title: string;
     text: string;
+    caption: {
+      text: string;
+      ctaButton: {
+        path: string;
+        text: string;
+      };
+    };
   };
   faqs: Array<{
     q: string;
