@@ -98,15 +98,15 @@ export default function FAQ({ data }: { data: ServiceFaqBlock | FaqBlock }) {
                   <AccordionTrigger itemProp="name" className="text-left">
                     {item.q}
                   </AccordionTrigger>
-                  <AccordionContent
-                    className="flex flex-col gap-3 text-balance md:pr-6"
+                  <span
                     itemScope
                     itemType="https://schema.org/Answer"
                     itemProp="acceptedAnswer"
+                    className="sr-only"
                   >
-                    <span itemProp="text" className="sr-only">
-                      {stripHtml(item.a)}
-                    </span>
+                    <span itemProp="text">{stripHtml(item.a)}</span>
+                  </span>
+                  <AccordionContent className="flex flex-col gap-3 text-balance md:pr-6">
                     <div className="parsed text-muted-foreground leading-relaxed">
                       {handleParse(item.a)}
                     </div>
