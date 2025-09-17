@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer itemScope itemType="https://schema.org/LocalBusiness">
+    <footer>
       <CallToAction />
 
       <section
@@ -26,20 +26,15 @@ const Footer = () => {
             i Skåne.
           </p>
         </div>
-        <address
-          className="text-center md:text-right not-italic"
-          itemProp="contactPoint"
-        >
+        <address className="text-center md:text-right not-italic">
           <a
             href="tel:+4640474012"
             className="text-4xl hover:underline hover:text-brand-blue"
-            itemProp="telephone"
           >
             040-47 40 12
           </a>
           <a
             href="mailto:info@spoltec.se"
-            itemProp="email"
             className="hover:underline hover:text-brand-blue"
           >
             <p>info@spoltec.se</p>
@@ -50,10 +45,7 @@ const Footer = () => {
         <div className="pb-10 bg-section">
           <div className="contain">
             <div className="grid lg:grid-cols-[2fr_1fr_1fr_1fr] md:grid-cols-2 lg:gap-10 gap-6 pb-6 lg:pb-10">
-              <div
-                itemProp="description"
-                className="md:col-span-2 lg:col-span-1"
-              >
+              <div className="md:col-span-2 lg:col-span-1">
                 <h3 className="block mb-3 font-bold text-lg">
                   Spoltec Södra AB
                 </h3>
@@ -169,7 +161,7 @@ const Footer = () => {
             <Separator />
             <footer className="flex flex-col items-center justify-between space-y-3 text-sm md:flex-row pt-10">
               <div>
-                Copyright © <span itemProp="name">Spoltec Södra AB</span>{" "}
+                Copyright © <span>Spoltec Södra AB</span>{" "}
                 {new Date().getFullYear()} - Avloppsteknik i Skåne
               </div>
               <nav
