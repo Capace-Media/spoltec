@@ -49,24 +49,27 @@ export default function CompareTable({
                   <TableHead
                     scope="col"
                     className="w-[140px] sticky left-0 z-20 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/75 border-r border-gray-200"
-                    itemProp="columnName"
+                    itemScope
+                    itemType="https://schema.org/PropertyValue"
                   >
-                    {table.thead.th1}
+                    <span itemProp="name">{table.thead.th1}</span>
                   </TableHead>
                 )}
                 <TableHead
                   scope="col"
                   className=" bg-[#f8fbff] border-l border-gray-200"
-                  itemProp="columnName"
+                  itemScope
+                  itemType="https://schema.org/PropertyValue"
                 >
-                  {table.thead.th2}
+                  <span itemProp="name">{table.thead.th2}</span>
                 </TableHead>
                 <TableHead
                   scope="col"
                   className=" bg-[#fffaf8] border-l border-gray-200"
-                  itemProp="columnName"
+                  itemScope
+                  itemType="https://schema.org/PropertyValue"
                 >
-                  {table.thead.th3}
+                  <span itemProp="name">{table.thead.th3}</span>
                 </TableHead>
               </TableRow>
             </TableHeader>
@@ -122,6 +125,10 @@ export default function CompareTable({
                         <span itemProp="value">
                           {invoice?.td2?.text ? invoice.td2.text : "-"}
                         </span>
+                        <meta itemProp="name" content={table.thead.th2} />
+                        {td2Best && (
+                          <meta itemProp="bestValue" content="true" />
+                        )}
                       </div>
                     </TableCell>
 
@@ -149,6 +156,10 @@ export default function CompareTable({
                         <span itemProp="value">
                           {invoice?.td3?.text ? invoice.td3.text : "-"}
                         </span>
+                        <meta itemProp="name" content={table.thead.th3} />
+                        {td3Best && (
+                          <meta itemProp="bestValue" content="true" />
+                        )}
                       </div>
                     </TableCell>
                   </TableRow>
