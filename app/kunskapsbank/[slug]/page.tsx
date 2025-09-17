@@ -101,7 +101,7 @@ export default async function ArticlePage(props: PageProps) {
     breadcrumbItems.map((item) => ({
       name: item.name,
       url: item.url,
-      type: item.current ? "Article" : undefined,
+      type: undefined,
     })),
     canonical
   );
