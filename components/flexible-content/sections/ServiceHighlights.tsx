@@ -41,7 +41,6 @@ export default function ServiceHighlights({ data }: ServiceHighlightsProps) {
                 className="group relative h-64 lg:h-72 overflow-hidden rounded-xl bg-brand-blue text-white p-6 flex flex-col justify-between transition-transform duration-200 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
                 itemScope
                 itemType="https://schema.org/Service"
-                itemProp="url"
                 aria-label={`Läs mer om ${service?.title}`}
               >
                 {imageUrl && (
@@ -59,9 +58,11 @@ export default function ServiceHighlights({ data }: ServiceHighlightsProps) {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     placeholder="blur"
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                    itemProp="image"
                   />
                 )}
+                <span itemProp="image" className="sr-only">
+                  {imageUrl}
+                </span>
 
                 <div>
                   <h3 className="text-lg md:text-xl text-white" itemProp="name">
@@ -88,6 +89,10 @@ export default function ServiceHighlights({ data }: ServiceHighlightsProps) {
                     <rect fill="none" height="24" width="24" />
                     <path d="M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z" />
                   </svg>
+                  <span itemProp="url" className="sr-only">{`${
+                    process.env.NEXT_PUBLIC_MY_WEBSITE ||
+                    "https://www.spoltec.se"
+                  }/tjanster/${service.slug}`}</span>
                 </div>
               </Link>
             </li>
