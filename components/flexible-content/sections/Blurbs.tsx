@@ -29,7 +29,9 @@ const Blurbs = ({ data }: BlurbsProps) => {
   return (
     <section className="contain-outer">
       <div
-        className={`${data.installningar.bakgrund ? "bg-section" : "section"}`}
+        className={`${
+          data.installningar.bakgrund ? "bg-section mt-4 mb:mt-8" : "section"
+        }`}
       >
         <div className={`${data.installningar.bakgrund ? "contain" : ""}`}>
           <div>
