@@ -43,13 +43,7 @@ export default function LocalServiceLinks({
           itemProp="itemListElement"
         >
           {localLandingpages.map((c, index) => (
-            <li
-              key={c.slug}
-              itemScope
-              itemType="https://schema.org/ListItem"
-              itemProp="item"
-              className="w-full "
-            >
+            <li key={c.slug} itemScope itemType="https://schema.org/ListItem">
               <meta itemProp="position" content={(index + 1).toString()} />
               <Link
                 href={`/${c.slug}`}
