@@ -54,12 +54,13 @@ export default function LocalServiceLinks({
                   )}
                   aria-label={`${c.title}`}
                 >
-                  <span className="sr-only" itemProp="url">
-                    https://www.spoltec.se/{c.slug}
-                  </span>
                   <span itemProp="name">{c.title}</span>
                   <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
+                <meta
+                  itemProp="url"
+                  content={`https://www.spoltec.se/${c.slug}`}
+                />
               </div>
             </li>
           ))}
