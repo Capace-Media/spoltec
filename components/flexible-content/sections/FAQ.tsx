@@ -115,7 +115,7 @@ export default function FAQ({ data }: { data: ServiceFaqBlock | FaqBlock }) {
         {intro?.caption && (
           <div className="max-w-3xl text-muted-foreground space-y-2 pt-4">
             {intro.caption.text && (
-              <div className="text-balance text-sm">
+              <div className="parsed text-sm">
                 {handleParse(intro.caption.text)}
               </div>
             )}
