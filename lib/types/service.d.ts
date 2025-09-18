@@ -158,6 +158,19 @@ export interface ServicePostHighlightsBlock {
   }[];
 }
 
+export interface ServiceLocalLandingPagesBlock {
+  fieldGroupName: "GqlService_Gqlblocks_Blocks_LocalLandingPages";
+  intro: {
+    rubrik: string;
+    text: string;
+  };
+  localLandingpages: Array<{
+    id: string;
+    title: string;
+    slug: string;
+  }>;
+}
+
 export type ServiceBlock =
   | ServiceVideoBlock
   | ServiceBlurbsBlock
@@ -168,7 +181,8 @@ export type ServiceBlock =
   | ServiceFaqBlock
   | ServiceHowToBlock
   | ServiceProsAndConsBlock
-  | ServicePostHighlightsBlock;
+  | ServicePostHighlightsBlock
+  | ServiceLocalLandingPagesBlock;
 
 export interface ServiceBlocks {
   blocks: ServiceBlock[];

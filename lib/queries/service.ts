@@ -8,6 +8,20 @@ query SERVICE_QUERY($slug: ID!) {
         ${SEO}
         gqlBlocks {
           blocks {
+                ... on GqlService_Gqlblocks_Blocks_LocalLandingPages {
+          fieldGroupName
+          intro {
+            rubrik
+            text
+          }
+          localLandingpages {
+            ... on Page {
+              id
+              title
+              slug
+            }
+          }
+        }
                   ... on GqlService_Gqlblocks_Blocks_PostHighligths {
           fieldGroupName
           intro {
@@ -34,6 +48,7 @@ query SERVICE_QUERY($slug: ID!) {
             }
           }
         }
+
                   ... on GqlService_Gqlblocks_Blocks_Faq {
           fieldGroupName
           intro {

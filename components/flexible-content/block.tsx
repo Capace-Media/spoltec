@@ -1,6 +1,7 @@
 import type {
   FaqBlock,
   HowToBlock,
+  LocalLandingPagesBlock,
   PostHighlightsBlock,
   ProsAndConsBlock,
   TextBildBlock,
@@ -23,6 +24,7 @@ import {
   HowTo,
   ServiceHighlights,
   BlogPosts,
+  LocalServiceLinks,
 } from "./sections";
 
 import type { Block as BlockType } from "@lib/types/page";
@@ -30,6 +32,7 @@ import type {
   ServiceBlock,
   ServiceFaqBlock,
   ServiceHowToBlock,
+  ServiceLocalLandingPagesBlock,
   ServicePostHighlightsBlock,
   ServiceProsAndConsBlock,
 } from "@lib/types/service";
@@ -45,6 +48,12 @@ const Block = ({ block, textImageOrdinal }: BlockProps) => {
     case "Page_Gqlblocks_Blocks_TextBild":
       return (
         <TextImage data={block as TextBildBlock} ordinal={textImageOrdinal} />
+      );
+    case "Page_Gqlblocks_Blocks_LocalLandingPages":
+      return <LocalServiceLinks data={block as LocalLandingPagesBlock} />;
+    case "GqlService_Gqlblocks_Blocks_LocalLandingPages":
+      return (
+        <LocalServiceLinks data={block as ServiceLocalLandingPagesBlock} />
       );
     case "Page_Gqlblocks_Blocks_PostHighligths":
       return <BlogPosts data={block as PostHighlightsBlock} />;

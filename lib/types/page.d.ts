@@ -229,6 +229,19 @@ export interface PostHighlightsBlock {
   }>;
 }
 
+export interface LocalLandingPagesBlock {
+  fieldGroupName: "Page_Gqlblocks_Blocks_LocalLandingPages";
+  intro: {
+    rubrik: string;
+    text: string;
+  };
+  localLandingpages: Array<{
+    id: string;
+    title: string;
+    slug: string;
+  }>;
+}
+
 export type Block =
   | BlurbsBlock
   | PersonalBlock
@@ -241,7 +254,8 @@ export type Block =
   | TjansterHighlightsBlock
   | HowToBlock
   | ProsAndConsBlock
-  | PostHighlightsBlock;
+  | PostHighlightsBlock
+  | LocalLandingPagesBlock;
 
 export interface GqlBlocks {
   blocks: Block[];
