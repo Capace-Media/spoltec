@@ -53,8 +53,10 @@ export default function LocalServiceLinks({
                     "group w-full justify-start !pl-0"
                   )}
                   aria-label={`${c.title}`}
-                  itemProp="url"
                 >
+                  <span className="sr-only" itemProp="url">
+                    https://www.spoltec.se/{c.slug}
+                  </span>
                   <span itemProp="name">{c.title}</span>
                   <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
