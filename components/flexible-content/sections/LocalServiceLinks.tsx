@@ -45,18 +45,20 @@ export default function LocalServiceLinks({
           {localLandingpages.map((c, index) => (
             <li key={c.slug} itemScope itemType="https://schema.org/ListItem">
               <meta itemProp="position" content={(index + 1).toString()} />
-              <Link
-                href={`/${c.slug}`}
-                className={cn(
-                  buttonVariants({ variant: "link", size: "lg" }),
-                  "group w-full justify-start !pl-0"
-                )}
-                aria-label={`${c.title}`}
-                itemProp="url"
-              >
-                <span itemProp="name">{c.title}</span>
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-              </Link>
+              <div itemProp="item">
+                <Link
+                  href={`/${c.slug}`}
+                  className={cn(
+                    buttonVariants({ variant: "link", size: "lg" }),
+                    "group w-full justify-start !pl-0"
+                  )}
+                  aria-label={`${c.title}`}
+                  itemProp="url"
+                >
+                  <span itemProp="name">{c.title}</span>
+                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
             </li>
           ))}
         </ul>
