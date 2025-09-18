@@ -10,7 +10,17 @@ import { absoluteUrl } from "@lib/utils/url";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
 import BreadcrumbsComponent from "@components/breadcrumbs";
 
-export const dynamicParams = true;
+const cities = [
+  { name: "Malmö", slug: "malmo" },
+  { name: "Helsingborg", slug: "helsingborg" },
+  { name: "Lund", slug: "lund" },
+  { name: "Kristianstad", slug: "kristianstad" },
+  { name: "Göteborg", slug: "goteborg" },
+  { name: "Borås", slug: "boras" },
+  { name: "Varberg", slug: "varberg" },
+  { name: "Jönköping", slug: "jonkoping" },
+  { name: "Växjö", slug: "vaxjo" },
+];
 
 type GetServicesQueryData = {
   gqlAllService: {

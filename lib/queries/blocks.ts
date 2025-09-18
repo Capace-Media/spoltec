@@ -40,6 +40,21 @@ export const BLOCKS = `
             }
           }
         }
+                ... on Page_Gqlblocks_Blocks_LocalLandingPages {
+          fieldGroupName
+          intro {
+            rubrik
+            text
+          }
+          localLandingpages {
+            ... on Page {
+              id
+              title
+              slug
+            }
+          }
+        }
+
         ... on Page_Gqlblocks_Blocks_PostHighligths {
           fieldGroupName
           intro {
