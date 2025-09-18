@@ -14,15 +14,9 @@ interface ListProps {
 
 const List = ({ data }: ListProps) => {
   return (
-    <section
-      className="contain-outer section"
-      itemScope
-      itemType="https://schema.org/ItemList"
-    >
+    <section className="contain-outer section">
       <div className="flex flex-col items-center justify-center px-3 md:px-20 bg-section">
-        <header className="mb-10">
-          <div itemProp="name">{handleParse(data?.text)}</div>
-        </header>
+        <div className="parsed pb-10">{handleParse(data?.text)}</div>
 
         <div className="w-full mb-10">
           <ul className="lg:columns-3 md:columns-2 columns-1 gap-7" role="list">
@@ -31,23 +25,18 @@ const List = ({ data }: ListProps) => {
                 <li
                   key={li?.text || index}
                   className="flex mb-10 space-x-4 break-inside-avoid"
-                  itemScope
-                  itemType="https://schema.org/ListItem"
                 >
-                  <div className="mt-[5px]" aria-hidden="true">
+                  <div className="mt-[5px]">
                     <Arrow />
                   </div>
-                  <div itemProp="name" className="parsed">
-                    {handleParse(li?.text)}
-                  </div>
-                  <meta itemProp="position" content={String(index + 1)} />
+                  <div className="parsed">{handleParse(li?.text)}</div>
                 </li>
               );
             })}
           </ul>
         </div>
         {data?.avslut && (
-          <footer className="parsed">{handleParse(data.avslut)}</footer>
+          <div className="parsed">{handleParse(data.avslut)}</div>
         )}
       </div>
     </section>
