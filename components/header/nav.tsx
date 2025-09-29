@@ -25,12 +25,14 @@ export default function Nav() {
   });
 
   return (
-    <header className="relative ">
+    <header className="relative">
       <nav
         className={cn(
-          "flex justify-between py-10 fixed top-0 left-1/2 -translate-x-1/2 w-full px-8 md:px-14 max-w-360  z-50 transition-all duration-300 ease-in-out",
+          "flex justify-between py-10 fixed top-0 left-1/2 -translate-x-1/2 w-full px-8 md:px-14 max-w-360 z-50 transition-all duration-300 ease-in-out",
+          // Use will-change to optimize transforms
+          "will-change-transform",
           // Dynamic styles based on scroll state
-          isScrolled && "bg-white/95 px-8 lg:px-24   py-1 md:py-4 ",
+          isScrolled && "bg-white/95 px-8 lg:px-24 py-1 md:py-4",
           !isVisible && "-translate-y-full",
           isVisible && "translate-y-0"
         )}
@@ -42,8 +44,9 @@ export default function Nav() {
             width={150}
             height={60}
             priority
+            fetchPriority="high"
             className={cn(
-              "w-auto transition-all duration-300 ease-in-out",
+              "w-auto transition-all duration-300 ease-in-out will-change-transform",
               isScrolled ? "h-12" : "h-12 lg:h-16"
             )}
           />

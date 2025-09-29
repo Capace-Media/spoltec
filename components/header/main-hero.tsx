@@ -68,6 +68,7 @@ const MainHero = ({ title, subtitle, text }: MainHeroProps) => {
                 objectFit: "contain",
               }}
               priority
+              fetchPriority="high"
               alt="Spoltec avloppstjänster - professionell vattenbehandling och spolning av avloppssystem"
               sizes="(min-width: 1460px) 747px, (min-width: 1220px) calc(42.73vw + 132px), (min-width: 780px) calc(90.71vw - 449px), (min-width: 440px) calc(100vw - 80px), calc(88.33vw - 31px)"
             />

@@ -42,7 +42,7 @@ export async function generatePageMetadata(
       title: page.seo.opengraphTitle || page.seo.title || page.title,
       description:
         page.seo.opengraphDescription || page.seo.metaDesc || undefined,
-      siteName: page.seo.opengraphSiteName || undefined,
+      siteName: page.seo.opengraphSiteName || "Spoltec",
       images: toAbs(page.seo.opengraphImage?.sourceUrl)
         ? [
             { url: toAbs(page.seo.opengraphImage?.sourceUrl)! },

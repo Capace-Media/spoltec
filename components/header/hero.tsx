@@ -43,6 +43,7 @@ const Hero = ({
               }}
               alt={title || "Hero image"}
               priority
+              fetchPriority="high"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
               quality={85}
               placeholder="blur"
