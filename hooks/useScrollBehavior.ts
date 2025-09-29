@@ -14,29 +14,38 @@ export function useScrollBehavior({
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
+  // Use refs to avoid unnecessary re-renders
+  const rafId = useRef<number | null>(null);
+  const lastScrollYRef = useRef(0);
+
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
+    lastScrollYRef.current = currentScrollY;
 
-    setIsScrolled(currentScrollY > scrollThreshold);
+    // Batch state updates to reduce reflows
+    requestAnimationFrame(() => {
+      setIsScrolled(currentScrollY > scrollThreshold);
 
-    if (currentScrollY > lastScrollY && currentScrollY > hideThreshold) {
-      setIsVisible(false);
-    } else {
-      setIsVisible(true);
-    }
+      if (
+        currentScrollY > lastScrollYRef.current &&
+        currentScrollY > hideThreshold
+      ) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
 
-    setLastScrollY(currentScrollY);
-  }, [lastScrollY, scrollThreshold, hideThreshold]);
+      setLastScrollY(currentScrollY);
+    });
+  }, [scrollThreshold, hideThreshold]);
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout | null = null;
-
     const throttledHandleScroll = () => {
-      if (timeoutId === null) {
-        timeoutId = setTimeout(() => {
+      if (rafId.current === null) {
+        rafId.current = requestAnimationFrame(() => {
           handleScroll();
-          timeoutId = null;
-        }, throttleMs);
+          rafId.current = null;
+        });
       }
     };
 
@@ -44,11 +53,11 @@ export function useScrollBehavior({
 
     return () => {
       window.removeEventListener("scroll", throttledHandleScroll);
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current);
       }
     };
-  }, [handleScroll, throttleMs]);
+  }, [handleScroll]);
 
   return { isScrolled, isVisible, scrollY: lastScrollY };
 }
