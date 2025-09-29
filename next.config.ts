@@ -12,6 +12,9 @@ const nextConfig: NextConfig = {
       "lucide-react",
       "@radix-ui/react-accordion",
       "@radix-ui/react-dialog",
+      "@radix-ui/react-navigation-menu",
+      "@radix-ui/react-tooltip",
+      "@tanstack/react-query",
     ],
 
     // Better caching for static content
@@ -22,6 +25,34 @@ const nextConfig: NextConfig = {
 
     // Force modern JS compilation
     forceSwcTransforms: true,
+
+    // Remove problematic CSS optimization features that require critters
+    // optimizeCss: true, // REMOVED - causes build failures
+    // cssChunking: "strict", // REMOVED - causes build failures
+  },
+
+  // Optimize webpack bundle
+  webpack: (config, { dev, isServer }) => {
+    if (!dev && !isServer) {
+      // Enable bundle analyzer in production
+      config.optimization.splitChunks = {
+        chunks: "all",
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendors",
+            chunks: "all",
+          },
+          common: {
+            name: "common",
+            minChunks: 2,
+            chunks: "all",
+            enforce: true,
+          },
+        },
+      };
+    }
+    return config;
   },
 
   // Your existing headers, images, redirects are perfect for Vercel
