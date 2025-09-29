@@ -35,6 +35,7 @@ const ServiceHero = ({
               }}
               alt={title || "Service hero image"}
               priority
+              fetchPriority="high"
               quality={85}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
               placeholder="blur"
