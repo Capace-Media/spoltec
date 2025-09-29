@@ -258,3 +258,29 @@
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
 }
+
+/* Add these optimizations to reduce forced reflows */
+
+/* Force GPU acceleration for animated elements */
+.will-change-transform {
+  will-change: transform;
+}
+
+/* Optimize hover animations */
+.group:hover .group-hover\:scale-\[1\.02\] {
+  transform: translate3d(0, 0, 0) scale(1.02);
+}
+
+.group:hover .group-hover\:translate-x-1 {
+  transform: translate3d(0.25rem, 0, 0);
+}
+
+/* Optimize navigation transitions */
+nav {
+  contain: layout style paint;
+}
+
+/* Reduce layout thrashing for images */
+img {
+  contain: layout;
+}
