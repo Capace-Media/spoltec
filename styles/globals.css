@@ -275,12 +275,18 @@
   transform: translate3d(0.25rem, 0, 0);
 }
 
-/* Optimize navigation transitions */
-nav {
+/* Remove the problematic nav contain rule that breaks hover menus */
+/* nav {
   contain: layout style paint;
-}
+} */
 
 /* Reduce layout thrashing for images */
 img {
   contain: layout;
+}
+
+/* Ensure navigation menu dropdowns work properly */
+[data-radix-navigation-menu-content] {
+  z-index: 9999;
+  will-change: transform;
 }
