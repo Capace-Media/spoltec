@@ -160,6 +160,9 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
                   <path d="M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z" />
                 </svg>
               </div>
+              <span itemProp="url" className="sr-only">{`${
+                process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se"
+              }/tjanster/${service.slug}`}</span>
             </Link>
           );
         })}
