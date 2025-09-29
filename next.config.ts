@@ -26,7 +26,9 @@ const nextConfig: NextConfig = {
     // Force modern JS compilation
     forceSwcTransforms: true,
 
-    // Optimize package imports to reduce bundle size
+    // Remove problematic CSS optimization features that require critters
+    // optimizeCss: true, // REMOVED - causes build failures
+    // cssChunking: "strict", // REMOVED - causes build failures
   },
 
   // Optimize webpack bundle
