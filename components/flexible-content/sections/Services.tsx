@@ -5,6 +5,7 @@ import type { TjansterBlock } from "@lib/types/page";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useMemo } from "react";
+import { getBlurPlaceholder } from "@lib/utils/blur-placeholder";
 
 // Extract to a shared utility file (lib/utils/text.ts)
 const truncateText = (text: string, maxLength: number): string => {
@@ -128,10 +129,10 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
                 alt={
                   service?.title ? `Bild för ${service.title}` : "Servicebild"
                 }
-                quality={85}
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                quality={75}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                blurDataURL={getBlurPlaceholder("content")}
               />
 
               <div>

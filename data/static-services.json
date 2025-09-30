@@ -1,17 +1,5 @@
 [
   {
-    "title": "Underhållsspolning",
-    "slug": "underhallsspolning",
-    "uri": "/services/underhallsspolning/",
-    "gqlHeroFields": {
-      "underrubrik": null,
-      "introduktionstext": "Om du är medlem i en bostadsrättsförening vet du att regelbundet underhåll är avgörande för att hålla ditt hem i gott skick. En viktig uppgift är att spola avloppet. Denna procedur håller ditt avloppssystem igång smidigt och hjälper till att förhindra tilltäppningar och andra problem.",
-      "bild": {
-        "mediaItemUrl": "https://media.spoltec.se/wp-content/uploads/2022/12/0H8A7682-scaled-1.jpg"
-      }
-    }
-  },
-  {
     "title": "Kanaltätning",
     "slug": "kanaltatning",
     "uri": "/services/kanaltatning/",

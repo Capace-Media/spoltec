@@ -6,6 +6,7 @@ import LongHeader from "@components/long-header";
 import LongText from "@components/long-text";
 import { cn } from "@lib/utils";
 import { buttonVariants } from "@components/ui/button";
+import { getBlurPlaceholder } from "@lib/utils/blur-placeholder";
 
 export default function BlogPosts({
   data,
@@ -30,7 +31,7 @@ export default function BlogPosts({
   const postCount = data?.posts?.length || 0;
 
   return (
-    <section className="contain-outer section">
+    <section className="contain-outer section ">
       <div className="pb-6">
         <h2>{data.intro.title}</h2>
         {data?.intro?.text && <p>{data.intro.text}</p>}
@@ -40,7 +41,7 @@ export default function BlogPosts({
           postCount
         )}`}
       >
-        {data.posts.map((post) => (
+        {data.posts.map((post, index) => (
           <li key={post.id}>
             <Link
               className="group overflow-hidden rounded-xl border border-brand-blue/10 bg-white text-left shadow-sm transition duration-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 flex flex-col h-full"
@@ -52,14 +53,17 @@ export default function BlogPosts({
               <div className="relative aspect-[16/9] w-full overflow-hidden">
                 <Image
                   src={post.gqlHeroFields?.bild?.mediaItemUrl}
-                  fill
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "contain" }}
+                  width={500}
+                  height={300}
                   className="transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
                   alt={post.gqlHeroFields?.bild?.altText || post.title}
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  quality={75} // Reduced from 85 to 75 for better compression
+                  sizes="(max-width: 600px) 100vw, (max-width: 800px) 35vw, (max-width: 1024px) 400px, 400px"
                   placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  blurDataURL={getBlurPlaceholder("content")}
+                  // priority={index < 1} // Only prioritize the first image for LCP
+                  // loading={index < 1 ? "eager" : "lazy"} // Lazy load offscreen images
                 />
               </div>
               {post?.gqlHeroFields?.bild?.mediaItemUrl && (

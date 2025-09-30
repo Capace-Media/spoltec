@@ -239,11 +239,7 @@ const nextConfig: NextConfig = {
         destination: "/tjanster/rorinspektion",
         permanent: true,
       },
-      {
-        source: "/underhallsspolning",
-        destination: "/tjanster/underhallsspolning",
-        permanent: true,
-      },
+
       { source: "/garantier", destination: "/garanti", permanent: true },
 
       // Security redirects (KEEP)
