@@ -6,6 +6,7 @@ import CTABGIMAGE from "../../../public/images/spoltec-cta-bg.jpg";
 import { buttonVariants } from "components/ui/button";
 import { cn } from "@lib/utils";
 import { usePathname } from "next/navigation";
+import { getBlurPlaceholder } from "@lib/utils/blur-placeholder";
 
 const CallToAction = () => {
   const sectionId = "serviceavtal-cta";
@@ -36,10 +37,10 @@ const CallToAction = () => {
           }}
           alt="En man som drar en slang - Spoltec serviceavtal"
           role="img"
-          quality={85}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+          quality={75}
+          sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 100vw"
           placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+          blurDataURL={getBlurPlaceholder("hero")}
         />
         <div className="contain">
           <div className="text-center flex flex-col justify-center h-[500px] text-white h96 contain max-w-[700px]">

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+import { getBlurPlaceholder } from "@lib/utils/blur-placeholder";
 
 interface OptimizedImageProps {
   src: string;
@@ -14,6 +15,7 @@ interface OptimizedImageProps {
   sizes?: string;
   placeholder?: "blur" | "empty";
   blurDataURL?: string;
+  context?: "hero" | "content" | "thumbnail" | "icon";
   objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
 }
 
@@ -26,10 +28,11 @@ const OptimizedImage = ({
   className,
   style,
   priority = false,
-  quality = 85,
-  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw",
+  quality = 70,
+  sizes = "(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 100vw",
   placeholder = "blur",
-  blurDataURL = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==",
+  blurDataURL,
+  context = "content",
   objectFit = "cover",
   ...props
 }: OptimizedImageProps) => {
@@ -53,7 +56,7 @@ const OptimizedImage = ({
       quality={quality}
       sizes={sizes}
       placeholder={placeholder}
-      blurDataURL={blurDataURL}
+      blurDataURL={blurDataURL || getBlurPlaceholder(context)}
       onLoad={() => setIsLoading(false)}
       onError={() => setIsLoading(false)}
       {...props}
