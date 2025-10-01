@@ -34,6 +34,10 @@ export const BLOCKS = `
                 introduktionstext
                 bild{
                   mediaItemUrl
+                  mediaDetails {
+          width
+          height
+        }
                   altText
                 }
               }
@@ -73,6 +77,10 @@ export const BLOCKS = `
               gqlHeroFields {
                 bild {
                   mediaItemUrl
+                  mediaDetails {
+          width
+          height
+        }
                   altText
                 }
                 underrubrik
@@ -131,6 +139,10 @@ export const BLOCKS = `
                   
                   bild {
                     mediaItemUrl
+                    mediaDetails {
+          width
+          height
+        }
                     altText
                   }
                 }
@@ -142,6 +154,10 @@ export const BLOCKS = `
                     altText
                     id
                     mediaItemUrl
+                    mediaDetails {
+          width
+          height
+        }
                     altText
                   }
                   namn
@@ -173,6 +189,10 @@ export const BLOCKS = `
                 }
                 bilder {
                   mediaItemUrl
+                  mediaDetails {
+          width
+          height
+        }
                   altText
                 }
               }

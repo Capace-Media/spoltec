@@ -27,15 +27,16 @@ export default function PostCard({
       itemType="https://schema.org/Article"
       aria-label={`Läs mer om ${post.title}`}
     >
-      <div className="relative aspect-[16/9] w-full overflow-hidden">
+      <div className="h-[180px] overflow-hidden">
         <Image
           src={imageUrl}
-          fill
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "contain" }}
           className="transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
+          width={post.gqlHeroFields?.bild?.mediaDetails?.width}
+          height={post.gqlHeroFields?.bild?.mediaDetails?.height}
           alt={post.gqlHeroFields?.bild?.altText || post.title}
           quality={75}
-          sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1200px) 400px, 400px"
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
         />
