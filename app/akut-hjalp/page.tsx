@@ -1,10 +1,12 @@
 import { getPage } from "@lib/data/page";
 import { webPageSchema } from "@lib/seo/schema";
-import { generatePageMetadata } from "@lib/utils";
+import { cn, generatePageMetadata } from "@lib/utils";
 import Blocks from "components/flexible-content/block";
 import type { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import JsonLd from "components/JsonLd";
+import Link from "next/link";
+import { buttonVariants } from "@components/ui/button";
 
 export async function generateMetadata(
   {},
@@ -35,20 +37,22 @@ export default async function AkutHjalpPage() {
     <>
       <JsonLd json={schema} id={"akut-hjalp-page"} />
       <main key={page.title}>
-        <div className="contain-outer mt-5">
+        <div className="contain-outer ">
           <div className="bg-section">
-            <div className="mt-24 text-center contain">
+            <div className="text-center contain">
               <h1>Akut hjälp</h1>
-              <p className="mt-3">
+              <p className="">
                 Hjälplinje för dig som är i behov av akut hjälp.
               </p>
-              <a
+              <Link
                 href="tel:040474012"
-                className="inline-block px-10 py-4 mt-10 text-3xl font-bold text-white rounded-sm bg-brand-orange"
+                className={cn(
+                  buttonVariants({ variant: "secondary", size: "xl" })
+                )}
                 aria-label="Ring 040-47 40 12 för akut hjälp med avloppsproblem"
               >
                 040-47 40 12
-              </a>
+              </Link>
               <p className="mt-3">Klicka på knappen för att ringa.</p>
             </div>
           </div>
