@@ -57,7 +57,7 @@ const Footer = () => {
                   utbud av{" "}
                   <Link
                     href="/tjanster"
-                    className="text-brand-blue hover:underline"
+                    className="hover:text-brand-blue underline text-blue-600 font-normal"
                   >
                     avloppstjänster i Skåne
                   </Link>
@@ -191,7 +191,11 @@ const Footer = () => {
                 </a>
               </nav>
               <div>
-                Byggd med <span className="text-brand-orange">♥</span> av{" "}
+                Byggd med{" "}
+                <span className="text-brand-orange contrast-more:text-[#363636]">
+                  ♥
+                </span>{" "}
+                av{" "}
                 <a
                   className="hover:underline"
                   href="https://capace.se"

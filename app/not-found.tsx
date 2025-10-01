@@ -142,7 +142,9 @@ export default function NotFound() {
                 </h3>
                 <ul className="space-y-3">
                   <li className="flex items-start">
-                    <span className="text-brand-orange mr-2 font-bold">•</span>
+                    <span className="text-brand-orange contrast-more:text-[#363636] mr-2 font-bold">
+                      •
+                    </span>
                     <span>
                       Besöka vår{" "}
                       <Link
@@ -155,7 +157,9 @@ export default function NotFound() {
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-brand-orange mr-2 font-bold">•</span>
+                    <span className="text-brand-orange contrast-more:text-[#363636] mr-2 font-bold">
+                      •
+                    </span>
                     <span>
                       Se våra{" "}
                       <Link
@@ -168,7 +172,9 @@ export default function NotFound() {
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-brand-orange mr-2 font-bold">•</span>
+                    <span className="text-brand-orange contrast-more:text-[#363636] mr-2 font-bold">
+                      •
+                    </span>
                     <span>
                       Läsa vår{" "}
                       <Link
@@ -181,7 +187,9 @@ export default function NotFound() {
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-brand-orange mr-2 font-bold">•</span>
+                    <span className="text-brand-orange contrast-more:text-[#363636] mr-2 font-bold">
+                      •
+                    </span>
                     <span>
                       Få{" "}
                       <Link
@@ -202,7 +210,9 @@ export default function NotFound() {
                 </h3>
                 <ul className="space-y-3">
                   <li className="flex items-start">
-                    <span className="text-brand-orange mr-2 font-bold">•</span>
+                    <span className="text-brand-orange contrast-more:text-[#363636] mr-2 font-bold">
+                      •
+                    </span>
                     <div>
                       <span className="block">Ring oss direkt på</span>
                       <a
@@ -215,7 +225,9 @@ export default function NotFound() {
                     </div>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-brand-orange mr-2 font-bold">•</span>
+                    <span className=" contrast-more:text-[#363636] mr-2 font-bold">
+                      •
+                    </span>
                     <span>
                       Eller{" "}
                       <Link

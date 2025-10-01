@@ -29,7 +29,7 @@ export default function Nav() {
     <header className="relative">
       <nav
         className={cn(
-          "flex justify-between py-10 fixed top-0 left-1/2 -translate-x-1/2 w-full px-8 md:px-14 max-w-360 z-50 transition-all duration-300 ease-in-out",
+          "flex justify-between py-3 fixed top-0 left-1/2 -translate-x-1/2 w-full px-8 md:px-14 max-w-360 z-50 transition-all duration-300 ease-in-out",
           // Use will-change to optimize transforms
           "will-change-transform",
           // Dynamic styles based on scroll state

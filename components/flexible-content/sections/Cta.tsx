@@ -31,7 +31,7 @@ const CallToAction = () => {
           src={CTABGIMAGE}
           width={CTABGIMAGE.width}
           height={CTABGIMAGE.height}
-          className=" h-full absolute object-cover opacity-40 top-0 left-0 zoom-in"
+          className=" h-full absolute object-cover opacity-40 top-0 left-0"
           alt="En man som drar en slang - Spoltec serviceavtal"
           role="img"
           quality={50}
@@ -40,7 +40,7 @@ const CallToAction = () => {
           blurDataURL={getBlurPlaceholder("hero")}
         />
 
-        <div className="text-center flex flex-col justify-center h-full  text-white px-4">
+        <div className="text-center flex flex-col justify-center h-full  text-white px-4 md:px-44 lg:px-64 xl:px-92  ">
           <h2 id={`${sectionId}-heading`} className="text-white">
             Undvik obehagliga överraskningar
           </h2>
@@ -59,7 +59,9 @@ const CallToAction = () => {
 
           <div role="navigation" aria-label="Serviceavtal åtgärder">
             <Link
-              className={cn(buttonVariants({ variant: "default", size: "lg" }))}
+              className={cn(
+                buttonVariants({ variant: "secondary", size: "lg" })
+              )}
               href="/serviceavtal"
               aria-label="Läs mer om serviceavtal - öppnas på samma sida"
             >
