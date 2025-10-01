@@ -15,6 +15,10 @@ export const POST_QUERY = `
             introduktionstext
             bild {
               mediaItemUrl
+              mediaDetails {
+                width
+                height
+              }
               altText
             }
           }
@@ -32,6 +36,10 @@ export const POST_QUERY = `
                   underrubrik
                   bild {
                     mediaItemUrl
+                    mediaDetails {
+                      width
+                      height
+                    }
                     altText
                   }
                 }
@@ -43,6 +51,10 @@ export const POST_QUERY = `
                     altText
                     id
                     mediaItemUrl
+                    mediaDetails {
+                      width
+                      height
+                    }
                     altText
                   }
                   namn
@@ -74,6 +86,10 @@ export const POST_QUERY = `
                 }
                 bilder {
                   mediaItemUrl
+                  mediaDetails {
+                    width
+                    height
+                  }
                   altText
                 }
               }
@@ -126,6 +142,10 @@ export const POSTS_QUERY = `
             introduktionstext
             bild {
               mediaItemUrl
+              mediaDetails {
+                width
+                height
+              }
               altText
             }
           }

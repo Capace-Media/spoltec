@@ -20,6 +20,10 @@ export const PAGE_QUERY = `
         introduktionstext
         bild {
           mediaItemUrl
+          mediaDetails {
+          width
+          height
+        }
           altText
         }
         usp{

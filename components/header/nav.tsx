@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import links from "@data/navlinks.json";
 import { Button, buttonVariants } from "components/ui/button";
-import logo from "../../public/images/spoltec-logo-new.png";
+import logo from "../../public/images/spoltecs-logo.png";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -42,14 +42,11 @@ export default function Nav() {
           <Image
             src={logo}
             alt="Spoltec logo"
-            width={150}
-            height={60}
+            width={logo.width}
+            height={logo.height}
             priority
-            quality={75}
-            sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 100vw"
-            placeholder="blur"
-            blurDataURL={getBlurPlaceholder("icon")}
-            fetchPriority="high"
+            quality={50}
+            sizes="(max-width: 1024px) 116px, 155px"
             className={cn(
               "w-auto transition-all duration-300 ease-in-out will-change-transform",
               isScrolled ? "h-12" : "h-12 lg:h-16"

@@ -37,6 +37,10 @@ export interface Seo {
 export interface PageImage {
   mediaItemUrl: string;
   altText: string;
+  mediaDetails: {
+    width: number;
+    height: number;
+  };
 }
 
 export interface GqlHeroFields {
@@ -62,6 +66,10 @@ export interface BlurbsBlock {
     bild: {
       mediaItemUrl: string;
       altText: string;
+      mediaDetails: {
+        width: number;
+        height: number;
+      };
     };
   }>;
 }
@@ -73,6 +81,10 @@ export interface PersonalBlock {
       altText: string;
       id: string;
       mediaItemUrl: string;
+      mediaDetails: {
+        width: number;
+        height: number;
+      };
     };
     namn: string;
     titel: string;
@@ -106,6 +118,10 @@ export interface TextBildBlock {
   bilder: Array<{
     mediaItemUrl: string;
     altText: string;
+    mediaDetails: {
+      width: number;
+      height: number;
+    };
   }>;
 }
 

@@ -3,6 +3,10 @@ import { Seo } from "./page";
 export interface PostImage {
   mediaItemUrl: string;
   altText?: string;
+  mediaDetails: {
+    width: number;
+    height: number;
+  };
 }
 
 export interface PostHeroFields {
@@ -51,6 +55,10 @@ export interface PostBlurbsBlock {
     bild?: {
       mediaItemUrl: string;
       altText?: string;
+      mediaDetails: {
+        width: number;
+        height: number;
+      };
     };
   }>;
 }
@@ -62,6 +70,10 @@ export interface PostPersonalBlock {
       altText?: string;
       id: string;
       mediaItemUrl: string;
+      mediaDetails: {
+        width: number;
+        height: number;
+      };
     };
     namn?: string;
     titel?: string;
@@ -95,6 +107,10 @@ export interface PostTextBildBlock {
   bilder?: Array<{
     mediaItemUrl: string;
     altText?: string;
+    mediaDetails: {
+      width: number;
+      height: number;
+    };
   }>;
 }
 

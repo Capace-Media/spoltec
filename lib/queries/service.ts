@@ -40,6 +40,10 @@ query SERVICE_QUERY($slug: ID!) {
               gqlHeroFields {
                 bild {
                   mediaItemUrl
+                  mediaDetails {
+          width
+          height
+        }
                   altText
                 }
                 underrubrik
@@ -109,9 +113,17 @@ query SERVICE_QUERY($slug: ID!) {
               fieldGroupName
               thumbnailurl {
                 mediaItemUrl
+                mediaDetails {
+          width
+          height
+        }
               }
               video {
                 mediaItemUrl
+                mediaDetails {
+          width
+          height
+        }
                 mediaDetails {
                   file
                   height
@@ -133,6 +145,10 @@ query SERVICE_QUERY($slug: ID!) {
                 
                 bild {
                   mediaItemUrl
+                  mediaDetails {
+          width
+          height
+        }
                   altText
                 }
               }
@@ -149,6 +165,10 @@ query SERVICE_QUERY($slug: ID!) {
               }
               bilder {
                 mediaItemUrl
+                mediaDetails {
+          width
+          height
+        }
                 altText
               }
             }
@@ -180,6 +200,10 @@ query SERVICE_QUERY($slug: ID!) {
             }
             bild {
                 mediaItemUrl
+                mediaDetails {
+          width
+          height
+        }
                 altText
             }
         }
