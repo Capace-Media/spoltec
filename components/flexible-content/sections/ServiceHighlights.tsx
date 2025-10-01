@@ -46,16 +46,16 @@ export default function ServiceHighlights({ data }: ServiceHighlightsProps) {
                 {imageUrl && (
                   <Image
                     src={imageUrl || ""}
-                    fill
-                    style={{ objectFit: "cover" }}
-                    className="transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-20"
+                    width={service.gqlHeroFields.bild?.mediaDetails?.width}
+                    height={service.gqlHeroFields.bild?.mediaDetails?.height}
+                    className="transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-20 absolute top-0 left-0 object-cover overflow-hidden h-72"
                     alt={
                       service.gqlHeroFields.bild?.altText ||
                       service.title ||
                       "Service image"
                     }
-                    quality={75}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    quality={50}
+                    sizes="(max-width: 640px) 85vw, (max-width: 1200px) 45vw, 312px"
                     placeholder="blur"
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />

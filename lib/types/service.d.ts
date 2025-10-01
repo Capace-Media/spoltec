@@ -3,6 +3,10 @@ import { Seo } from "./page";
 export interface ServiceImage {
   mediaItemUrl: string;
   altText: string;
+  mediaDetails: {
+    width: number;
+    height: number;
+  };
 }
 
 export interface ServiceVideo {

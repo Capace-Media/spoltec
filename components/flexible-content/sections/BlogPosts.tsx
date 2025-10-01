@@ -54,16 +54,14 @@ export default function BlogPosts({
                 <Image
                   src={post.gqlHeroFields?.bild?.mediaItemUrl}
                   style={{ objectFit: "contain" }}
-                  width={500}
-                  height={300}
+                  width={post.gqlHeroFields?.bild?.mediaDetails?.width}
+                  height={post.gqlHeroFields?.bild?.mediaDetails?.height}
                   className="transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
                   alt={post.gqlHeroFields?.bild?.altText || post.title}
-                  quality={75} // Reduced from 85 to 75 for better compression
-                  sizes="(max-width: 600px) 100vw, (max-width: 800px) 35vw, (max-width: 1024px) 400px, 400px"
+                  quality={50}
+                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 330px"
                   placeholder="blur"
                   blurDataURL={getBlurPlaceholder("content")}
-                  // priority={index < 1} // Only prioritize the first image for LCP
-                  // loading={index < 1 ? "eager" : "lazy"} // Lazy load offscreen images
                 />
               </div>
               {post?.gqlHeroFields?.bild?.mediaItemUrl && (

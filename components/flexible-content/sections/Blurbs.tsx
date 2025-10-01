@@ -55,7 +55,7 @@ const Blurbs = ({ data }: BlurbsProps) => {
                   }`}
                 >
                   {blurb.bild && (
-                    <figure className="block w-10 h-10 mb-5 md:w-14 md:h-14 relative">
+                    <figure className="block mb-5 ">
                       <Image
                         src={blurb?.bild?.mediaItemUrl}
                         alt={
@@ -64,14 +64,13 @@ const Blurbs = ({ data }: BlurbsProps) => {
                           data?.rubrik ||
                           "Service icon"
                         }
-                        fill
+                        width={blurb?.bild?.mediaDetails?.width}
+                        height={blurb?.bild?.mediaDetails?.height}
                         style={{
                           objectFit: "contain",
                         }}
-                        quality={75}
-                        sizes="(max-width: 768px) 40px, 56px"
-                        placeholder="blur"
-                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                        quality={85}
+                        sizes="34px, 64px"
                       />
                     </figure>
                   )}

@@ -105,6 +105,8 @@ export default async function Page(props: PageProps) {
           usp={page?.gqlHeroFields?.usp}
           isCommercialPage={isCommercialPage}
           slug={page?.slug}
+          width={page?.gqlHeroFields?.bild?.mediaDetails?.width}
+          height={page?.gqlHeroFields?.bild?.mediaDetails?.height}
         />
 
         <Blocks blocks={page?.gqlBlocks?.blocks || []} />

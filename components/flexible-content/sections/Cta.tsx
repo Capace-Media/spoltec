@@ -26,53 +26,47 @@ const CallToAction = () => {
       aria-labelledby={`${sectionId}-heading`}
       role="region"
     >
-      <div className="relative overflow-hidden bg-black bg-section">
+      <div className="relative overflow-hidden h-[500px] bg-black bg-section">
         <Image
           src={CTABGIMAGE}
-          fill
-          style={{
-            objectFit: "cover",
-            opacity: "0.4",
-            objectPosition: "top",
-          }}
+          width={CTABGIMAGE.width}
+          height={CTABGIMAGE.height}
+          className=" h-full absolute object-cover opacity-40 top-0 left-0"
           alt="En man som drar en slang - Spoltec serviceavtal"
           role="img"
-          quality={75}
-          sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 100vw"
+          quality={50}
+          sizes="(max-width: 1200px) 90vw, 1300px"
           placeholder="blur"
           blurDataURL={getBlurPlaceholder("hero")}
         />
-        <div className="contain">
-          <div className="text-center flex flex-col justify-center h-[500px] text-white h96 contain max-w-[700px]">
-            <header>
-              <h2 id={`${sectionId}-heading`} className="text-white">
-                Undvik obehagliga överraskningar
-              </h2>
-              <p className="pb-4 text-white text-xl">
-                <strong>Teckna ett serviceavtal idag</strong>
-              </p>
-            </header>
 
-            <div>
-              <p className="pb-6">
-                Ett serviceavtal är till för dig som vill kunna planera dina
-                avloppskostnader. Avtalet är helt anpassat efter
-                förutsättningarna i ditt avloppssystem och baseras på en fast
-                månadskostnad under avtalstiden.
-              </p>
-            </div>
+        <div className="text-center flex flex-col justify-center h-full  text-white px-4 md:px-44 lg:px-64 xl:px-92  ">
+          <h2 id={`${sectionId}-heading`} className="text-white">
+            Undvik obehagliga överraskningar
+          </h2>
+          <p className="pb-4 text-white text-xl">
+            <strong>Teckna ett serviceavtal idag</strong>
+          </p>
 
-            <div role="navigation" aria-label="Serviceavtal åtgärder">
-              <Link
-                className={cn(
-                  buttonVariants({ variant: "default", size: "lg" })
-                )}
-                href="/serviceavtal"
-                aria-label="Läs mer om serviceavtal - öppnas på samma sida"
-              >
-                Läs mer om serviceavtal
-              </Link>
-            </div>
+          <div>
+            <p className="pb-6">
+              Ett serviceavtal är till för dig som vill kunna planera dina
+              avloppskostnader. Avtalet är helt anpassat efter förutsättningarna
+              i ditt avloppssystem och baseras på en fast månadskostnad under
+              avtalstiden.
+            </p>
+          </div>
+
+          <div role="navigation" aria-label="Serviceavtal åtgärder">
+            <Link
+              className={cn(
+                buttonVariants({ variant: "secondary", size: "lg" })
+              )}
+              href="/serviceavtal"
+              aria-label="Läs mer om serviceavtal - öppnas på samma sida"
+            >
+              Läs mer om serviceavtal
+            </Link>
           </div>
         </div>
       </div>

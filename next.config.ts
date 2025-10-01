@@ -5,6 +5,26 @@ const nextConfig: NextConfig = {
   compress: true, // Vercel handles this, but keeping it doesn't hurt
   poweredByHeader: false,
 
+  // Add transpilePackages to remove ES5 polyfills
+  transpilePackages: [
+    // These packages likely contain ES5 polyfills
+    "@radix-ui/react-accordion",
+    "@radix-ui/react-collapsible",
+    "@radix-ui/react-dialog",
+    "@radix-ui/react-navigation-menu",
+    "@radix-ui/react-separator",
+    "@radix-ui/react-slot",
+    "@radix-ui/react-tooltip",
+    "@tanstack/react-query",
+    "class-variance-authority",
+    "clsx",
+    "dompurify",
+    "html-react-parser",
+    "lucide-react",
+    "tailwind-merge",
+    "schema-dts",
+  ],
+
   // Vercel-specific optimizations
   experimental: {
     // Enable optimized package imports
@@ -140,10 +160,10 @@ const nextConfig: NextConfig = {
 
   images: {
     // Optimize image loading and compression
-    formats: ["image/webp", "image/avif"],
+    formats: ["image/avif", "image/webp"], // AVIF first for better compression
     minimumCacheTTL: 60,
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    deviceSizes: [640, 750, 828, 1024, 1200, 1920, 2048, 3840],
+    // imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     qualities: [25, 50, 75, 80, 85, 90, 100],
     remotePatterns: [
       {

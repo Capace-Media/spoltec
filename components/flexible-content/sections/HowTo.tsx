@@ -25,7 +25,7 @@ export default function HowTo({
               <li key={s.title} className="rounded-lg border bg-white p-4">
                 <div className="pb-2">
                   <h3 className="text-lg text-heading mb-0 ">{s.title}</h3>
-                  <span className="block text-xs text-brand-orange">
+                  <span className="block text-xs text-brand-orange contrast-more:text-[#363636]">
                     Steg {i + 1}
                   </span>
                 </div>
