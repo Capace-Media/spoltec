@@ -34,6 +34,8 @@ export default async function ServicesPage() {
           subtitle={page?.gqlHeroFields?.underrubrik || ""}
           text={page?.gqlHeroFields?.introduktionstext || ""}
           image={page?.gqlHeroFields?.bild?.mediaItemUrl}
+          width={page?.gqlHeroFields?.bild?.mediaDetails?.width}
+          height={page?.gqlHeroFields?.bild?.mediaDetails?.height}
         />
         <div id="content" className="w-full h-10 md:h-0"></div>
         <div>

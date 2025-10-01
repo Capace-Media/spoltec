@@ -22,40 +22,34 @@ const CallToAction = () => {
 
   return (
     <section
-      className="relative mt-10 rounded-xl contain-outer md:mt-20"
+      className="px-4 lg:px-10 lg:mx-auto lg:max-w-360"
       aria-labelledby={`${sectionId}-heading`}
       role="region"
     >
-      <div className="relative overflow-hidden h-[500px] bg-black bg-section">
+      <div className="relative h-[400px] lg:h-[480px] w-full rounded-xl overflow-hidden">
         <Image
           src={CTABGIMAGE}
           width={CTABGIMAGE.width}
           height={CTABGIMAGE.height}
-          className=" h-full absolute object-cover opacity-40 top-0 left-0"
+          className="absolute h-full object-cover w-full top-0 left-0"
           alt="En man som drar en slang - Spoltec serviceavtal"
           role="img"
-          quality={50}
-          sizes="(max-width: 1200px) 90vw, 1300px"
-          placeholder="blur"
-          blurDataURL={getBlurPlaceholder("hero")}
+          sizes="(max-width: 1200px) 98vw, 1300px"
         />
+        <span className="absolute top-0 left-0 w-full h-full bg-black/50 z-10" />
 
-        <div className="text-center flex flex-col justify-center h-full  text-white px-4 md:px-44 lg:px-64 xl:px-92  ">
-          <h2 id={`${sectionId}-heading`} className="text-white">
-            Undvik obehagliga överraskningar
-          </h2>
-          <p className="pb-4 text-white text-xl">
+        <div className="text-white absolute top-0 left-0 w-full h-full z-20 flex flex-col justify-center text-center px-2 md:px-22 lg:px-64 xl:px-96">
+          <h2 className="text-white">Undvik obehagliga överraskningar</h2>
+          <p className="pb-4 text-white text-lg">
             <strong>Teckna ett serviceavtal idag</strong>
           </p>
 
-          <div>
-            <p className="pb-6">
-              Ett serviceavtal är till för dig som vill kunna planera dina
-              avloppskostnader. Avtalet är helt anpassat efter förutsättningarna
-              i ditt avloppssystem och baseras på en fast månadskostnad under
-              avtalstiden.
-            </p>
-          </div>
+          <p>
+            Ett serviceavtal är till för dig som vill kunna planera dina
+            avloppskostnader. Avtalet är helt anpassat efter förutsättningarna i
+            ditt avloppssystem och baseras på en fast månadskostnad under
+            avtalstiden.
+          </p>
 
           <div role="navigation" aria-label="Serviceavtal åtgärder">
             <Link
