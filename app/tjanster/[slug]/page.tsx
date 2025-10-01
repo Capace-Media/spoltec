@@ -125,6 +125,8 @@ export default async function ServicePage(props: PageProps) {
           text={page?.gqlHeroFields?.introduktionstext}
           image={page?.gqlHeroFields?.bild?.mediaItemUrl}
           usp={page?.gqlHeroFields.usp}
+          width={page?.gqlHeroFields?.bild?.mediaDetails?.width}
+          height={page?.gqlHeroFields?.bild?.mediaDetails?.height}
         />
         <BreadcrumbsComponent items={breadcrumbItems} />
 

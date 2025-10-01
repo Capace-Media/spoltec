@@ -22,10 +22,10 @@ const MainHero = ({ title, subtitle, text }: MainHeroProps) => {
       <div className="overflow-hidden mt-5 rounded-xl pt-[94px] md:pt-[120px] bg-brand-lightblue py-10 md:py-20">
         <div className="grid lg:grid-cols-[4fr_5fr]  contain">
           <div className="relative flex items-center order-2 lg:order-1">
-            <span
-              className="w-[690px] h-[690px] rounded-full absolute -top-1/4 -left-1/2 bg-linear-to-b from-brand-lightblue to-brand-blue opacity-10"
+            {/* <span
+              className="lg:w-[690px] lg:h-[690px] lg:rounded-full lg:absolute lg:-top-1/4 lg:-left-1/2 lg:bg-linear-to-b lg:from-brand-lightblue lg:to-brand-blue lg:opacity-10"
               aria-hidden="true"
-            />
+            /> */}
             <div className="relative">
               <h1
                 id="hero-heading"
