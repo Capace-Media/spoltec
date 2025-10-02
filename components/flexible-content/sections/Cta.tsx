@@ -24,7 +24,6 @@ const CallToAction = () => {
     <section
       className="px-4 lg:px-10 lg:mx-auto lg:max-w-360"
       aria-labelledby={`${sectionId}-heading`}
-      role="region"
     >
       <div className="relative h-[400px] lg:h-[480px] w-full rounded-xl overflow-hidden">
         <Image
