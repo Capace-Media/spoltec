@@ -5,9 +5,8 @@ const nextConfig: NextConfig = {
   compress: true, // Vercel handles this, but keeping it doesn't hurt
   poweredByHeader: false,
 
-  // Add transpilePackages to remove ES5 polyfills
+  // Transpile packages for modern ES modules
   transpilePackages: [
-    // These packages likely contain ES5 polyfills
     "@radix-ui/react-accordion",
     "@radix-ui/react-collapsible",
     "@radix-ui/react-dialog",
@@ -22,10 +21,9 @@ const nextConfig: NextConfig = {
     "html-react-parser",
     "lucide-react",
     "tailwind-merge",
-    "schema-dts",
   ],
 
-  // Vercel-specific optimizations
+  // Next.js 15 optimizations
   experimental: {
     // Enable optimized package imports
     optimizePackageImports: [
@@ -40,21 +38,14 @@ const nextConfig: NextConfig = {
     // Better caching for static content
     staticGenerationRetryCount: 3,
 
-    // Improved performance for large apps
-    webpackMemoryOptimizations: true,
-
     // Force modern JS compilation
     forceSwcTransforms: true,
-
-    // Remove problematic CSS optimization features that require critters
-    // optimizeCss: true, // REMOVED - causes build failures
-    // cssChunking: "strict", // REMOVED - causes build failures
   },
 
-  // Optimize webpack bundle
+  // Simplified webpack configuration for Next.js 15
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
-      // Enable bundle analyzer in production
+      // Optimize bundle splitting
       config.optimization.splitChunks = {
         chunks: "all",
         cacheGroups: {
@@ -75,10 +66,10 @@ const nextConfig: NextConfig = {
     return config;
   },
 
-  // Your existing headers, images, redirects are perfect for Vercel
+  // Optimized headers for Next.js 15
   async headers() {
     return [
-      // Static assets
+      // Static assets - covers all Next.js build assets including CSS
       {
         source: "/_next/static/(.*)",
         headers: [
@@ -88,30 +79,7 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // CSS files - optimize loading
-      {
-        source: "/_next/static/css/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-          {
-            key: "Content-Type",
-            value: "text/css",
-          },
-        ],
-      },
-      {
-        source: "/images/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      // Privacy and security headers for all pages
+      // Security headers for all pages
       {
         source: "/(.*)",
         headers: [
@@ -122,7 +90,7 @@ const nextConfig: NextConfig = {
             value:
               "camera=(), microphone=(), geolocation=(), interest-cohort=()",
           },
-          { key: "X-Content-Type-Opensions", value: "nosniff" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "X-Frame-Options", value: "DENY" },
           {
             key: "Content-Security-Policy",
@@ -131,33 +99,14 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // Specific headers for media domain to prevent third-party cookie issues
-      {
-        source: "/images/(.*)",
-        headers: [
-          {
-            key: "Cross-Origin-Resource-Policy",
-            value: "cross-origin",
-          },
-          {
-            key: "Access-Control-Allow-Origin",
-            value: "https://www.spoltec.se",
-          },
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
     ];
   },
 
   images: {
-    // Optimize image loading and compression
-    formats: ["image/avif", "image/webp"], // AVIF first for better compression
+    // Modern image optimization for 2025
+    formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60,
-    deviceSizes: [640, 750, 828, 1024, 1200, 1920, 2048, 3840],
-    // imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    deviceSizes: [640, 750, 828, 1024, 1200, 1920, 2048, 2560, 3840],
     qualities: [25, 50, 75, 80, 85, 90, 100],
     remotePatterns: [
       {
@@ -197,6 +146,7 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+    // SVG support - consider removing if not needed for security
     dangerouslyAllowSVG: true,
   },
 
