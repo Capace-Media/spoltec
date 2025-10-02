@@ -98,7 +98,7 @@ const nextConfig: NextConfig = {
           {
             key: "Content-Security-Policy",
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: https://www.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; frame-ancestors 'none';",
+              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://consent.cookiebot.eu https://googleads.g.doubleclick.net https://www.googleadservices.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: https://www.googletagmanager.com https://googleads.g.doubleclick.net; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com; frame-src 'self' https://www.googletagmanager.com; frame-ancestors 'none';",
           },
         ],
       },
