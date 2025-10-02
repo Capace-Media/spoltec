@@ -13,8 +13,6 @@ interface MainHeroProps {
 }
 
 const MainHero = (props: MainHeroProps) => {
-  console.log(heroImage?.width);
-  console.log(heroImage?.height);
   return (
     <section
       className="md:px-10 md:mx-auto md:max-w-360 md:bg-brand-lightblue md:rounded-xl md:overflow-hidden"

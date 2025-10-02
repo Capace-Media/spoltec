@@ -1,4 +1,4 @@
-export { default as TextImage } from "./TextImage";
+export { default as TextImage } from "./text-image";
 export { default as Video } from "./video";
 export { default as Services } from "./Services";
 export { default as Text } from "./Text";
