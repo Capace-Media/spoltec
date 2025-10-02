@@ -1,13 +1,12 @@
-"use client";
 import services from "@data/static-services.json";
 import type { TjansterBlock } from "@lib/types/page";
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useMemo } from "react";
+import React from "react";
 import { getBlurPlaceholder } from "@lib/utils/blur-placeholder";
 
-// Extract to a shared utility file (lib/utils/text.ts)
+// Optimized text truncation function
 const truncateText = (text: string, maxLength: number): string => {
   if (!text) return "";
   return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
@@ -35,32 +34,27 @@ interface StaticService {
   };
 }
 
+// Move city list outside component to prevent re-creation
+const CITY_NAMES = [
+  "Borås",
+  "Göteborg",
+  "Halmstad",
+  "Helsingborg",
+  "Jönköping",
+  "Kalmar",
+  "Karlskrona",
+  "Kristianstad",
+  "Malmö",
+  "Varberg",
+  "Växjö",
+];
+
+// Pre-filter services to avoid runtime filtering
+const filteredServices = (services as StaticService[]).filter(
+  (service) => !CITY_NAMES.some((city) => service.title?.includes(city))
+);
+
 const Services: React.FC<ServicesProps> = ({ data }) => {
-  // Move city list to a constant outside component or to a data file
-  const CITY_NAMES = useMemo(
-    () => [
-      "Borås",
-      "Göteborg",
-      "Halmstad",
-      "Helsingborg",
-      "Jönköping",
-      "Kalmar",
-      "Karlskrona",
-      "Kristianstad",
-      "Malmö",
-      "Varberg",
-      "Växjö",
-    ],
-    []
-  );
-
-  // Memoize filtered services to prevent unnecessary recalculations
-  const filteredServices = useMemo(() => {
-    return (services as StaticService[]).filter(
-      (service) => !CITY_NAMES.some((city) => service.title?.includes(city))
-    );
-  }, [CITY_NAMES]);
-
   const getServiceUri = (service: StaticService, index: number): string => {
     return (
       service?.uri?.replace("/services/", "") ||

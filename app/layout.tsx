@@ -121,19 +121,16 @@ export default function RootLayout({
   });
   return (
     <html lang="sv">
-      <GoogleTagManager
-        gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string}
-        dataLayer={{
-          "gtm.start": new Date().getTime(),
-          event: "gtm.js",
-        }}
-      />
       <body className={chivo.className}>
         <Nav />
         <JsonLd json={org} id="org-schema" />
         <Providers>{children}</Providers>
-
         <Footer />
+
+        {/* Optimized GTM using Next.js 15 official approach */}
+        <GoogleTagManager
+          gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string}
+        />
       </body>
     </html>
   );
