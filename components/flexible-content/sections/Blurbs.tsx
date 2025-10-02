@@ -55,7 +55,7 @@ const Blurbs = ({ data }: BlurbsProps) => {
                   }`}
                 >
                   {blurb.bild && (
-                    <figure className="block mb-5 ">
+                    <div className="block mb-5 h-auto w-12">
                       <Image
                         src={blurb?.bild?.mediaItemUrl}
                         alt={
@@ -66,13 +66,11 @@ const Blurbs = ({ data }: BlurbsProps) => {
                         }
                         width={blurb?.bild?.mediaDetails?.width}
                         height={blurb?.bild?.mediaDetails?.height}
-                        style={{
-                          objectFit: "contain",
-                        }}
+                        className="object-contain h-auto w-full"
                         quality={85}
-                        sizes="34px, 64px"
+                        sizes="48px"
                       />
-                    </figure>
+                    </div>
                   )}
                   {blurb.rubrik && (
                     <h3 className={`text-lg pb-1 text-heading`}>

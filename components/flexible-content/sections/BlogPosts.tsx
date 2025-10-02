@@ -19,8 +19,8 @@ export default function BlogPosts({
   };
   const getGridColumns = (count: number): string => {
     const gridMapping: { [key: number]: string } = {
-      1: "lg:grid-cols-1",
-      2: "lg:grid-cols-2",
+      1: "lg:grid-cols-3",
+      2: "lg:grid-cols-3",
       3: "lg:grid-cols-3",
       4: "lg:grid-cols-4",
     };
@@ -59,7 +59,7 @@ export default function BlogPosts({
                   className="transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
                   alt={post.gqlHeroFields?.bild?.altText || post.title}
                   quality={50}
-                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 330px"
+                  sizes="(max-width: 768px) 92vw, (max-width: 1024px) 45vw, (max-width: 1400px) 31vw, 428px"
                   placeholder="blur"
                   blurDataURL={getBlurPlaceholder("content")}
                 />
