@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface TextImageProps {
-  data: TextBildBlock;
+  data: TextBildBlock | any;
   ordinal: number | undefined;
 }
 
@@ -32,7 +32,7 @@ export default function TextImage(props: TextImageProps) {
             )}
           >
             <div className="md:w-full ">
-              {props?.data?.bilder[0]?.mediaItemUrl && (
+              {props?.data?.bilder && props?.data?.bilder[0]?.mediaItemUrl && (
                 <Image
                   src={props.data.bilder[0].mediaItemUrl}
                   height={props.data.bilder[0].mediaDetails.height}
