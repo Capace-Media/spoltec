@@ -8,6 +8,13 @@ const nextConfig: NextConfig = {
   // Enable source maps for production debugging
   productionBrowserSourceMaps: true,
 
+  // Next.js 15: External packages configuration for better performance
+  serverExternalPackages: [
+    // Keep these external for better performance
+    "sharp",
+    "@sendgrid/mail",
+  ],
+
   // Transpile packages for modern ES modules
   transpilePackages: [
     "@radix-ui/react-accordion",
@@ -36,6 +43,10 @@ const nextConfig: NextConfig = {
       "@radix-ui/react-navigation-menu",
       "@radix-ui/react-tooltip",
       "@tanstack/react-query",
+      "html-react-parser",
+      "class-variance-authority",
+      "clsx",
+      "tailwind-merge",
     ],
 
     // Better caching for static content
@@ -43,28 +54,74 @@ const nextConfig: NextConfig = {
 
     // Force modern JS compilation
     forceSwcTransforms: true,
+
+    // Note: Removed optimizeCss as it causes critters module errors in Next.js 15.5.4
   },
 
-  // Simplified webpack configuration for Next.js 15
+  // Next.js 15 optimized webpack configuration
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
-      // Optimize bundle splitting
+      // Note: Removed react-dom alias as it breaks Next.js 15 client-side resolution
+      // The duplicate React DOM issue should be resolved by proper chunk splitting instead
+
+      // Modern bundle splitting strategy for Next.js 15
       config.optimization.splitChunks = {
         chunks: "all",
+        minSize: 20000,
+        maxSize: 244000,
         cacheGroups: {
+          // React ecosystem in separate chunk
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: "react",
+            chunks: "all",
+            priority: 20,
+            enforce: true,
+          },
+          // UI libraries
+          ui: {
+            test: /[\\/]node_modules[\\/](@radix-ui|lucide-react)[\\/]/,
+            name: "ui",
+            chunks: "all",
+            priority: 15,
+          },
+          // Data fetching libraries
+          data: {
+            test: /[\\/]node_modules[\\/]@tanstack[\\/]/,
+            name: "data",
+            chunks: "all",
+            priority: 15,
+          },
+          // Utility libraries
+          utils: {
+            test: /[\\/]node_modules[\\/](clsx|tailwind-merge|class-variance-authority)[\\/]/,
+            name: "utils",
+            chunks: "all",
+            priority: 12,
+          },
+          // Other vendor libraries
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             name: "vendors",
             chunks: "all",
+            priority: 10,
+            maxSize: 200000,
           },
+          // Common chunks
           common: {
             name: "common",
             minChunks: 2,
             chunks: "all",
+            priority: 5,
             enforce: true,
+            maxSize: 100000,
           },
         },
       };
+
+      // Enable modern tree shaking
+      config.optimization.usedExports = true;
+      config.optimization.sideEffects = false;
     }
     return config;
   },
