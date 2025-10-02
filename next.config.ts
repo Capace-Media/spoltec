@@ -117,23 +117,17 @@ const nextConfig: NextConfig = {
         headers: [
           { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          // Privacy-focused headers
           {
             key: "Permissions-Policy",
             value:
               "camera=(), microphone=(), geolocation=(), interest-cohort=()",
           },
-          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Content-Type-Opensions", value: "nosniff" },
           { key: "X-Frame-Options", value: "DENY" },
-          { key: "X-XSS-Protection", value: "1; mode=block" },
-          // Cookie policy for first-party cookies
           {
-            key: "Set-Cookie",
-            value: "SameSite=Lax; Secure; HttpOnly",
-          },
-          {
-            key: "Cache-Control",
-            value: "public, max-age=0, s-maxage=600, stale-while-revalidate=60",
+            key: "Content-Security-Policy",
+            value:
+              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none';",
           },
         ],
       },
