@@ -48,15 +48,9 @@ export async function generateStaticParams() {
   );
 
   const servicePaths =
-    response.gqlAllService?.nodes
-      ?.filter(
-        (service: any) =>
-          service?.slug &&
-          typeof service.slug === "string" &&
-          service.slug !== "relining" &&
-          service.slug !== "rorinspektion"
-      )
-      ?.map((service: any) => ({ slug: service.slug })) || [];
+    response.gqlAllService?.nodes?.map((service: any) => ({
+      slug: service.slug,
+    })) || [];
 
   return servicePaths;
 }

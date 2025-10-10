@@ -14,7 +14,7 @@ export async function submitContactForm(formData: FormData) {
     const emailRes = await sgMail.send({
       from: {
         name: `${name} / ${email}`,
-        email: email,
+        email: "info@spoltec.se",
       },
       replayTo: email,
       to: (process.env.SEND_MAIL as string) || "info@spoltec.se",
@@ -150,7 +150,7 @@ export async function submitContactForm(formData: FormData) {
       return { success: false, error: "Failed to send email" };
     }
   } catch (error) {
-    console.error(error);
+    console.error("MAIL ERROR => ", error);
     return { success: false, error: "Server error occurred" };
   }
 }
