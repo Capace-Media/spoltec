@@ -19,9 +19,11 @@ export default function SubmitButton(props: SubmitButtonProps) {
     >
       {form.state.isSubmitting ? (
         <>
-          <Spinner className="size-4 animate-spin" />
-          {props.children}
+          <Spinner className="size-4 animate-spin mr-2" />
+          Skickar...
         </>
+      ) : form.state.isSubmitSuccessful ? (
+        "Skickat! ✓"
       ) : (
         props.children
       )}

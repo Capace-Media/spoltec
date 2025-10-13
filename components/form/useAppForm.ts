@@ -8,8 +8,6 @@ export const { fieldContext, formContext, useFieldContext, useFormContext } =
   createFormHookContexts();
 
 const { useAppForm } = createFormHook({
-  fieldContext,
-  formContext,
   fieldComponents: {
     TextField,
     TextareaField,
@@ -17,6 +15,8 @@ const { useAppForm } = createFormHook({
   formComponents: {
     SubmitButton,
   },
+  fieldContext,
+  formContext,
 });
 
 export default useAppForm;
