@@ -5,6 +5,7 @@ import { Star } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "@components/ui/button";
 import { cn } from "@lib/utils";
+import ServiceForm from "@components/service-form";
 interface ServiceHeroProps {
   image?: string;
   title: string;
@@ -73,8 +74,9 @@ export default function ServiceHero(props: ServiceHeroProps) {
               </a>
             </div>
           </div>
-          <div className="">
-            <ServiceContactForm subject={props.title} />
+          <div className="w-full flex justify-end">
+            {/* <ServiceContactForm subject={props.title} /> */}
+            <ServiceForm subject={props.title} />
           </div>
         </div>
       </div>

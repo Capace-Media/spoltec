@@ -4,6 +4,7 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import ServiceContactForm from "@components/service-contact-form";
+import ServiceForm from "@components/service-form";
 
 interface HeroProps {
   image?: string;
@@ -97,8 +98,13 @@ const Hero = (props: HeroProps) => {
               </div>
             )}
           </div>
-          {props.isCommercialPage && (
+          {/* {props.isCommercialPage && (
             <ServiceContactForm subject={props.title} slug={props.slug} />
+          )} */}
+          {props.isCommercialPage && (
+            <div className="w-full flex justify-end">
+              <ServiceForm subject={props.title} slug={props.slug} />
+            </div>
           )}
         </div>
       </div>
