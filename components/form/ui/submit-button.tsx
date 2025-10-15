@@ -11,22 +11,24 @@ export default function SubmitButton(props: SubmitButtonProps) {
   const form = useFormContext();
 
   return (
-    <Button
-      type="submit"
-      size="lg"
-      disabled={form.state.isSubmitting || !form.state.canSubmit}
-      className={props.className}
-    >
-      {form.state.isSubmitting ? (
-        <>
-          <Spinner className="size-4 animate-spin mr-2" />
-          Skickar...
-        </>
-      ) : form.state.isSubmitSuccessful ? (
-        "Skickat! ✓"
-      ) : (
-        props.children
+    <form.Subscribe selector={(state) => state.isSubmitting}>
+      {(isSubmitting) => (
+        <Button
+          type="submit"
+          size="lg"
+          disabled={isSubmitting}
+          className={props.className}
+        >
+          {isSubmitting ? (
+            <>
+              <Spinner className="size-4 animate-spin mr-2" />
+              Skickar...
+            </>
+          ) : (
+            props.children
+          )}
+        </Button>
       )}
-    </Button>
+    </form.Subscribe>
   );
 }

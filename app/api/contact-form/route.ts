@@ -3,11 +3,22 @@ const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export async function POST(request: Request) {
+  const origin = request.headers.get("origin");
+  const referer = request.headers.get("referer");
+  const allowedOrigins = ["https://www.spoltec.se", "https://spoltec.se"];
+  if (
+    !allowedOrigins.includes(origin || "") &&
+    !referer?.includes("spoltec.se")
+  ) {
+    return new Response("Invalid origin", { status: 403 });
+  }
   const data = contactSchema.parse(await request.json());
-  console.log("DATA => ", data);
 
   if (!data) {
     return new Response("Invalid data", { status: 400 });
+  }
+  if (data.website && data.website !== "") {
+    return new Response("Bot detected", { status: 400 });
   }
 
   const { name, email, message, phone, subject } = data;

@@ -6,6 +6,7 @@ export const contactSchema = z.object({
   message: z.string().min(1, "Meddelande är obligatoriskt"),
   phone: z.string().min(1, "Telefonnummer är obligatoriskt"),
   subject: z.string().min(1, "Ämne är obligatoriskt"),
+  website: z.string().optional(),
 });
 
 export type TContactSchema = z.infer<typeof contactSchema>;

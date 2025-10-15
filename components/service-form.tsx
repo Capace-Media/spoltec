@@ -24,7 +24,7 @@ interface ServiceContactFormProps {
 export default function ServiceForm(props: ServiceContactFormProps) {
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
-  >("error");
+  >("idle");
 
   const readableLocation = useMemo(
     () => (props.slug ? getReadableLocation(props.slug) : null),
@@ -37,14 +37,15 @@ export default function ServiceForm(props: ServiceContactFormProps) {
   );
 
   const defaultValues = {
-    name: "Rick Centerhall",
-    email: "rick@spoltec.se",
-    message: "Hej, jag vill ha en offert på avloppsspolning",
-    phone: "07070070707",
+    name: "",
+    email: "",
+    message: "",
+    phone: "",
     subject:
       readableService && readableLocation
         ? `${readableService} i ${readableLocation}`
         : props.subject,
+    website: "",
   } as TContactSchema;
 
   const form = useAppForm({
@@ -53,22 +54,35 @@ export default function ServiceForm(props: ServiceContactFormProps) {
       onSubmit: contactSchema,
     },
     onSubmit: async ({ value }) => {
-      const transformedData = contactSchema.parse(value);
+      try {
+        const transformedData = contactSchema.parse(value);
 
-      const response = await fetch("/api/contact-form", {
-        method: "POST",
-        body: JSON.stringify(transformedData),
-      });
+        console.log("TRANSFORMED DATA => ", transformedData);
 
-      console.log("RESPONSE => ", response);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      if (!response.ok) {
-        console.log("Form submission failed", response);
+        const response = await fetch("/api/contact-form", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(transformedData),
+        });
+
+        console.log("RESPONSE => ", response);
+
+        if (!response.ok) {
+          console.log("Form submission failed", response);
+          setStatus("error");
+          return;
+        }
+
+        console.log("Form submitted successfully!");
+        setStatus("success");
+      } catch (error) {
+        console.error("Form submission error:", error);
         setStatus("error");
       }
-
-      console.log("Form submitted successfully!");
-      setStatus("success");
     },
   });
 
@@ -151,6 +165,41 @@ export default function ServiceForm(props: ServiceContactFormProps) {
               </div>
             </div>
           </div>
+        ) : status === "loading" ? (
+          <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="flex items-center">
+              <div className="flex-shrink-0">
+                <svg
+                  className="animate-spin h-5 w-5 text-blue-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              </div>
+              <div className="ml-3">
+                <h3 className="text-sm font-medium text-blue-800">
+                  Skickar din förfrågan...
+                </h3>
+                <div className="mt-2 text-sm text-blue-700">
+                  <p>Vänligen vänta medan vi skickar din förfrågan.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         ) : status === "idle" ? (
           <form
             onSubmit={(e) => {
@@ -196,6 +245,18 @@ export default function ServiceForm(props: ServiceContactFormProps) {
                   label="Beskriv vad ni behöver hjälp med"
                   name="message"
                   placeholder="Hej! Jag behöver hjälp med att rensa avloppet i köket. Det går långsamt och luktar illa. Kan ni komma och kolla?"
+                />
+              )}
+            </form.AppField>
+            <form.AppField name="website">
+              {(field) => (
+                <field.TextField
+                  label="Webbplats"
+                  name="website"
+                  type="text"
+                  placeholder="https://www.example.com"
+                  hidden={true}
+                  labelHidden={true}
                 />
               )}
             </form.AppField>
