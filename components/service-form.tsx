@@ -57,10 +57,6 @@ export default function ServiceForm(props: ServiceContactFormProps) {
       try {
         const transformedData = contactSchema.parse(value);
 
-        console.log("TRANSFORMED DATA => ", transformedData);
-
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
         const response = await fetch("/api/contact-form", {
           method: "POST",
           headers: {
@@ -69,28 +65,18 @@ export default function ServiceForm(props: ServiceContactFormProps) {
           body: JSON.stringify(transformedData),
         });
 
-        console.log("RESPONSE => ", response);
-
         if (!response.ok) {
           console.log("Form submission failed", response);
           setStatus("error");
           return;
         }
 
-        console.log("Form submitted successfully!");
         setStatus("success");
       } catch (error) {
         console.error("Form submission error:", error);
         setStatus("error");
       }
     },
-  });
-
-  // Debug form state
-  console.log("Form state:", {
-    isSubmitting: form.state.isSubmitting,
-    isSubmitSuccessful: form.state.isSubmitSuccessful,
-    canSubmit: form.state.canSubmit,
   });
 
   return (

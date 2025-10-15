@@ -5,10 +5,14 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 export async function POST(request: Request) {
   const origin = request.headers.get("origin");
   const referer = request.headers.get("referer");
-  const allowedOrigins = ["https://www.spoltec.se", "https://spoltec.se"];
+  const allowedOrigins = [
+    "https://www.spoltec.se",
+    "https://spoltec.se",
+    `${process.env.URL}`,
+  ];
   if (
     !allowedOrigins.includes(origin || "") &&
-    !referer?.includes("spoltec.se")
+    !referer?.includes(process.env.DOMAIN as string)
   ) {
     return new Response("Invalid origin", { status: 403 });
   }
@@ -23,7 +27,6 @@ export async function POST(request: Request) {
 
   const { name, email, message, phone, subject } = data;
 
-  console.log(name, email, message, phone, subject);
   try {
     const emailRes = await sgMail.send({
       from: {
