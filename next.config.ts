@@ -126,16 +126,23 @@ const nextConfig: NextConfig = {
     return config;
   },
 
-  // Optimized headers for Next.js 15
   async headers() {
     return [
       // Static assets - covers all Next.js build assets including CSS
       {
-        source: "/_next/static/(.*)",
+        source: "/api/:path*",
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            value: "no-store, no-cache, must-revalidate", // Example for API routes
+          },
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
           },
         ],
       },
@@ -143,15 +150,31 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: [
-          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "X-DNS-Prefetch-Control",
+            value: "on",
+          },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
+          {
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
+          },
           {
             key: "Permissions-Policy",
             value:
-              "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+              "camera=(), microphone=(), geolocation=(), browsing-topics=()",
           },
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-Frame-Options", value: "DENY" },
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "origin-when-cross-origin",
+          },
         ],
       },
     ];
