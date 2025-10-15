@@ -121,6 +121,8 @@ export default async function ArticlePage(props: PageProps) {
             subtitle={post?.gqlHeroFields?.underrubrik || ""}
             text={post?.gqlHeroFields?.introduktionstext || ""}
             image={post?.gqlHeroFields?.bild?.mediaItemUrl || ""}
+            width={post?.gqlHeroFields?.bild?.mediaDetails?.width}
+            height={post?.gqlHeroFields?.bild?.mediaDetails?.height}
           />
           <BreadcrumbsComponent items={breadcrumbItems} />
 

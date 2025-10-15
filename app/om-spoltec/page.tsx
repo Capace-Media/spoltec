@@ -41,6 +41,8 @@ const OmSpoltecPage = async () => {
           subtitle={page?.gqlHeroFields?.underrubrik || ""}
           text={page?.gqlHeroFields?.introduktionstext || ""}
           image={page?.gqlHeroFields?.bild?.mediaItemUrl}
+          width={page?.gqlHeroFields?.bild?.mediaDetails?.width}
+          height={page?.gqlHeroFields?.bild?.mediaDetails?.height}
         />
 
         <Blocks blocks={page?.gqlBlocks?.blocks || []} />

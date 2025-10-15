@@ -5,9 +5,18 @@ const nextConfig: NextConfig = {
   compress: true, // Vercel handles this, but keeping it doesn't hurt
   poweredByHeader: false,
 
-  // Add transpilePackages to remove ES5 polyfills
+  // Enable source maps for production debugging
+  productionBrowserSourceMaps: true,
+
+  // Next.js 15: External packages configuration for better performance
+  serverExternalPackages: [
+    // Keep these external for better performance
+    "sharp",
+    "@sendgrid/mail",
+  ],
+
+  // Transpile packages for modern ES modules
   transpilePackages: [
-    // These packages likely contain ES5 polyfills
     "@radix-ui/react-accordion",
     "@radix-ui/react-collapsible",
     "@radix-ui/react-dialog",
@@ -22,10 +31,9 @@ const nextConfig: NextConfig = {
     "html-react-parser",
     "lucide-react",
     "tailwind-merge",
-    "schema-dts",
   ],
 
-  // Vercel-specific optimizations
+  // Next.js 15 optimizations
   experimental: {
     // Enable optimized package imports
     optimizePackageImports: [
@@ -35,123 +43,137 @@ const nextConfig: NextConfig = {
       "@radix-ui/react-navigation-menu",
       "@radix-ui/react-tooltip",
       "@tanstack/react-query",
+      "html-react-parser",
+      "class-variance-authority",
+      "clsx",
+      "tailwind-merge",
     ],
 
     // Better caching for static content
     staticGenerationRetryCount: 3,
 
-    // Improved performance for large apps
-    webpackMemoryOptimizations: true,
-
     // Force modern JS compilation
     forceSwcTransforms: true,
 
-    // Remove problematic CSS optimization features that require critters
-    // optimizeCss: true, // REMOVED - causes build failures
-    // cssChunking: "strict", // REMOVED - causes build failures
+    // Note: Removed optimizeCss as it causes critters module errors in Next.js 15.5.4
   },
 
-  // Optimize webpack bundle
+  // Next.js 15 optimized webpack configuration
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
-      // Enable bundle analyzer in production
+      // Note: Removed react-dom alias as it breaks Next.js 15 client-side resolution
+      // The duplicate React DOM issue should be resolved by proper chunk splitting instead
+
+      // Modern bundle splitting strategy for Next.js 15
       config.optimization.splitChunks = {
         chunks: "all",
+        minSize: 20000,
+        maxSize: 244000,
         cacheGroups: {
+          // React ecosystem in separate chunk
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: "react",
+            chunks: "all",
+            priority: 20,
+            enforce: true,
+          },
+          // UI libraries
+          ui: {
+            test: /[\\/]node_modules[\\/](@radix-ui|lucide-react)[\\/]/,
+            name: "ui",
+            chunks: "all",
+            priority: 15,
+          },
+          // Data fetching libraries
+          data: {
+            test: /[\\/]node_modules[\\/]@tanstack[\\/]/,
+            name: "data",
+            chunks: "all",
+            priority: 15,
+          },
+          // Utility libraries
+          utils: {
+            test: /[\\/]node_modules[\\/](clsx|tailwind-merge|class-variance-authority)[\\/]/,
+            name: "utils",
+            chunks: "all",
+            priority: 12,
+          },
+          // Other vendor libraries
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             name: "vendors",
             chunks: "all",
+            priority: 10,
+            maxSize: 200000,
           },
+          // Common chunks
           common: {
             name: "common",
             minChunks: 2,
             chunks: "all",
+            priority: 5,
             enforce: true,
+            maxSize: 100000,
           },
         },
       };
+
+      // Enable modern tree shaking
+      config.optimization.usedExports = true;
+      config.optimization.sideEffects = false;
     }
     return config;
   },
 
-  // Your existing headers, images, redirects are perfect for Vercel
   async headers() {
     return [
-      // Static assets
+      // Static assets - covers all Next.js build assets including CSS
       {
-        source: "/_next/static/(.*)",
+        source: "/api/:path*",
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            value: "no-store, no-cache, must-revalidate", // Example for API routes
+          },
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
           },
         ],
       },
-      // CSS files - optimize loading
-      {
-        source: "/_next/static/css/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-          {
-            key: "Content-Type",
-            value: "text/css",
-          },
-        ],
-      },
-      {
-        source: "/images/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      // Privacy and security headers for all pages
+      // Security headers for all pages
       {
         source: "/(.*)",
         headers: [
-          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          // Privacy-focused headers
+          {
+            key: "X-DNS-Prefetch-Control",
+            value: "on",
+          },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
+          {
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
+          },
           {
             key: "Permissions-Policy",
             value:
-              "camera=(), microphone=(), geolocation=(), interest-cohort=()",
-          },
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-Frame-Options", value: "DENY" },
-          { key: "X-XSS-Protection", value: "1; mode=block" },
-          // Cookie policy for first-party cookies
-          {
-            key: "Set-Cookie",
-            value: "SameSite=Lax; Secure; HttpOnly",
+              "camera=(), microphone=(), geolocation=(), browsing-topics=()",
           },
           {
-            key: "Cache-Control",
-            value: "public, max-age=0, s-maxage=600, stale-while-revalidate=60",
-          },
-        ],
-      },
-      // Specific headers for media domain to prevent third-party cookie issues
-      {
-        source: "/images/(.*)",
-        headers: [
-          {
-            key: "Cross-Origin-Resource-Policy",
-            value: "cross-origin",
+            key: "X-Content-Type-Options",
+            value: "nosniff",
           },
           {
-            key: "Access-Control-Allow-Origin",
-            value: "https://www.spoltec.se",
-          },
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            key: "Referrer-Policy",
+            value: "origin-when-cross-origin",
           },
         ],
       },
@@ -159,11 +181,10 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    // Optimize image loading and compression
-    formats: ["image/avif", "image/webp"], // AVIF first for better compression
+    // Modern image optimization for 2025
+    formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60,
-    deviceSizes: [640, 750, 828, 1024, 1200, 1920, 2048, 3840],
-    // imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    deviceSizes: [640, 750, 828, 1024, 1200, 1920, 2048, 2560, 3840],
     qualities: [25, 50, 75, 80, 85, 90, 100],
     remotePatterns: [
       {
@@ -203,6 +224,7 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+    // SVG support - consider removing if not needed for security
     dangerouslyAllowSVG: true,
   },
 

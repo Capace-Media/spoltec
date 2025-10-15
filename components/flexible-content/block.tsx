@@ -8,24 +8,36 @@ import type {
   TjansterBlock,
   TjansterHighlightsBlock,
 } from "@lib/types/page";
-import {
-  TextImage,
-  Video,
-  Services,
-  Text,
-  Blurbs,
-  List,
-  Employee,
-  AvailablePositions,
-  Contact,
-  CallToAction,
-  FAQ,
-  ProsAndCons,
-  HowTo,
-  ServiceHighlights,
-  BlogPosts,
-  LocalServiceLinks,
-} from "./sections";
+import dynamic from "next/dynamic";
+
+// Dynamic imports for better code splitting
+const TextImage = dynamic(() => import("./sections/text-image"), { ssr: true });
+const Video = dynamic(() => import("./sections/video"), { ssr: true });
+const Services = dynamic(() => import("./sections/Services"), { ssr: true });
+const Text = dynamic(() => import("./sections/Text"), { ssr: true });
+const Blurbs = dynamic(() => import("./sections/Blurbs"), { ssr: true });
+const List = dynamic(() => import("./sections/List"), { ssr: true });
+const Employee = dynamic(() => import("./sections/Employee"), { ssr: true });
+const AvailablePositions = dynamic(
+  () => import("./sections/AvailablePositions"),
+  { ssr: true }
+);
+const Contact = dynamic(() => import("./sections/Contact"), { ssr: true });
+const CallToAction = dynamic(() => import("./sections/Cta"), { ssr: true });
+const FAQ = dynamic(() => import("./sections/FAQ"), { ssr: true });
+const ProsAndCons = dynamic(() => import("./sections/CompareTable"), {
+  ssr: true,
+});
+const HowTo = dynamic(() => import("./sections/HowTo"), { ssr: true });
+const ServiceHighlights = dynamic(
+  () => import("./sections/ServiceHighlights"),
+  { ssr: true }
+);
+const BlogPosts = dynamic(() => import("./sections/BlogPosts"), { ssr: true });
+const LocalServiceLinks = dynamic(
+  () => import("./sections/LocalServiceLinks"),
+  { ssr: true }
+);
 
 import type { Block as BlockType } from "@lib/types/page";
 import type {

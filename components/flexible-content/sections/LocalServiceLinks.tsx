@@ -15,7 +15,7 @@ export default function LocalServiceLinks({
 
   return (
     <section
-      className=" border-t pt-10 contain-outer "
+      className=" border-t py-10 contain-outer "
       aria-labelledby="local-links-heading"
       itemScope
       itemType="https://schema.org/ItemList"

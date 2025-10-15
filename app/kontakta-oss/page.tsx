@@ -37,13 +37,13 @@ const KontaktaOssPage = async () => {
     <>
       <JsonLd json={schema} id={"contact-page"} />
       <main key={`kontakta-oss`}>
-        <div className="contain-outer mt-5">
+        <section className="contain-outer">
           <div className="bg-section">
-            <div className="mt-24 text-center contain">
+            <div className="text-center contain">
               <h1>Kontakta oss</h1>
             </div>
           </div>
-        </div>
+        </section>
 
         <div id="">
           <Contact />

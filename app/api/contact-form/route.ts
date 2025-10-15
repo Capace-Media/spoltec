@@ -1,14 +1,31 @@
-"use server";
-
+import { contactSchema } from "@lib/types/contact";
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-export async function submitContactForm(formData: FormData) {
-  const name = formData.get("name") as string;
-  const phone = formData.get("phone") as string;
-  const email = formData.get("email") as string;
-  const message = formData.get("message") as string;
-  const subject = formData.get("subject") as string;
+export async function POST(request: Request) {
+  const origin = request.headers.get("origin");
+  const referer = request.headers.get("referer");
+  const allowedOrigins = [
+    "https://www.spoltec.se",
+    "https://spoltec.se",
+    `${process.env.URL}`,
+  ];
+  if (
+    !allowedOrigins.includes(origin || "") &&
+    !referer?.includes(process.env.DOMAIN as string)
+  ) {
+    return new Response("Invalid origin", { status: 403 });
+  }
+  const data = contactSchema.parse(await request.json());
+
+  if (!data) {
+    return new Response("Invalid data", { status: 400 });
+  }
+  if (data.website && data.website !== "") {
+    return new Response("Bot detected", { status: 400 });
+  }
+
+  const { name, email, message, phone, subject } = data;
 
   try {
     const emailRes = await sgMail.send({
@@ -144,13 +161,15 @@ export async function submitContactForm(formData: FormData) {
 
     if (emailRes[0].statusCode === 202) {
       console.log("MAIL SUCCESS", { name, phone, email, subject, message });
-      return { success: true, data: { name, phone, email, subject, message } };
+      return new Response("OK", { status: 200 });
     } else {
       console.log("MAIL ERROR => Something went wrong while sending email");
-      return { success: false, error: "Failed to send email" };
+      return new Response("Failed to send email", { status: 500 });
     }
   } catch (error) {
     console.error("MAIL ERROR => ", error);
-    return { success: false, error: "Server error occurred" };
+    return new Response("Server error occurred", { status: 500 });
   }
+
+  return new Response("OK");
 }

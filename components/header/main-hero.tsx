@@ -1,82 +1,91 @@
 import Image from "next/image";
 import Link from "next/link";
-import heroImage from "../../public/images/spoltec-water-01.webp";
+import heroImage from "../../public/images/Spoltec-water01.png";
 import { buttonVariants } from "components/ui/button";
 import { cn } from "@lib/utils";
+import { Star } from "lucide-react";
 
 interface MainHeroProps {
   title?: string;
   subtitle?: string;
   text?: string;
+  usp?: { text: string }[];
 }
 
-const MainHero = ({ title, subtitle, text }: MainHeroProps) => {
-  console.log(heroImage?.width);
-  console.log(heroImage?.height);
+const MainHero = (props: MainHeroProps) => {
   return (
     <section
-      className="contain-outer"
+      className="md:px-10 md:mx-auto md:max-w-360 md:bg-brand-lightblue md:rounded-xl md:overflow-hidden"
       aria-labelledby="hero-heading"
       role="banner"
     >
-      <div className="overflow-hidden mt-5 rounded-xl pt-[94px] md:pt-[120px] bg-brand-lightblue py-10 md:py-20">
-        <div className="grid lg:grid-cols-[4fr_5fr]  contain">
-          <div className="relative flex items-center order-2 lg:order-1">
-            {/* <span
-              className="lg:w-[690px] lg:h-[690px] lg:rounded-full lg:absolute lg:-top-1/4 lg:-left-1/2 lg:bg-linear-to-b lg:from-brand-lightblue lg:to-brand-blue lg:opacity-10"
-              aria-hidden="true"
-            /> */}
-            <div className="relative">
-              <h1
-                id="hero-heading"
-                className="text-2xl md:text-3xl font-bold mb-0 pb-2 "
-              >
-                {title
-                  ? title
-                  : "Avloppsspolning, relining och rörinspektion i Skåne & Mälardalen | Spoltec"}
-              </h1>
-              {subtitle && (
-                <p className="text-gray-700 text-xl leading-relaxed mb-0 pb-3">
-                  <strong>
-                    {subtitle
-                      ? subtitle
-                      : "Vi funktionssäkrar ert avloppssystem"}
-                  </strong>
-                </p>
-              )}
-              <p className=" text-gray-700 leading-relaxed mb-0 pb-3">
-                {text
-                  ? text
-                  : "Spoltec erbjuder avloppsspolning, relining, rörinspektion och serviceavtal för både privatpersoner och företag. Med lokal närvaro i Skåne, Halland och Mälardalen hjälper vi er förebygga och lösa problem i avloppssystemet."}
+      <div className="md:relative md:w-full md:h-[600px]">
+        <span
+          className="md:w-[690px] md:h-[690px] md:rounded-full md:absolute md:top-0 md:-left-[15%] md:z-10 md:bg-linear-to-b md:from-brand-lightblue md:to-brand-blue md:opacity-10"
+          aria-hidden="true"
+        />
+        <div className="md:grid md:grid-cols-2 md:gap-10 md:absolute md:top-0 md:left-0 md:w-full md:h-full md:z-20 md:py-20">
+          <Image
+            src={heroImage}
+            width={heroImage?.width}
+            height={heroImage?.height}
+            className="overflow-hidden md:order-2 object-contain md:h-[480px]"
+            priority
+            fetchPriority="high"
+            quality={75}
+            alt="Spoltec avloppstjänster - professionell vattenbehandling och spolning av avloppssystem"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 44vw, 600px"
+          />
+          <div className="px-4">
+            <h1 id="hero-heading">
+              {props.title
+                ? props.title
+                : "Avloppsspolning, relining och rörinspektion i Skåne & Mälardalen | Spoltec"}
+            </h1>
+            {props.subtitle && (
+              <p>
+                <strong>
+                  {props.subtitle
+                    ? props.subtitle
+                    : "Vi funktionssäkrar ert avloppssystem"}
+                </strong>
               </p>
-              <div className="pt-4">
-                <Link
-                  className={cn(
-                    buttonVariants({ variant: "default", size: "lg" })
-                  )}
-                  href="/kontakta-oss"
-                  aria-label="Kontakta Spoltec för hjälp med ert avloppssystem"
-                >
-                  Kontakta oss
-                </Link>
-              </div>
+            )}
+            <p>
+              {props.text
+                ? props.text
+                : "Spoltec erbjuder avloppsspolning, relining, rörinspektion och serviceavtal för både privatpersoner och företag. Med lokal närvaro i Skåne, Halland och Mälardalen hjälper vi er förebygga och lösa problem i avloppssystemet."}
+            </p>
+            {props.usp && props.usp.length > 0 && (
+              <ul className="text-sm pb-2 lg:grid lg:grid-cols-2 lg:space-y-3 lg:pt-4">
+                {props.usp?.map((item) => (
+                  <li key={item.text} className="flex items-center gap-2 pb-1">
+                    <Star className="size-4" /> {item.text}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <div className="flex flex-col lg:flex-row gap-2 pt-4">
+              <Link
+                className={cn(
+                  buttonVariants({ variant: "default", size: "lg" })
+                )}
+                href="/kontakta-oss"
+                aria-label="Kontakta Spoltec för hjälp med ert avloppssystem"
+              >
+                Kontakta oss
+              </Link>
+              <Link
+                className={cn(
+                  buttonVariants({ variant: "secondary", size: "lg" })
+                )}
+                href="/akut-hjalp"
+                aria-label="Akut hjälp för ert avloppssystem"
+              >
+                Kontakta Jouren
+              </Link>
             </div>
           </div>
-          <figure className="-mb-10 order-1 lg:order-2 ">
-            <Image
-              src={heroImage}
-              width={heroImage?.width}
-              height={heroImage?.height}
-              style={{
-                objectFit: "contain",
-              }}
-              priority
-              fetchPriority="high"
-              quality={75}
-              alt="Spoltec avloppstjänster - professionell vattenbehandling och spolning av avloppssystem"
-              sizes="(max-width: 768px) 85.5vw, (max-width: 1024px) 95vw,(max-width: 1365px) 48vw, 670px"
-            />
-          </figure>
         </div>
       </div>
     </section>

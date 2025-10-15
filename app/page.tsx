@@ -45,6 +45,7 @@ export default async function Home() {
           title={page?.title}
           subtitle={page?.gqlHeroFields?.underrubrik || ""}
           text={page?.gqlHeroFields?.introduktionstext || ""}
+          usp={page?.gqlHeroFields?.usp || []}
         />
 
         <Blocks blocks={page?.gqlBlocks?.blocks || []} />
