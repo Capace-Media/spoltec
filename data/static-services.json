@@ -1,5 +1,25 @@
 [
   {
+    "title": "Malmö",
+    "slug": "malmo",
+    "uri": "/services/relining/malmo/",
+    "gqlHeroFields": {
+      "underrubrik": null,
+      "introduktionstext": null,
+      "bild": null
+    }
+  },
+  {
+    "title": "Malmö",
+    "slug": "malmo",
+    "uri": "/services/avloppsspolning/malmo/",
+    "gqlHeroFields": {
+      "underrubrik": null,
+      "introduktionstext": null,
+      "bild": null
+    }
+  },
+  {
     "title": "Kanaltätning",
     "slug": "kanaltatning",
     "uri": "/services/kanaltatning/",
