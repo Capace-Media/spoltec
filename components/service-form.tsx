@@ -80,7 +80,7 @@ export default function ServiceForm(props: ServiceContactFormProps) {
   });
 
   return (
-    <Card className="lg:max-w-[399px] lg:min-w-[399px] xl:max-w-[499px] xl:min-w-[399px] w-full ">
+    <Card className="lg:max-w-[399px] bg-[hsl(0,0%,98%)] lg:min-w-[399px] xl:max-w-[499px] xl:min-w-[399px] w-full ">
       <CardHeader>
         <CardTitle>
           Få kostnadsfri offert på professionell
@@ -201,7 +201,7 @@ export default function ServiceForm(props: ServiceContactFormProps) {
                   label="Ditt fullständiga namn"
                   name="name"
                   type="text"
-                  placeholder="Anna Andersson"
+                  placeholder="John Doe"
                 />
               )}
             </form.AppField>
@@ -211,7 +211,7 @@ export default function ServiceForm(props: ServiceContactFormProps) {
                   label="Telefonnummer för kontakt"
                   name="phone"
                   type="text"
-                  placeholder="070-123 45 67"
+                  placeholder="070-070 70 70"
                 />
               )}
             </form.AppField>
@@ -221,7 +221,7 @@ export default function ServiceForm(props: ServiceContactFormProps) {
                   label="E-postadress"
                   name="email"
                   type="email"
-                  placeholder="anna.andersson@email.se"
+                  placeholder="john.doe@email.com"
                 />
               )}
             </form.AppField>
@@ -230,7 +230,7 @@ export default function ServiceForm(props: ServiceContactFormProps) {
                 <field.TextareaField
                   label="Beskriv vad ni behöver hjälp med"
                   name="message"
-                  placeholder="Hej! Jag behöver hjälp med att rensa avloppet i köket. Det går långsamt och luktar illa. Kan ni komma och kolla?"
+                  placeholder="Hej! Jag behöver hjälp med..."
                 />
               )}
             </form.AppField>

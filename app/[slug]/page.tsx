@@ -8,7 +8,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
 import SchemaScript from "@lib/utils/schema-script";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 type GetPagesQueryData = {
   pages: {
@@ -80,7 +80,7 @@ interface PageProps {
 export default async function Page(props: PageProps) {
   const params = await props.params;
   const page = await getPage(params.slug);
-
+  console.log("Page", page);
   if (!page) {
     notFound();
   }
@@ -89,7 +89,8 @@ export default async function Page(props: PageProps) {
     page.slug.includes("avloppsspolning") ||
     page.slug.includes("relining") ||
     page.slug.includes("oljeavskiljare") ||
-    page.slug.includes("rorinspektion");
+    page.slug.includes("rorinspektion") ||
+    page.slug.includes("stamspolning");
 
   const raw = page?.pageSchema?.schema?.json;
 
