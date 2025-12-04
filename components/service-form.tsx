@@ -1,6 +1,10 @@
 "use client";
 
-import { contactSchema, type TContactSchema } from "@lib/types/contact";
+import {
+  contactSchema,
+  LocationOptions,
+  type TContactSchema,
+} from "@lib/types/contact";
 import useAppForm from "./form/useAppForm";
 import {
   Card,
@@ -205,23 +209,35 @@ export default function ServiceForm(props: ServiceContactFormProps) {
                 />
               )}
             </form.AppField>
-            <form.AppField name="phone">
+            <div className="flex flex-col md:flex-row md:w-full gap-4">
+              <form.AppField name="phone">
+                {(field) => (
+                  <field.TextField
+                    label="Telefonnummer"
+                    name="phone"
+                    type="text"
+                    placeholder="070-070 70 70"
+                  />
+                )}
+              </form.AppField>
+              <form.AppField name="email">
+                {(field) => (
+                  <field.TextField
+                    label="E-postadress"
+                    name="email"
+                    type="email"
+                    placeholder="john.doe@email.com"
+                  />
+                )}
+              </form.AppField>
+            </div>
+            <form.AppField name="location">
               {(field) => (
-                <field.TextField
-                  label="Telefonnummer för kontakt"
-                  name="phone"
-                  type="text"
-                  placeholder="070-070 70 70"
-                />
-              )}
-            </form.AppField>
-            <form.AppField name="email">
-              {(field) => (
-                <field.TextField
-                  label="E-postadress"
-                  name="email"
-                  type="email"
-                  placeholder="john.doe@email.com"
+                <field.SelectField
+                  label="Plats"
+                  name="location"
+                  options={LocationOptions}
+                  placeholder="Välj en plats"
                 />
               )}
             </form.AppField>
