@@ -12,6 +12,7 @@ export const LocationOptions = [
   { value: "Varberg", label: "Varberg" },
   { value: "Växjö", label: "Växjö" },
   { value: "Stockholm", label: "Stockholm" },
+  { value: "Övrigt", label: "Övrigt" },
 ];
 
 export const contactSchema = z.object({
