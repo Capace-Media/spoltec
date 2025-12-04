@@ -1,17 +1,17 @@
 import { z } from "zod";
 
 export const LocationOptions = [
-  { value: "boras", label: "Borås" },
-  { value: "goteborg", label: "Göteborg" },
-  { value: "malmo", label: "Malmö" },
-  { value: "helsingborg", label: "Helsingborg" },
-  { value: "kalmar", label: "Kalmar" },
-  { value: "karlskrona", label: "Karlskrona" },
-  { value: "kristianstad", label: "Kristianstad" },
-  { value: "halmstad", label: "Halmstad" },
-  { value: "varberg", label: "Varberg" },
-  { value: "vaxjo", label: "Växjö" },
-  { value: "jonkoping", label: "Jönköping" },
+  { value: "Malmö", label: "Malmö" },
+  { value: "Göteborg", label: "Göteborg" },
+  { value: "Helsingborg", label: "Helsingborg" },
+  { value: "Borås", label: "Borås" },
+  { value: "Kristianstad Eslöv", label: "Kristianstad Eslöv" },
+  { value: "Jönköping", label: "Jönköping" },
+  { value: "Kalmar", label: "Kalmar" },
+  { value: "Karlskrona", label: "Karlskrona" },
+  { value: "Varberg", label: "Varberg" },
+  { value: "Växjö", label: "Växjö" },
+  { value: "Stockholm", label: "Stockholm" },
 ];
 
 export const contactSchema = z.object({
