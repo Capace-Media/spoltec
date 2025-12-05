@@ -88,6 +88,8 @@ const Block = ({ block, textImageOrdinal }: BlockProps) => {
 
     case "GqlService_Gqlblocks_Blocks_Video":
       return <Video data={block} />;
+    case "Page_Gqlblocks_Blocks_Video":
+      return <Video data={block} />;
     case "GqlService_Gqlblocks_Blocks_TextBild":
       return (
         <TextImage data={block as TextBildBlock} ordinal={textImageOrdinal} />

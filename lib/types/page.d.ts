@@ -50,7 +50,11 @@ export interface GqlHeroFields {
   usp: { text: string }[];
 }
 
-// ... existing code ...
+export interface PageVideoBlock {
+  fieldGroupName: "Page_Gqlblocks_Blocks_Video";
+  thumbnailurl: PageImage;
+  video: PageVideo;
+}
 
 // Individual block type interfaces
 export interface BlurbsBlock {
@@ -271,7 +275,8 @@ export type Block =
   | HowToBlock
   | ProsAndConsBlock
   | PostHighlightsBlock
-  | LocalLandingPagesBlock;
+  | LocalLandingPagesBlock
+  | PageVideoBlock;
 
 export interface GqlBlocks {
   blocks: Block[];
