@@ -19,6 +19,29 @@ export const BLOCKS = `
             a
           }
         }
+                       ... on Page_Gqlblocks_Blocks_Video {
+              fieldGroupName
+              thumbnailurl {
+                mediaItemUrl
+                mediaDetails {
+                  width
+                  height
+                }
+                      }
+                      video {
+                        mediaItemUrl
+                        mediaDetails {
+                  width
+                  height
+                }
+                mediaDetails {
+                  file
+                  height
+                  width
+                }
+                altText
+              }
+            }
         ... on Page_Gqlblocks_Blocks_TjansterHighlights {
           fieldGroupName
           intro {
