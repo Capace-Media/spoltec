@@ -114,16 +114,16 @@ query SERVICE_QUERY($slug: ID!) {
               thumbnailurl {
                 mediaItemUrl
                 mediaDetails {
-          width
-          height
-        }
-              }
-              video {
-                mediaItemUrl
-                mediaDetails {
-          width
-          height
-        }
+                  width
+                  height
+                }
+                      }
+                      video {
+                        mediaItemUrl
+                        mediaDetails {
+                  width
+                  height
+                }
                 mediaDetails {
                   file
                   height

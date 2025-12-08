@@ -22,8 +22,8 @@ async function handle(request: NextRequest) {
   } as const;
 
   const tag = tagMap[path as keyof typeof tagMap];
-  if (tag) revalidateTag(tag);
-  revalidateTag(path);
+  if (tag) revalidateTag(tag, "max");
+  revalidateTag(path, "max");
 
   return NextResponse.json({ revalidated: true, path });
 }

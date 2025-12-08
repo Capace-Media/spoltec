@@ -1,191 +1,46 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Your existing config is already good for Vercel
-  compress: true, // Vercel handles this, but keeping it doesn't hurt
   poweredByHeader: false,
 
-  // Enable source maps for production debugging
-  productionBrowserSourceMaps: true,
-
   // Next.js 15: External packages configuration for better performance
-  serverExternalPackages: [
-    // Keep these external for better performance
-    "sharp",
-    "@sendgrid/mail",
-  ],
-
-  // Transpile packages for modern ES modules
-  transpilePackages: [
-    "@radix-ui/react-accordion",
-    "@radix-ui/react-collapsible",
-    "@radix-ui/react-dialog",
-    "@radix-ui/react-navigation-menu",
-    "@radix-ui/react-separator",
-    "@radix-ui/react-slot",
-    "@radix-ui/react-tooltip",
-    "@tanstack/react-query",
-    "class-variance-authority",
-    "clsx",
-    "dompurify",
-    "html-react-parser",
-    "lucide-react",
-    "tailwind-merge",
-  ],
-
-  // Next.js 15 optimizations
-  experimental: {
-    // Enable optimized package imports
-    optimizePackageImports: [
-      "lucide-react",
-      "@radix-ui/react-accordion",
-      "@radix-ui/react-dialog",
-      "@radix-ui/react-navigation-menu",
-      "@radix-ui/react-tooltip",
-      "@tanstack/react-query",
-      "html-react-parser",
-      "class-variance-authority",
-      "clsx",
-      "tailwind-merge",
-    ],
-
-    // Better caching for static content
-    staticGenerationRetryCount: 3,
-
-    // Force modern JS compilation
-    forceSwcTransforms: true,
-
-    // Note: Removed optimizeCss as it causes critters module errors in Next.js 15.5.4
-  },
-
-  // Next.js 15 optimized webpack configuration
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      // Note: Removed react-dom alias as it breaks Next.js 15 client-side resolution
-      // The duplicate React DOM issue should be resolved by proper chunk splitting instead
-
-      // Modern bundle splitting strategy for Next.js 15
-      config.optimization.splitChunks = {
-        chunks: "all",
-        minSize: 20000,
-        maxSize: 244000,
-        cacheGroups: {
-          // React ecosystem in separate chunk
-          react: {
-            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-            name: "react",
-            chunks: "all",
-            priority: 20,
-            enforce: true,
-          },
-          // UI libraries
-          ui: {
-            test: /[\\/]node_modules[\\/](@radix-ui|lucide-react)[\\/]/,
-            name: "ui",
-            chunks: "all",
-            priority: 15,
-          },
-          // Data fetching libraries
-          data: {
-            test: /[\\/]node_modules[\\/]@tanstack[\\/]/,
-            name: "data",
-            chunks: "all",
-            priority: 15,
-          },
-          // Utility libraries
-          utils: {
-            test: /[\\/]node_modules[\\/](clsx|tailwind-merge|class-variance-authority)[\\/]/,
-            name: "utils",
-            chunks: "all",
-            priority: 12,
-          },
-          // Other vendor libraries
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendors",
-            chunks: "all",
-            priority: 10,
-            maxSize: 200000,
-          },
-          // Common chunks
-          common: {
-            name: "common",
-            minChunks: 2,
-            chunks: "all",
-            priority: 5,
-            enforce: true,
-            maxSize: 100000,
-          },
-        },
-      };
-
-      // Enable modern tree shaking
-      config.optimization.usedExports = true;
-      config.optimization.sideEffects = false;
-    }
-    return config;
-  },
+  serverExternalPackages: ["sharp"],
 
   async headers() {
     return [
-      // Static assets - covers all Next.js build assets including CSS
+      // API routes - keep these
       {
         source: "/api/:path*",
         headers: [
+          // Note: Cache-Control here is fine for API routes
           {
             key: "Cache-Control",
-            value: "no-store, no-cache, must-revalidate", // Example for API routes
+            value: "no-store, no-cache, must-revalidate",
           },
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "DENY",
-          },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "DENY" },
         ],
       },
       // Security headers for all pages
       {
         source: "/(.*)",
         headers: [
-          {
-            key: "X-DNS-Prefetch-Control",
-            value: "on",
-          },
-          {
-            key: "Strict-Transport-Security",
-            value: "max-age=63072000; includeSubDomains; preload",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "SAMEORIGIN",
-          },
+          { key: "X-DNS-Prefetch-Control", value: "on" },
+          // REMOVE: Strict-Transport-Security - Vercel handles this
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
           {
             key: "Permissions-Policy",
             value:
               "camera=(), microphone=(), geolocation=(), browsing-topics=()",
           },
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          {
-            key: "Referrer-Policy",
-            value: "origin-when-cross-origin",
-          },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "origin-when-cross-origin" },
         ],
       },
     ];
   },
 
   images: {
-    // Modern image optimization for 2025
-    formats: ["image/avif", "image/webp"],
-    minimumCacheTTL: 60,
-    deviceSizes: [640, 750, 828, 1024, 1200, 1920, 2048, 2560, 3840],
-    qualities: [25, 50, 75, 80, 85, 90, 100],
     remotePatterns: [
       {
         protocol: "https",
@@ -224,16 +79,9 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
-    // SVG support - consider removing if not needed for security
-    dangerouslyAllowSVG: true,
   },
 
   reactStrictMode: true,
-  env: {
-    GRAPHQL_USER: process.env.GRAPHQL_USER,
-    GRAPHQL_PASS: process.env.GRAPHQL_PASS,
-    GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
-  },
 
   async redirects() {
     return [
