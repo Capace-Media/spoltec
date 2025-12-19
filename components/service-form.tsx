@@ -247,6 +247,7 @@ export default function ServiceForm(props: ServiceContactFormProps) {
                     label="Postnummer"
                     name="zip"
                     placeholder="211 38"
+                    optional={true}
                   />
                 )}
               </form.AppField>
