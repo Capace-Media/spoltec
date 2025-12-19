@@ -21,12 +21,11 @@ const nextConfig: NextConfig = {
           { key: "X-Frame-Options", value: "DENY" },
         ],
       },
-      // Security headers for all pages
+
       {
         source: "/(.*)",
         headers: [
           { key: "X-DNS-Prefetch-Control", value: "on" },
-          // REMOVE: Strict-Transport-Security - Vercel handles this
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
           {
             key: "Permissions-Policy",
