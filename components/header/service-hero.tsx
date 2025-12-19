@@ -19,7 +19,7 @@ interface ServiceHeroProps {
 export default function ServiceHero(props: ServiceHeroProps) {
   return (
     <section className="lg:px-10 lg:mx-auto lg:max-w-360" role="banner">
-      <div className="lg:relative lg:h-[680px] lg:rounded-xl lg:overflow-hidden ">
+      <div className="lg:relative lg:h-[690px] lg:rounded-xl lg:overflow-hidden ">
         {props.image && (
           <Image
             src={props.image}

@@ -28,7 +28,7 @@ const Hero = (props: HeroProps) => {
       <div
         className={cn(
           `lg:relative lg:rounded-xl lg:overflow-hidden`,
-          props.isCommercialPage ? "lg:h-[680px]" : "lg:h-[460px]"
+          props.isCommercialPage ? "lg:h-[690px]" : "lg:h-[460px]"
         )}
       >
         {props.image && (
