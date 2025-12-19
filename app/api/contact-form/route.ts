@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     return new Response("Bot detected", { status: 400 });
   }
 
-  const { name, email, message, phone, subject, location } = data;
+  const { name, email, message, phone, subject, address, zip, city } = data;
 
   try {
     const emailRes = await sgMail.send({
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
       },
       replayTo: email,
       to: (process.env.SEND_MAIL as string) || "info@spoltec.se",
-      subject: `Offertförfrågan för ${subject} i ${location}`,
+      subject: `Offertförfrågan för ${subject} i ${city}`,
       html: `
         <!DOCTYPE html>
         <html lang="sv">
@@ -107,8 +107,9 @@ export async function POST(request: Request) {
                       <strong style="color: #2B2B35;">📍 Plats:</strong>
                     </div>
                     <div style="display: table-cell; padding: 8px 0; color: #333333;">
-                      ${location}
+                     ${address} ${city}, ${zip}
                     </div>
+                    
                   </div>
                 </div>
               </div>

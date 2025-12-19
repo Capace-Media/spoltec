@@ -17,9 +17,9 @@ export const LocationOptions = [
 
 export const contactSchema = z.object({
   name: z.string().min(1, "Namn är obligatoriskt"),
-  location: z.enum(
-    LocationOptions.map((option) => option.value) as [string, ...string[]]
-  ),
+  address: z.string().min(3, "Adress är obligatoriskt"),
+  zip: z.string().min(3, "Postnummer är obligatoriskt"),
+  city: z.string().min(3, "Ort är obligatoriskt"),
   email: z.email("Ange en giltig e-postadress"),
   message: z.string().min(1, "Meddelande är obligatoriskt"),
   phone: z.string().min(1, "Telefonnummer är obligatoriskt"),

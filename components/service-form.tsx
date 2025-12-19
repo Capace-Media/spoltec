@@ -100,7 +100,7 @@ export default function ServiceForm(props: ServiceContactFormProps) {
         {status === "success" ? (
           <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <svg
                   className="h-5 w-5 text-green-400"
                   viewBox="0 0 20 20"
@@ -129,7 +129,7 @@ export default function ServiceForm(props: ServiceContactFormProps) {
         ) : status === "error" ? (
           <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <svg
                   className="h-5 w-5 text-red-400"
                   viewBox="0 0 20 0"
@@ -158,7 +158,7 @@ export default function ServiceForm(props: ServiceContactFormProps) {
         ) : status === "loading" ? (
           <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <svg
                   className="animate-spin h-5 w-5 text-blue-400"
                   xmlns="http://www.w3.org/2000/svg"
@@ -231,16 +231,35 @@ export default function ServiceForm(props: ServiceContactFormProps) {
                 )}
               </form.AppField>
             </div>
-            <form.AppField name="location">
+            <form.AppField name="address">
               {(field) => (
-                <field.SelectField
-                  label="Plats"
-                  name="location"
-                  options={LocationOptions}
-                  placeholder="Välj en plats"
+                <field.TextField
+                  label="Adress"
+                  name="address"
+                  placeholder="Storgatan 1"
                 />
               )}
             </form.AppField>
+            <div className="flex flex-col md:flex-row md:w-full gap-4">
+              <form.AppField name="city">
+                {(field) => (
+                  <field.TextField
+                    label="Ort"
+                    name="city"
+                    placeholder="Malmö"
+                  />
+                )}
+              </form.AppField>
+              <form.AppField name="zip">
+                {(field) => (
+                  <field.TextField
+                    label="Postnummer"
+                    name="zip"
+                    placeholder="211 38"
+                  />
+                )}
+              </form.AppField>
+            </div>
             <form.AppField name="message">
               {(field) => (
                 <field.TextareaField
