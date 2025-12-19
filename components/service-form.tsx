@@ -241,21 +241,22 @@ export default function ServiceForm(props: ServiceContactFormProps) {
               )}
             </form.AppField>
             <div className="flex flex-col md:flex-row md:w-full gap-4">
-              <form.AppField name="city">
-                {(field) => (
-                  <field.TextField
-                    label="Ort"
-                    name="city"
-                    placeholder="Malmö"
-                  />
-                )}
-              </form.AppField>
               <form.AppField name="zip">
                 {(field) => (
                   <field.TextField
                     label="Postnummer"
                     name="zip"
                     placeholder="211 38"
+                    optional={true}
+                  />
+                )}
+              </form.AppField>
+              <form.AppField name="city">
+                {(field) => (
+                  <field.TextField
+                    label="Ort"
+                    name="city"
+                    placeholder="Malmö"
                   />
                 )}
               </form.AppField>

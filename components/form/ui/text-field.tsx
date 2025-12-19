@@ -9,12 +9,14 @@ type TextFieldProps = {
   label: string;
   labelHidden?: boolean;
   disablFieldError?: boolean;
+  optional?: boolean;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 export default function TextField({
   label,
   labelHidden = false,
   disablFieldError = false,
+  optional = false,
   ...inputProps
 }: TextFieldProps) {
   const field = useFieldContext<string>();
@@ -23,7 +25,7 @@ export default function TextField({
     <div className="space-y-2 w-full">
       <div className="space-y-2 w-full">
         <Label htmlFor={field.name} className={labelHidden ? "sr-only" : ""}>
-          {label} <span className="text-destructive">*</span>
+          {label} {!optional ? <span className="text-destructive">*</span> : ""}
         </Label>
         <Input
           id={field.name}
