@@ -5,9 +5,13 @@ import Blocks from "components/flexible-content/block";
 import MainHero from "components/header/main-hero";
 import { webPageSchema } from "@lib/seo/schema";
 import JsonLd from "components/JsonLd";
+import Image from "next/image";
+import Link from "next/link";
+import InstagramFeed from "@components/instagram-feed";
+import GoogleTrustIndex from "@components/google-trustindex";
 
 export async function generateMetadata(
-  {},
+  { },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/");
@@ -15,6 +19,8 @@ export async function generateMetadata(
   const canonical = "https://www.spoltec.se";
   return generatePageMetadata(page, parent, canonical);
 }
+
+
 
 export default async function Home() {
   const page = await getPage("/");
@@ -37,10 +43,14 @@ export default async function Home() {
   const canonical = "https://www.spoltec.se";
   const schema = webPageSchema(page, "WebPage", canonical);
 
+
   return (
     <>
       <JsonLd json={schema} id={"home-page"} />
       <main key={page.title}>
+        <InstagramFeed />
+
+        <GoogleTrustIndex />
         <MainHero
           title={page?.title}
           subtitle={page?.gqlHeroFields?.underrubrik || ""}
