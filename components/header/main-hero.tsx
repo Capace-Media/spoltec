@@ -4,6 +4,7 @@ import heroImage from "../../public/images/Spoltec-water01.png";
 import { buttonVariants } from "components/ui/button";
 import { cn } from "@lib/utils";
 import { Star } from "lucide-react";
+import GoogleTrustIndex from "components/google-trustindex";
 
 
 interface MainHeroProps {
@@ -62,6 +63,8 @@ const MainHero = (props: MainHeroProps) => {
                   ? props.text
                   : "Spoltec erbjuder avloppsspolning, relining, rörinspektion och serviceavtal för både privatpersoner och företag. Med lokal närvaro i Skåne, Halland och Mälardalen hjälper vi er förebygga och lösa problem i avloppssystemet."}
               </p>
+
+
               {props.usp && props.usp.length > 0 && (
                 <ul className="text-sm pb-2 lg:grid lg:grid-cols-2 lg:space-y-3 lg:pt-4">
                   {props.usp?.map((item) => (
@@ -91,6 +94,7 @@ const MainHero = (props: MainHeroProps) => {
                   Kontakta Jouren
                 </Link>
               </div>
+              <GoogleTrustIndex />
             </div>
           </div>
         </div>

@@ -48,15 +48,15 @@ export default async function Home() {
     <>
       <JsonLd json={schema} id={"home-page"} />
       <main key={page.title}>
-        <InstagramFeed />
 
-        <GoogleTrustIndex />
+
         <MainHero
           title={page?.title}
           subtitle={page?.gqlHeroFields?.underrubrik || ""}
           text={page?.gqlHeroFields?.introduktionstext || ""}
           usp={page?.gqlHeroFields?.usp || []}
         />
+        <InstagramFeed />
 
         <Blocks blocks={page?.gqlBlocks?.blocks || []} />
       </main>
