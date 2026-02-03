@@ -22,7 +22,7 @@ export default function HowTo({
           </div>
           <ol className="grid md:grid-cols-3 gap-5">
             {listItem.map((s, i) => (
-              <li key={s.title} className="rounded-lg border bg-white p-4">
+              <li key={s.title} className="rounded-lg border bg-card p-4">
                 <div className="pb-2">
                   <h3 className="text-lg text-heading mb-0 ">{s.title}</h3>
                   <span className="block text-xs text-brand-orange contrast-more:text-[#363636]">

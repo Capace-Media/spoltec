@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
 import links from "@data/navlinks.json";
-import { Button, buttonVariants } from "components/ui/button";
+import { buttonVariants } from "components/ui/button";
 import logo from "../../public/images/spoltecs-logo.png";
 import {
   NavigationMenu,
@@ -32,7 +31,7 @@ export default function Nav() {
           // Use will-change to optimize transforms
           "will-change-transform",
           // Dynamic styles based on scroll state
-          isScrolled && "bg-white/95 px-8 lg:px-24 py-1 md:py-4",
+          isScrolled && "bg-background/95 px-8 lg:px-24 py-1 md:py-4",
           !isVisible && "-translate-y-full",
           isVisible && "translate-y-0"
         )}

@@ -11,7 +11,7 @@ export default function FieldErrors({ meta }: FieldErrorsProps) {
   return meta.errors.map(({ message }: ZodError, index) => (
     <p
       key={index}
-      className="text-destructive text-sm font-medium absolute bg-white shadow-lg rounded-lg p-2 z-10"
+      className="text-destructive text-sm font-medium absolute bg-card shadow-lg rounded-lg p-2 z-10"
     >
       {message}
     </p>

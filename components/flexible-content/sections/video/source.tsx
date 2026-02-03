@@ -149,7 +149,7 @@ const VideoSource = ({
       {/* Play button overlay for better UX */}
       {!videoState.isIntersecting && !videoState.hasError && (
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 rounded-[20px] cursor-pointer group">
-          <div className="bg-white bg-opacity-90 rounded-full p-4 group-hover:bg-opacity-100 transition-all">
+          <div className="bg-card bg-opacity-90 rounded-full p-4 group-hover:bg-opacity-100 transition-all">
             <svg
               className="w-8 h-8 text-gray-800"
               fill="currentColor"

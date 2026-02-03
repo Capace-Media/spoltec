@@ -6,7 +6,7 @@ import LongHeader from "@components/long-header";
 import LongText from "@components/long-text";
 import { cn } from "@lib/utils";
 import { buttonVariants } from "@components/ui/button";
-import { getBlurPlaceholder } from "@lib/utils/blur-placeholder";
+
 
 export default function BlogPosts({
   data,
@@ -44,7 +44,7 @@ export default function BlogPosts({
         {data.posts.map((post, index) => (
           <li key={post.id}>
             <Link
-              className="group overflow-hidden rounded-xl border border-brand-blue/10 bg-white text-left shadow-sm transition duration-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 flex flex-col h-full"
+              className="group overflow-hidden rounded-xl border border-brand-blue/10 bg-background text-left shadow-sm transition duration-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 flex flex-col h-full"
               href={`/kunskapsbank/${post.slug}`}
               itemScope
               itemType="https://schema.org/Article"

@@ -33,11 +33,11 @@ export default function CompareTable({
             aria-label={`Jämförelsetabell: ${table.thead.th2} jämfört med ${table.thead.th3}`}
           >
             <TableHeader>
-              <TableRow className="bg-gradient-to-b from-gray-50 to-gray-100/60">
+              <TableRow className="bg-linear-to-b from-gray-50 to-gray-100/60">
                 {table?.thead?.th1 && (
                   <TableHead
                     scope="col"
-                    className="w-[140px] sticky left-0 z-20 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/75 border-r border-gray-200"
+                    className="w-[140px] sticky left-0 z-20 bg-card/95 backdrop-blur supports-backdrop-filter:bg-card/75 border-r border-gray-200"
                   >
                     {table.thead.th1}
                   </TableHead>
@@ -72,18 +72,17 @@ export default function CompareTable({
                     {table.thead.th1 && (
                       <TableHead
                         scope="row"
-                        className="text-brand-blue font-bold sticky left-0 z-10 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/75 border-r border-gray-200"
+                        className="text-brand-blue font-bold sticky left-0 z-10 bg-card/95 backdrop-blur supports-backdrop-filter:bg-card/75 border-r border-gray-200"
                       >
                         {invoice?.td1 ? invoice.td1 : "-"}
                       </TableHead>
                     )}
 
                     <TableCell
-                      className={`text-[#363636]  border-l border-gray-200 ${
-                        td2Best
-                          ? "bg-emerald-50/80 text-emerald-900 font-semibold ring-1 ring-inset ring-emerald-200"
-                          : "bg-[#f8fbff]"
-                      }`}
+                      className={`text-[#363636]  border-l border-gray-200 ${td2Best
+                        ? "bg-emerald-50/80 text-emerald-900 font-semibold ring-1 ring-inset ring-emerald-200"
+                        : "bg-[#f8fbff]"
+                        }`}
                     >
                       <div className="flex items-center gap-2">
                         {td2Best && (
@@ -103,11 +102,10 @@ export default function CompareTable({
                     </TableCell>
 
                     <TableCell
-                      className={`text-[#363636]  border-l border-gray-200 ${
-                        td3Best
-                          ? "bg-emerald-50/80 text-emerald-900 font-semibold ring-1 ring-inset ring-emerald-200"
-                          : "bg-[#fffaf8]"
-                      }`}
+                      className={`text-[#363636]  border-l border-gray-200 ${td3Best
+                        ? "bg-emerald-50/80 text-emerald-900 font-semibold ring-1 ring-inset ring-emerald-200"
+                        : "bg-[#fffaf8]"
+                        }`}
                     >
                       <div className="flex items-center gap-2">
                         {td3Best && (

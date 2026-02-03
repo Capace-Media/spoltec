@@ -21,7 +21,7 @@ export default function PostCard({
   return (
     <Link
       key={`${post.id}-${index}`}
-      className="group overflow-hidden rounded-xl border border-brand-blue/10 bg-white text-left shadow-sm transition duration-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 flex flex-col h-full"
+      className="group overflow-hidden rounded-xl border border-brand-blue/10 bg-background text-left shadow-sm transition duration-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 flex flex-col h-full"
       href={postUrl}
       itemScope
       itemType="https://schema.org/Article"
