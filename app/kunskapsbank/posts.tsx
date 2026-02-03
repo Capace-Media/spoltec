@@ -40,7 +40,7 @@ export default function Posts() {
   // Create a reusable skeleton component
   const PostSkeleton = () => (
     <div className="group overflow-hidden rounded-xl border border-brand-blue/10 bg-background shadow-sm transition duration-200 hover:shadow-md">
-      <div className="relative aspect-[16/9] w-full overflow-hidden">
+      <div className="relative aspect-16/9 w-full overflow-hidden">
         <div className="absolute inset-0 bg-gray-200 animate-pulse" />
       </div>
       <div className="p-5">
