@@ -56,9 +56,9 @@ export default async function Home() {
           text={page?.gqlHeroFields?.introduktionstext || ""}
           usp={page?.gqlHeroFields?.usp || []}
         />
-        <InstagramFeed />
 
         <Blocks blocks={page?.gqlBlocks?.blocks || []} />
+        <InstagramFeed />
       </main>
     </>
   );
