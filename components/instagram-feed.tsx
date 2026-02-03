@@ -95,10 +95,6 @@ export default async function InstagramFeed(): Promise<React.ReactElement | null
                                 width={post.sizes.medium.width}
                                 height={post.sizes.medium.height}
                                 sizes="(max-width: 768px) 92vw, (max-width: 1024px) 45vw, (max-width: 1400px) 23vw, 320px"
-                                placeholder="blur"
-                                blurDataURL={`data:image/svg+xml;base64,${Buffer.from(
-                                    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"><rect fill="rgb(${post.colorPalette.muted})" width="1" height="1"/></svg>`
-                                ).toString("base64")}`}
                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                             <span className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/40">

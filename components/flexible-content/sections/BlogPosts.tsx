@@ -50,7 +50,7 @@ export default function BlogPosts({
               itemType="https://schema.org/Article"
               aria-label={`Läs mer om ${post.title}`}
             >
-              <div className="relative aspect-[16/9] w-full overflow-hidden">
+              <div className="relative aspect-16/9 w-full overflow-hidden">
                 <Image
                   src={post.gqlHeroFields?.bild?.mediaItemUrl}
                   style={{ objectFit: "contain" }}
@@ -58,10 +58,7 @@ export default function BlogPosts({
                   height={post.gqlHeroFields?.bild?.mediaDetails?.height}
                   className="transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
                   alt={post.gqlHeroFields?.bild?.altText || post.title}
-                  quality={50}
                   sizes="(max-width: 768px) 92vw, (max-width: 1024px) 45vw, (max-width: 1400px) 31vw, 428px"
-                  placeholder="blur"
-                  blurDataURL={getBlurPlaceholder("content")}
                 />
               </div>
               {post?.gqlHeroFields?.bild?.mediaItemUrl && (
@@ -102,10 +99,9 @@ export default function BlogPosts({
                   </svg>
 
                   {/* Hidden structured data for SEO */}
-                  <span itemProp="url" className="sr-only">{`${
-                    process.env.NEXT_PUBLIC_MY_WEBSITE ||
+                  <span itemProp="url" className="sr-only">{`${process.env.NEXT_PUBLIC_MY_WEBSITE ||
                     "https://www.spoltec.se"
-                  }/kunskapsbank/${post.slug}`}</span>
+                    }/kunskapsbank/${post.slug}`}</span>
                 </div>
               </div>
             </Link>
