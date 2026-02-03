@@ -1,0 +1,23 @@
+/* TEAM */
+Developer: Rick Centerhall
+Site: https://rickcenterhall.com
+LinkedIn: https://www.linkedin.com/in/rickcenterhall/
+GitHub: https://github.com/RickOliwer
+Location: Sweden
+
+Original Developer: Niklas Wallentin
+GitHub: https://github.com/nickwallentin
+Location: Sweden
+
+/* THANKS */
+Vercel: https://vercel.com
+shadcn/ui: https://ui.shadcn.com
+
+/* SITE */
+Created: 2022/04/29
+Rebuilt: 2025
+Language: Swedish
+Doctype: HTML5
+Standards: HTML5, CSS3, ECMAScript 2024
+Frameworks: React 19, Next.js 16
+Styling: Tailwind CSS
