@@ -1,32 +1,40 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { getPosts } from "@lib/data/post";
-import { useState } from "react";
 import { cn } from "@lib/utils";
 import { buttonVariants } from "components/ui/button";
 import PostCard from "@components/post-card";
-import type { Post } from "@lib/types/post";
+import type { Post, GetPostsQueryData } from "@lib/types/post";
+
+async function fetchPosts(
+  after?: string,
+  first: number = 9
+): Promise<GetPostsQueryData["posts"]> {
+  const params = new URLSearchParams();
+  if (after) params.set("after", after);
+  params.set("first", first.toString());
+
+  const response = await fetch(`/api/get-posts?${params.toString()}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+  return response.json();
+}
 
 export default function Posts() {
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
-
   const {
     data,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
     isLoading,
-    isFetching,
   } = useInfiniteQuery({
     queryKey: ["posts"],
     queryFn: async ({ pageParam }: { pageParam: string | undefined }) => {
-      const posts = await getPosts(pageParam, 9);
-      return posts;
+      return fetchPosts(pageParam, 9);
     },
-    initialPageParam: undefined, // Add this - must match server
-    getNextPageParam: (lastPage, pages) => lastPage?.pageInfo.endCursor,
-    // Remove refetchOnMount and staleTime for now to test hydration
+    initialPageParam: undefined,
+    getNextPageParam: (lastPage) => lastPage?.pageInfo?.endCursor,
   });
 
   const allPosts = data?.pages.flatMap((page) => page?.edges || []) || [];
@@ -122,10 +130,10 @@ export default function Posts() {
         <div className="text-center mt-10">
           <button
             onClick={() => fetchNextPage()}
-            disabled={isFetchingNextPage || isLoadingMore}
+            disabled={isFetchingNextPage}
             className={cn(buttonVariants({ variant: "default", size: "lg" }))}
           >
-            {isFetchingNextPage || isLoadingMore ? (
+            {isFetchingNextPage ? (
               <>
                 <svg
                   className="animate-spin -ml-1 mr-3 h-4 w-4"

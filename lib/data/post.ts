@@ -1,3 +1,4 @@
+"use server";
 import { POST_QUERY, POSTS_QUERY } from "@lib/queries/post";
 import type { GetPostQueryData, GetPostsQueryData } from "@lib/types/post";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";

@@ -13,7 +13,7 @@ import { getServerQueryClient } from "@lib/query-client";
 import type { GetPostsQueryData } from "@lib/types/post";
 
 export async function generateMetadata(
-  {},
+  { },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/kunskapsbank");
