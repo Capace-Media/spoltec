@@ -9,6 +9,7 @@ import JsonLd from "components/JsonLd";
 import { orgSchema } from "@lib/seo/schema";
 import logo from "../public/images/spoltec-logo-new.png";
 import type { Metadata } from "next";
+import { cn } from "@lib/utils";
 
 const chivo = Chivo({
   subsets: ["latin"],
@@ -121,7 +122,7 @@ export default function RootLayout({
   });
   return (
     <html lang="sv">
-      <body className={chivo.className}>
+      <body className={cn(chivo.className, "")}>
         <Nav />
         <JsonLd json={org} id="org-schema" />
         <Providers>{children}</Providers>

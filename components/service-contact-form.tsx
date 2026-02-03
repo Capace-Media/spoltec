@@ -123,7 +123,7 @@ const ServiceContactForm: React.FC<ServiceContactFormProps> = ({
 
   return (
     <div className=" flex items-center justify-center w-full">
-      <div className=" shadow-xl w-full bg-white p-6 lg:max-w-[399px] rounded-lg">
+      <div className=" shadow-xl w-full bg-background p-6 lg:max-w-[399px] rounded-lg">
         <h2 className="text-brand-blue font-bold text-[18px] mb-2">
           Få kostnadsfri offert på professionell
           {readableService ? ` ${readableService.toLowerCase()}` : " service"}

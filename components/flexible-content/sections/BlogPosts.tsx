@@ -6,7 +6,7 @@ import LongHeader from "@components/long-header";
 import LongText from "@components/long-text";
 import { cn } from "@lib/utils";
 import { buttonVariants } from "@components/ui/button";
-import { getBlurPlaceholder } from "@lib/utils/blur-placeholder";
+
 
 export default function BlogPosts({
   data,
@@ -44,13 +44,13 @@ export default function BlogPosts({
         {data.posts.map((post, index) => (
           <li key={post.id}>
             <Link
-              className="group overflow-hidden rounded-xl border border-brand-blue/10 bg-white text-left shadow-sm transition duration-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 flex flex-col h-full"
+              className="group overflow-hidden rounded-xl border border-brand-blue/10 bg-background text-left shadow-sm transition duration-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 flex flex-col h-full"
               href={`/kunskapsbank/${post.slug}`}
               itemScope
               itemType="https://schema.org/Article"
               aria-label={`Läs mer om ${post.title}`}
             >
-              <div className="relative aspect-[16/9] w-full overflow-hidden">
+              <div className="relative aspect-16/9 w-full overflow-hidden">
                 <Image
                   src={post.gqlHeroFields?.bild?.mediaItemUrl}
                   style={{ objectFit: "contain" }}
@@ -58,10 +58,7 @@ export default function BlogPosts({
                   height={post.gqlHeroFields?.bild?.mediaDetails?.height}
                   className="transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
                   alt={post.gqlHeroFields?.bild?.altText || post.title}
-                  quality={50}
                   sizes="(max-width: 768px) 92vw, (max-width: 1024px) 45vw, (max-width: 1400px) 31vw, 428px"
-                  placeholder="blur"
-                  blurDataURL={getBlurPlaceholder("content")}
                 />
               </div>
               {post?.gqlHeroFields?.bild?.mediaItemUrl && (
@@ -102,10 +99,9 @@ export default function BlogPosts({
                   </svg>
 
                   {/* Hidden structured data for SEO */}
-                  <span itemProp="url" className="sr-only">{`${
-                    process.env.NEXT_PUBLIC_MY_WEBSITE ||
+                  <span itemProp="url" className="sr-only">{`${process.env.NEXT_PUBLIC_MY_WEBSITE ||
                     "https://www.spoltec.se"
-                  }/kunskapsbank/${post.slug}`}</span>
+                    }/kunskapsbank/${post.slug}`}</span>
                 </div>
               </div>
             </Link>

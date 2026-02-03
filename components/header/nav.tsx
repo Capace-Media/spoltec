@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
 import links from "@data/navlinks.json";
-import { Button, buttonVariants } from "components/ui/button";
+import { buttonVariants } from "components/ui/button";
 import logo from "../../public/images/spoltecs-logo.png";
 import {
   NavigationMenu,
@@ -17,7 +16,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useScrollBehavior } from "hooks/useScrollBehavior";
 import { NavSheet } from "./nav-sheet";
-import { getBlurPlaceholder } from "@lib/utils/blur-placeholder";
 
 export default function Nav() {
   const { isScrolled, isVisible } = useScrollBehavior({
@@ -33,7 +31,7 @@ export default function Nav() {
           // Use will-change to optimize transforms
           "will-change-transform",
           // Dynamic styles based on scroll state
-          isScrolled && "bg-white/95 px-8 lg:px-24 py-1 md:py-4",
+          isScrolled && "bg-background/95 px-8 lg:px-24 py-1 md:py-4",
           !isVisible && "-translate-y-full",
           isVisible && "translate-y-0"
         )}
@@ -45,7 +43,6 @@ export default function Nav() {
             width={logo.width}
             height={logo.height}
             priority
-            quality={50}
             sizes="(max-width: 1024px) 116px, 155px"
             className={cn(
               "w-auto transition-all duration-300 ease-in-out will-change-transform",

@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import ServiceContactForm from "../service-contact-form";
 import { Star } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "@components/ui/button";
@@ -29,7 +28,6 @@ export default function ServiceHero(props: ServiceHeroProps) {
             alt={props.title || "Service hero image"}
             priority
             fetchPriority="high"
-            quality={50}
             sizes="(max-width: 1200px) 98vw, 1300px"
           />
         )}

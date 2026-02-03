@@ -39,7 +39,6 @@ export default function TextImage(props: TextImageProps) {
                   width={props.data.bilder[0].mediaDetails.width}
                   className="object-contain rounded-xl"
                   alt={props.data.bilder[0]?.altText || ""}
-                  quality={75}
                   sizes="(max-width: 768px) 92vw, (max-width: 1400px) 45vw, 615px"
                 />
               )}

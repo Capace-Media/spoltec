@@ -49,6 +49,18 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "*.cdninstagram.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "behold.pictures",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "img.youtube.com",
         port: "",
         pathname: "/**",

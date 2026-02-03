@@ -54,10 +54,7 @@ export default function ServiceHighlights({ data }: ServiceHighlightsProps) {
                       service.title ||
                       "Service image"
                     }
-                    quality={50}
                     sizes="(max-width: 640px) 85vw, (max-width: 1200px) 45vw, 312px"
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />
                 )}
                 {imageUrl && (
@@ -91,10 +88,9 @@ export default function ServiceHighlights({ data }: ServiceHighlightsProps) {
                     <rect fill="none" height="24" width="24" />
                     <path d="M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z" />
                   </svg>
-                  <span itemProp="url" className="sr-only">{`${
-                    process.env.NEXT_PUBLIC_MY_WEBSITE ||
+                  <span itemProp="url" className="sr-only">{`${process.env.NEXT_PUBLIC_MY_WEBSITE ||
                     "https://www.spoltec.se"
-                  }/tjanster/${service.slug}`}</span>
+                    }/tjanster/${service.slug}`}</span>
                 </div>
               </Link>
             </li>
