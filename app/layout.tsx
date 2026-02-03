@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     "Jönköping",
   ],
 
-  authors: [{ name: "Spoltec Södra AB" }],
+  authors: [{ name: "Spoltec Södra AB", url: "/humans.txt" }],
   creator: "Spoltec Södra AB",
   publisher: "Spoltec Södra AB",
   robots: {
