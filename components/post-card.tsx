@@ -35,10 +35,8 @@ export default function PostCard({
           width={post.gqlHeroFields?.bild?.mediaDetails?.width}
           height={post.gqlHeroFields?.bild?.mediaDetails?.height}
           alt={post.gqlHeroFields?.bild?.altText || post.title}
-          quality={75}
           sizes="(max-width: 640px) 100vw, (max-width: 1200px) 400px, 400px"
-          placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+
         />
       </div>
       {imageUrl && (
@@ -75,9 +73,8 @@ export default function PostCard({
           </svg>
 
           {/* Hidden structured data for SEO */}
-          <span itemProp="url" className="sr-only">{`${
-            process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se"
-          }/kunskapsbank/${postUrl}`}</span>
+          <span itemProp="url" className="sr-only">{`${process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se"
+            }/kunskapsbank/${postUrl}`}</span>
         </div>
       </div>
     </Link>

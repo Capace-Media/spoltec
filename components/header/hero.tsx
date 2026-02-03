@@ -41,7 +41,6 @@ const Hero = (props: HeroProps) => {
             priority
             fetchPriority="high"
             sizes="(max-width: 1200px) 98vw, 1300px"
-            quality={50}
           />
         )}
         <span className="lg:absolute lg:z-10 lg:bg-black/50 lg:w-full lg:h-full lg:top-0 lg:left-0" />

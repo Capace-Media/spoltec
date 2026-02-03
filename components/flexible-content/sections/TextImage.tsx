@@ -14,9 +14,8 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
   return (
     <section className="contain-outer section" data-ordinal={ordinal}>
       <div
-        className={`text-image ${
-          data?.installningar?.bakgrund ? "bg-section" : ""
-        }`}
+        className={`text-image ${data?.installningar?.bakgrund ? "bg-section" : ""
+          }`}
       >
         <div
           className={
@@ -24,11 +23,10 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
           }
         >
           <div
-            className={`flex flex-col gap-20 ${
-              ordinal && ordinal % 2 === 0
-                ? "lg:flex-row"
-                : "lg:flex-row-reverse"
-            }`}
+            className={`flex flex-col gap-20 ${ordinal && ordinal % 2 === 0
+              ? "lg:flex-row"
+              : "lg:flex-row-reverse"
+              }`}
           >
             <div className="flex items-center w-full">
               <div>
@@ -76,7 +74,6 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
                               borderRadius: "12px",
                             }}
                             alt={image?.altText || "Text image"}
-                            quality={75}
                             sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           />
                         )}
@@ -101,7 +98,6 @@ const TextImage = ({ data, ordinal }: TextImageProps) => {
                               borderRadius: "12px",
                             }}
                             alt={image?.altText || "Text image"}
-                            quality={75}
                             sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           />
                         )}

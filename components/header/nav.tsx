@@ -17,7 +17,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useScrollBehavior } from "hooks/useScrollBehavior";
 import { NavSheet } from "./nav-sheet";
-import { getBlurPlaceholder } from "@lib/utils/blur-placeholder";
 
 export default function Nav() {
   const { isScrolled, isVisible } = useScrollBehavior({
@@ -45,7 +44,6 @@ export default function Nav() {
             width={logo.width}
             height={logo.height}
             priority
-            quality={50}
             sizes="(max-width: 1024px) 116px, 155px"
             className={cn(
               "w-auto transition-all duration-300 ease-in-out will-change-transform",

@@ -37,7 +37,6 @@ const MainHero = (props: MainHeroProps) => {
               className="overflow-hidden md:order-2 object-contain md:h-[480px]"
               priority
               fetchPriority="high"
-              quality={75}
               alt="Spoltec avloppstjänster - professionell vattenbehandling och spolning av avloppssystem"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 44vw, 600px"
             />

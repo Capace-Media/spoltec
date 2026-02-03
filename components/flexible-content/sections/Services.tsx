@@ -123,10 +123,7 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
                 alt={
                   service?.title ? `Bild för ${service.title}` : "Servicebild"
                 }
-                quality={75}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                placeholder="blur"
-                blurDataURL={getBlurPlaceholder("content")}
               />
 
               <div>
@@ -155,9 +152,8 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
                   <path d="M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z" />
                 </svg>
               </div>
-              <span itemProp="url" className="sr-only">{`${
-                process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se"
-              }/tjanster/${service.slug}`}</span>
+              <span itemProp="url" className="sr-only">{`${process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se"
+                }/tjanster/${service.slug}`}</span>
             </Link>
           );
         })}
