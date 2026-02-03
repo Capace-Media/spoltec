@@ -1,9 +1,13 @@
 /* TEAM */
-Developer: Rick Centerhall
+Lead Developer: Rick Centerhall
 Site: https://rickcenterhall.com
 LinkedIn: https://www.linkedin.com/in/rickcenterhall/
 GitHub: https://github.com/RickOliwer
-Location: Sweden
+Location: Malmö, Sweden
+
+Development Intern: Darion Valdez
+Site: https://darionvaldez.se
+GitHub: https://github.com/DarionV
 
 Original Developer: Niklas Wallentin
 GitHub: https://github.com/nickwallentin
