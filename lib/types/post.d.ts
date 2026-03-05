@@ -22,6 +22,7 @@ export interface Post {
   id: string;
   modifiedGmt?: string;
   dateGmt?: string;
+  date?: string;
   seo: Seo;
   gqlHeroFields?: PostHeroFields;
   gqlBlocks?: {

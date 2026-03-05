@@ -107,6 +107,15 @@ export default async function ArticlePage(props: PageProps) {
   );
   const articleLD = articleSchema(post, canonical);
 
+  const publishedDate = post?.date ? new Date(post.date) : undefined;
+  const modifiedDate = post?.modifiedGmt
+    ? new Date(post.modifiedGmt)
+    : undefined;
+  const showUpdated =
+    modifiedDate &&
+    publishedDate &&
+    modifiedDate.getTime() !== publishedDate.getTime();
+
   return (
     <>
       <JsonLd json={bread} id="breadcrumbs-schema" />
@@ -124,7 +133,42 @@ export default async function ArticlePage(props: PageProps) {
             width={post?.gqlHeroFields?.bild?.mediaDetails?.width}
             height={post?.gqlHeroFields?.bild?.mediaDetails?.height}
           />
-          <BreadcrumbsComponent items={breadcrumbItems} />
+          <div className="lg:flex lg:justify-between lg:items-center">
+
+            <BreadcrumbsComponent items={breadcrumbItems} />
+            <section
+              aria-label="Artikeldatum"
+              className="text-sm text-muted-foreground contain-outer"
+            >
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                {publishedDate && (
+                  <span>
+                    Publicerad{" "}
+                    <time dateTime={publishedDate.toISOString()}>
+                      {publishedDate.toLocaleDateString("sv-SE", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </time>
+                  </span>
+                )}
+
+                {showUpdated && modifiedDate && (
+                  <span aria-label="Senast uppdaterad">
+                    Uppdaterad{" "}
+                    <time dateTime={modifiedDate.toISOString()}>
+                      {modifiedDate.toLocaleDateString("sv-SE", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </time>
+                  </span>
+                )}
+              </div>
+            </section>
+          </div>
 
           <div>
             <Blocks blocks={post?.gqlBlocks?.blocks || []} />
