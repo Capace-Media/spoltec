@@ -89,7 +89,7 @@ export default async function InstagramFeed(): Promise<React.ReactElement | null
                             href={post.permalink}
                             target="_blank"
                             rel="noopener noreferrer nofollow"
-                            className="group relative block aspect-square overflow-hidden rounded-xl"
+                            className="group relative flex aspect-square overflow-hidden rounded-xl bg-primary/10 items-center justify-center"
                         >
                             <Image
                                 src={post.sizes.medium.mediaUrl}
@@ -97,7 +97,7 @@ export default async function InstagramFeed(): Promise<React.ReactElement | null
                                 width={post.sizes.medium.width}
                                 height={post.sizes.medium.height}
                                 sizes="(max-width: 768px) 92vw, (max-width: 1024px) 45vw, (max-width: 1400px) 23vw, 320px"
-                                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                className="object-contain max-h-full max-w-full transition-transform duration-300 group-hover:scale-105"
                             />
                             <span className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/40">
                                 <svg
