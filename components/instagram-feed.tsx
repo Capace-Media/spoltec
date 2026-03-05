@@ -41,10 +41,11 @@ export default async function InstagramFeed(): Promise<React.ReactElement | null
     }
 
     const response = await fetch(url, {
-        next: {
-            revalidate: 3600,
-            tags: ["instagram-feed"],
+        cache: "no-store",
+        headers: {
+            "Content-Type": "application/json",
         },
+
     });
 
     if (!response.ok) {
@@ -57,6 +58,7 @@ export default async function InstagramFeed(): Promise<React.ReactElement | null
         return null;
     }
 
+    console.log("Behold latest:", data.posts?.[0]?.id, data.posts?.[0]?.permalink);
     return (
         <section className="contain-outer section">
             <h2>Följ oss på Instagram</h2>

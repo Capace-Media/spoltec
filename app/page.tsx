@@ -5,10 +5,10 @@ import Blocks from "components/flexible-content/block";
 import MainHero from "components/header/main-hero";
 import { webPageSchema } from "@lib/seo/schema";
 import JsonLd from "components/JsonLd";
-import Image from "next/image";
-import Link from "next/link";
+
 import InstagramFeed from "@components/instagram-feed";
-import GoogleTrustIndex from "@components/google-trustindex";
+export const dynamic = "force-dynamic";
+
 
 export async function generateMetadata(
   { },

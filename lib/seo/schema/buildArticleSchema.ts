@@ -5,7 +5,7 @@ import type { WithContext, Article, ImageObject } from "schema-dts";
 export function buildArticleSchema(
   post: Post,
 
-  canonical?: string
+  canonical?: string,
 ): WithContext<Article> {
   const url = canonical ?? "";
   const id = url ? `${url}#article` : undefined;
@@ -19,12 +19,12 @@ export function buildArticleSchema(
       }
     : undefined;
 
-  const datePublished = post?.dateGmt
-    ? new Date(post.dateGmt).toISOString()
+  const datePublished = post?.date
+    ? new Date(post.date).toISOString()
     : undefined;
   const dateModified =
-    post?.modifiedGmt || post?.dateGmt
-      ? new Date(post.modifiedGmt || post.dateGmt!).toISOString()
+    post?.modifiedGmt || post?.date
+      ? new Date(post.modifiedGmt || post.date!).toISOString()
       : undefined;
 
   return {
