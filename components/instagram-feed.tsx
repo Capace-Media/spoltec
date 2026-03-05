@@ -11,6 +11,7 @@ interface InstagramPost {
     permalink: string;
     mediaType: "IMAGE" | "VIDEO" | "CAROUSEL_ALBUM";
     caption: string;
+    timestamp?: string;
     sizes: {
         small: ImageSize;
         medium: ImageSize;
@@ -21,6 +22,7 @@ interface InstagramPost {
         dominant: string;
         muted: string;
     };
+    prunedCaption?: string;
 }
 
 interface InstagramFeedResponse {
@@ -58,10 +60,25 @@ export default async function InstagramFeed(): Promise<React.ReactElement | null
         return null;
     }
 
-    console.log("Behold latest:", data.posts?.[0]?.id, data.posts?.[0]?.permalink);
+    const latestPost = data.posts[0];
+    const latestTimestamp = latestPost?.timestamp ? new Date(latestPost.timestamp) : undefined;
+
     return (
         <section className="contain-outer section">
             <h2>Följ oss på Instagram</h2>
+            {latestTimestamp && (
+                <p className="mt-1 text-xs text-neutral-500">
+                    Senaste inlägget publicerades{" "}
+                    <time dateTime={latestTimestamp.toISOString()}>
+                        {latestTimestamp.toLocaleDateString("sv-SE", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        })}
+                    </time>
+                    .
+                </p>
+            )}
             <a
                 rel="noopener noreferrer nofollow"
                 target="_blank"
@@ -89,6 +106,11 @@ export default async function InstagramFeed(): Promise<React.ReactElement | null
                             href={post.permalink}
                             target="_blank"
                             rel="noopener noreferrer nofollow"
+                            aria-label={
+                                post.caption
+                                    ? `Öppna Instagram-inlägg: ${post.caption.split("\n")[0]}`
+                                    : "Öppna Instagram-inlägg"
+                            }
                             className="group relative flex aspect-square overflow-hidden rounded-xl bg-primary/10 items-center justify-center"
                         >
                             <Image
