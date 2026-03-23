@@ -79,7 +79,6 @@ export default function PrivacyEnhancedYouTube({
             className="w-full h-full object-cover"
             width={width}
             height={height}
-            priority
             sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 100vw"
           />
 
