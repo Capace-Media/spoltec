@@ -28,7 +28,7 @@ const Hero = (props: HeroProps) => {
       <div
         className={cn(
           `lg:relative lg:rounded-xl lg:overflow-hidden`,
-          props.isCommercialPage ? "lg:h-[690px]" : "lg:h-[460px]"
+          props.isCommercialPage ? "lg:h-172.5" : "lg::h-115"
         )}
       >
         {props.image && (
@@ -36,7 +36,7 @@ const Hero = (props: HeroProps) => {
             src={props.image}
             width={props.width}
             height={props.height}
-            className="h-[200px] lg:absolute lg:h-full object-cover w-full px-4 lg:px-0"
+            className="h-50 lg:absolute lg:h-full object-cover w-full px-4 lg:px-0"
             alt={props.title || "Hero image"}
             preload
             sizes="(max-width: 1200px) 98vw, 1300px"
