@@ -1,8 +1,5 @@
-import { headers } from "next/headers";
+const BASE_URL = "https://www.spoltec.se";
 
-export async function absoluteUrl(path = "/") {
-  const h = await headers();
-  const proto = h.get("x-forwarded-proto") ?? "https";
-  const host = h.get("x-forwarded-host") ?? h.get("host") ?? "localhost:3000";
-  return `${proto}://${host}${path}`;
+export function absoluteUrl(path = "/") {
+  return `${BASE_URL}${path}`;
 }

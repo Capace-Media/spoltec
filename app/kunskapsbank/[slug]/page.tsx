@@ -78,17 +78,17 @@ export default async function ArticlePage(props: PageProps) {
     notFound();
   }
 
-  const canonical = await absoluteUrl(`/kunskapsbank/${params.slug}`);
+  const canonical = absoluteUrl(`/kunskapsbank/${params.slug}`);
 
   // Breadcrumb items for both structured data and visual breadcrumbs
   const breadcrumbItems = [
     {
       name: "Hem",
-      url: await absoluteUrl("/"),
+      url: absoluteUrl("/"),
     },
     {
       name: "Kunskapsbank",
-      url: await absoluteUrl("/kunskapsbank"),
+      url: absoluteUrl("/kunskapsbank"),
     },
     {
       name: post?.title ?? "",

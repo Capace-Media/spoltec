@@ -7,7 +7,6 @@ import { webPageSchema } from "@lib/seo/schema";
 import JsonLd from "components/JsonLd";
 
 import InstagramFeed from "@components/instagram-feed";
-export const dynamic = "force-dynamic";
 
 export async function generateMetadata(
   {},
