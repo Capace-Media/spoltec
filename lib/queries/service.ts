@@ -142,7 +142,7 @@ query SERVICE_QUERY($slug: ID!) {
                 rubrik
                 text
                 underrubrik
-                
+
                 bild {
                   mediaItemUrl
                   mediaDetails {
@@ -193,6 +193,7 @@ query SERVICE_QUERY($slug: ID!) {
           }
         }
         gqlHeroFields {
+            h1
             underrubrik
             introduktionstext
              usp {

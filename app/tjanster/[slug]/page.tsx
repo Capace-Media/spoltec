@@ -114,7 +114,7 @@ export default async function ServicePage(props: PageProps) {
       <JsonLd json={serviceSchemaLD} id="service-schema" />
       <main key={page?.title}>
         <ServiceHero
-          title={page?.title}
+          title={page?.gqlHeroFields?.h1 ? page.gqlHeroFields.h1 : page?.title}
           subtitle={page?.gqlHeroFields?.underrubrik}
           text={page?.gqlHeroFields?.introduktionstext}
           image={page?.gqlHeroFields?.bild?.mediaItemUrl}

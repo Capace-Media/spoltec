@@ -5,20 +5,10 @@
     "uri": "/services/rorinspektion/malmo/",
     "gqlHeroFields": {
       "underrubrik": "Upptäcka skador i tid",
-      "introduktionstext": "Är ni nyfikna på vilket skick era ledningar befinner sig i? En rörinspektion är ett smart sätt att upptäcka skador i tid och förebygga framtida stopp. Vi på Spoltec utför noggranna kontroller med hjälp av specialanpassade kameror som ger oss en tydlig bild av rörens insida, så att vi kan bedöma deras skick och rekommendera rätt åtgärder.",
+      "introduktionstext": "Är ni nyfikna på vilket skick era ledningar befinner sig i? En rörinspektion i Malmö är ett smart sätt att upptäcka skador i tid och förebygga framtida stopp. Vi på Spoltec utför noggranna rörinspektion åt fastighetsägare och företag i Malmö med omnejd, med hjälp av specialanpassade kameror som ger oss en tydlig bild av rörens insida — så att vi kan bedöma deras skick och rekommendera rätt åtgärder.",
       "bild": {
         "mediaItemUrl": "https://media.spoltec.se/wp-content/uploads/2022/12/stambyte-1-scaled-1.jpg"
       }
-    }
-  },
-  {
-    "title": "Malmö",
-    "slug": "malmo",
-    "uri": "/services/avloppsspolning/malmo/",
-    "gqlHeroFields": {
-      "underrubrik": null,
-      "introduktionstext": null,
-      "bild": null
     }
   },
   {

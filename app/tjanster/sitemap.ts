@@ -1,38 +1,68 @@
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
 import type { MetadataRoute } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se";
+const BASE_URL =
+  process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se";
+
+interface ServiceNode {
+  slug: string;
+  modifiedGmt: string;
+  parent: {
+    node: {
+      slug: string;
+    };
+  } | null;
+}
+
+interface GetAllServicesQueryData {
+  gqlAllService: {
+    nodes: ServiceNode[];
+  };
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
-    // Fetch dynamic services for tjanster
-    const response = await fetchGraphQL<any>(
+    const response = await fetchGraphQL<GetAllServicesQueryData>(
       `
       query GET_ALL_SERVICES {
-        gqlAllService(first: 100) {
+        gqlAllService(first: 500) {
           nodes {
             slug
             modifiedGmt
+            parent {
+              node {
+                ... on GqlService {
+                  slug
+                }
+              }
+            }
           }
         }
       }
       `
     );
 
-    const dynamicPages: MetadataRoute.Sitemap =
-      response?.gqlAllService?.nodes?.map((service: any) => ({
-        url: `${BASE_URL}/tjanster/${service.slug}`,
+    const nodes = response?.gqlAllService?.nodes ?? [];
+
+    const entries: MetadataRoute.Sitemap = nodes.map((service) => {
+      const isChild = !!service.parent?.node?.slug;
+      const url = isChild
+        ? `${BASE_URL}/tjanster/${service.parent!.node.slug}/${service.slug}`
+        : `${BASE_URL}/tjanster/${service.slug}`;
+
+      return {
+        url,
         lastModified: service.modifiedGmt
           ? new Date(service.modifiedGmt)
           : new Date(),
         changeFrequency: "weekly" as const,
-        priority: 0.95,
-      })) || [];
+        priority: isChild ? 0.85 : 0.95,
+      };
+    });
 
-    return [...dynamicPages];
+    return entries;
   } catch (error) {
     console.error("Error generating tjanster sitemap:", error);
-    // Return empty array on error - the main sitemap will handle the base tjanster URL
     return [];
   }
 }
