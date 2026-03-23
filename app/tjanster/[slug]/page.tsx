@@ -80,16 +80,16 @@ export default async function ServicePage(props: PageProps) {
     notFound();
   }
 
-  const canonical = await absoluteUrl(`/tjanster/${slug}`);
+  const canonical = absoluteUrl(`/tjanster/${slug}`);
 
   const breadcrumbItems = [
     {
       name: "Hem",
-      url: await absoluteUrl("/"),
+      url: absoluteUrl("/"),
     },
     {
       name: "Tjänster",
-      url: await absoluteUrl("/tjanster"),
+      url: absoluteUrl("/tjanster"),
     },
     {
       name: page?.title ?? "",

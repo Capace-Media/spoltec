@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  htmlLimitedBots: /.*/,
   poweredByHeader: false,
 
   // Next.js 15: External packages configuration for better performance
@@ -40,6 +41,7 @@ const nextConfig: NextConfig = {
   },
 
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",

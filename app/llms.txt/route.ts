@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 const content = `# Spoltec Södra AB
 
 > Spoltec är ett svenskt företag grundat 1991 som specialiserar sig på miljövänlig relining, avloppsspolning, kvicksilversanering, rörinspektion och underhåll av avloppssystem för privatpersoner och företag i hela Sverige.
