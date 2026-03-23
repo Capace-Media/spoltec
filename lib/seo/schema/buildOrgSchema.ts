@@ -1,4 +1,4 @@
-import type { Organization, WithContext } from "schema-dts";
+import type { LocalBusiness, WithContext } from "schema-dts";
 
 export function buildOrgSchema(input: {
   name: string;
@@ -10,23 +10,24 @@ export function buildOrgSchema(input: {
   description?: string;
   telephone?: string;
   email?: string;
-  foundingDate?: string; // YYYY-MM-DD
-  founders?: string[]; // Person names
+  foundingDate?: string;
+  founders?: string[];
   address?: {
     streetAddress?: string;
     postalCode?: string;
-    addressLocality?: string; // City
-    addressRegion?: string; // State/Region
-    addressCountry?: string; // ISO code or name
+    addressLocality?: string;
+    addressRegion?: string;
+    addressCountry?: string;
   };
-}): WithContext<Organization> {
+}): WithContext<LocalBusiness> {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "LocalBusiness",
     "@id": `https://www.spoltec.se/#organization`,
     name: input.name,
     url: input.url,
     logo: input.logoUrl,
+    image: input.logoUrl,
     sameAs: input.sameAs,
     legalName: input.legalName,
     alternateName: input.alternateName,
@@ -36,6 +37,20 @@ export function buildOrgSchema(input: {
     foundingDate: input.foundingDate,
     founder: input.founders?.map((name) => ({ "@type": "Person", name })),
     address: input.address && { "@type": "PostalAddress", ...input.address },
+    areaServed: [
+      { "@type": "City", name: "Malmö" },
+      { "@type": "City", name: "Eslöv" },
+      { "@type": "City", name: "Lund" },
+      { "@type": "City", name: "Helsingborg" },
+      { "@type": "City", name: "Kristianstad" },
+      { "@type": "City", name: "Stockholm" },
+      { "@type": "City", name: "Göteborg" },
+      { "@type": "City", name: "Uppsala" },
+      { "@type": "City", name: "Jönköping" },
+      { "@type": "City", name: "Växjö" },
+      { "@type": "City", name: "Varberg" },
+      { "@type": "City", name: "Borås" },
+    ],
     knowsAbout: [
       "Miljövänliga metoder (utan bisfenol och epoxi)",
       "Certifierad provtagning i samarbete med miljöförvaltningar i Skåne",
