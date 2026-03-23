@@ -227,6 +227,22 @@ const nextConfig: NextConfig = {
       { source: "/kund", destination: "/", permanent: true },
       { source: "/tjanster-malmo", destination: "/tjanster", permanent: true },
       { source: "/boras-2", destination: "/tjanster", permanent: true },
+      { source: "/index", destination: "/", permanent: true },
+      {
+        source: "/tjanster-privat",
+        destination: "/tjanster",
+        permanent: true,
+      },
+      {
+        source: "/allt-att-veta-om-stambyte",
+        destination: "/kunskapsbank",
+        permanent: true,
+      },
+      {
+        source: "/avloppsspolning-stockholm",
+        destination: "/tjanster/avloppsspolning/stockholm",
+        permanent: true,
+      },
 
       // Security redirects (KEEP)
       { source: "/admin", destination: "/", permanent: true },
