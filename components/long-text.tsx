@@ -1,40 +1,28 @@
-import { Tooltip, TooltipTrigger, TooltipContent } from "./ui/tooltip";
+import type { ComponentPropsWithoutRef } from "react";
 
 type TextLevel = "p" | "span" | "div";
+
+interface LongTextProps extends ComponentPropsWithoutRef<"p"> {
+  text: string;
+  as: TextLevel;
+  length?: number;
+}
 
 export default function LongText({
   text,
   as,
   length = 75,
   ...props
-}: {
-  text: string;
-  as: TextLevel;
-  length?: number;
-  [key: string]: any;
-}) {
+}: LongTextProps) {
   const TextTag = as;
-  const limit = (string: string, length: number) => {
-    if (!string) return "";
-    return string.length > length
-      ? string.substring(0, length) + "..."
-      : string;
-  };
-
   const isTextTruncated = text.length > length;
-
-  if (!isTextTruncated) {
-    return <TextTag {...props}>{text}</TextTag>;
-  }
+  const displayText = isTextTruncated
+    ? text.substring(0, length) + "..."
+    : text;
 
   return (
-    <Tooltip delayDuration={900}>
-      <TooltipTrigger asChild>
-        <TextTag {...props}>{limit(text, length)}</TextTag>
-      </TooltipTrigger>
-      <TooltipContent className="max-w-[300px]">
-        <p>{text}</p>
-      </TooltipContent>
-    </Tooltip>
+    <TextTag {...props} title={isTextTruncated ? text : undefined}>
+      {displayText}
+    </TextTag>
   );
 }

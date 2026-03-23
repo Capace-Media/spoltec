@@ -193,6 +193,7 @@ export interface ServiceBlocks {
 }
 
 export interface ServiceHeroFields {
+  h1?: string;
   underrubrik: string;
   introduktionstext: string;
   usp: { text: string }[];
