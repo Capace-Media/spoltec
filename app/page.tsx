@@ -9,9 +9,8 @@ import JsonLd from "components/JsonLd";
 import InstagramFeed from "@components/instagram-feed";
 export const dynamic = "force-dynamic";
 
-
 export async function generateMetadata(
-  { },
+  {},
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const page = await getPage("/");
@@ -19,8 +18,6 @@ export async function generateMetadata(
   const canonical = "https://www.spoltec.se";
   return generatePageMetadata(page, parent, canonical);
 }
-
-
 
 export default async function Home() {
   const page = await getPage("/");
@@ -43,13 +40,10 @@ export default async function Home() {
   const canonical = "https://www.spoltec.se";
   const schema = webPageSchema(page, "WebPage", canonical);
 
-
   return (
     <>
       <JsonLd json={schema} id={"home-page"} />
       <main key={page.title}>
-
-
         <MainHero
           title={page?.title}
           subtitle={page?.gqlHeroFields?.underrubrik || ""}

@@ -42,7 +42,7 @@ export default function Nav() {
             alt="Spoltec logo"
             width={logo.width}
             height={logo.height}
-            priority
+            preload
             sizes="(max-width: 1024px) 116px, 155px"
             className={cn(
               "w-auto transition-all duration-300 ease-in-out will-change-transform",

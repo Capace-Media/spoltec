@@ -6,7 +6,6 @@ import { cn } from "@lib/utils";
 import { Star } from "lucide-react";
 import GoogleTrustIndex from "components/google-trustindex";
 
-
 interface MainHeroProps {
   title?: string;
   subtitle?: string;
@@ -17,16 +16,14 @@ interface MainHeroProps {
 const MainHero = (props: MainHeroProps) => {
   return (
     <>
-
-
       <section
         className="md:px-10 md:mx-auto md:max-w-360 md:bg-brand-lightblue md:rounded-xl md:overflow-hidden"
         aria-labelledby="hero-heading"
         role="banner"
       >
-        <div className="md:relative md:w-full md:h-[600px]">
+        <div className="md:relative md:w-full md:h-150">
           <span
-            className="md:w-[690px] md:h-[690px] md:rounded-full md:absolute md:top-0 md:-left-[15%] md:z-10 md:bg-linear-to-b md:from-brand-lightblue md:to-brand-blue md:opacity-10"
+            className="md:w-172.5 md:h-172.5 md:rounded-full md:absolute md:top-0 md:-left-[15%] md:z-10 md:bg-linear-to-b md:from-brand-lightblue md:to-brand-blue md:opacity-10"
             aria-hidden="true"
           />
           <div className="md:grid md:grid-cols-2 md:gap-10 md:absolute md:top-0 md:left-0 md:w-full md:h-full md:z-20 md:py-20">
@@ -34,9 +31,8 @@ const MainHero = (props: MainHeroProps) => {
               src={heroImage}
               width={heroImage?.width}
               height={heroImage?.height}
-              className="overflow-hidden md:order-2 object-contain md:h-[480px]"
-              priority
-              fetchPriority="high"
+              className="overflow-hidden md:order-2 object-contain md:h-120"
+              preload
               alt="Spoltec avloppstjänster - professionell vattenbehandling och spolning av avloppssystem"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 44vw, 600px"
             />
@@ -63,11 +59,13 @@ const MainHero = (props: MainHeroProps) => {
                   : "Spoltec erbjuder avloppsspolning, relining, rörinspektion och serviceavtal för både privatpersoner och företag. Med lokal närvaro i Skåne, Halland och Mälardalen hjälper vi er förebygga och lösa problem i avloppssystemet."}
               </p>
 
-
               {props.usp && props.usp.length > 0 && (
                 <ul className="text-sm pb-2 lg:grid lg:grid-cols-2 lg:space-y-3 lg:pt-4">
                   {props.usp?.map((item) => (
-                    <li key={item.text} className="flex items-center gap-2 pb-1">
+                    <li
+                      key={item.text}
+                      className="flex items-center gap-2 pb-1"
+                    >
                       <Star className="size-4" /> {item.text}
                     </li>
                   ))}

@@ -24,10 +24,9 @@ export default function ServiceHero(props: ServiceHeroProps) {
             src={props.image}
             width={props.width}
             height={props.height}
-            className="h-[200px] lg:absolute lg:h-full object-cover w-full px-4 lg:px-0"
+            className="h-50 lg:absolute lg:h-full object-cover w-full px-4 lg:px-0"
             alt={props.title || "Service hero image"}
-            priority
-            fetchPriority="high"
+            preload
             sizes="(max-width: 1200px) 98vw, 1300px"
           />
         )}

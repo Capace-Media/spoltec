@@ -35,13 +35,7 @@ export function NavSheet() {
           <SheetTitle className="flex items-center">
             <SheetClose asChild>
               <Link href="/" className="block">
-                <Image
-                  src={logo}
-                  alt="Spoltec logo"
-                  width={120}
-                  height={48}
-                  priority
-                />
+                <Image src={logo} alt="Spoltec logo" width={120} height={48} />
                 <span className="sr-only">Spoltec startsidan</span>
               </Link>
             </SheetClose>
