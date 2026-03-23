@@ -145,6 +145,89 @@ const nextConfig: NextConfig = {
 
       { source: "/garantier", destination: "/garanti", permanent: true },
 
+      // Legacy service city pages → new local service pages
+      {
+        source: "/relining/:place",
+        destination: "/tjanster/relining/:place",
+        permanent: true,
+      },
+      {
+        source: "/avloppsspolning/:place",
+        destination: "/tjanster/avloppsspolning/:place",
+        permanent: true,
+      },
+      {
+        source: "/oljeavskiljare/:place",
+        destination: "/tjanster/oljeavskiljare/:place",
+        permanent: true,
+      },
+
+      // Legacy /tjanster-foretag paths
+      {
+        source: "/tjanster-foretag/oljeavskiljare",
+        destination: "/tjanster/oljeavskiljare",
+        permanent: true,
+      },
+      {
+        source: "/tjanster-foretag/provtagning-av-vatten",
+        destination: "/tjanster/provtagning-av-vatten",
+        permanent: true,
+      },
+      {
+        source: "/tjanster-foretag/rorinspektion",
+        destination: "/tjanster/rorinspektion",
+        permanent: true,
+      },
+      {
+        source: "/tjanster-foretag/rotskarning",
+        destination: "/tjanster/avloppsspolning",
+        permanent: true,
+      },
+      {
+        source: "/tjanster-foretag/besiktning-av-oljeavskiljare",
+        destination: "/tjanster/oljeavskiljare",
+        permanent: true,
+      },
+      {
+        source: "/tjanster-foretag/underhallsspolning",
+        destination: "/tjanster/avloppsspolning",
+        permanent: true,
+      },
+      {
+        source: "/tjanster-foretag",
+        destination: "/tjanster",
+        permanent: true,
+      },
+
+      // Legacy /tjanster-privat paths
+      {
+        source: "/tjanster-privat/villastopp",
+        destination: "/akut-hjalp",
+        permanent: true,
+      },
+      {
+        source: "/tjanster-privat/rot-avdrag",
+        destination: "/rot-avdrag",
+        permanent: true,
+      },
+
+      // Legacy /garantier subpages
+      {
+        source: "/garantier/:path*",
+        destination: "/garanti",
+        permanent: true,
+      },
+
+      // Legacy misc pages
+      {
+        source: "/om-spoltec/vara-tjanster",
+        destination: "/tjanster",
+        permanent: true,
+      },
+      { source: "/kund", destination: "/", permanent: true },
+      { source: "/tjanster-malmo", destination: "/tjanster", permanent: true },
+      { source: "/boras-2", destination: "/tjanster", permanent: true },
+
       // Security redirects (KEEP)
       { source: "/admin", destination: "/", permanent: true },
       { source: "/wp-admin", destination: "/", permanent: true },
