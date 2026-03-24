@@ -1,4 +1,4 @@
-import { token } from "./token";
+import { credentials, token } from "./token";
 
 const WP = async (query: string, variables?: any) => {
   try {
@@ -6,7 +6,7 @@ const WP = async (query: string, variables?: any) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Basic ${token}`,
+        Authorization: `Basic ${credentials}`,
       },
       body: JSON.stringify({
         query,

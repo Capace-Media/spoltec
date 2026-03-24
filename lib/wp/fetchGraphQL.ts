@@ -1,4 +1,4 @@
-import { token } from "./token";
+import { credentials, token } from "./token";
 
 // lib/fetchGraphQL.ts
 type GraphQLResponse<T> = {
@@ -19,7 +19,7 @@ export async function fetchGraphQL<T>(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Basic ${token}`,
+      Authorization: `Basic ${credentials}`,
     },
     cache: "force-cache",
     next: {
