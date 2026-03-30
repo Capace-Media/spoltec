@@ -280,10 +280,10 @@ const Footer = () => {
                   className="hover:underline"
                   href="https://capace.se"
                   target="_blank"
-                  rel="noreferrer noopener"
-                  title="Capace Media - Webbyrå Malmö"
+                  rel="noreferrer noopener nofollow"
+                  title="Capace Media"
                 >
-                  Capace Media | Webbyrå Malmö
+                  Capace Media
                 </a>
               </div>
             </div>
