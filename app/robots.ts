@@ -10,6 +10,10 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/wp-admin/", "/actions"],
     },
-    sitemap: [`${baseUrl}/sitemap.xml`, `${baseUrl}/tjanster/sitemap.xml`],
+    sitemap: [
+      `${baseUrl}/sitemap.xml`,
+      `${baseUrl}/tjanster/sitemap.xml`,
+      `${baseUrl}/kunskapsbank/sitemap.xml`,
+    ],
   };
 }

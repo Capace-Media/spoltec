@@ -9,37 +9,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const staticPages: MetadataRoute.Sitemap = [
       {
         url: BASE_URL,
-        lastModified: new Date(),
+        lastModified: new Date("2026-03-30"),
         changeFrequency: "daily",
         priority: 1.0,
       },
       {
         url: `${BASE_URL}/tjanster`,
-        lastModified: new Date(),
+        lastModified: new Date("2026-03-30"),
         changeFrequency: "weekly",
         priority: 0.8,
       },
       {
         url: `${BASE_URL}/faq`,
-        lastModified: new Date(),
+        lastModified: new Date("2026-03-30"),
         changeFrequency: "monthly",
         priority: 0.8,
       },
       {
         url: `${BASE_URL}/kunskapsbank`,
-        lastModified: new Date(),
+        lastModified: new Date("2026-03-30"),
         changeFrequency: "weekly",
         priority: 0.6,
       },
       {
         url: `${BASE_URL}/kontakta-oss`,
-        lastModified: new Date(),
+        lastModified: new Date("2026-03-30"),
         changeFrequency: "monthly",
         priority: 0.9,
       },
       {
         url: `${BASE_URL}/akut-hjalp`,
-        lastModified: new Date(),
+        lastModified: new Date("2026-03-30"),
         changeFrequency: "monthly",
         priority: 0.7,
       },

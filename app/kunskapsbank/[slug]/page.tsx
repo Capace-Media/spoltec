@@ -23,7 +23,7 @@ type GetPostsQueryData = {
 
 const GET_POSTS_QUERY = `
   query GET_POSTS {
-    posts(first: 10) {
+    posts(first: 100) {
       nodes {
         slug
       }
