@@ -34,35 +34,6 @@ export const metadata: Metadata = {
   // Add missing SEO metadata
   metadataBase: new URL("https://www.spoltec.se"),
 
-  // Add resource hints through metadata
-  other: {
-    // DNS prefetch
-    "dns-prefetch":
-      "https://fonts.googleapis.com https://www.googletagmanager.com https://consent.cookiebot.eu",
-    // Preconnect
-    preconnect: "https://fonts.gstatic.com https://media.spoltec.se",
-  },
-
-  // Add missing keywords (but don't overdo it)
-  keywords: [
-    "avlopp",
-    "spolning",
-    "relining",
-    "rörinspektion",
-    "kvicksilversanering",
-    "oljeavskiljare",
-    "avloppsproblem",
-    "avloppstjänster Sverige",
-    "Spoltec",
-    "Malmö",
-    "Eslöv",
-    "Skåne",
-    "Stockholm",
-    "Göteborg",
-    "Uppsala",
-    "Jönköping",
-  ],
-
   authors: [{ url: "/humans.txt" }],
   robots: {
     index: true,
