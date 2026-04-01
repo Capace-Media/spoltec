@@ -56,8 +56,8 @@ const Footer = () => {
             förebyggande?
           </h2>
           <p>
-            Vi hjälper er! Kontakta Spoltec idag för professionell avloppsteknik
-            i Skåne.
+            Vi hjälper er! Kontakta Spoltec idag för professionell
+            avloppsteknik.
           </p>
         </div>
         <address className="text-center md:text-right not-italic">
@@ -93,7 +93,8 @@ const Footer = () => {
                     href="/tjanster"
                     className="hover:text-brand-blue underline text-blue-600 font-normal"
                   >
-                    avloppstjänster i Skåne
+                    <span className="sr-only">Se våra avloppstjänster</span>
+                    avloppstjänster
                   </Link>
                   .
                 </p>
@@ -115,7 +116,7 @@ const Footer = () => {
                         <Link
                           href={link?.href}
                           aria-label={`Läs mer om ${link?.label} för privatpersoner`}
-                          title={`${link?.label} - Avloppstjänster för privatpersoner i Skåne`}
+                          title={`${link?.label} - Avloppstjänster för privatpersoner`}
                         >
                           {link?.label}
                         </Link>
@@ -142,7 +143,7 @@ const Footer = () => {
                         <Link
                           href={link?.href}
                           aria-label={`Läs mer om ${link?.label} för företag`}
-                          title={`${link?.label} - Avloppstjänster för företag i Skåne`}
+                          title={`${link?.label} - Avloppstjänster för företag`}
                         >
                           {link?.label}
                         </Link>
@@ -224,7 +225,7 @@ const Footer = () => {
               </div>
               <div className="md:col-span-2">
                 <h3 className="block mb-3 font-bold text-lg">
-                  Spoltec Södra AB – Skåne/Eslöv
+                  Spoltec Södra AB
                 </h3>
                 <ul className="space-y-1.5" role="list">
                   <li>
@@ -262,7 +263,7 @@ const Footer = () => {
             <div className="flex flex-col items-center justify-between space-y-3 text-sm md:flex-row pt-10">
               <div>
                 Copyright © <span>Spoltec Södra AB</span>{" "}
-                {new Date().getFullYear()} - Avloppsteknik i Skåne
+                {new Date().getFullYear()} - Avloppsteknik
               </div>
               <nav
                 aria-label="Sociala medier"
@@ -273,7 +274,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label="Följ Spoltec på LinkedIn"
-                  title="Spoltec LinkedIn - Avloppsteknik Skåne"
+                  title="Spoltec LinkedIn - Avloppsteknik"
                 >
                   <LinkedinIcon />
                   <span className="sr-only">Besök vår LinkedIn</span>
@@ -284,7 +285,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label="Följ Spoltec på Facebook"
-                  title="Spoltec Facebook - Avloppsteknik Skåne"
+                  title="Spoltec Facebook - Avloppsteknik"
                 >
                   <FacebookIcon />
                   <span className="sr-only">Besök vår Facebook</span>
