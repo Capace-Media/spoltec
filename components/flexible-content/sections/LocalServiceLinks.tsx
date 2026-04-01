@@ -50,7 +50,7 @@ export default function LocalServiceLinks({
                   href={`/${c.slug}`}
                   className={cn(
                     buttonVariants({ variant: "link", size: "lg" }),
-                    "group w-full justify-start !pl-0"
+                    "group w-full justify-start pl-0!"
                   )}
                   aria-label={`${c.title}`}
                 >

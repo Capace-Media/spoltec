@@ -26,7 +26,7 @@ const List = ({ data }: ListProps) => {
                   key={li?.text || index}
                   className="flex mb-10 space-x-4 break-inside-avoid"
                 >
-                  <div className="mt-[5px]">
+                  <div className="mt-1.25">
                     <Arrow />
                   </div>
                   <div className="parsed">{handleParse(li?.text)}</div>

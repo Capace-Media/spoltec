@@ -4,7 +4,6 @@ import type { TjansterBlock } from "@lib/types/page";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { getBlurPlaceholder } from "@lib/utils/blur-placeholder";
 
 // Optimized text truncation function
 const truncateText = (text: string, maxLength: number): string => {
@@ -86,7 +85,7 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
       className="contain-outer section"
       aria-labelledby="services-heading"
     >
-      <div className="max-w-[700px] mx-auto">
+      <div className="max-w-17 mx-auto">
         {data?.rubrik && (
           <h2 id="services-heading" className="text-center">
             {data.rubrik}
@@ -152,8 +151,9 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
                   <path d="M15,5l-1.41,1.41L18.17,11H2V13h16.17l-4.59,4.59L15,19l7-7L15,5z" />
                 </svg>
               </div>
-              <span itemProp="url" className="sr-only">{`${process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se"
-                }/tjanster/${service.slug}`}</span>
+              <span itemProp="url" className="sr-only">{`${
+                process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se"
+              }/tjanster/${service.slug}`}</span>
             </Link>
           );
         })}
