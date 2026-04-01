@@ -94,6 +94,14 @@ const nextConfig: NextConfig = {
     ],
   },
 
+  logging: {
+    fetches: {
+      fullUrl: true,
+      hmrRefreshes: true,
+    },
+    browserToTerminal: true,
+  },
+
   reactStrictMode: true,
 
   async redirects() {

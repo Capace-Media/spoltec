@@ -1,8 +1,9 @@
+import { cache } from "react";
 import { SERVICE_QUERY } from "@lib/queries/service";
 import type { GetServiceQueryData } from "@lib/types/service";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
 
-export const getService = async (slug: string) => {
+export const getService = cache(async (slug: string) => {
   try {
     const response = await fetchGraphQL<GetServiceQueryData>(
       SERVICE_QUERY,
@@ -17,4 +18,4 @@ export const getService = async (slug: string) => {
     console.error(error);
     return null;
   }
-};
+});

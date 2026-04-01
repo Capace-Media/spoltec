@@ -21,7 +21,7 @@ export default function GoogleTrustIndex() {
           const script = document.createElement("script");
           script.src = `https://cdn.trustindex.io/loader.js?${TRUSTINDEX_ID}`;
           script.async = true;
-          node.appendChild(script);
+          document.head.appendChild(script);
         }
       },
       { rootMargin: "200px" }
@@ -36,7 +36,7 @@ export default function GoogleTrustIndex() {
   }
 
   return (
-    <div ref={containerRef} className="w-fit py-2">
+    <div ref={containerRef} className="py-2">
       <div
         data-src={`https://cdn.trustindex.io/loader.js?${TRUSTINDEX_ID}`}
         data-id={TRUSTINDEX_ID}
