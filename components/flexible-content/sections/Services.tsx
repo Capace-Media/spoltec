@@ -85,7 +85,7 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
       className="contain-outer section"
       aria-labelledby="services-heading"
     >
-      <div className="max-w-17 mx-auto">
+      <div className="max-w-175 mx-auto">
         {data?.rubrik && (
           <h2 id="services-heading" className="text-center">
             {data.rubrik}
