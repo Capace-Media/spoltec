@@ -1,52 +1,47 @@
 "use client";
 
-import Script from "next/script";
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 
 const TRUSTINDEX_ID = process.env.NEXT_PUBLIC_TRUSTINDEX_WIDGET_ID;
 
 export default function GoogleTrustIndex() {
-  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const loadedRef = useRef(false);
+
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node || !TRUSTINDEX_ID || loadedRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          loadedRef.current = true;
+          observer.disconnect();
+
+          const script = document.createElement("script");
+          script.src = `https://cdn.trustindex.io/loader.js?${TRUSTINDEX_ID}`;
+          script.async = true;
+          node.appendChild(script);
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   if (!TRUSTINDEX_ID) {
     return null;
   }
 
   return (
-    <div
-      ref={(node) => {
-        if (!node) return;
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            if (entries[0]?.isIntersecting) {
-              setIsVisible(true);
-              observer.disconnect();
-            }
-          },
-          { rootMargin: "200px" }
-        );
-
-        observer.observe(node);
-
-        return () => observer.disconnect();
-      }}
-      className="w-fit py-2"
-    >
-      {isVisible && (
-        <>
-          <div
-            data-src={`https://cdn.trustindex.io/loader.js?${TRUSTINDEX_ID}`}
-            data-id={TRUSTINDEX_ID}
-            className="trustindex-widget"
-          />
-          <Script
-            id="trustindex-loader"
-            src={`https://cdn.trustindex.io/loader.js?${TRUSTINDEX_ID}`}
-            strategy="lazyOnload"
-          />
-        </>
-      )}
+    <div ref={containerRef} className="w-fit py-2">
+      <div
+        data-src={`https://cdn.trustindex.io/loader.js?${TRUSTINDEX_ID}`}
+        data-id={TRUSTINDEX_ID}
+        className="trustindex-widget"
+      />
     </div>
   );
 }
