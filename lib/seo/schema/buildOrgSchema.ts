@@ -1,5 +1,18 @@
 import type { LocalBusiness, WithContext } from "schema-dts";
 
+interface Location {
+  name: string;
+  telephone?: string;
+  email?: string;
+  address: {
+    streetAddress?: string;
+    postalCode?: string;
+    addressLocality?: string;
+    addressRegion?: string;
+    addressCountry?: string;
+  };
+}
+
 export function buildOrgSchema(input: {
   name: string;
   url: string;
@@ -19,6 +32,7 @@ export function buildOrgSchema(input: {
     addressRegion?: string;
     addressCountry?: string;
   };
+  locations?: Location[];
 }): WithContext<LocalBusiness> {
   return {
     "@context": "https://schema.org",
@@ -37,6 +51,15 @@ export function buildOrgSchema(input: {
     foundingDate: input.foundingDate,
     founder: input.founders?.map((name) => ({ "@type": "Person", name })),
     address: input.address && { "@type": "PostalAddress", ...input.address },
+    ...(input.locations && {
+      location: input.locations.map((loc) => ({
+        "@type": "LocalBusiness" as const,
+        name: loc.name,
+        telephone: loc.telephone,
+        email: loc.email,
+        address: { "@type": "PostalAddress" as const, ...loc.address },
+      })),
+    }),
     areaServed: [
       { "@type": "City", name: "Malmö" },
       { "@type": "City", name: "Eslöv" },

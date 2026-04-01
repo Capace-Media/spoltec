@@ -88,6 +88,32 @@ export default function RootLayout({
       addressRegion: "Skåne län",
       addressCountry: "SE",
     },
+    locations: [
+      {
+        name: "Spoltec Södra AB — Eslöv",
+        telephone: "+46 40 47 40 12",
+        email: "info@spoltec.se",
+        address: {
+          streetAddress: "Grävmaskinsvägen 2",
+          postalCode: "241 38",
+          addressLocality: "Eslöv",
+          addressRegion: "Skåne län",
+          addressCountry: "SE",
+        },
+      },
+      {
+        name: "Spoltec Södra AB — Stockholm/Mälardalen",
+        telephone: "+46 10 333 33 67",
+        email: "stockholm@spoltec.se",
+        address: {
+          streetAddress: "Ranhammarsvägen 20E",
+          postalCode: "168 67",
+          addressLocality: "Bromma",
+          addressRegion: "Stockholms län",
+          addressCountry: "SE",
+        },
+      },
+    ],
   });
   return (
     <html lang="sv">
