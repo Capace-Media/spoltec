@@ -78,7 +78,7 @@ const Footer = () => {
       <div className="mb-5 overflow-hidden contain-outer rounded-xl">
         <div className="pb-10 bg-section">
           <div className="contain">
-            <div className="grid lg:grid-cols-[2fr_1fr_1fr_1fr] md:grid-cols-2 lg:gap-10 gap-6 pb-6 lg:pb-10">
+            <div className="grid lg:grid-cols-[2fr_1fr_1fr] md:grid-cols-2 lg:gap-10 gap-6 pb-6 lg:pb-10">
               <div className="md:col-span-2 lg:col-span-1">
                 <h3 className="block mb-3 font-bold text-lg">
                   Spoltec Södra AB
@@ -99,52 +99,21 @@ const Footer = () => {
                   .
                 </p>
               </div>
-              <nav aria-labelledby="privat-heading">
+              <nav aria-labelledby="tjanster-heading">
                 <h3
-                  id="privat-heading"
+                  id="tjanster-heading"
                   className="block mb-3 font-bold text-lg"
                 >
-                  Privat
+                  Tjänster
                 </h3>
                 <ul className="space-y-1.5" role="list">
-                  {footerLinks?.privat?.map((link: any, index) => {
+                  {footerLinks?.tjanster?.map((link: any, index) => {
                     return (
                       <li
                         className="hover:text-brand-blue"
                         key={index + link?.href + link?.label}
                       >
-                        <Link
-                          href={link?.href}
-                          aria-label={`Läs mer om ${link?.label} för privatpersoner`}
-                          title={`${link?.label} - Avloppstjänster för privatpersoner`}
-                        >
-                          {link?.label}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </nav>
-
-              <nav aria-labelledby="foretag-heading">
-                <h3
-                  id="foretag-heading"
-                  className="block mb-3 font-bold text-lg"
-                >
-                  Företag
-                </h3>
-                <ul className="space-y-1.5" role="list">
-                  {footerLinks?.foretag?.map((link: any, index) => {
-                    return (
-                      <li
-                        className="hover:text-brand-blue"
-                        key={link?.href + index + link?.label}
-                      >
-                        <Link
-                          href={link?.href}
-                          aria-label={`Läs mer om ${link?.label} för företag`}
-                          title={`${link?.label} - Avloppstjänster för företag`}
-                        >
+                        <Link href={link?.href}>
                           {link?.label}
                         </Link>
                       </li>
@@ -166,11 +135,7 @@ const Footer = () => {
                         className="hover:text-brand-blue"
                         key={link?.href + link?.label + index}
                       >
-                        <Link
-                          href={link?.href}
-                          aria-label={`Läs mer om ${link?.label}`}
-                          title={`${link?.label} - Spoltec avloppsteknik`}
-                        >
+                        <Link href={link?.href}>
                           {link?.label}
                         </Link>
                       </li>

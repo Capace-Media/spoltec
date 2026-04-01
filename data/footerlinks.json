@@ -1,5 +1,5 @@
 {
-  "privat": [
+  "tjanster": [
     {
       "label": "Rörinspektion",
       "href": "/tjanster/rorinspektion"
@@ -9,23 +9,8 @@
       "href": "/tjanster/relining"
     },
     {
-      "label": "Villaspolning",
+      "label": "Avloppsspolning",
       "href": "/tjanster/avloppsspolning"
-    },
-    {
-      "label": "Villastopp",
-      "href": "/villastopp"
-    }
-  ],
-
-  "foretag": [
-    {
-      "label": "Relining",
-      "href": "/tjanster/relining"
-    },
-    {
-      "label": "Underhållsspolning",
-      "href": "/underhallsspolning"
     },
     {
       "label": "Oljeavskiljare",
@@ -36,12 +21,12 @@
       "href": "/tjanster/provtagning-av-vatten"
     },
     {
-      "label": "Rörinspektion",
-      "href": "/tjanster/rorinspektion"
+      "label": "Underhållsspolning",
+      "href": "/underhallsspolning"
     },
     {
-      "label": "Avloppsspolning",
-      "href": "/tjanster/avloppsspolning"
+      "label": "Villastopp",
+      "href": "/villastopp"
     }
   ],
   "information": [
