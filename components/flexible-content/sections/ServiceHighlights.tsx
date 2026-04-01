@@ -20,7 +20,7 @@ export default function ServiceHighlights({ data }: ServiceHighlightsProps) {
       className="contain-outer section"
       aria-labelledby="service-highlights-heading"
     >
-      <div className="max-w-17 mx-auto text-center">
+      <div className="max-w-175 mx-auto text-center">
         <h2 id="service-highlights-heading">{data.intro.title}</h2>
         {data.intro.text && <p className="text-center">{data.intro.text}</p>}
       </div>
