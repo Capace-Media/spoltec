@@ -21,7 +21,7 @@ const MainHero = (props: MainHeroProps) => {
         aria-labelledby="hero-heading"
         role="banner"
       >
-        <div className="md:relative md:w-full md:h-150">
+        <div className="md:relative md:w-full md:h-150 ">
           <span
             className="md:w-172.5 md:h-172.5 md:rounded-full md:absolute md:top-0 md:-left-[15%] md:z-10 md:bg-linear-to-b md:from-brand-lightblue md:to-brand-blue md:opacity-10"
             aria-hidden="true"

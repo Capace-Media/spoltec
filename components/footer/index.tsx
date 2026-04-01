@@ -2,7 +2,41 @@ import { Separator } from "components/ui/separator";
 import footerLinks from "@data/footerlinks.json";
 import { CallToAction } from "components/flexible-content/sections";
 
-import { Facebook, Linkedin } from "lucide-react";
+const LinkedinIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
+const FacebookIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
+);
 
 import Image from "next/image";
 import Link from "next/link";
@@ -63,20 +97,6 @@ const Footer = () => {
                   </Link>
                   .
                 </p>
-                {/* <a
-                  href="https://www.uc.se/risksigill2/?showorg=556712-5363&language=swe&special="
-                  title="Sigillet är utfärdat av UC AB. Klicka på bilden för information om UC:s Riskklasser."
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <img
-                    src="https://www.uc.se/ucsigill2/sigill?org=556712-5363&language=swe&product=lsa&special=&fontcolor=b&type=svg"
-                    alt="God Kreditvärdighet - UC Riskklass"
-                    height={70}
-                    width={310}
-                    style={{ maxWidth: "100%", height: "auto" }}
-                  />
-                </a> */}
               </div>
               <nav aria-labelledby="privat-heading">
                 <h3
@@ -85,7 +105,7 @@ const Footer = () => {
                 >
                   Privat
                 </h3>
-                <ul className="space-y-[6px]" role="list">
+                <ul className="space-y-1.5" role="list">
                   {footerLinks?.privat?.map((link: any, index) => {
                     return (
                       <li
@@ -112,7 +132,7 @@ const Footer = () => {
                 >
                   Företag
                 </h3>
-                <ul className="space-y-[6px]" role="list">
+                <ul className="space-y-1.5" role="list">
                   {footerLinks?.foretag?.map((link: any, index) => {
                     return (
                       <li
@@ -138,7 +158,7 @@ const Footer = () => {
                 >
                   Information
                 </h3>
-                <ul className="space-y-[6px]" role="list">
+                <ul className="space-y-1.5" role="list">
                   {footerLinks?.information?.map((link: any, index) => {
                     return (
                       <li
@@ -164,7 +184,7 @@ const Footer = () => {
                 <h3 className="block mb-3 font-bold text-lg">
                   Spoltec Södra AB – Stockholm/Mälardalen
                 </h3>
-                <ul className="space-y-[6px]" role="list">
+                <ul className="space-y-1.5" role="list">
                   <li>
                     <a
                       href="https://www.google.com/maps/place/Ranhammarsv%C3%A4gen+20e,+168+67+Bromma/@59.3507454,17.9549415,16z/data=!3m1!4b1!4m6!3m5!1s0x465f9dfc62e85167:0xc8a875da5805589c!8m2!3d59.3507428!4d17.9598124!16s%2Fg%2F11nns94_q5?entry=ttu&g_ep=EgoyMDI1MTEwMi4wIKXMDSoASAFQAw%3D%3D"
@@ -206,7 +226,7 @@ const Footer = () => {
                 <h3 className="block mb-3 font-bold text-lg">
                   Spoltec Södra AB – Skåne/Eslöv
                 </h3>
-                <ul className="space-y-[6px]" role="list">
+                <ul className="space-y-1.5" role="list">
                   <li>
                     <a
                       href="https://www.google.com/maps/place/Spoltec+S%C3%B6dra+AB/@55.8321596,13.32522,15z/data=!4m5!3m4!1s0x0:0x908ee730d7835c04!8m2!3d55.8321596!4d13.32522"
@@ -255,7 +275,7 @@ const Footer = () => {
                   aria-label="Följ Spoltec på LinkedIn"
                   title="Spoltec LinkedIn - Avloppsteknik Skåne"
                 >
-                  <Linkedin />
+                  <LinkedinIcon />
                   <span className="sr-only">Besök vår LinkedIn</span>
                 </a>
                 <Separator orientation="vertical" />
@@ -266,7 +286,7 @@ const Footer = () => {
                   aria-label="Följ Spoltec på Facebook"
                   title="Spoltec Facebook - Avloppsteknik Skåne"
                 >
-                  <Facebook />
+                  <FacebookIcon />
                   <span className="sr-only">Besök vår Facebook</span>
                 </a>
               </nav>

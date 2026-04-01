@@ -31,7 +31,7 @@ export default function GoogleTrustIndex() {
 
         return () => observer.disconnect();
       }}
-      className="w-fit py-8"
+      className="w-fit py-2"
     >
       {isVisible && (
         <>
