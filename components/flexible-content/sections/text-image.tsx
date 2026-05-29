@@ -21,14 +21,14 @@ export default function TextImage(props: TextImageProps) {
           "",
           isbackground
             ? "bg-brand-lightblue rounded-xl p-4 md:px-8 md:py-12 lg:py-24"
-            : ""
+            : "",
         )}
       >
         <div>
           <div
             className={cn(
               "flex flex-col gap-4 md:flex-row md:gap-10",
-              iseven ? "md:flex-row-reverse" : ""
+              iseven ? "md:flex-row-reverse" : "",
             )}
           >
             <div className="md:w-full ">
@@ -52,23 +52,38 @@ export default function TextImage(props: TextImageProps) {
                   </div>
                 )}
 
-                {props.data?.textBody?.knapp?.url && (
-                  <div>
-                    <Link
-                      className={cn(
-                        "w-full md:w-fit",
-                        buttonVariants({ variant: "default", size: "lg" })
-                      )}
-                      href={props.data.textBody.knapp.url}
-                      aria-label={`Läs mer om ${props.data.textBody.rubrik}`}
-                    >
-                      {props.data.textBody.knapp.text}
-                      <span className="sr-only">
-                        Läs mer om {props.data.textBody.rubrik}
-                      </span>
-                    </Link>
-                  </div>
-                )}
+                <div className="flex flex-col md:flex-row gap-2">
+                  {props.data?.textBody?.knapp?.url && (
+                    <div>
+                      <Link
+                        className={cn(
+                          "w-full md:w-fit",
+                          buttonVariants({ variant: "default", size: "lg" }),
+                        )}
+                        href={props.data.textBody.knapp.url}
+                        aria-label={`Läs mer om ${props.data.textBody.rubrik}`}
+                      >
+                        {props.data.textBody.knapp.text}
+                        <span className="sr-only">
+                          Läs mer om {props.data.textBody.rubrik}
+                        </span>
+                      </Link>
+                    </div>
+                  )}
+                  {props.data?.textBody?.knapp2?.url && (
+                    <div>
+                      <Link
+                        className={cn(
+                          "w-full md:w-fit",
+                          buttonVariants({ variant: "default", size: "lg" }),
+                        )}
+                        href={props.data.textBody.knapp2.url}
+                      >
+                        {props.data.textBody.knapp2.text}
+                      </Link>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

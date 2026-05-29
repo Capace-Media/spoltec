@@ -54,7 +54,7 @@ export async function generateStaticParams() {
     .filter(
       (page: any) =>
         !isBlacklistedPageSlug(page.slug, pagesToExclude) &&
-        typeof page.slug === "string"
+        typeof page.slug === "string",
     )
     .map((page: any) => ({ slug: page.slug }));
 
@@ -63,7 +63,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(
   props: { params: Promise<{ slug: string }> },
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const params = await props.params;
 
@@ -101,6 +101,7 @@ export default async function Page(props: PageProps) {
           title={page?.title}
           subtitle={page?.gqlHeroFields?.underrubrik || ""}
           text={page?.gqlHeroFields?.introduktionstext || ""}
+          phone={page?.gqlHeroFields?.telefon}
           image={page?.gqlHeroFields?.bild?.mediaItemUrl}
           usp={page?.gqlHeroFields?.usp}
           isCommercialPage={isCommercialPage}
