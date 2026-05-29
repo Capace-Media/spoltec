@@ -10,6 +10,7 @@ interface HeroProps {
   image?: string;
   title: string;
   subtitle?: string;
+  phone?: string | undefined | null;
   text?: string;
   usp?: { text: string }[];
   isCommercialPage?: boolean;
@@ -19,6 +20,8 @@ interface HeroProps {
 }
 
 const Hero = (props: HeroProps) => {
+  console.log("telefone:", props.phone);
+
   return (
     <section
       className="lg:px-10 lg:mx-auto lg:max-w-360"
@@ -28,7 +31,7 @@ const Hero = (props: HeroProps) => {
       <div
         className={cn(
           `lg:relative lg:rounded-xl lg:overflow-hidden`,
-          props.isCommercialPage ? "lg:h-172.5" : "lg:h-115"
+          props.isCommercialPage ? "lg:h-172.5" : "lg:h-115",
         )}
       >
         {props.image && (
@@ -68,7 +71,7 @@ const Hero = (props: HeroProps) => {
               <Link
                 className={cn(
                   buttonVariants({ variant: "secondary", size: "lg" }),
-                  "w-full lg:w-fit"
+                  "w-full lg:w-fit",
                 )}
                 href="/kontakta-oss"
                 aria-label="Kontakta oss för mer information"
@@ -80,18 +83,18 @@ const Hero = (props: HeroProps) => {
                 <Link
                   href="/akut-hjalp"
                   className={cn(
-                    buttonVariants({ variant: "secondary", size: "lg" })
+                    buttonVariants({ variant: "secondary", size: "lg" }),
                   )}
                 >
                   Kontakta Jouren
                 </Link>
                 <a
-                  href={`tel:040474012`}
+                  href={`tel:${props.phone || "040474012"}`}
                   className={cn(
-                    buttonVariants({ variant: "default", size: "lg" })
+                    buttonVariants({ variant: "default", size: "lg" }),
                   )}
                 >
-                  Ring 040-47 40 12
+                  Ring {props.phone || "040-47 40 12"}
                 </a>
               </div>
             )}

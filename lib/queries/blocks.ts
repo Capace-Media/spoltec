@@ -209,6 +209,10 @@ export const BLOCKS = `
                     url
                     text
                   }
+                  knapp2 {
+                    url
+                    text
+                  }
                 }
                 bilder {
                   mediaItemUrl

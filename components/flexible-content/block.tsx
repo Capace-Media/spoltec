@@ -20,7 +20,7 @@ const List = dynamic(() => import("./sections/List"), { ssr: true });
 const Employee = dynamic(() => import("./sections/Employee"), { ssr: true });
 const AvailablePositions = dynamic(
   () => import("./sections/AvailablePositions"),
-  { ssr: true }
+  { ssr: true },
 );
 const Contact = dynamic(() => import("./sections/Contact"), { ssr: true });
 const CallToAction = dynamic(() => import("./sections/Cta"), { ssr: true });
@@ -31,12 +31,12 @@ const ProsAndCons = dynamic(() => import("./sections/CompareTable"), {
 const HowTo = dynamic(() => import("./sections/HowTo"), { ssr: true });
 const ServiceHighlights = dynamic(
   () => import("./sections/ServiceHighlights"),
-  { ssr: true }
+  { ssr: true },
 );
 const BlogPosts = dynamic(() => import("./sections/BlogPosts"), { ssr: true });
 const LocalServiceLinks = dynamic(
   () => import("./sections/LocalServiceLinks"),
-  { ssr: true }
+  { ssr: true },
 );
 
 import type { Block as BlockType } from "@lib/types/page";

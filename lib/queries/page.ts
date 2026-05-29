@@ -18,6 +18,7 @@ export const PAGE_QUERY = `
       gqlHeroFields {
         underrubrik
         introduktionstext
+        telefon 
         bild {
           mediaItemUrl
           mediaDetails {
