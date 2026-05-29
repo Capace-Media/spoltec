@@ -46,6 +46,7 @@ export interface PageImage {
 export interface GqlHeroFields {
   underrubrik: string | null;
   introduktionstext: string | null;
+  telefon: string | null;
   bild: PageImage | null;
   usp: { text: string }[];
 }
@@ -115,6 +116,10 @@ export interface TextBildBlock {
     rubrik: string;
     text: string;
     knapp: {
+      url: string;
+      text: string;
+    };
+    knapp2: {
       url: string;
       text: string;
     };

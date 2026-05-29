@@ -113,9 +113,7 @@ const Footer = () => {
                         className="hover:text-brand-blue"
                         key={index + link?.href + link?.label}
                       >
-                        <Link href={link?.href}>
-                          {link?.label}
-                        </Link>
+                        <Link href={link?.href}>{link?.label}</Link>
                       </li>
                     );
                   })}
@@ -135,9 +133,7 @@ const Footer = () => {
                         className="hover:text-brand-blue"
                         key={link?.href + link?.label + index}
                       >
-                        <Link href={link?.href}>
-                          {link?.label}
-                        </Link>
+                        <Link href={link?.href}>{link?.label}</Link>
                       </li>
                     );
                   })}
@@ -145,7 +141,7 @@ const Footer = () => {
               </nav>
             </div>
             <Separator />
-            <div className="grid lg:grid-cols-[2fr_1fr_1fr_1fr] md:grid-cols-2 lg:gap-10 gap-6 py-6 lg:py-10">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 lg:gap-10 gap-6 py-6 lg:py-10">
               <div>
                 <h3 className="block mb-3 font-bold text-lg">
                   Spoltec Södra AB – Stockholm/Mälardalen
@@ -188,7 +184,8 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
-              <div className="md:col-span-2">
+
+              <div className="md:col-span-1">
                 <h3 className="block mb-3 font-bold text-lg">
                   Spoltec Södra AB
                 </h3>
@@ -223,7 +220,23 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
+              <div>
+                <h3 className="block mb-3 font-bold text-lg">
+                  Spoltec Södra AB - Göteborg
+                </h3>
+                <ul className="space-y-1.5" role="list">
+                  <li>
+                    <a
+                      href="tel:+46103333367"
+                      className="hover:text-brand-blue hover:underline font-normal flex flex-col"
+                    >
+                      <span>Växel: 031 - 40 40 31</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
+
             <Separator />
             <div className="flex flex-col items-center justify-between space-y-3 text-sm md:flex-row pt-10">
               <div>
