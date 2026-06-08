@@ -227,6 +227,17 @@ const Footer = () => {
                 <ul className="space-y-1.5" role="list">
                   <li>
                     <a
+                      href="https://www.google.com/maps/place/Importgatan+15D,+422+46+Hisings+Backa/@57.7486288,11.9988374,1013m/data=!3m1!1e3!4m6!3m5!1s0x464ff4fa3443603f:0x95b3d951bcb352c4!8m2!3d57.7485671!4d12.0015589!16s%2Fg%2F11v15scppr?entry=ttu&g_ep=EgoyMDI2MDYwMS4wIKXMDSoASAFQAw%3D%3D"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="hover:text-brand-blue hover:underline font-normal flex flex-col"
+                    >
+                      <span>Importgatan 15D</span>
+                      <span>422 46 Hisings Backa</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
                       href="tel:+46103333367"
                       className="hover:text-brand-blue hover:underline font-normal flex flex-col"
                     >
