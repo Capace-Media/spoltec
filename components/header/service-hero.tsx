@@ -10,6 +10,10 @@ interface ServiceHeroProps {
   title: string;
   subtitle?: string;
   text?: string;
+  phoneByLocation?: Array<{
+    phone: string;
+    location: string;
+  }>;
   usp?: { text: string }[];
   width?: number;
   height?: number;
@@ -56,19 +60,26 @@ export default function ServiceHero(props: ServiceHeroProps) {
               <Link
                 href="/akut-hjalp"
                 className={cn(
-                  buttonVariants({ variant: "secondary", size: "lg" })
+                  buttonVariants({ variant: "secondary", size: "lg" }),
                 )}
               >
                 Kontakta Jouren
               </Link>
-              <a
-                href={`tel:040474012`}
-                className={cn(
-                  buttonVariants({ variant: "default", size: "lg" })
-                )}
-              >
-                Ring 040-47 40 12
-              </a>
+            </div>
+            <div className="flex flex-col gap-6 pb-8">
+              {props.phoneByLocation?.map((location, i) => (
+                <div key={i}>
+                  <a
+                    href={`tel:${location.phone.replace(/\s+|-/g, "")}`}
+                    className={cn(
+                      buttonVariants({ variant: "default", size: "lg" }),
+                      "w-full lg:w-fit",
+                    )}
+                  >
+                    {location.location} - Ring {location.phone}
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
           <div className="w-full flex justify-end">

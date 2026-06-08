@@ -60,8 +60,6 @@ interface BlockProps {
 }
 
 const Block = ({ block, textImageOrdinal }: BlockProps) => {
-  console.log("name::::-->", block.fieldGroupName);
-
   switch (block.fieldGroupName) {
     case "Page_Gqlblocks_Blocks_TextBild":
       return (

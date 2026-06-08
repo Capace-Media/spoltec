@@ -44,7 +44,7 @@ export async function generateStaticParams() {
   const response = await fetchGraphQL<GetServicesQueryData>(
     GET_SERVICES_QUERY,
     {},
-    ["services"]
+    ["services"],
   );
 
   const servicePaths =
@@ -57,7 +57,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(
   props: { params: Promise<{ slug: string }> },
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { slug } = await props.params;
   const uri = `/services/${slug}`; // ✅ fix path
@@ -104,7 +104,7 @@ export default async function ServicePage(props: PageProps) {
       url: item.url,
       type: item.current ? "Service" : undefined,
     })),
-    canonical
+    canonical,
   );
   const serviceSchemaLD = serviceSchema(page);
 
@@ -121,9 +121,9 @@ export default async function ServicePage(props: PageProps) {
           usp={page?.gqlHeroFields.usp}
           width={page?.gqlHeroFields?.bild?.mediaDetails?.width}
           height={page?.gqlHeroFields?.bild?.mediaDetails?.height}
+          phoneByLocation={page?.gqlHeroFields?.phoneByLocation}
         />
         <BreadcrumbsComponent items={breadcrumbItems} />
-
         <Blocks blocks={page?.gqlBlocks?.blocks || []} />
       </main>
     </>

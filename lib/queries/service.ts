@@ -38,6 +38,10 @@ query SERVICE_QUERY($slug: ID!) {
               modifiedGmt
               dateGmt
               gqlHeroFields {
+              phoneByLocation {
+        phone
+        location
+      }
                 bild {
                   mediaItemUrl
                   mediaDetails {
@@ -193,6 +197,10 @@ query SERVICE_QUERY($slug: ID!) {
           }
         }
         gqlHeroFields {
+        phoneByLocation {
+        phone
+        location
+      }
             h1
             underrubrik
             introduktionstext

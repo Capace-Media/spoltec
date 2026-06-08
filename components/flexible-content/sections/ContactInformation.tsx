@@ -16,14 +16,14 @@ export default function ContactInformation(props: ContactInformationProps) {
   return (
     <div className="flex flex-col gap-20 my-8">
       {props.data.orter.map((ort, i) => (
-        <div key={i} className="flex flex-col items-center">
+        <div key={i} className="flex flex-col gap-4 items-center">
           <h3>{ort.location}</h3>
           <div className="grid gap-5 md:grid-cols-3">
             {ort.phone && (
               <div className="flex flex-col items-center justify-center">
                 <a
                   id="contact-tel"
-                  href="tel:040474012"
+                  href={`tel:${ort.phone.replace(/\s+|-/g, "")}`}
                   className="flex flex-col items-center justify-center space-y-4 text-brand-blue"
                 >
                   <Phone />

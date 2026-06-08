@@ -20,8 +20,6 @@ interface HeroProps {
 }
 
 const Hero = (props: HeroProps) => {
-  console.log("telefone:", props.phone);
-
   return (
     <section
       className="lg:px-10 lg:mx-auto lg:max-w-360"
