@@ -10,7 +10,7 @@ import JsonLd from "components/JsonLd";
 
 export async function generateMetadata(
   {},
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const page = await getPage("/kontakta-oss");
   const canonical = "https://www.spoltec.se/kontakta-oss";
@@ -19,7 +19,7 @@ export async function generateMetadata(
     parent,
     canonical,
     "Kontakta oss",
-    "Kontakta oss för att få hjälp med dina avloppsproblem. Ring oss på 040-47 40 12."
+    "Kontakta oss för att få hjälp med dina avloppsproblem. Ring oss på 040-47 40 12.",
   );
 }
 
@@ -46,7 +46,7 @@ const KontaktaOssPage = async () => {
         </section>
 
         <div id="">
-          <Contact />
+          {/* <Contact /> */}
           <Blocks blocks={page?.gqlBlocks?.blocks || []} />
         </div>
       </main>

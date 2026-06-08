@@ -44,7 +44,7 @@ export async function generateStaticParams() {
   const response = await fetchGraphQL<GetChildServicesQueryData>(
     GET_CHILD_SERVICES_QUERY,
     {},
-    ["services"]
+    ["services"],
   );
 
   const routes =
@@ -64,7 +64,7 @@ interface PageProps {
 
 export async function generateMetadata(
   props: { params: Promise<{ slug: string; place: string }> },
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { slug, place } = await props.params;
   const uri = `/services/${slug}/${place}`;
@@ -111,7 +111,7 @@ export default async function PlacePage(props: PageProps) {
       url: item.url,
       type: "current" in item ? "Service" : undefined,
     })),
-    canonical
+    canonical,
   );
 
   const serviceSchemaLD = serviceSchema(page, page.title);
@@ -131,7 +131,6 @@ export default async function PlacePage(props: PageProps) {
           height={page.gqlHeroFields?.bild?.mediaDetails?.height}
         />
         <BreadcrumbsComponent items={breadcrumbItems} />
-
         <Blocks blocks={page.gqlBlocks?.blocks || []} />
       </main>
     </>

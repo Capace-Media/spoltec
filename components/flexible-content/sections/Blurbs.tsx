@@ -29,8 +29,9 @@ const Blurbs = ({ data }: BlurbsProps) => {
   return (
     <section className="contain-outer">
       <div
-        className={`${data.installningar.bakgrund ? "bg-section mt-4 mb:mt-8" : "section"
-          }`}
+        className={`${
+          data.installningar.bakgrund ? "bg-section mt-4 mb:mt-8" : "section"
+        }`}
       >
         <div className={`${data.installningar.bakgrund ? "contain" : ""}`}>
           <div>
@@ -40,16 +41,18 @@ const Blurbs = ({ data }: BlurbsProps) => {
               </div>
             )}
             <ul
-              className={`grid gap-5 md:gap-10 ${data?.blurbText ? "mt-8" : ""
-                } ${getGridColumns(blurbCount)}`}
+              className={`grid gap-5 md:gap-10 ${
+                data?.blurbText ? "mt-8" : ""
+              } ${getGridColumns(blurbCount)}`}
             >
               {data.blurbs.map((blurb: any, index: number) => (
                 <li
-                  key={blurb?.rubrik || blurb?.underrubrik || blurb?.text}
-                  className={`${blurbCount === 2
+                  key={index}
+                  className={`${
+                    blurbCount === 2
                       ? "flex flex-col justify-center items-center"
                       : ""
-                    }`}
+                  }`}
                 >
                   {blurb.bild && (
                     <div className="block mb-5 h-auto w-12">

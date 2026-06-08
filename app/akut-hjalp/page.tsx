@@ -10,7 +10,7 @@ import { buttonVariants } from "@components/ui/button";
 
 export async function generateMetadata(
   {},
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const page = await getPage("/akut-hjalp");
   const canonical = "https://www.spoltec.se/akut-hjalp";
@@ -19,7 +19,7 @@ export async function generateMetadata(
     parent,
     canonical,
     "Akut hjälp - Spoltec",
-    "Hjälplinje för dig som är i behov av akut hjälp med avloppsproblem. Ring 040-47 40 12 för omedelbar hjälp."
+    "Hjälplinje för dig som är i behov av akut hjälp med avloppsproblem. Ring 040-47 40 12 för omedelbar hjälp.",
   );
 }
 
@@ -44,16 +44,45 @@ export default async function AkutHjalpPage() {
               <p className="">
                 Hjälplinje för dig som är i behov av akut hjälp.
               </p>
-              <Link
-                href="tel:040474012"
-                className={cn(
-                  buttonVariants({ variant: "secondary", size: "xl" })
-                )}
-                aria-label="Ring 040-47 40 12 för akut hjälp med avloppsproblem"
-              >
-                040-47 40 12
-              </Link>
-              <p className="mt-3">Klicka på knappen för att ringa.</p>
+              <div className="py-6">
+                <h2>Skåne (Eslöv)</h2>
+                <Link
+                  href="tel:040474012"
+                  className={cn(
+                    buttonVariants({ variant: "secondary", size: "xl" }),
+                  )}
+                  aria-label="Ring 040-47 40 12 för akut hjälp med avloppsproblem"
+                >
+                  040-47 40 12
+                </Link>
+                <p className="mt-3">Klicka på knappen för att ringa.</p>
+              </div>
+              <div className="py-6">
+                <h2>Stockholm</h2>
+                <Link
+                  href="tel:0103333367"
+                  className={cn(
+                    buttonVariants({ variant: "secondary", size: "xl" }),
+                  )}
+                  aria-label="Ring 040-47 40 12 för akut hjälp med avloppsproblem"
+                >
+                  010-333 33 67
+                </Link>
+                <p className="mt-3">Klicka på knappen för att ringa.</p>
+              </div>
+              <div className="py-6">
+                <h2>Göteborg</h2>
+                <Link
+                  href="tel:031404031"
+                  className={cn(
+                    buttonVariants({ variant: "secondary", size: "xl" }),
+                  )}
+                  aria-label="Ring 040-47 40 12 för akut hjälp med avloppsproblem"
+                >
+                  031 - 40 40 31
+                </Link>
+                <p className="mt-3">Klicka på knappen för att ringa.</p>
+              </div>
             </div>
           </div>
         </div>
