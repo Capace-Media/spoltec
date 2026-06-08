@@ -252,6 +252,15 @@ export const BLOCKS = `
                 rubrik
                 jobsText:text
               }
+               ... on Page_Gqlblocks_Blocks_Kontaktinformation {
+          fieldGroupName
+          orter {
+            address
+            email
+            location
+            phone
+          }
+        }
             }
           }
 `;

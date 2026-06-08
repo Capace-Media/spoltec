@@ -12,6 +12,10 @@ import dynamic from "next/dynamic";
 
 // Dynamic imports for better code splitting
 const TextImage = dynamic(() => import("./sections/text-image"), { ssr: true });
+const ContactInformation = dynamic(
+  () => import("./sections/ContactInformation"),
+  { ssr: true },
+);
 const Video = dynamic(() => import("./sections/video"), { ssr: true });
 const Services = dynamic(() => import("./sections/Services"), { ssr: true });
 const Text = dynamic(() => import("./sections/Text"), { ssr: true });
@@ -56,6 +60,8 @@ interface BlockProps {
 }
 
 const Block = ({ block, textImageOrdinal }: BlockProps) => {
+  console.log("name::::-->", block.fieldGroupName);
+
   switch (block.fieldGroupName) {
     case "Page_Gqlblocks_Blocks_TextBild":
       return (
@@ -126,6 +132,8 @@ const Block = ({ block, textImageOrdinal }: BlockProps) => {
       return <Employee data={block} />;
     case "GqlService_Gqlblocks_Blocks_Lista":
       return <List data={block} />;
+    case "Page_Gqlblocks_Blocks_Kontaktinformation":
+      return <ContactInformation data={block} />;
     default:
       return <p>{block.fieldGroupName}</p>;
   }
