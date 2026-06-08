@@ -198,6 +198,10 @@ export interface ServiceHeroFields {
   introduktionstext: string;
   usp: { text: string }[];
   bild: ServiceImage;
+  phoneByLocation?: Array<{
+    location: string;
+    phone: string;
+  }>;
 }
 
 export interface Service {
