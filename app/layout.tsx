@@ -10,6 +10,7 @@ import { orgSchema } from "@lib/seo/schema";
 import logo from "../public/images/spoltec-logo-new.png";
 import type { Metadata } from "next";
 import { cn } from "@lib/utils";
+import Script from "next/script";
 
 const chivo = Chivo({
   subsets: ["latin"],
