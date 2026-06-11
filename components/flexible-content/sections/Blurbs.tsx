@@ -48,11 +48,7 @@ const Blurbs = ({ data }: BlurbsProps) => {
               {data.blurbs.map((blurb: any, index: number) => (
                 <li
                   key={index}
-                  className={`${
-                    blurbCount === 2
-                      ? "flex flex-col justify-center items-center"
-                      : ""
-                  }`}
+                  className="flex flex-col justify-center items-center"
                 >
                   {blurb.bild && (
                     <div className="block mb-5 h-auto w-12">
