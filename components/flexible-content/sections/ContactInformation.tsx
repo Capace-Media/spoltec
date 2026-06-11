@@ -1,7 +1,13 @@
+import { cn } from "@lib/utils";
 import { Phone, Mail, Address } from "../../icons";
+import handleParse from "@lib/utils/parse";
 
 interface ContactInformationProps {
   data: {
+    text: any;
+    installningar: {
+      bakgrund: boolean;
+    };
     orter: Array<{
       phone: string;
       email: string;
@@ -14,7 +20,15 @@ interface ContactInformationProps {
 
 export default function ContactInformation(props: ContactInformationProps) {
   return (
-    <div className="flex flex-col gap-20 my-8">
+    <section
+      className={cn(
+        "contain-outer flex flex-col gap-20 my-8",
+        props.data.installningar.bakgrund && "bg-section",
+      )}
+    >
+      <div className="max-w-[95%] md:max-w-[65%] lg:max-w-[52%] md:mx-auto md:text-center pb-6 parsed">
+        {handleParse(props.data.text)}
+      </div>
       {props.data.orter.map((ort, i) => (
         <div key={i} className="flex flex-col gap-4 items-center">
           <h3>{ort.location}</h3>
@@ -60,6 +74,6 @@ export default function ContactInformation(props: ContactInformationProps) {
           </div>
         </div>
       ))}
-    </div>
+    </section>
   );
 }
