@@ -254,6 +254,10 @@ export const BLOCKS = `
               }
                ... on Page_Gqlblocks_Blocks_Kontaktinformation {
           fieldGroupName
+          installningar {
+            bakgrund
+          }
+            text
           orter {
             address
             email
