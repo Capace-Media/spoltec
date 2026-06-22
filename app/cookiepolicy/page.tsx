@@ -21,7 +21,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="max-w-300 mx-auto">
+    <div className="max-w-300 mx-auto px-2">
       <h1>Cookiepolicy</h1>
       <div id="CookiebotDeclaration" />
     </div>
