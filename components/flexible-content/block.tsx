@@ -53,6 +53,7 @@ import type {
   ServiceProsAndConsBlock,
 } from "@lib/types/service";
 import type { PostBlock } from "@lib/types/post";
+import type { PositionBlock } from "@lib/types/employment";
 
 interface BlockProps {
   block: any;
@@ -112,6 +113,18 @@ const Block = ({ block, textImageOrdinal }: BlockProps) => {
       return <Text data={block} />;
     case "Post_Gqlblocks_Blocks_LedigaTjanster":
       return <AvailablePositions data={block} />;
+    case "GqlEmployment_Gqlblocks_Blocks_TextBild":
+      return <TextImage data={block} ordinal={textImageOrdinal} />;
+    case "GqlEmployment_Gqlblocks_Blocks_Tjanster":
+      return <Services data={block} />;
+    case "GqlEmployment_Gqlblocks_Blocks_Text":
+      return <Text data={block} />;
+    case "GqlEmployment_Gqlblocks_Blocks_Blurbs":
+      return <Blurbs data={block} />;
+    case "GqlEmployment_Gqlblocks_Blocks_Lista":
+      return <List data={block} />;
+    case "GqlEmployment_Gqlblocks_Blocks_Personal":
+      return <Employee data={block} />;
     case "GqlService_Gqlblocks_Blocks_Text":
       return <Text data={block} />;
     case "GqlService_Gqlblocks_Blocks_Blurbs":
@@ -140,12 +153,13 @@ const Block = ({ block, textImageOrdinal }: BlockProps) => {
 const Blocks = ({
   blocks,
 }: {
-  blocks: BlockType[] | ServiceBlock[] | PostBlock[];
+  blocks: BlockType[] | ServiceBlock[] | PostBlock[] | PositionBlock[];
 }) => {
   const isTextImage = (fg: string) =>
     fg === "Page_Gqlblocks_Blocks_TextBild" ||
     fg === "GqlService_Gqlblocks_Blocks_TextBild" ||
-    fg === "Post_Gqlblocks_Blocks_TextBild";
+    fg === "Post_Gqlblocks_Blocks_TextBild" ||
+    fg === "GqlEmployment_Gqlblocks_Blocks_TextBild";
 
   let textImageCounter = 0;
 
