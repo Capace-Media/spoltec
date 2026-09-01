@@ -2,6 +2,7 @@ import { cache } from "react";
 import { SERVICE_QUERY } from "@lib/queries/service";
 import type { GetServiceQueryData } from "@lib/types/service";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
+import { TAGS } from "@lib/wp/tags";
 
 export const getService = cache(async (slug: string) => {
   try {
@@ -10,7 +11,7 @@ export const getService = cache(async (slug: string) => {
       {
         slug,
       },
-      ["tjanster"]
+      [TAGS.service]
     );
 
     return response.gqlService;

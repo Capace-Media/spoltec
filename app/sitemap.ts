@@ -1,146 +1,141 @@
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
+import { TAGS } from "@lib/wp/tags";
+import { SITE_URL } from "@lib/utils/url";
 import type { MetadataRoute } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se";
+/**
+ * Root sitemap: static routes + CMS pages under `/`.
+ *
+ * Services live in /tjanster/sitemap.xml and posts in
+ * /kunskapsbank/sitemap.xml — no URL appears in more than one sitemap.
+ */
+
+type PageNode = { slug: string; modifiedGmt: string | null };
+
+type PagesResponse = {
+  pages: {
+    pageInfo: { hasNextPage: boolean; endCursor: string | null };
+    nodes: PageNode[];
+  };
+};
+
+const GET_ALL_PAGES = `
+  query GET_ALL_PAGES($after: String) {
+    pages(first: 100, after: $after) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        slug
+        modifiedGmt
+      }
+    }
+  }
+`;
+
+async function fetchAllPages(): Promise<PageNode[]> {
+  const nodes: PageNode[] = [];
+  let after: string | null = null;
+
+  // Paginate so coverage isn't silently capped at the first 100 pages.
+  for (let i = 0; i < 20; i++) {
+    const response: PagesResponse = await fetchGraphQL<PagesResponse>(
+      GET_ALL_PAGES,
+      { after },
+      [TAGS.page, TAGS.sitemap]
+    );
+
+    nodes.push(...(response?.pages?.nodes ?? []));
+
+    if (!response?.pages?.pageInfo?.hasNextPage) break;
+    after = response.pages.pageInfo.endCursor;
+    if (!after) break;
+  }
+
+  return nodes;
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const staticPages: MetadataRoute.Sitemap = [
+    { url: SITE_URL, changeFrequency: "daily", priority: 1.0 },
+    { url: `${SITE_URL}/tjanster`, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE_URL}/akut-hjalp`, changeFrequency: "monthly", priority: 0.9 },
+    {
+      url: `${SITE_URL}/kontakta-oss`,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    { url: `${SITE_URL}/om-spoltec`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/faq`, changeFrequency: "monthly", priority: 0.8 },
+    {
+      url: `${SITE_URL}/kunskapsbank`,
+      changeFrequency: "weekly",
+      priority: 0.6,
+    },
+    {
+      url: `${SITE_URL}/cookiepolicy`,
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
+  ];
+
   try {
-    // Static pages
-    const staticPages: MetadataRoute.Sitemap = [
-      {
-        url: BASE_URL,
-        lastModified: new Date("2026-03-30"),
-        changeFrequency: "daily",
-        priority: 1.0,
-      },
-      {
-        url: `${BASE_URL}/tjanster`,
-        lastModified: new Date("2026-03-30"),
+    const pages = await fetchAllPages();
+
+    // Slugs owned by a hand-written route above, or by another sitemap.
+    const excluded = new Set([
+      "hem",
+      "akut-hjalp",
+      "kontakta-oss",
+      "kunskapsbank",
+      "tjanster",
+      "faq",
+      "om-spoltec",
+      "cookiepolicy",
+      "undefined",
+    ]);
+
+    const seen = new Set(staticPages.map((entry) => entry.url));
+
+    const dynamicPages: MetadataRoute.Sitemap = [];
+
+    for (const page of pages) {
+      if (!page?.slug || excluded.has(page.slug)) continue;
+
+      const url = `${SITE_URL}/${page.slug}`;
+      if (seen.has(url)) continue;
+      seen.add(url);
+
+      const isLocationPage =
+        /-(boras|goteborg|malmo|helsingborg|kalmar|karlskrona|kristianstad|halmstad|varberg|vaxjo|jonkoping|stockholm|skane)$/.test(
+          page.slug
+        );
+      const isCommercialPage =
+        page.slug.includes("avloppsspolning") ||
+        page.slug.includes("relining") ||
+        page.slug.includes("oljeavskiljare") ||
+        page.slug.includes("rorinspektion") ||
+        page.slug.includes("stamspolning");
+
+      let priority = 0.8;
+      if (isCommercialPage) priority = 0.9;
+      else if (isLocationPage) priority = 0.85;
+
+      dynamicPages.push({
+        url,
+        lastModified: page.modifiedGmt
+          ? new Date(`${page.modifiedGmt}Z`)
+          : undefined,
         changeFrequency: "weekly",
-        priority: 0.8,
-      },
-      {
-        url: `${BASE_URL}/faq`,
-        lastModified: new Date("2026-03-30"),
-        changeFrequency: "monthly",
-        priority: 0.8,
-      },
-      {
-        url: `${BASE_URL}/kunskapsbank`,
-        lastModified: new Date("2026-03-30"),
-        changeFrequency: "weekly",
-        priority: 0.6,
-      },
-      {
-        url: `${BASE_URL}/kontakta-oss`,
-        lastModified: new Date("2026-03-30"),
-        changeFrequency: "monthly",
-        priority: 0.9,
-      },
-      {
-        url: `${BASE_URL}/akut-hjalp`,
-        lastModified: new Date("2026-03-30"),
-        changeFrequency: "monthly",
-        priority: 0.7,
-      },
-    ];
+        priority,
+      });
+    }
 
-    // Fetch dynamic pages
-    const response = await fetchGraphQL<any>(
-      `
-      query GET_ALL_PAGES {
-        pages(first: 100) {
-          nodes {
-            slug
-            modifiedGmt
-          }
-        }
-      }
-      `
-    );
-
-    const dynamicPages: MetadataRoute.Sitemap =
-      response?.pages?.nodes
-        ?.filter((page: any) => {
-          // Exclude pages that are handled statically
-          const pagesToExclude = [
-            "hem",
-            "akut-hjalp",
-            "kontakta-oss",
-            "kunskapsbank", // Add this to prevent duplicate
-            "tjanster",
-            "faq",
-            // Add other exclusions as needed
-          ];
-          return !pagesToExclude.includes(page.slug);
-        })
-        ?.map((page: any) => {
-          // High priority for location/commercial pages
-          const isLocationPage =
-            /-(boras|goteborg|malmo|helsingborg|kalmar|karlskrona|kristianstad|halmstad|varberg|vaxjo|jonkoping)$/.test(
-              page.slug
-            );
-          const isCommercialPage =
-            page.slug.includes("avloppsspolning") ||
-            page.slug.includes("relining") ||
-            page.slug.includes("oljeavskiljare") ||
-            page.slug.includes("rorinspektion");
-
-          let priority = 0.8; // default
-
-          if (isLocationPage && isCommercialPage) {
-            priority = 0.9; // Highest for location + service pages
-          } else if (isCommercialPage) {
-            priority = 0.9; // High for service pages
-          } else if (isLocationPage) {
-            priority = 0.85; // Medium-high for location pages
-          }
-
-          return {
-            url: `${BASE_URL}/${page.slug}`,
-            lastModified: page.modifiedGmt
-              ? new Date(page.modifiedGmt)
-              : new Date(),
-            changeFrequency: "weekly" as const,
-            priority,
-          };
-        }) || [];
-
-    // Add this to your main sitemap function
-    const postsResponse = await fetchGraphQL<any>(
-      `
-      query GET_ALL_POSTS {
-        posts(first: 100) {
-          nodes {
-            slug
-            modifiedGmt
-          }
-        }
-      }
-      `
-    );
-
-    const postPages: MetadataRoute.Sitemap =
-      postsResponse?.posts?.nodes?.map((post: any) => ({
-        url: `${BASE_URL}/kunskapsbank/${post.slug}`,
-        lastModified: post.modifiedGmt
-          ? new Date(post.modifiedGmt)
-          : new Date(),
-        changeFrequency: "weekly" as const,
-        priority: 0.6,
-      })) || [];
-
-    return [...staticPages, ...dynamicPages, ...postPages];
+    return [...staticPages, ...dynamicPages];
   } catch (error) {
     console.error("Error generating sitemap:", error);
-    // Return minimal sitemap on error
-    return [
-      {
-        url: BASE_URL,
-        lastModified: new Date(),
-        changeFrequency: "daily",
-        priority: 1.0,
-      },
-    ];
+    // Still emit the known static routes rather than collapsing to one URL.
+    return staticPages;
   }
 }

@@ -1,5 +1,6 @@
 import { revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
+import { REVALIDATE_ALIASES } from "@lib/wp/tags";
 
 async function handle(request: NextRequest) {
   const token =
@@ -14,18 +15,15 @@ async function handle(request: NextRequest) {
     return NextResponse.json({ error: "Invalid path" }, { status: 400 });
   }
 
-  const tagMap = {
-    post: "kunskapsbank",
-    page: "page",
-    tjanster: "tjanster",
-    "lediga-tjanster": "lediga-tjanster",
-  } as const;
+  const tags = new Set(REVALIDATE_ALIASES[path] ?? []);
+  // Keep honouring the raw value so bespoke webhook configs keep working.
+  tags.add(path as never);
 
-  const tag = tagMap[path as keyof typeof tagMap];
-  if (tag) revalidateTag(tag, "max");
-  revalidateTag(path, "max");
+  for (const tag of tags) {
+    revalidateTag(tag, "max");
+  }
 
-  return NextResponse.json({ revalidated: true, path });
+  return NextResponse.json({ revalidated: true, path, tags: [...tags] });
 }
 
 export async function GET(request: NextRequest) {

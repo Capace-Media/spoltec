@@ -15,13 +15,24 @@ export const SEO = `
         focuskw
         opengraphImage {
             sourceUrl
+            altText
+            mediaDetails {
+                width
+                height
+            }
         }
         opengraphSiteName
         opengraphPublishedTime
+        opengraphModifiedTime
         twitterTitle
         twitterDescription
         twitterImage {
             sourceUrl
+            altText
+            mediaDetails {
+                width
+                height
+            }
         }
     }
 `;

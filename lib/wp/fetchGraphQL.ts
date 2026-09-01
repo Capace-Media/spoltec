@@ -8,10 +8,17 @@ type GraphQLResponse<T> = {
   }[];
 };
 
+/**
+ * Safety net so a dropped WordPress webhook can't freeze content forever.
+ * On-demand `revalidateTag` is still the primary invalidation path.
+ */
+const FALLBACK_REVALIDATE_SECONDS = 60 * 60 * 4;
+
 export async function fetchGraphQL<T>(
   query: string,
   variables: { [key: string]: any } = {},
-  tags?: string[]
+  tags?: string[],
+  revalidate: number | false = FALLBACK_REVALIDATE_SECONDS
 ): Promise<T> {
   const endpoint = process.env.GRAPHQL_ENDPOINT as string;
 
@@ -21,9 +28,9 @@ export async function fetchGraphQL<T>(
       "Content-Type": "application/json",
       Authorization: `Basic ${credentials}`,
     },
-    cache: "force-cache",
     next: {
       tags: tags,
+      revalidate,
     },
     body: JSON.stringify({
       query,

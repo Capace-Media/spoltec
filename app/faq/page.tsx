@@ -5,7 +5,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import Hero from "components/header/hero";
 import { notFound } from "next/navigation";
 import JsonLd from "@components/JsonLd";
-import { buildFAQSchema, type FAQData } from "@lib/seo/schema/buildFAQSchema";
+import { buildBlockSchemas } from "@lib/seo/schema";
 import Link from "next/link";
 
 export async function generateMetadata(
@@ -31,15 +31,13 @@ const FaqPage = async () => {
   }
 
   const canonical = "https://www.spoltec.se/faq";
-  const faqData = page?.gqlBlocks?.blocks?.filter(
-    (block) => block.fieldGroupName === "Page_Gqlblocks_Blocks_Faq"
-  ) as FAQData;
-
-  const schema = buildFAQSchema(faqData, canonical);
+  const blockSchemas = buildBlockSchemas(page?.gqlBlocks?.blocks, canonical);
 
   return (
     <>
-      <JsonLd json={schema} id={"faq-page"} />
+      {blockSchemas.map((schema) => (
+        <JsonLd key={schema.id} json={schema.json} id={schema.id} />
+      ))}
 
       <main key={`faq`}>
         <Hero

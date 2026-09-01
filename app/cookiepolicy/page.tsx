@@ -1,29 +1,20 @@
-"use client";
-import { useEffect } from "react";
+import type { Metadata } from "next";
+import CookiebotDeclaration from "./declaration";
+
+export const metadata: Metadata = {
+  title: "Cookiepolicy | Spoltec",
+  description:
+    "Information om vilka cookies Spoltec använder på spoltec.se och hur du hanterar ditt samtycke.",
+  alternates: {
+    canonical: "/cookiepolicy",
+  },
+};
 
 export default function Page() {
-  useEffect(() => {
-    const container = document.getElementById("CookiebotDeclaration");
-    if (!container) return;
-
-    container.innerHTML = "";
-
-    const script = document.createElement("script");
-    script.src =
-      "https://consent.cookiebot.com/6e90d32a-24e5-4ede-b5a5-f3650b321fe2/cd.js";
-    script.async = true;
-    container.appendChild(script);
-
-    return () => {
-      script.remove();
-      container.innerHTML = "";
-    };
-  }, []);
-
   return (
-    <div className="max-w-300 mx-auto px-2">
+    <main className="max-w-300 mx-auto px-2">
       <h1>Cookiepolicy</h1>
-      <div id="CookiebotDeclaration" />
-    </div>
+      <CookiebotDeclaration />
+    </main>
   );
 }

@@ -1,9 +1,7 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@lib/utils/url";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se";
-
   return {
     rules: {
       userAgent: "*",
@@ -11,9 +9,10 @@ export default function robots(): MetadataRoute.Robots {
       disallow: ["/api/", "/wp-admin/", "/actions"],
     },
     sitemap: [
-      `${baseUrl}/sitemap.xml`,
-      `${baseUrl}/tjanster/sitemap.xml`,
-      `${baseUrl}/kunskapsbank/sitemap.xml`,
+      `${SITE_URL}/sitemap.xml`,
+      `${SITE_URL}/tjanster/sitemap.xml`,
+      `${SITE_URL}/kunskapsbank/sitemap.xml`,
     ],
+    host: SITE_URL,
   };
 }

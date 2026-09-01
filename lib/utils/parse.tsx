@@ -125,9 +125,17 @@ export default function handleParse(content: string): React.ReactElement {
                 ) as any;
 
                 if (imgElement?.attribs) {
-                  imgElement.attribs.decoding = "defer";
-                  // Remove styling from images too
-                  delete imgElement.attribs.style;
+                  // "defer" is not a valid decoding value; async is.
+                  imgElement.attribs.decoding = "async";
+                  // In-content images are always below the fold.
+                  imgElement.attribs.loading ??= "lazy";
+                  imgElement.attribs.fetchpriority ??= "low";
+                  // Intrinsic dimensions prevent layout shift (CLS).
+                  if (imgElement.attribs.width && imgElement.attribs.height) {
+                    imgElement.attribs.style = "height:auto";
+                  } else {
+                    delete imgElement.attribs.style;
+                  }
                   delete imgElement.attribs.class;
                   delete imgElement.attribs.className;
                   delete imgElement.attribs.id;

@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  htmlLimitedBots: /.*/,
+  // Block streaming (wait for full metadata) only for crawlers that need it.
+  // Matching /.*/ applied this to real users too and cost them TTFB.
+  htmlLimitedBots:
+    /Mediapartners-Google|Slurp|DuckDuckBot|baiddspider|yandex|googleweblight|Storebot-Google|Google-PageRenderer|AdsBot|bingbot|Applebot|facebookexternalhit|Twitterbot|LinkedInBot|Slackbot|WhatsApp|Discordbot|TelegramBot|GPTBot|OAI-SearchBot|ChatGPT-User|PerplexityBot|ClaudeBot|Google-Extended/i,
   poweredByHeader: false,
 
   // Next.js 15: External packages configuration for better performance

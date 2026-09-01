@@ -3,12 +3,21 @@ export interface SeoBreadcrumb {
   url: string;
 }
 
+export interface SeoImageMediaDetails {
+  width: number | null;
+  height: number | null;
+}
+
 export interface SeoOpengraphImage {
   sourceUrl: string;
+  altText: string | null;
+  mediaDetails: SeoImageMediaDetails | null;
 }
 
 export interface SeoTwitterImage {
   sourceUrl: string;
+  altText: string | null;
+  mediaDetails: SeoImageMediaDetails | null;
 }
 
 export interface SeoSchema {
@@ -29,6 +38,7 @@ export interface Seo {
   opengraphImage: SeoOpengraphImage | null;
   opengraphSiteName: string | null;
   opengraphPublishedTime: string | null;
+  opengraphModifiedTime: string | null;
   twitterTitle: string | null;
   twitterDescription: string | null;
   twitterImage: SeoTwitterImage | null;

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { cn } from "@lib/utils";
 import { buttonVariants } from "components/ui/button";
+import JsonLd from "@components/JsonLd";
 
 export const metadata: Metadata = {
   title: "404 - Sidan hittades inte | Spoltec",
@@ -73,12 +74,9 @@ export default function NotFound() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd json={structuredData as never} id="not-found-schema" />
 
-      <div className="contain-outer mt-5">
+      <main className="contain-outer mt-5">
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="contain">
           <ol className="flex items-center space-x-2 text-sm text-gray-600 mt-4">
@@ -253,7 +251,7 @@ export default function NotFound() {
             </div>
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }
