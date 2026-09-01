@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "title": "Tjänst 1",
+    "slug": "tjanst-1",
+    "uri": "/ledig-tjanst/tjanst-1/",
+    "gqlPositionFields": {
+      "bild": null,
+      "underrubrik": "At lab ipsae esed quibusa consenda dem de prestiore eatus eum quatio."
+    }
+  }
+]
