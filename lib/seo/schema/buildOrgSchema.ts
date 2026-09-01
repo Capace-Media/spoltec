@@ -1,9 +1,20 @@
-import type { LocalBusiness, WithContext } from "schema-dts";
+import type {
+  DayOfWeek,
+  LocalBusiness,
+  OpeningHoursSpecification,
+  WithContext,
+} from "schema-dts";
+
+interface Geo {
+  latitude: number;
+  longitude: number;
+}
 
 interface Location {
   name: string;
   telephone?: string;
   email?: string;
+  geo?: Geo;
   address: {
     streetAddress?: string;
     postalCode?: string;
@@ -12,6 +23,24 @@ interface Location {
     addressCountry?: string;
   };
 }
+
+/** Weekday office hours; emergency line is advertised separately as 24/7. */
+const WEEKDAYS: DayOfWeek[] = [
+  "https://schema.org/Monday",
+  "https://schema.org/Tuesday",
+  "https://schema.org/Wednesday",
+  "https://schema.org/Thursday",
+  "https://schema.org/Friday",
+];
+
+const OPENING_HOURS: OpeningHoursSpecification[] = [
+  {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: WEEKDAYS,
+    opens: "07:00",
+    closes: "16:00",
+  },
+];
 
 export function buildOrgSchema(input: {
   name: string;
@@ -25,6 +54,8 @@ export function buildOrgSchema(input: {
   email?: string;
   foundingDate?: string;
   founders?: string[];
+  priceRange?: string;
+  geo?: Geo;
   address?: {
     streetAddress?: string;
     postalCode?: string;
@@ -51,6 +82,11 @@ export function buildOrgSchema(input: {
     foundingDate: input.foundingDate,
     founder: input.founders?.map((name) => ({ "@type": "Person", name })),
     address: input.address && { "@type": "PostalAddress", ...input.address },
+    ...(input.geo && {
+      geo: { "@type": "GeoCoordinates" as const, ...input.geo },
+    }),
+    openingHoursSpecification: OPENING_HOURS,
+    ...(input.priceRange && { priceRange: input.priceRange }),
     ...(input.locations && {
       location: input.locations.map((loc) => ({
         "@type": "LocalBusiness" as const,
@@ -58,6 +94,10 @@ export function buildOrgSchema(input: {
         telephone: loc.telephone,
         email: loc.email,
         address: { "@type": "PostalAddress" as const, ...loc.address },
+        ...(loc.geo && {
+          geo: { "@type": "GeoCoordinates" as const, ...loc.geo },
+        }),
+        openingHoursSpecification: OPENING_HOURS,
       })),
     }),
     areaServed: [

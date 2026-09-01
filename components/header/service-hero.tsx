@@ -20,10 +20,13 @@ interface ServiceHeroProps {
 }
 
 export default function ServiceHero(props: ServiceHeroProps) {
-  console.log("props:", props);
 
   return (
-    <section className="lg:px-10 lg:mx-auto lg:max-w-360" role="banner">
+    <section
+      className="lg:px-10 lg:mx-auto lg:max-w-360"
+      aria-labelledby="hero-heading"
+      role="banner"
+    >
       <div className="lg:relative lg:h-172.5 lg:rounded-xl lg:overflow-hidden ">
         {props.image && (
           <Image
@@ -41,7 +44,9 @@ export default function ServiceHero(props: ServiceHeroProps) {
 
         <div className="p-4 lg:p-16 lg:grid lg:grid-cols-2  lg:absolute lg:top-0 lg:left-0 lg:w-full lg:h-full lg:z-20">
           <div className="lg:text-white">
-            <h1 className="lg:text-white">{props.title}</h1>
+            <h1 id="hero-heading" className="lg:text-white">
+              {props.title}
+            </h1>
             {props.subtitle && (
               <p>
                 <strong className="">{props.subtitle}</strong>

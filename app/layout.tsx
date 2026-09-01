@@ -6,11 +6,11 @@ import Footer from "components/footer";
 import { GoogleTagManager } from "@next/third-parties/google";
 import Providers from "./providers";
 import JsonLd from "components/JsonLd";
-import { orgSchema } from "@lib/seo/schema";
+import { orgSchema, webSiteSchema } from "@lib/seo/schema";
 import logo from "../public/images/spoltec-logo-new.png";
 import type { Metadata } from "next";
 import { cn } from "@lib/utils";
-import Script from "next/script";
+import { SITE_URL } from "@lib/utils/url";
 
 const chivo = Chivo({
   subsets: ["latin"],
@@ -33,9 +33,35 @@ export const metadata: Metadata = {
     "Professionell hjälp med avloppsproblem i hela Sverige. Spoltec utför spolning, reparationer och underhåll av avloppssystem för hem och företag.",
 
   // Add missing SEO metadata
-  metadataBase: new URL("https://www.spoltec.se"),
+  metadataBase: new URL(SITE_URL),
 
   authors: [{ url: "/humans.txt" }],
+
+  // Site-wide social defaults. Routes override these via generatePageMetadata;
+  // pages without CMS SEO data fall back to app/opengraph-image.tsx.
+  openGraph: {
+    type: "website",
+    locale: "sv_SE",
+    siteName: "Spoltec",
+    url: SITE_URL,
+    title: "Spoltec funktionssäkrar ert avloppssystem",
+    description:
+      "Professionell hjälp med avloppsproblem i hela Sverige. Spoltec utför spolning, reparationer och underhåll av avloppssystem för hem och företag.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Spoltec funktionssäkrar ert avloppssystem",
+    description:
+      "Professionell hjälp med avloppsproblem i hela Sverige. Spoltec utför spolning, reparationer och underhåll av avloppssystem för hem och företag.",
+  },
+  alternates: {
+    canonical: "/",
+  },
+  formatDetection: {
+    telephone: false,
+    address: false,
+    email: false,
+  },
   robots: {
     index: true,
     follow: true,
@@ -82,6 +108,8 @@ export default function RootLayout({
       "https://www.linkedin.com/company/spoltec-södra-ab/",
       "https://www.facebook.com/spoltec",
     ],
+    priceRange: "$$",
+    geo: { latitude: 55.8394, longitude: 13.3036 },
     address: {
       streetAddress: "Grävmaskinsvägen 2",
       postalCode: "241 38",
@@ -94,6 +122,7 @@ export default function RootLayout({
         name: "Spoltec Södra AB — Eslöv",
         telephone: "+46 40 47 40 12",
         email: "info@spoltec.se",
+        geo: { latitude: 55.8394, longitude: 13.3036 },
         address: {
           streetAddress: "Grävmaskinsvägen 2",
           postalCode: "241 38",
@@ -106,6 +135,7 @@ export default function RootLayout({
         name: "Spoltec Södra AB — Stockholm/Mälardalen",
         telephone: "+46 10 333 33 67",
         email: "stockholm@spoltec.se",
+        geo: { latitude: 59.3494, longitude: 17.9339 },
         address: {
           streetAddress: "Ranhammarsvägen 20E",
           postalCode: "168 67",
@@ -116,10 +146,18 @@ export default function RootLayout({
       },
     ],
   });
+
+  const site = webSiteSchema({
+    url: SITE_URL,
+    name: "Spoltec",
+    description:
+      "Professionell hjälp med avloppsproblem i hela Sverige. Spoltec utför spolning, reparationer och underhåll av avloppssystem för hem och företag.",
+  });
   return (
     <html lang="sv">
       <body className={cn(chivo.className, "")}>
         <Nav />
+        <JsonLd json={site} id="website-schema" />
         <JsonLd json={org} id="org-schema" />
         <Providers>{children}</Providers>
         <Footer />

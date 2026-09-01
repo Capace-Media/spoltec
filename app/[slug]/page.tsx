@@ -6,7 +6,11 @@ import { GET_PAGES_QUERY } from "@lib/queries/page";
 import { generatePageMetadata, isBlacklistedPageSlug } from "@lib/utils";
 import type { Metadata, ResolvingMetadata } from "next";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
+import { TAGS } from "@lib/wp/tags";
 import SchemaScript from "@lib/utils/schema-script";
+import JsonLd from "@components/JsonLd";
+import { buildBlockSchemas } from "@lib/seo/schema";
+import { absoluteUrl } from "@lib/utils/url";
 
 export const dynamicParams = true;
 
@@ -20,7 +24,7 @@ type GetPagesQueryData = {
 
 export async function generateStaticParams() {
   const response = await fetchGraphQL<GetPagesQueryData>(GET_PAGES_QUERY, {}, [
-    "pages",
+    TAGS.page,
   ]);
   const pagesToExclude = [
     "hem",
@@ -92,10 +96,17 @@ export default async function Page(props: PageProps) {
     page.slug.includes("stamspolning");
 
   const raw = page?.pageSchema?.schema?.json;
+  const blockSchemas = buildBlockSchemas(
+    page?.gqlBlocks?.blocks,
+    page.seo?.canonical ?? absoluteUrl(`/${page.slug}`),
+  );
 
   return (
     <>
       <SchemaScript raw={raw} />
+      {blockSchemas.map((schema) => (
+        <JsonLd key={schema.id} json={schema.json} id={schema.id} />
+      ))}
       <main key={page.title}>
         <Hero
           title={page?.title}

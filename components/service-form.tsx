@@ -84,7 +84,7 @@ export default function ServiceForm(props: ServiceContactFormProps) {
   });
 
   return (
-    <Card className="lg:max-w-[399px] bg-[hsl(0,0%,98%)] lg:min-w-[399px] xl:max-w-[499px] xl:min-w-[399px] w-full ">
+    <Card className="lg:max-w-99.75 bg-[hsl(0,0%,98%)] lg:min-w-99.75 xl:max-w-124.75 xl:min-w-99.75 w-full ">
       <CardHeader>
         <CardTitle>
           Få kostnadsfri offert på professionell
