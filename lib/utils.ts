@@ -4,13 +4,14 @@ import type { Metadata, ResolvingMetadata } from "next";
 import type { Page } from "@lib/types/page";
 import type { Service } from "@lib/types/service";
 import type { Post } from "@lib/types/post";
+import type { Position } from "@lib/types/employment";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 export async function generatePageMetadata(
-  page: Page | Service | Post | null,
+  page: Page | Service | Post | Position | null,
   parent?: ResolvingMetadata,
   canonical?: string,
   fallbackTitle = "Spoltec funktionssäkrar ert avloppssystem",

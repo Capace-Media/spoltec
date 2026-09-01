@@ -30,5 +30,5 @@ export const REVALIDATE_ALIASES: Record<string, ContentTag[]> = {
   tjanster: [TAGS.service, TAGS.sitemap],
   service: [TAGS.service, TAGS.sitemap],
   services: [TAGS.service, TAGS.sitemap],
-  "lediga-tjanster": [TAGS.position],
+  "lediga-tjanster": [TAGS.position, TAGS.sitemap],
 };
