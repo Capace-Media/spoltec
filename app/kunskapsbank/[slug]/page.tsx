@@ -8,6 +8,7 @@ import JsonLd from "components/JsonLd";
 import { articleSchema, breadcrumbsSchema } from "@lib/seo/schema";
 import { absoluteUrl } from "@lib/utils/url";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
+import { TAGS } from "@lib/wp/tags";
 
 import BreadcrumbsComponent from "components/breadcrumbs";
 
@@ -36,7 +37,7 @@ export async function generateStaticParams() {
     const response = await fetchGraphQL<GetPostsQueryData>(
       GET_POSTS_QUERY,
       {},
-      ["posts"]
+      [TAGS.post]
     );
 
     const postPaths =

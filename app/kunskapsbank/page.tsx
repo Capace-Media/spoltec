@@ -33,13 +33,14 @@ export default async function KunskapsBank() {
   // Use the dedicated server-side query client
   const queryClient = getServerQueryClient();
 
-  await queryClient.prefetchInfiniteQuery({
-    queryKey: ["posts"],
-    queryFn: async ({ pageParam }: { pageParam: string | undefined }) =>
-      getPosts(pageParam, 9),
-    initialPageParam: undefined,
-    getNextPageParam: (lastPage: any) => lastPage?.pageInfo?.endCursor,
-  });
+  await queryClient
+    .infiniteQuery({
+      queryKey: ["posts"],
+      queryFn: async ({ pageParam }: { pageParam: string | undefined }) =>
+        getPosts(pageParam, 9),
+      initialPageParam: undefined as string | undefined,
+    })
+    .catch(() => undefined);
 
   const dehydratedState = dehydrate(queryClient);
 

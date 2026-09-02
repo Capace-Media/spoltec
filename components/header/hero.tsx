@@ -47,7 +47,9 @@ const Hero = (props: HeroProps) => {
 
         <div className="p-4 lg:p-16 lg:grid lg:grid-cols-2  lg:absolute lg:top-0 lg:left-0 lg:w-full lg:h-full lg:z-20">
           <div className="lg:text-white">
-            <h1 className="lg:text-white">{props.title}</h1>
+            <h1 id="hero-heading" className="lg:text-white">
+              {props.title}
+            </h1>
             {props.subtitle && (
               <p className="lg:pb-2">
                 <strong>{props.subtitle}</strong>

@@ -1,5 +1,3 @@
-"use client";
-
 import type { ServiceHowToBlock } from "@lib/types/service";
 import type { HowToBlock } from "@lib/types/page";
 

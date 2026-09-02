@@ -6,7 +6,6 @@ import CTABGIMAGE from "../../../public/images/spoltec-cta-bg.jpg";
 import { buttonVariants } from "components/ui/button";
 import { cn } from "@lib/utils";
 import { usePathname } from "next/navigation";
-import { getBlurPlaceholder } from "@lib/utils/blur-placeholder";
 
 const CallToAction = () => {
   const sectionId = "serviceavtal-cta";
@@ -34,6 +33,7 @@ const CallToAction = () => {
           alt="En man som drar en slang - Spoltec serviceavtal"
           role="img"
           sizes="(max-width: 1200px) 98vw, 1300px"
+          placeholder="blur"
         />
         <span className="absolute top-0 left-0 w-full h-full bg-black/50 z-10" />
 

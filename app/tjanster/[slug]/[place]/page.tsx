@@ -4,10 +4,15 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { generatePageMetadata } from "@lib/utils";
 import { getService } from "@lib/data/service";
 import Blocks from "components/flexible-content/block";
-import { breadcrumbsSchema, serviceSchema } from "@lib/seo/schema";
+import {
+  breadcrumbsSchema,
+  buildBlockSchemas,
+  serviceSchema,
+} from "@lib/seo/schema";
 import JsonLd from "components/JsonLd";
 import { absoluteUrl } from "@lib/utils/url";
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
+import { TAGS } from "@lib/wp/tags";
 import BreadcrumbsComponent from "@components/breadcrumbs";
 
 type GetChildServicesQueryData = {
@@ -44,7 +49,7 @@ export async function generateStaticParams() {
   const response = await fetchGraphQL<GetChildServicesQueryData>(
     GET_CHILD_SERVICES_QUERY,
     {},
-    ["services"],
+    [TAGS.service],
   );
 
   const routes =
@@ -115,11 +120,15 @@ export default async function PlacePage(props: PageProps) {
   );
 
   const serviceSchemaLD = serviceSchema(page, page.title);
+  const blockSchemas = buildBlockSchemas(page.gqlBlocks?.blocks, canonical);
 
   return (
     <>
       <JsonLd json={bread} id="breadcrumbs-schema" />
       <JsonLd json={serviceSchemaLD} id="service-schema" />
+      {blockSchemas.map((schema) => (
+        <JsonLd key={schema.id} json={schema.json} id={schema.id} />
+      ))}
       <main key={page.title}>
         <ServiceHero
           title={page?.gqlHeroFields?.h1 ? page.gqlHeroFields.h1 : page.title}

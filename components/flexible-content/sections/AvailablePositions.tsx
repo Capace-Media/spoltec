@@ -11,7 +11,7 @@ const AvailablePositions = ({ data }: AvailablePositionsProps) => {
   return (
     <>
       <div className="text-center section contain">
-        <div className="max-w-[700px] mx-auto">
+        <div className="max-w-175 mx-auto">
           <h2>{data.rubrik}</h2>
           <p>{data.jobsText}</p>
         </div>
@@ -22,7 +22,7 @@ const AvailablePositions = ({ data }: AvailablePositionsProps) => {
                 <Link
                   className="mb-3 group relative h-56 md:h-96 flex overflow-hidden flex-col justify-between mr-3 w-full md:w-[48%]  lg:w-[32%] xl:w-[24%] text-white p-7 bg-brand-blue text-left rounded-xl"
                   key={position?.slug}
-                  href={`/${position?.slug}`}
+                  href={`/karriar/${position?.slug}`}
                   aria-label={`Läs mer om ${position.title}`}
                 >
                   <Image

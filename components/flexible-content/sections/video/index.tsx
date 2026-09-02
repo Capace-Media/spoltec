@@ -1,4 +1,5 @@
 import { videoSchema } from "../../../../lib/seo/schema";
+import JsonLd from "../../../JsonLd";
 import VideoSource from "./source";
 
 interface VideoProps {
@@ -37,12 +38,7 @@ const Video = ({ data }: VideoProps) => {
   return (
     <>
       {/* Structured data - server-side rendered for better SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(videoStructuredData),
-        }}
-      />
+      <JsonLd json={videoStructuredData as never} id="video-schema" />
 
       <section className="contain-outer section">
         <VideoSource

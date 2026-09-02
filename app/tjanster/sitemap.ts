@@ -1,8 +1,7 @@
 import { fetchGraphQL } from "@lib/wp/fetchGraphQL";
+import { TAGS } from "@lib/wp/tags";
+import { SITE_URL as BASE_URL } from "@lib/utils/url";
 import type { MetadataRoute } from "next";
-
-const BASE_URL =
-  process.env.NEXT_PUBLIC_MY_WEBSITE || "https://www.spoltec.se";
 
 interface ServiceNode {
   slug: string;
@@ -39,28 +38,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           }
         }
       }
-      `
+      `,
+      {},
+      [TAGS.service, TAGS.sitemap]
     );
 
     const nodes = response?.gqlAllService?.nodes ?? [];
+    const seen = new Set<string>();
 
-    const entries: MetadataRoute.Sitemap = nodes.map((service) => {
+    return nodes.flatMap((service) => {
+      if (!service?.slug) return [];
+
       const isChild = !!service.parent?.node?.slug;
       const url = isChild
         ? `${BASE_URL}/tjanster/${service.parent!.node.slug}/${service.slug}`
         : `${BASE_URL}/tjanster/${service.slug}`;
 
-      return {
-        url,
-        lastModified: service.modifiedGmt
-          ? new Date(service.modifiedGmt)
-          : new Date(),
-        changeFrequency: "weekly" as const,
-        priority: isChild ? 0.85 : 0.95,
-      };
-    });
+      if (seen.has(url)) return [];
+      seen.add(url);
 
-    return entries;
+      return [
+        {
+          url,
+          lastModified: service.modifiedGmt
+            ? new Date(`${service.modifiedGmt}Z`)
+            : undefined,
+          changeFrequency: "weekly" as const,
+          priority: isChild ? 0.85 : 0.95,
+        },
+      ];
+    });
   } catch (error) {
     console.error("Error generating tjanster sitemap:", error);
     return [];
